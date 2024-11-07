@@ -245,13 +245,17 @@ const Hero = () => {
             transition={{ delay: 0.6, duration: 0.6 }}
             className="flex items-center gap-6 pt-4"
           >
-            <Link 
-              to="#work" 
+            <a 
+              href="#work" 
               className="group inline-flex items-center gap-2 px-6 py-3 bg-accent text-background rounded-full hover:bg-accent/90 transition-colors duration-300"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('work').scrollIntoView({ behavior: 'smooth' });
+              }}
             >
               Check out my work
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-            </Link>
+            </a>
             <a 
               href="mailto:marci.mocsonoky.gmail.com"
               className="group inline-flex items-center gap-2 text-primary/60 hover:text-accent transition-colors duration-300"
