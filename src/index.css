@@ -2,10 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    @apply bg-background;
+  }
+
+  body {
+    @apply bg-background text-primary antialiased;
+  }
 }
 
-body {
-  @apply antialiased text-gray-900;
+::selection {
+  @apply bg-accent text-background;
+}
+
+/* Optional: Add custom cursor */
+.custom-cursor {
+  @apply fixed w-4 h-4 bg-accent rounded-full pointer-events-none mix-blend-difference z-50;
+  transform: translate(-50%, -50%);
 }
