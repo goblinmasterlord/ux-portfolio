@@ -9,38 +9,42 @@ import ProjectResults from '../../components/project/ProjectResults';
 const Everprove = () => {
   const projectData = {
     title: "Transforming Legal Contracting into a Seamless Digital Experience",
-    subtitle: "Reimagining how people create, negotiate, and sign contracts in the digital age",
-    overview: "everprove simplifies the traditionally complex contract creation process through an intuitive, user-friendly digital platform. By combining smart UX design with blockchain technology, we've transformed legal contracting from a cumbersome process into a streamlined experience that anyone can navigate with confidence.",
+    subtitle: "Building the future of digital contracts for both individuals and enterprises",
+    overview: "Everprove makes contract creation and management effortless through two key offerings: a consumer platform that simplifies personal legal documents, and an enterprise solution that provides customized contracting workflows for businesses. By combining intuitive design with powerful automation, we're making legal processes accessible to everyone while providing the robustness that businesses demand.",
+    challengeDescription: "The legal contract landscape presents unique challenges for both individuals and businesses:",
     challenges: [
-      "Complex legal templates intimidate non-legal users",
-      "Back-and-forth email negotiations create confusion",
-      "Paper-based signing is inefficient and time-consuming",
-      "Contract storage and retrieval is often disorganized",
-      "Legal costs for contract creation are prohibitively expensive for small businesses"
+      "Individuals avoid legal protection due to complex contract language",
+      "Businesses need customizable, automated contract workflows",
+      "Traditional contract processes waste valuable time and resources",
+      "Enterprise compliance requirements add layers of complexity",
+      "Integration with existing systems is often problematic"
     ],
     solutions: [
       {
-        title: "Smart Template Selection",
+        title: "Consumer-Friendly Platform",
         points: [
-          "Simplified contract templates for common scenarios",
-          "Plain language descriptions of legal terms",
-          "Visual wizard interface for template customization"
+          "Plain-language contract templates",
+          "Guided document creation process",
+          "Mobile-first signing experience",
+          "Secure document storage"
         ]
       },
       {
-        title: "Collaborative Review Process",
+        title: "Enterprise Workflow Engine",
         points: [
-          "Real-time contract review and negotiation",
-          "Clear visual indicators of changes and approvals",
-          "Streamlined back-and-forth between parties"
+          "Custom approval workflows",
+          "API-first integration approach",
+          "Automated compliance checks",
+          "Bulk processing capabilities"
         ]
       },
       {
-        title: "Secure Digital Signing",
+        title: "Secure Infrastructure",
         points: [
-          "Blockchain-verified digital signatures",
-          "Immutable record-keeping",
-          "Instant contract generation and distribution"
+          "Blockchain-verified signatures",
+          "Enterprise-grade security",
+          "Audit trail and versioning",
+          "Multi-party collaboration tools"
         ]
       }
     ],
@@ -63,7 +67,10 @@ const Everprove = () => {
 
       <ProjectHero title={projectData.title} subtitle={projectData.subtitle} />
       <ProjectOverview content={projectData.overview} />
-      <ProjectChallenge challenges={projectData.challenges} />
+      <ProjectChallenge 
+        challenges={projectData.challenges} 
+        description={projectData.challengeDescription}
+      />
       <ProjectSolution solutions={projectData.solutions} />
       <ProjectResults results={projectData.results} />
     </main>

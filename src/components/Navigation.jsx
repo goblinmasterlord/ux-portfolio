@@ -17,7 +17,7 @@ const Navigation = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-40 px-6 lg:px-12 py-6">
       <div className="max-w-[1800px] mx-auto flex justify-between items-center">
-        <Link to="/" className="text-xl font-display">Your Name</Link>
+        <Link to="/" className="text-xl font-display">Marci's Site</Link>
         <div className="flex items-center gap-8">
           <a 
             href="#work" 

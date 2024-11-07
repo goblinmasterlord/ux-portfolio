@@ -12,6 +12,7 @@ const Paynance = () => {
     title: "Revolutionizing Payment Solutions for Modern Businesses",
     subtitle: "A comprehensive fintech platform that simplifies merchant payments and business management",
     overview: "Paynance is a cutting-edge fintech solution that transforms how businesses handle payments. By combining traditional POS terminals, virtual POS, online payments, and integrated cashier systems, we provide flexible payment solutions that adapt to any business model.",
+    challengeDescription: "In today's fast-paced business environment, merchants face several hurdles when it comes to payment processing and financial management:",
     challenges: [
       "Merchants need flexible payment solutions that adapt to different business models",
       "Complex onboarding processes often delay merchant activation",
@@ -67,7 +68,7 @@ const Paynance = () => {
 
       <ProjectHero title={projectData.title} subtitle={projectData.subtitle} />
       <ProjectOverview content={projectData.overview} />
-      <ProjectChallenge challenges={projectData.challenges} />
+      <ProjectChallenge challenges={projectData.challenges} description={projectData.challengeDescription} />
       <ProjectSolution solutions={projectData.solutions} />
       <ProjectResults results={projectData.results} />
       <ProjectNextSteps />

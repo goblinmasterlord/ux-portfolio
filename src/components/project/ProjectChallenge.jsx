@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 
-const ProjectChallenge = ({ challenges }) => {
+const ProjectChallenge = ({ challenges, description }) => {
   const [ref, controls] = useScrollAnimation();
 
   return (
@@ -12,17 +12,24 @@ const ProjectChallenge = ({ challenges }) => {
         animate={controls}
         variants={{
           hidden: { opacity: 0, y: 20 },
-          visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+          visible: { 
+            opacity: 1, 
+            y: 0, 
+            transition: { 
+              duration: 0.6,
+              staggerChildren: 0.1
+            } 
+          }
         }}
         className="max-w-[1000px] mx-auto"
       >
         <div className="flex flex-col md:flex-row gap-12">
           <div className="md:w-1/3">
-            <h2 className="text-2xl font-display sticky top-8">The Challenge</h2>
+            <h2 className="text-2xl font-display">The Challenge</h2>
           </div>
           <div className="md:w-2/3 space-y-8">
             <p className="text-primary/80 text-lg">
-              The traditional contracting process is fraught with friction points that slow down business operations:
+              {description}
             </p>
             <div className="grid gap-6">
               {challenges.map((challenge, index) => (

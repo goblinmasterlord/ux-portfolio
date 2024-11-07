@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Mail, Linkedin, Github, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import profileImage from '../assets/mrci.png';
 
 const ContactLink = ({ href, icon: Icon, children }) => {
   return (
@@ -36,16 +37,16 @@ const Contact = () => {
           <div className="md:w-1/3">
             <div className="w-48 h-48 rounded-full overflow-hidden">
               <img 
-                src="/path-to-your-image.jpg" 
+                src={profileImage} 
                 alt="Profile" 
                 className="w-full h-full object-cover"
               />
             </div>
           </div>
           <div className="md:w-2/3">
-            <h1 className="text-3xl font-display mb-4">Hi, I'm Your Name</h1>
+            <h1 className="text-3xl font-display mb-4">Hi, I'm Marci</h1>
             <p className="text-primary/60 text-lg leading-relaxed">
-              I'm a UX designer and product thinker based in [Your Location]. 
+              I'm a UX designer and product thinker based in Budapest, Hungary. 
               With a passion for creating intuitive digital experiences, 
               I help businesses transform their ideas into user-friendly solutions.
             </p>
@@ -59,7 +60,7 @@ const Contact = () => {
           className="space-y-4 mb-16"
         >
           <span className="text-accent">Get in Touch</span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display">Let's Create Something Amazing Together</h2>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display">Let's Build Something</h2>
           <p className="text-primary/60 text-lg max-w-[600px]">
             I'm always interested in hearing about new projects and opportunities. 
             Feel free to reach out through any of these channels.
@@ -73,10 +74,10 @@ const Contact = () => {
           className="space-y-4"
         >
           <ContactLink 
-            href="mailto:your.email@example.com" 
+            href="mailto:marci.mocsonoky.gmail.com" 
             icon={Mail}
           >
-            your.email@example.com
+            Get in touch via email
           </ContactLink>
           
           <ContactLink 
@@ -84,13 +85,6 @@ const Contact = () => {
             icon={Linkedin}
           >
             Connect on LinkedIn
-          </ContactLink>
-          
-          <ContactLink 
-            href="https://github.com/yourusername" 
-            icon={Github}
-          >
-            Check out my GitHub
           </ContactLink>
         </motion.div>
 
