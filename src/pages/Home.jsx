@@ -317,19 +317,6 @@ const Home = () => {
       }
     },
     {
-      title: "Transforming Legal Contracting",
-      category: "Digital Transformation",
-      path: "/projects/everprove",
-      image: everproveImage,
-      description: "Everprove democratizes legal protection through two solutions: a consumer platform that makes personal legal documents accessible to everyone, and an enterprise system that automates complex contract workflows.",
-      year: "2019",
-      tags: ["Legal-Tech", "Blockchain", "UX & UI Design", "Smart Contracts", "Mobile & Web App"],
-      stats: {
-        "Processing Time": "2 mins vs 2 days",
-        "Cost Savings": "95%"
-      }
-    },
-    {
       title: "Gamifying Urban Discovery",
       category: "Location-Based Platform",
       path: "/projects/loccocity",
@@ -342,6 +329,19 @@ const Home = () => {
         businesses: "100+",
       }
     },
+    {
+        title: "Transforming Legal Contracting",
+        category: "Digital Transformation",
+        path: "/projects/everprove",
+        image: everproveImage,
+        description: "Everprove democratizes legal protection through two solutions: a consumer platform that makes personal legal documents accessible to everyone, and an enterprise system that automates complex contract workflows.",
+        year: "2019",
+        tags: ["Legal-Tech", "Blockchain", "UX & UI Design", "Smart Contracts", "Mobile & Web App"],
+        stats: {
+          "Processing Time": "2 mins vs 2 days",
+          "Cost Savings": "95%"
+        }
+      },
     {
       title: "Paynance Mobile Experience",
       category: "Product Design",
