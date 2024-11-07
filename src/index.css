@@ -1,24 +1,18 @@
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&f[]=cabinet-grotesk@800,700,500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  html {
-    scroll-behavior: smooth;
-    @apply bg-background;
-  }
-
-  body {
-    @apply bg-background text-primary antialiased;
-  }
+:root {
+  --font-display: 'Cabinet Grotesk', sans-serif;
+  --font-sans: 'Satoshi', sans-serif;
 }
 
-::selection {
-  @apply bg-accent text-background;
+body {
+  @apply bg-background text-primary font-sans;
 }
 
-/* Optional: Add custom cursor */
-.custom-cursor {
-  @apply fixed w-4 h-4 bg-accent rounded-full pointer-events-none mix-blend-difference z-50;
-  transform: translate(-50%, -50%);
+h1, h2, h3, h4, h5, h6 {
+  @apply font-display;
 }
