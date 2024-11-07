@@ -52,7 +52,19 @@ const Everprove = () => {
       { stat: "85%", description: "reduction in average contract completion time" },
       { stat: "3x", description: "increase in contract completion rate" },
       { stat: "98%", description: "user satisfaction rate" }
-    ]
+    ],
+    hero: {
+      timeline: "12 Months",
+      role: "UX & UI Designer",
+      platform: "Web and Mobile Applications",
+      team: "3 designers, 8 developers",
+      involvement: [
+        "User Research",
+        "UX/UI Design",
+        "User Testing",
+        "Wireframing"
+      ]
+    }
   };
 
   return (
@@ -65,7 +77,11 @@ const Everprove = () => {
         Back to Home
       </Link>
 
-      <ProjectHero title={projectData.title} subtitle={projectData.subtitle} />
+      <ProjectHero 
+        title={projectData.title} 
+        subtitle={projectData.subtitle} 
+        hero={projectData.hero}
+      />
       <ProjectOverview content={projectData.overview} />
       <ProjectChallenge 
         challenges={projectData.challenges} 

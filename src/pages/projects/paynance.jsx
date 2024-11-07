@@ -53,7 +53,19 @@ const Paynance = () => {
       { stat: "2.5M+", description: "Transactions processed monthly" },
       { stat: "98%", description: "Merchant satisfaction rate" },
       { stat: "6 mins", description: "Average onboarding time" }
-    ]
+    ],
+    hero: {
+      timeline: "12 Months",
+      role: "Product Designer",
+      platform: "Web Application & Mobile and POS",
+      team: "4 designers, 12 developers",
+      involvement: [
+        "User Research",
+        "UX Strategy",
+        "UI Design",
+        "Usability Testing"
+      ]
+    }
   };
 
   return (
@@ -66,7 +78,11 @@ const Paynance = () => {
         Back to Home
       </Link>
 
-      <ProjectHero title={projectData.title} subtitle={projectData.subtitle} />
+      <ProjectHero 
+        title={projectData.title} 
+        subtitle={projectData.subtitle} 
+        hero={projectData.hero}
+      />
       <ProjectOverview content={projectData.overview} />
       <ProjectChallenge challenges={projectData.challenges} description={projectData.challengeDescription} />
       <ProjectSolution solutions={projectData.solutions} />

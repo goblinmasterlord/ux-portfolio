@@ -32,7 +32,7 @@ const LoccoCityPage = () => {
         title: "Gamified Urban Exploration",
         points: [
           "Location-based reward discovery",
-          "Interactive city mapping",
+          "Tailored rewards for each user",
           "Achievement-based progression",
           "Real-time reward availability"
         ]
@@ -42,16 +42,26 @@ const LoccoCityPage = () => {
         points: [
           "Proximity-based coupon activation",
           "Easy redemption process",
-          "Personalized reward suggestions",
           "Brand partnership integration"
         ]
       }
     ],
     results: [
-      { stat: "62.4k+", description: "active users exploring cities" },
-      { stat: "1.2k+", description: "partnered local businesses" },
-      { stat: "4.8/5", description: "user satisfaction rating" }
-    ]
+      { stat: "10.000+", description: "active users exploring cities" },
+      { stat: "100+", description: "partnered local businesses" },
+    ],
+    hero: {
+      timeline: "6 Months",
+      role: "Product Designer",
+      platform: "iOS & Android Apps",
+      team: "2 designers, 6 developers",
+      involvement: [
+        "Gamification Design",
+        "UX Research",
+        "UI Design",
+        "Prototyping"
+      ]
+    }
   };
 
   return (
@@ -70,6 +80,7 @@ const LoccoCityPage = () => {
       <ProjectHero 
         title={projectData.title} 
         subtitle={projectData.subtitle} 
+        hero={projectData.hero}
       />
 
       {console.log('Rendering ProjectOverview')}
