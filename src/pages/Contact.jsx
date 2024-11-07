@@ -81,7 +81,7 @@ const Contact = () => {
           </ContactLink>
           
           <ContactLink 
-            href="https://linkedin.com/in/yourprofile" 
+            href="https://www.linkedin.com/in/m%C3%A1rton-mocsonoky-052091116/" 
             icon={Linkedin}
           >
             Connect on LinkedIn
