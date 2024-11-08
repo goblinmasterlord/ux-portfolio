@@ -37,6 +37,22 @@ const staggerContainer = {
   }
 };
 
+// Update the animation variants
+const fadeInScale = {
+  hidden: { 
+    opacity: 0,
+    scale: 0.98
+  },
+  visible: { 
+    opacity: 1,
+    scale: 1,
+    transition: { 
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1] // Custom easing for smooth animation
+    }
+  }
+};
+
 // Project Card Component
 const ProjectCard = memo(({ project, index }) => {
   return (
@@ -128,7 +144,7 @@ const ServiceCard = memo(({ service }) => {
       ref={ref}
       initial="hidden"
       animate={controls}
-      variants={fadeInUp}
+      variants={fadeInScale}
       className="group relative p-8 rounded-2xl bg-primary/5 hover:bg-primary/10 transition-all duration-500 overflow-hidden"
     >
       {/* Gradient overlay */}

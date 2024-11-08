@@ -110,6 +110,13 @@ const Contact = () => {
               <h3 className="font-display mb-2">Everprove</h3>
               <p className="text-primary/60">Transforming legal contracting into a seamless experience</p>
             </Link>
+            <Link 
+              to="/projects/loccocity"
+              className="p-6 rounded-xl bg-primary/5 hover:bg-primary/10 transition-all duration-300"
+            >
+              <h3 className="font-display mb-2">LoccoCity</h3>
+              <p className="text-primary/60">Gamifying city exploration and rewards</p>
+            </Link>
           </div>
         </motion.div>
       </div>
