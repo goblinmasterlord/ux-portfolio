@@ -1,10 +1,10 @@
 import { useState, useEffect, memo } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, ArrowUpRight, MousePointer2, Sparkles, Lightbulb, Layers, Bot } from 'lucide-react';
-import paynanceImage1 from '../assets/projects/paynance-1.jpg';
-import paynanceImage2 from '../assets/projects/paynance-2.jpg';
-import loccocityImage1 from '../assets/projects/loccocity.jpg';
-import everproveImage from '../assets/projects/everprove.jpg';
+import paynanceImage1 from '../assets/projects/paynance-1.png';
+import paynanceImage2 from '../assets/projects/paynance-2.png';
+import loccocityImage1 from '../assets/projects/loccocity.png';
+import everproveImage from '../assets/projects/everprove.png';
 import { motion } from 'framer-motion';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { ArrowRight } from 'lucide-react';
@@ -201,7 +201,7 @@ const Hero = () => {
                 transition={{ delay: 0.3, duration: 0.6 }}
                 className="block"
               >
-                Hey, I'm Marci 👋
+                Hey, I'm Marci 👋👽
               </motion.span>
               <motion.span
                 initial={{ opacity: 0, y: 20 }}

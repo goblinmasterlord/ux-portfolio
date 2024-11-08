@@ -5,6 +5,7 @@ import ProjectOverview from '../../components/project/ProjectOverview';
 import ProjectChallenge from '../../components/project/ProjectChallenge';
 import ProjectSolution from '../../components/project/ProjectSolution';
 import ProjectResults from '../../components/project/ProjectResults';
+import ProjectNextSteps from '../../components/project/ProjectNextSteps';
 
 const Everprove = () => {
   const projectData = {
@@ -89,6 +90,7 @@ const Everprove = () => {
       />
       <ProjectSolution solutions={projectData.solutions} />
       <ProjectResults results={projectData.results} />
+      <ProjectNextSteps />
     </main>
   );
 };
