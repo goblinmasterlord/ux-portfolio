@@ -1,6 +1,6 @@
 import { useState, useEffect, memo } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, ArrowUpRight, MousePointer2, Sparkles, Lightbulb, Layers, Bot } from 'lucide-react';
+import { Menu, X, ArrowUpRight, MousePointer2, Sparkles, Lightbulb, Layers, Bot, Scale, ShoppingCart, BarChart2, MessageSquare, HeadphonesIcon, Mail, ShoppingBag, Share2 } from 'lucide-react';
 import paynanceImage1 from '../assets/projects/paynance-1.png';
 import paynanceImage2 from '../assets/projects/paynance-2.png';
 import loccocityImage1 from '../assets/projects/loccocity.png';
@@ -131,23 +131,47 @@ const ServiceCard = memo(({ service }) => {
       variants={fadeInUp}
       className="group relative p-8 rounded-2xl bg-primary/5 hover:bg-primary/10 transition-all duration-500 overflow-hidden"
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-accent/0 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-accent/0 via-accent/5 to-accent/0 opacity-0 group-hover:opacity-100 transition-all duration-500" />
+      
+      {/* Subtle grid pattern */}
+      <div 
+        className="absolute inset-0 opacity-[0.02] group-hover:opacity-[0.05] transition-opacity duration-500"
+        style={{
+          backgroundImage: 'radial-gradient(circle at center, var(--color-accent) 1px, transparent 1px)',
+          backgroundSize: '24px 24px'
+        }}
+      />
       
       <div className="relative z-10">
-        <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mb-6">
-          <div className="text-accent">
+        {/* Icon */}
+        <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-6 transform group-hover:scale-110 transition-transform duration-500">
+          <div className="text-accent transform group-hover:scale-110 transition-transform duration-500">
             {service.icon}
           </div>
         </div>
 
-        <h4 className="text-2xl font-display text-primary mb-4">{service.title}</h4>
-        <p className="text-primary/60 mb-8">{service.description}</p>
+        {/* Title */}
+        <h4 className="text-2xl font-display text-primary mb-4 group-hover:text-accent transition-colors duration-300">
+          {service.title}
+        </h4>
+        
+        {/* Description */}
+        <p className="text-primary/60 mb-8 leading-relaxed">
+          {service.description}
+        </p>
 
+        {/* Features */}
         <div className="space-y-3">
           {service.features.map((feature, index) => (
-            <div key={index} className="flex items-center gap-3">
-              <div className="w-1 h-1 rounded-full bg-accent" />
-              <span className="text-sm text-primary/60">{feature}</span>
+            <div 
+              key={index} 
+              className="flex items-center gap-3 group/item"
+            >
+              <div className="w-1.5 h-1.5 rounded-full bg-accent/40 group-hover/item:bg-accent transition-colors duration-300" />
+              <span className="text-sm text-primary/60 group-hover/item:text-primary/80 transition-colors duration-300">
+                {feature}
+              </span>
             </div>
           ))}
         </div>
@@ -348,29 +372,45 @@ const Home = () => {
     {
       icon: <Sparkles className="w-6 h-6" />,
       title: "UX Consultation",
-      description: "Transform your digital products with user-centered design strategies and expert consultation. Understand your users and build products that they love.",
-      features: ["User Research", "UX Audits", "Customer Feedback Analysis", "Usability Testing"],
+      description: "I help teams improve their digital products by focusing on what users actually need. Through research and testing, we'll identify problems and create solutions that make sense for your users and business.",
+      features: [
+        "User Research & Testing",
+        "UX Audits",
+        "Journey Mapping",
+        "Usability Improvements"
+      ],
     },
     {
       icon: <Layers className="w-6 h-6" />,
       title: "UI Design",
-      description: "Create beautiful, intuitive interfaces that engage users with a focus on usability and accessibility.",
-      features: ["Visual Design", "Interactive Prototypes", "Design-to-Dev"],
+      description: "Creating interfaces that work well and look good. I focus on building consistent design systems and components that can scale with your product while keeping development handoff smooth.",
+      features: [
+        "Design Systems",
+        "Interactive Prototypes",
+        "Responsive Design",
+        "Design-Dev Handoff"
+      ],
     },
     {
       icon: <Lightbulb className="w-6 h-6" />,
       title: "Product Consultation",
-      description: "Strategic guidance to transform your ideas into successful digital products.",
-      features: ["Product Strategy", "Market Analysis", "Feature Prioritization", "Growth Planning"],
+      description: "Helping teams figure out what to build and why. I focus on understanding your market, users, and business goals to make sure we're building something people actually want to use.",
+      features: [
+        "Product Strategy",
+        "Feature Planning",
+        "Market Research",
+        "Launch Planning"
+      ],
     },
     {
       icon: <Bot className="w-6 h-6" />,
-      title: "AI Business Solutions",
-      description: "Unlock new opportunities and efficiencies with AI. I help businesses identify and implement practical AI solutions that boost productivity, enhance customer experiences, and drive growth.",
+      title: "AI Solutions",
+      description: "Making AI work for your business in practical ways. I help identify where AI can actually help your team and users, then implement solutions that bring real value without unnecessary complexity.",
       features: [
-        "Automate Repetitive Tasks",
-        "Enhance Customer Support",
-        "Optimize Operations",
+        "AI Use-Case Analysis",
+        "Solution Design",
+        "Integration Planning",
+        "UX Implementation",
       ],
     },
   ];
@@ -379,31 +419,51 @@ const Home = () => {
   const aiUseCases = [
     {
       industry: "E-commerce",
-      title: "Personal Shopping Assistant",
-      description: "AI that understands customer chat messages and helps them find products, compare options, and make decisions - just like a real shopping assistant would.",
-      features: ["Natural conversations", "Product matching", "Price tracking", "Size recommendations"],
-      impact: "Reduces cart abandonment by 35%"
+      title: "Smart Shopping Helper",
+      description: "A friendly AI chat assistant that helps customers find what they're looking for, compares products, and makes personalized suggestions - just like having a knowledgeable friend who knows the entire catalog.",
+      features: ["Natural conversations", "Product matching", "Smart recommendations", "Size help"],
+      impact: "35% fewer abandoned carts",
+      icon: ShoppingBag
     },
     {
-      industry: "Restaurants",
-      title: "Smart Menu Optimization",
-      description: "Analyze order patterns, ingredient costs, and seasonal trends to suggest menu changes that maximize profits while keeping customer favorites.",
-      features: ["Profit analysis", "Trend detection", "Waste reduction", "Price optimization"],
-      impact: "20% less food waste"
+      industry: "Data Analysis",
+      title: "Data Story Generator",
+      description: "Turn your messy spreadsheets into clear insights. This tool cleans up your data, spots interesting patterns, and explains what it all means in plain English - no data science degree needed.",
+      features: ["Automated cleaning", "Pattern detection", "Clear explanations", "Visual reports"],
+      impact: "Hours of analysis → minutes",
+      icon: BarChart2
     },
     {
-      industry: "Healthcare",
-      title: "Appointment Scheduler",
-      description: "AI system that understands patient messages, automatically schedules appointments, sends reminders, and handles rescheduling - all through natural conversation.",
-      features: ["24/7 scheduling", "Smart reminders", "Priority handling", "Multi-language"],
-      impact: "75% less scheduling time"
+      industry: "Content Creation",
+      title: "Social Media Assistant",
+      description: "A helping hand for your social media that learns your brand's style. It suggests post ideas, writes drafts, and helps plan your content calendar - while keeping your unique voice.",
+      features: ["Post suggestions", "Caption writing", "Hashtag research", "Content planning"],
+      impact: "3x faster content creation",
+      icon: Share2
     },
     {
-      industry: "Marketing",
-      title: "Social Media Content Assistant",
-      description: "Generate and schedule engaging social media posts that match your brand voice, including image suggestions and hashtag optimization.",
-      features: ["Voice matching", "Trend analysis", "Image suggestions", "Performance tracking"],
-      impact: "3x faster content creation"
+      industry: "Customer Support",
+      title: "Support Chat Enhancer",
+      description: "Works alongside your support team to handle common questions, gather initial info, and suggest solutions - letting your team focus on the complex stuff that really needs their attention.",
+      features: ["Quick responses", "Smart routing", "Solution suggestions", "24/7 availability"],
+      impact: "80% faster first response",
+      icon: HeadphonesIcon
+    },
+    {
+      industry: "Small Business",
+      title: "Email Assistant",
+      description: "Helps manage your inbox by drafting responses, summarizing long emails, and highlighting what needs your attention first - like having a smart email secretary.",
+      features: ["Response drafting", "Priority sorting", "Meeting scheduling", "Follow-up reminders"],
+      impact: "2 hours saved daily",
+      icon: Mail
+    },
+    {
+      industry: "Legal",
+      title: "Legal Doc Assistant",
+      description: "Helps law firms quickly review contracts and documents, spots potential issues, and suggests relevant precedents - making document review less tedious and more thorough.",
+      features: ["Contract analysis", "Issue spotting", "Citation finding", "Summary generation"],
+      impact: "75% faster document review",
+      icon: Scale
     }
   ];
 
@@ -414,19 +474,33 @@ const Home = () => {
       {/* Featured Work Section */}
       <section id="work" className="px-6 lg:px-12 py-32 bg-background">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           className="max-w-[1800px] mx-auto"
         >
-          <motion.h2 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="text-primary/30 text-sm font-medium tracking-wider mb-16"
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center gap-2 mb-4"
           >
-            SELECTED WORK
-          </motion.h2>
+            <span className="w-8 h-[2px] bg-accent" />
+            <span className="text-accent font-medium tracking-wide">SELECTED WORK</span>
+          </motion.span>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="max-w-3xl mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-display mb-6">
+              Projects that I'm proud of
+            </h2>
+            <p className="text-primary/60 text-lg md:text-xl leading-relaxed">
+              A collection of work I really enjoyed working on. Each project represents unique challenges solved with unique solutions and close collaboration with amazing teams.
+            </p>
+          </motion.div>
+
           <div className="space-y-16">
             {projects.map((project, index) => (
               <ProjectCard key={index} project={project} index={index + 1} />
@@ -504,7 +578,7 @@ const Home = () => {
               AI that works for your business
             </h2>
             <p className="text-primary/60 text-lg md:text-xl leading-relaxed">
-              Practical AI solutions that solve real business problems. No buzzwords, no complexity - just results you can see within weeks.
+              Practical AI solutions that solve real business problems. No buzzwords, no complexity - just results you can see within weeks. Here are some potential examples:
             </p>
           </motion.div>
 
@@ -518,9 +592,14 @@ const Home = () => {
                 className="group p-8 rounded-2xl border border-primary/10 hover:border-accent/20 bg-background/50 backdrop-blur-sm transition-all duration-300"
               >
                 <div className="flex items-start justify-between mb-4">
-                  <span className="px-3 py-1 text-sm bg-accent/5 rounded-full text-accent/80">
-                    {useCase.industry}
-                  </span>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
+                      <useCase.icon className="w-5 h-5 text-accent" />
+                    </div>
+                    <span className="px-3 py-1 text-sm bg-accent/5 rounded-full text-accent/80">
+                      {useCase.industry}
+                    </span>
+                  </div>
                   <span className="text-primary/40 text-sm">
                     {useCase.impact}
                   </span>
