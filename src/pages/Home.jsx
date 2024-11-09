@@ -8,6 +8,8 @@ import everproveImage from '../assets/projects/everprove.png';
 import { motion } from 'framer-motion';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { ArrowRight } from 'lucide-react';
+import ProcessSection from '../components/ProcessSection';
+import AiSection from '../components/AiSection';
 
 // Add these animation variants right after imports
 const fadeInUp = {
@@ -145,51 +147,41 @@ const ServiceCard = memo(({ service }) => {
       initial="hidden"
       animate={controls}
       variants={fadeInScale}
-      className="group relative p-8 rounded-2xl bg-primary/5 hover:bg-primary/10 transition-all duration-500 overflow-hidden"
+      className="group relative p-6 rounded-xl bg-primary/5 hover:bg-primary/10 transition-all duration-500"
     >
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-accent/0 via-accent/5 to-accent/0 opacity-0 group-hover:opacity-100 transition-all duration-500" />
       
-      {/* Subtle grid pattern */}
-      <div 
-        className="absolute inset-0 opacity-[0.02] group-hover:opacity-[0.05] transition-opacity duration-500"
-        style={{
-          backgroundImage: 'radial-gradient(circle at center, var(--color-accent) 1px, transparent 1px)',
-          backgroundSize: '24px 24px'
-        }}
-      />
-      
-      <div className="relative z-10">
+      <div className="relative z-10 flex gap-4">
         {/* Icon */}
-        <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-6 transform group-hover:scale-110 transition-transform duration-500">
-          <div className="text-accent transform group-hover:scale-110 transition-transform duration-500">
+        <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center shrink-0">
+          <div className="text-accent">
             {service.icon}
           </div>
         </div>
 
-        {/* Title */}
-        <h4 className="text-2xl font-display text-primary mb-4 group-hover:text-accent transition-colors duration-300">
-          {service.title}
-        </h4>
-        
-        {/* Description */}
-        <p className="text-primary/60 mb-8 leading-relaxed">
-          {service.description}
-        </p>
+        <div>
+          {/* Title */}
+          <h4 className="text-xl font-display text-primary mb-2 group-hover:text-accent transition-colors duration-300">
+            {service.title}
+          </h4>
+          
+          {/* Description */}
+          <p className="text-primary/60 text-sm mb-3 leading-relaxed">
+            {service.description}
+          </p>
 
-        {/* Features */}
-        <div className="space-y-3">
-          {service.features.map((feature, index) => (
-            <div 
-              key={index} 
-              className="flex items-center gap-3 group/item"
-            >
-              <div className="w-1.5 h-1.5 rounded-full bg-accent/40 group-hover/item:bg-accent transition-colors duration-300" />
-              <span className="text-sm text-primary/60 group-hover/item:text-primary/80 transition-colors duration-300">
+          {/* Features as inline tags */}
+          <div className="flex flex-wrap gap-2">
+            {service.features.map((feature, index) => (
+              <span 
+                key={index}
+                className="px-2 py-1 text-xs bg-primary/5 rounded-full text-primary/60"
+              >
                 {feature}
               </span>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </motion.div>
@@ -533,132 +525,62 @@ const Home = () => {
           transition={{ duration: 0.6 }}
           className="max-w-[1800px] mx-auto"
         >
-          <motion.h2 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="text-primary/30 text-sm font-medium tracking-wider mb-4"
-          >
-            SERVICES
-          </motion.h2>
-          <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-20">
-            <h3 className="text-4xl md:text-5xl font-display text-primary max-w-2xl">
-              Turning complex challenges into intuitive digital experiences
-              <span className="block text-xl md:text-2xl text-primary/60 mt-4">
-                From initial concept to final delivery, I help teams build products that users actually want to use
-              </span>
-            </h3>
-            <a 
-              href="#contact" 
-              className="group flex items-center gap-2 text-accent hover:text-primary transition-colors duration-300"
-            >
-              Start a Project
-              <ArrowUpRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-            </a>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {services.map((service, index) => (
-              <ServiceCard key={index} service={service} />
-            ))}
-          </div>
-        </motion.div>
-      </section>
-
-      {/* AI Section - Add this before the contact section */}
-      <section className="px-6 lg:px-12 py-32 relative overflow-hidden">
-        {/* Animated background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-accent/5 to-background" />
-        
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="max-w-[1800px] mx-auto relative z-10"
-        >
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="inline-flex items-center gap-2 mb-4"
           >
             <span className="w-8 h-[2px] bg-accent" />
-            <span className="text-accent font-medium tracking-wide">AI SOLUTIONS</span>
+            <span className="text-accent font-medium tracking-wide">SERVICES</span>
           </motion.span>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="max-w-3xl mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-display mb-6">
-              AI that works for your business
-            </h2>
-            <p className="text-primary/60 text-lg md:text-xl leading-relaxed">
-              Practical AI solutions that solve real business problems. No buzzwords, no complexity - just results you can see within weeks. Here are some potential examples:
-            </p>
-          </motion.div>
+          <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-16">
+            <div className="max-w-2xl">
+              <h2 className="text-4xl md:text-5xl font-display text-primary mb-6">
+                Turning complex challenges into intuitive digital experiences
+              </h2>
+              <p className="text-primary/60 text-lg leading-relaxed">
+                From initial concept to final delivery, I help teams build products that users actually want to use.
+              </p>
+            </div>
+          </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {aiUseCases.map((useCase, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="group p-8 rounded-2xl border border-primary/10 hover:border-accent/20 bg-background/50 backdrop-blur-sm transition-all duration-300"
-              >
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
-                      <useCase.icon className="w-5 h-5 text-accent" />
-                    </div>
-                    <span className="px-3 py-1 text-sm bg-accent/5 rounded-full text-accent/80">
-                      {useCase.industry}
-                    </span>
-                  </div>
-                  <span className="text-primary/40 text-sm">
-                    {useCase.impact}
-                  </span>
-                </div>
-                
-                <h3 className="text-2xl font-display mb-3 group-hover:text-accent transition-colors duration-300">
-                  {useCase.title}
-                </h3>
-                
-                <p className="text-primary/60 mb-6 leading-relaxed">
-                  {useCase.description}
-                </p>
-                
-                <div className="flex flex-wrap gap-2">
-                  {useCase.features.map((feature, i) => (
-                    <span 
-                      key={i}
-                      className="px-3 py-1 text-sm bg-primary/5 rounded-full text-primary/60"
-                    >
-                      {feature}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
+          {/* Services Grid */}
+          <div className="grid md:grid-cols-2 gap-4 mb-16">
+            {services.map((service, index) => (
+              <ServiceCard key={index} service={service} />
             ))}
           </div>
 
-          <motion.div
+          {/* CTA Section */}
+          <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className="mt-16 text-center"
+            transition={{ delay: 0.2 }}
+            className="flex flex-col items-center text-center pt-8 border-t border-primary/10"
           >
+            <h3 className="text-2xl md:text-3xl font-display mb-4">
+              Ready to start your next project?
+            </h3>
+            <p className="text-primary/60 mb-8 max-w-xl">
+              Let's discuss how we can work together to create something amazing.
+            </p>
             <Link
               to="/contact"
               className="group inline-flex items-center gap-2 px-6 py-3 bg-accent text-background rounded-full hover:bg-accent/90 transition-colors duration-300"
             >
-              Start Your AI Project
+              Start a Conversation
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
             </Link>
           </motion.div>
         </motion.div>
       </section>
+
+      {/* Add the Process Section here */}
+      <ProcessSection />
+
+      {/* AI Section - Add this before the contact section */}
+      <AiSection />
 
       {/* Contact Section */}
       <motion.section id="contact" className="px-6 lg:px-12 py-32 bg-background text-primary">

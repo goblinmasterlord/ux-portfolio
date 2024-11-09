@@ -6,6 +6,8 @@ import ProjectChallenge from '../../components/project/ProjectChallenge';
 import ProjectSolution from '../../components/project/ProjectSolution';
 import ProjectResults from '../../components/project/ProjectResults';
 import ProjectNextSteps from '../../components/project/ProjectNextSteps';
+import ProjectAspect from '../../components/project/ProjectAspect';
+import { motion } from 'framer-motion';
 
 const Paynance = () => {
   const projectData = {
@@ -65,7 +67,49 @@ const Paynance = () => {
         "UI Design",
         "Usability Testing"
       ]
-    }
+    },
+    aspects: [
+      {
+        title: "Landing Page Design",
+        description: "Designed an engaging, conversion-focused landing page that effectively communicates Paynance's value proposition. The design emphasizes trust, security, and ease of use while maintaining a modern fintech aesthetic.",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop",
+        imageAlt: "Paynance landing page design showcase",
+        metrics: [
+          { value: "+45%", label: "Merchant Sign-ups" },
+          { value: "+60%", label: "User Engagement" }
+        ]
+      },
+      {
+        title: "Merchant Platform",
+        description: "Created an intuitive merchant dashboard that simplifies complex financial operations. The platform features real-time analytics, transaction management, and automated reporting systems.",
+        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
+        imageAlt: "Merchant platform dashboard interface",
+        metrics: [
+          { value: "98%", label: "Satisfaction Rate" },
+          { value: "-40%", label: "Support Tickets" }
+        ]
+      },
+      {
+        title: "Streamlined Onboarding",
+        description: "Revolutionized the KYC process by designing a seamless onboarding flow that reduced completion time from 30+ minutes to just 6 minutes. The redesigned process maintains full compliance while eliminating friction points.",
+        image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop",
+        imageAlt: "Onboarding flow visualization",
+        metrics: [
+          { value: "90%", label: "Completion Rate" },
+          { value: "6min", label: "Average Time" }
+        ]
+      },
+      {
+        title: "Mobile & POS Application",
+        description: "Developed a unified mobile application for both smartphones and POS terminals, ensuring consistency across all touchpoints. The app features an intuitive interface for payment processing, business profile management, and real-time transaction monitoring.",
+        image: "https://images.unsplash.com/photo-1556742212-5b321f3c261b?q=80&w=2070&auto=format&fit=crop",
+        imageAlt: "Mobile application interface",
+        metrics: [
+          { value: "4.8", label: "App Rating" },
+          { value: "2.5M+", label: "Monthly Transactions" }
+        ]
+      }
+    ]
   };
 
   return (
@@ -85,6 +129,53 @@ const Paynance = () => {
       />
       <ProjectOverview content={projectData.overview} />
       <ProjectChallenge challenges={projectData.challenges} description={projectData.challengeDescription} />
+      
+      <section className="py-32">
+        <div className="container mx-auto px-4">
+          {/* Section Header */}
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center gap-2 mb-4"
+          >
+            <span className="w-8 h-[2px] bg-accent" />
+            <span className="text-accent font-medium tracking-wide">KEY ASPECTS</span>
+          </motion.span>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="max-w-3xl mb-16"
+          >
+            <h2 className="text-4xl font-display mb-6">
+              Breaking down the project
+            </h2>
+            <p className="text-primary/60 text-lg leading-relaxed">
+              Let's dive into the key parts of Paynance - from the landing page that gets merchants excited, to the tools that make their daily operations a breeze.
+            </p>
+          </motion.div>
+
+          {/* Updated aspect content */}
+          {projectData.aspects.map((aspect, index) => (
+            <ProjectAspect
+              key={aspect.title}
+              {...aspect}
+              index={index}
+              description={
+                index === 0 ? 
+                  "The landing page needed to do one thing really well: show merchants how Paynance makes their life easier. We focused on clear messaging and strong visuals to highlight our key features and benefits." :
+                index === 1 ?
+                  "This is where the magic happens - a dashboard that turns complex financial data into clear insights. Merchants can track their money, manage transactions, and handle customer support all in one place." :
+                index === 2 ?
+                  "Nobody likes paperwork, especially when starting a business. We turned a typically painful KYC process into something you can knock out during your coffee break, while keeping everything secure and compliant." :
+                  "The mobile app is all about flexibility - whether you're using it on a smartphone or our POS terminal. It's fast, secure, and packed with features that make taking payments feel like a breeze."
+              }
+            />
+          ))}
+        </div>
+      </section>
+
       <ProjectSolution solutions={projectData.solutions} />
       <ProjectResults results={projectData.results} />
       <ProjectNextSteps />
