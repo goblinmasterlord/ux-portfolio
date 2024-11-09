@@ -8,6 +8,10 @@ import ProjectResults from '../../components/project/ProjectResults';
 import ProjectNextSteps from '../../components/project/ProjectNextSteps';
 import ProjectAspect from '../../components/project/ProjectAspect';
 import { motion } from 'framer-motion';
+import aspect1 from '../../assets/projects/aspect-01.jpg';
+import aspect2 from '../../assets/projects/aspect-02.jpg';
+import aspect3 from '../../assets/projects/aspect-03.jpg';
+import aspect4 from '../../assets/projects/aspect-04.jpg';
 
 const Paynance = () => {
   const projectData = {
@@ -71,8 +75,8 @@ const Paynance = () => {
     aspects: [
       {
         title: "Landing Page Design",
-        description: "Designed an engaging, conversion-focused landing page that effectively communicates Paynance's value proposition. The design emphasizes trust, security, and ease of use while maintaining a modern fintech aesthetic.",
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop",
+        description: "The landing page needed to showcase Paynance's unique strengths through compelling visuals and clear messaging. I crafted an experience that balances bold design elements with practical demonstrations of our platform's capabilities, helping merchants quickly understand the value we deliver.",
+        image: aspect1,
         imageAlt: "Paynance landing page design showcase",
         metrics: [
           { value: "+45%", label: "Merchant Sign-ups" },
@@ -81,8 +85,8 @@ const Paynance = () => {
       },
       {
         title: "Merchant Platform",
-        description: "Created an intuitive merchant dashboard that simplifies complex financial operations. The platform features real-time analytics, transaction management, and automated reporting systems.",
-        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
+        description: "Extensive merchant interviews and feedback sessions shaped this platform from the ground up. I designed a comprehensive system that includes everything from transaction management to detailed analytics, while keeping the interface intuitive. Each feature was refined through continuous user testing and real-world feedback.",
+        image: aspect2,
         imageAlt: "Merchant platform dashboard interface",
         metrics: [
           { value: "98%", label: "Satisfaction Rate" },
@@ -91,8 +95,8 @@ const Paynance = () => {
       },
       {
         title: "Streamlined Onboarding",
-        description: "Revolutionized the KYC process by designing a seamless onboarding flow that reduced completion time from 30+ minutes to just 6 minutes. The redesigned process maintains full compliance while eliminating friction points.",
-        image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop",
+        description: "The challenge was making KYC verification less daunting without compromising security. I designed a step-by-step flow with clear guidance throughout. The new process significantly improved completion rates while maintaining compliance requirements.",
+        image: aspect3,
         imageAlt: "Onboarding flow visualization",
         metrics: [
           { value: "90%", label: "Completion Rate" },
@@ -101,8 +105,8 @@ const Paynance = () => {
       },
       {
         title: "Mobile & POS Application",
-        description: "Developed a unified mobile application for both smartphones and POS terminals, ensuring consistency across all touchpoints. The app features an intuitive interface for payment processing, business profile management, and real-time transaction monitoring.",
-        image: "https://images.unsplash.com/photo-1556742212-5b321f3c261b?q=80&w=2070&auto=format&fit=crop",
+        description: "Merchant feedback drove the development of standout features like instant refunds, custom payment flows, and smart transaction management. The interface adapts seamlessly between mobile and POS environments, delivering a fast, intuitive experience that merchants actually enjoy using.",
+        image: aspect4,
         imageAlt: "Mobile application interface",
         metrics: [
           { value: "4.8", label: "App Rating" },
@@ -162,15 +166,6 @@ const Paynance = () => {
               key={aspect.title}
               {...aspect}
               index={index}
-              description={
-                index === 0 ? 
-                  "The landing page needed to do one thing really well: show merchants how Paynance makes their life easier. We focused on clear messaging and strong visuals to highlight our key features and benefits." :
-                index === 1 ?
-                  "This is where the magic happens - a dashboard that turns complex financial data into clear insights. Merchants can track their money, manage transactions, and handle customer support all in one place." :
-                index === 2 ?
-                  "Nobody likes paperwork, especially when starting a business. We turned a typically painful KYC process into something you can knock out during your coffee break, while keeping everything secure and compliant." :
-                  "The mobile app is all about flexibility - whether you're using it on a smartphone or our POS terminal. It's fast, secure, and packed with features that make taking payments feel like a breeze."
-              }
             />
           ))}
         </div>
