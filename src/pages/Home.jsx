@@ -1,6 +1,6 @@
 import { useState, useEffect, memo } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, ArrowUpRight, MousePointer2, Sparkles, Lightbulb, Layers, Bot, Scale, ShoppingCart, BarChart2, MessageSquare, HeadphonesIcon, Mail, ShoppingBag, Share2 } from 'lucide-react';
+import { Menu, X, ArrowUpRight, MousePointer2, Sparkles, Lightbulb, Layers, Bot, Scale, ShoppingCart, BarChart2, MessageSquare, HeadphonesIcon, Mail, ShoppingBag, Share2, Briefcase, Compass } from 'lucide-react';
 import paynanceImage1 from '../assets/projects/paynance-1.png';
 import paynanceImage2 from '../assets/projects/paynance-2.png';
 import loccocityImage1 from '../assets/projects/loccocity.png';
@@ -208,115 +208,62 @@ const ServiceCard = memo(({ service }) => {
 const Hero = () => {
   return (
     <section className="min-h-screen px-6 lg:px-12 flex flex-col justify-center relative overflow-hidden">
-      {/* Abstract Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 -left-12 w-64 h-64 bg-accent/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/5 rounded-full blur-3xl opacity-50" />
+      {/* Simple animated gradient background */}
+      <div className="absolute inset-0">
+        <div className="absolute top-1/4 -left-1/4 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl animate-slow-drift" />
+        <div className="absolute bottom-1/4 -right-1/4 w-[600px] h-[600px] bg-[#00FF9D]/5 rounded-full blur-3xl animate-slow-drift-reverse" />
       </div>
 
-      {/* Grid Pattern Overlay */}
-      <div 
-        className="absolute inset-0 opacity-20"
-        style={{
-          backgroundImage: 'radial-gradient(circle at center, rgba(255,255,255,0.1) 2px, transparent 2px)',
-          backgroundSize: '40px 40px'
-        }}
-      />
-
+      {/* Main content */}
       <div className="max-w-[1800px] mx-auto relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="space-y-8"
-        >
-          {/* Role Badge */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/20 bg-accent/5 backdrop-blur-sm"
-          >
-            <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-          </motion.div>
+        <div className="space-y-6">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-display">
+            Hey, I'm Marci 👋
+            <br />
+            I make digital products{' '}
+            <span className="text-[#00FF9D] relative inline-block">
+              people love
+            </span>
+          </h1>
           
-          {/* Main Heading */}
-          <div className="space-y-4">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-display leading-[1.1] tracking-tight">
-              <motion.span
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.6 }}
-                className="block"
-              >
-                Hey, I'm Marci 👋
-              </motion.span>
-              <motion.span
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.6 }}
-                className="block"
-              >
-                I make digital products <span className="text-accent">people love</span>
-              </motion.span>
-            </h1>
-            
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-              className="text-primary/60 text-lg md:text-xl max-w-[600px] leading-relaxed"
-            >
-              I help companies build products that are simple to use and a joy to interact with. 
-              Currently working on tools that make work easier for teams.
-            </motion.p>
-          </div>
+          <p className="text-primary/60 text-lg md:text-xl max-w-[600px] leading-relaxed">
+            I help companies build products that are simple to use and a joy to 
+            interact with. 
+          </p>
 
-          {/* CTA Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
-            className="flex items-center gap-6 pt-4"
-          >
-            <a 
-              href="#work" 
-              className="group inline-flex items-center gap-2 px-6 py-3 bg-accent text-background rounded-full hover:bg-accent/90 transition-colors duration-300"
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById('work').scrollIntoView({ behavior: 'smooth' });
-              }}
+          {/* CTA Buttons */}
+          <div className="flex items-center gap-6 pt-4">
+            <Link 
+              to="#work"
+              className="group inline-flex items-center gap-2 px-6 py-3 bg-[#00FF9D] text-background 
+                rounded-full hover:bg-[#00FF9D]/90 transition-all duration-300"
             >
               Check out my work
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-            </a>
-            <a 
-              href="/contact"
-              className="group inline-flex items-center gap-2 text-primary/60 hover:text-accent transition-colors duration-300"
+              <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
+            </Link>
+            
+            <Link 
+              to="#contact"
+              className="group inline-flex items-center gap-2 text-primary/60 hover:text-primary 
+                transition-colors duration-300"
             >
               Let's talk
-              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
-            </a>
-          </motion.div>
+              <ArrowUpRight className="w-4 h-4 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+            </Link>
+          </div>
 
-          {/* Quick Facts - More casual version */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.6 }}
-            className="flex flex-wrap gap-8 pt-12 text-primary/40"
-          >
-            <div className="space-y-1">
-              <div className="text-xl font-display text-primary">6+ Years</div>
-              <div className="text-sm">Building cool stuff</div>
+          {/* Experience Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-20">
+            <div>
+              <h3 className="text-2xl md:text-3xl font-display mb-1">6+ Years</h3>
+              <p className="text-primary/60">Building cool stuff</p>
             </div>
-            <div className="space-y-1">
-              <div className="text-xl font-display text-primary">20+ Projects</div>
-              <div className="text-sm">Shipped & loved</div>
+            <div>
+              <h3 className="text-2xl md:text-3xl font-display mb-1">20+ Projects</h3>
+              <p className="text-primary/60">Shipped & loved</p>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -329,7 +276,7 @@ const Home = () => {
       category: "Fintech",
       path: "/projects/paynance",
       image: paynanceImage1,
-      description: "A comprehensive fintech platform for businesses to handle their payments how they want. By unifying traditional POS systems with modern digital solutions, Paynance creates a seamless experience for both merchants and their customers. The platform handles everything from payment processing to business analytics, making financial management easy.",
+      description: "A new fintech platform for businesses to handle their payments how they want. I designed the complete user experience: from the initial landing page and merchant onboarding flow to a comprehensive web platform and mobile payment app. The solution works seamlessly across smartphones, traditional POS systems, and cash registers, making it easy for businesses to accept payments their way.",
       year: "2024",
       tags: ["Fintech", "Payment Solutions", "UX & UI Design", "User Research"],
       stats: {
@@ -352,18 +299,18 @@ const Home = () => {
       }
     },
     {
-        title: "Transforming Legal Contracting",
-        category: "Legal-Tech",
-        path: "/projects/everprove",
-        image: everproveImage,
-        description: "Everprove democratizes legal protection through two solutions: a consumer platform that makes personal legal documents accessible to everyone, and an enterprise system that automates complex contract workflows.",
-        year: "2019",
-        tags: ["Legal-Tech", "Blockchain", "UX & UI Design", "Smart Contracts", "Mobile & Web App"],
-        stats: {
-          "Contracting Time": "Few minutes instead of days",
-          "Cost Savings": "95%"
-        }
-      },
+      title: "Transforming Legal Contracting",
+      category: "Legal-Tech",
+      path: "/projects/everprove",
+      image: everproveImage,
+      description: "Everprove makes legal contracts accessible to everyone. The consumer platform lets users create and sign legally-binding documents in minutes through guided templates and digital signing, with each contract securely recorded on the blockchain. For enterprises, it streamlines complex contract workflows through smart automation and tools.",
+      year: "2019",
+      tags: ["Legal-Tech", "Smart Templates", "Digital Signing", "Blockchain", "Enterprise Solutions"],
+      stats: {
+        "Contract Creation": "5 minutes average",
+        "Cost Savings": "95% vs traditional",
+      }
+    },
     {
       title: "Paynance Mobile Experience",
       category: "Product Design",
@@ -483,7 +430,7 @@ const Home = () => {
     <main className="bg-background">
       <Hero />
 
-      {/* Featured Work Section */}
+      {/* Work Section */}
       <section id="work" className="px-6 lg:px-12 py-32 bg-background">
         <motion.div
           initial={{ opacity: 0 }}
@@ -506,10 +453,10 @@ const Home = () => {
             className="max-w-3xl mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-display mb-6">
-              Recent Projects
+              Some of my work
             </h2>
             <p className="text-primary/60 text-lg md:text-xl leading-relaxed">
-              Here are some of the meaningful projects I've worked on. Each one started with understanding user needs and ended with practical solutions.
+              Here are some of the favorite projects I've worked on. Each one was a unique challenge solved with unique solutions and close collaboration with amazing teams.
             </p>
           </motion.div>
 
@@ -522,7 +469,7 @@ const Home = () => {
       </section>
 
       {/* Services Section */}
-      <section className="px-6 lg:px-12 py-32 bg-background/50">
+      <section id="services" className="px-6 lg:px-12 py-32 bg-background/50">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -544,7 +491,7 @@ const Home = () => {
                 How I Can Help
               </h2>
               <p className="text-primary/60 text-lg leading-relaxed">
-                I bring a structured approach to design challenges while keeping things practical and focused on results.
+                I bring a structured approach to challenges while keeping things practical and focused on results.
               </p>
             </div>
           </div>
@@ -583,8 +530,10 @@ const Home = () => {
       {/* Add the Process Section here */}
       <ProcessSection />
 
-      {/* AI Section - Add this before the contact section */}
-      <AiSection />
+      {/* AI Section */}
+      <section id="ai" className="px-6 lg:px-12 py-32 bg-background">
+        <AiSection />
+      </section>
 
       {/* Contact Section */}
       <motion.section id="contact" className="px-6 lg:px-12 py-32 bg-background text-primary">
