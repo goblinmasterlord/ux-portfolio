@@ -60,76 +60,93 @@ const ProjectCard = memo(({ project, index }) => {
   return (
     <Link 
       to={project.comingSoon ? '#' : project.path}
-      className="group relative cursor-pointer grid md:grid-cols-2 gap-4 md:gap-8 items-start md:items-center p-4 md:p-6 rounded-2xl hover:bg-primary/5 transition-all duration-500"
+      className="group relative flex flex-col lg:flex-row gap-8 p-6 rounded-2xl hover:bg-primary/5 transition-all duration-500"
     >
-      {/* Subtle card definition - Gradient border */}
-      <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none"
-           style={{
-             background: 'linear-gradient(to right, transparent, var(--color-accent/0.1), transparent)',
-             clipPath: 'inset(0 0 0 0 round 1rem)'
-           }} 
+      {/* Subtle gradient border on hover */}
+      <div 
+        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500"
+        style={{
+          background: 'linear-gradient(45deg, var(--color-accent/0.05), transparent)',
+          backdropFilter: 'blur(2px)'
+        }}
       />
 
-      {/* Image Container */}
-      <div className="relative overflow-hidden rounded-xl aspect-[16/7]">
-        <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 z-10" />
-        <img 
-          src={project.image} 
-          alt={project.title} 
-          className={`w-full h-full object-cover transform group-hover:scale-105 transition-all duration-700 
-            ${project.comingSoon ? 'grayscale' : ''}`}
-        />
-        {project.comingSoon && (
-          <div className="absolute inset-0 flex items-center justify-center bg-primary/10 backdrop-blur-sm">
-            <span className="text-primary/60 text-sm font-medium">Coming Soon</span>
+      {/* Image Container - Now smaller and more refined */}
+      <div className="relative w-full lg:w-[320px] shrink-0">
+        <div className="relative overflow-hidden rounded-xl aspect-[4/3]">
+          {/* Gradient overlay on hover */}
+          <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 z-10" />
+          
+          <img 
+            src={project.image} 
+            alt={project.title} 
+            className={`w-full h-full object-cover transform group-hover:scale-[1.02] transition-all duration-700 
+              ${project.comingSoon ? 'grayscale' : ''}`}
+          />
+          
+          {/* Category badge - now overlaid on image */}
+          <div className="absolute top-3 left-3 px-3 py-1.5 bg-background/90 backdrop-blur-sm rounded-full">
+            <span className="text-accent text-sm">{project.category}</span>
           </div>
-        )}
+
+          {project.comingSoon && (
+            <div className="absolute inset-0 flex items-center justify-center bg-primary/10 backdrop-blur-sm">
+              <span className="text-primary/60 text-sm font-medium">Coming Soon</span>
+            </div>
+          )}
+        </div>
       </div>
 
-      {/* Content */}
-      <div>
-        <div className="flex flex-wrap items-center gap-2 md:gap-4 mb-3 md:mb-4">
-          <span className="text-accent text-sm md:text-base">{project.category}</span>
-          <span className="w-1 h-1 rounded-full bg-primary/20" />
-          <span className="text-primary/40 text-sm md:text-base">{project.year}</span>
-        </div>
-        
-        <h3 className="text-xl md:text-2xl lg:text-3xl font-display mb-2 md:mb-4 group-hover:text-accent transition-colors duration-300">
-          {project.title}
-        </h3>
-        
-        <p className="text-sm md:text-base text-primary/60 leading-relaxed mb-4">
-          {project.description}
-        </p>
-        
-        <div className="flex flex-wrap gap-1.5 md:gap-2 mb-6">
-          {project.tags.map((tag, i) => (
-            <span 
-              key={i}
-              className="px-2 md:px-3 py-1 text-xs md:text-sm bg-primary/5 rounded-full text-primary/60"
-            >
-              {tag}
-            </span>
-          ))}
+      {/* Content - Now with better hierarchy */}
+      <div className="relative flex-1 flex flex-col">
+        <div className="mb-auto">
+          {/* Year */}
+          <span className="text-primary/40 text-sm mb-2 block">{project.year}</span>
+          
+          {/* Title */}
+          <h3 className="text-2xl font-display mb-3 group-hover:text-accent transition-colors duration-300">
+            {project.title}
+          </h3>
+          
+          {/* Description */}
+          <p className="text-primary/60 text-base leading-relaxed mb-6">
+            {project.description}
+          </p>
+
+          {/* Tags - Now with subtle animation */}
+          <div className="flex flex-wrap gap-2 mb-6">
+            {project.tags.map((tag, i) => (
+              <span 
+                key={i}
+                className="px-3 py-1 text-sm bg-primary/5 rounded-full text-primary/60 
+                  transform group-hover:translate-x-1 transition-all duration-300"
+                style={{ transitionDelay: `${i * 50}ms` }}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
         </div>
 
-        {/* Stats if they exist */}
+        {/* Stats with refined design */}
         {project.stats && (
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 pt-4 md:pt-6 border-t border-primary/10">
+          <div className="flex flex-wrap gap-6 pt-6 border-t border-primary/10">
             {Object.entries(project.stats).map(([key, value]) => (
-              <div key={key} className="space-y-0.5 md:space-y-1">
-                <div className="text-lg md:text-xl font-display text-accent">{value}</div>
-                <div className="text-xs md:text-sm text-primary/40 capitalize">{key}</div>
+              <div key={key} className="space-y-1">
+                <div className="text-lg font-display text-accent">{value}</div>
+                <div className="text-sm text-primary/40 capitalize">{key}</div>
               </div>
             ))}
           </div>
         )}
 
-        {/* Single CTA that appears on hover */}
+        {/* Floating CTA */}
         {!project.comingSoon && (
-          <div className="flex items-center gap-2 text-accent md:opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-0 group-hover:translate-x-2">
-            <span className="text-sm md:text-base">View Case Study</span>
-            <ArrowRight className="w-3 h-3 md:w-4 md:h-4" />
+          <div className="absolute top-0 right-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
+            <div className="flex items-center gap-2 px-4 py-2 bg-accent/10 rounded-full text-accent">
+              <span className="text-sm">View Case Study</span>
+              <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
+            </div>
           </div>
         )}
       </div>
@@ -233,7 +250,7 @@ const Hero = () => {
                 transition={{ delay: 0.3, duration: 0.6 }}
                 className="block"
               >
-                Hey, I'm Marci 👋👽
+                Hey, I'm Marci 👋
               </motion.span>
               <motion.span
                 initial={{ opacity: 0, y: 20 }}
@@ -301,19 +318,6 @@ const Hero = () => {
           </motion.div>
         </motion.div>
       </div>
-
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1, duration: 0.6 }}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-      >
-        <div className="w-5 h-8 border-2 border-primary/20 rounded-full flex items-start p-1">
-          <div className="w-1 h-1.5 bg-primary/20 rounded-full animate-bounce" />
-        </div>
-        <span className="text-sm text-primary/40">Scroll to explore</span>
-      </motion.div>
     </section>
   );
 };
@@ -502,14 +506,14 @@ const Home = () => {
             className="max-w-3xl mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-display mb-6">
-              Projects that I'm proud of
+              Recent Projects
             </h2>
             <p className="text-primary/60 text-lg md:text-xl leading-relaxed">
-              A collection of work I really enjoyed working on. Each project represents unique challenges solved with unique solutions and close collaboration with amazing teams.
+              Here are some of the meaningful projects I've worked on. Each one started with understanding user needs and ended with practical solutions.
             </p>
           </motion.div>
 
-          <div className="space-y-16">
+          <div className="space-y-6">
             {projects.map((project, index) => (
               <ProjectCard key={index} project={project} index={index + 1} />
             ))}
@@ -537,10 +541,10 @@ const Home = () => {
           <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-16">
             <div className="max-w-2xl">
               <h2 className="text-4xl md:text-5xl font-display text-primary mb-6">
-                Turning complex challenges into intuitive digital experiences
+                How I Can Help
               </h2>
               <p className="text-primary/60 text-lg leading-relaxed">
-                From initial concept to final delivery, I help teams build products that users actually want to use.
+                I bring a structured approach to design challenges while keeping things practical and focused on results.
               </p>
             </div>
           </div>
