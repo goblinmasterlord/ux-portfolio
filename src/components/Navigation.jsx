@@ -126,41 +126,45 @@ const Navigation = () => {
   );
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-40 px-6 lg:px-12 py-6">
-      <div className="max-w-[1800px] mx-auto flex justify-between items-center">
-        <Link to="/" className="text-xl font-display">
-          Marci's Site
-        </Link>
-
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8">
-          <div className="relative">
-            <button
-              onClick={() => setShowDropdown(!showDropdown)}
-              className="flex items-center gap-2 text-primary/60 hover:text-accent transition-colors duration-300"
-            >
-              Work
-              <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${showDropdown ? 'rotate-180' : ''}`} />
-            </button>
-            <AnimatePresence>
-              {showDropdown && <DropdownMenu />}
-            </AnimatePresence>
-          </div>
-          <Link 
-            to="/contact" 
-            className="text-primary/60 hover:text-accent transition-colors duration-300"
-          >
-            Contact
+    <nav className="fixed top-0 left-0 right-0 z-40">
+      <div className="absolute inset-0 bg-background/80 backdrop-blur-md border-b border-primary/10" />
+      
+      <div className="relative px-6 lg:px-12 py-6">
+        <div className="max-w-[1800px] mx-auto flex justify-between items-center">
+          <Link to="/" className="text-xl font-display">
+            Marci's Site
           </Link>
-        </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden p-2 hover:bg-primary/5 rounded-full transition-colors duration-300"
-          onClick={() => setIsOpen(true)}
-        >
-          <Menu className="w-6 h-6" />
-        </button>
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-8">
+            <div className="relative">
+              <button
+                onClick={() => setShowDropdown(!showDropdown)}
+                className="flex items-center gap-2 text-primary/60 hover:text-accent transition-colors duration-300"
+              >
+                Work
+                <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${showDropdown ? 'rotate-180' : ''}`} />
+              </button>
+              <AnimatePresence>
+                {showDropdown && <DropdownMenu />}
+              </AnimatePresence>
+            </div>
+            <Link 
+              to="/contact" 
+              className="text-primary/60 hover:text-accent transition-colors duration-300"
+            >
+              Contact
+            </Link>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden p-2 hover:bg-primary/5 rounded-full transition-colors duration-300"
+            onClick={() => setIsOpen(true)}
+          >
+            <Menu className="w-6 h-6" />
+          </button>
+        </div>
       </div>
 
       {/* Mobile Sidebar */}
