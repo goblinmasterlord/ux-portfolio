@@ -283,7 +283,7 @@ const Hero = () => {
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
             </a>
             <a 
-              href="mailto:marci.mocsonoky.gmail.com"
+              href="/contact"
               className="group inline-flex items-center gap-2 text-primary/60 hover:text-accent transition-colors duration-300"
             >
               Let's talk
@@ -669,10 +669,10 @@ const Home = () => {
               Let's create something amazing together
             </h3>
             <div className="space-y-4">
-              <p className="text-primary/60">Email: marci.mocsonoky.gmail.com</p>
+              <p className="text-primary/60">Email: marci.mocsonoky@gmail.com</p>
               <p className="text-primary/60">Phone: +36202312384</p>
               <a 
-                href="mailto:marci.mocsonoky.gmail.com" 
+                href="mailto:marci.mocsonoky@gmail.com" 
                 className="group flex items-center gap-2 text-accent hover:text-primary transition-colors duration-300"
               >
                 Send an Email

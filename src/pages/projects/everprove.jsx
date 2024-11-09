@@ -9,61 +9,60 @@ import ProjectNextSteps from '../../components/project/ProjectNextSteps';
 
 const Everprove = () => {
   const projectData = {
-    title: "Transforming Legal Contracting into a Seamless Digital Experience",
-    subtitle: "Building the future of digital contracts for both individuals and enterprises",
-    overview: "Everprove makes contract creation and management effortless through two key offerings: a consumer platform that simplifies personal legal documents, and an enterprise solution that provides customized contracting workflows for businesses. By combining intuitive design with powerful automation, we're making legal processes accessible to everyone while providing the robustness that businesses demand.",
-    challengeDescription: "The legal contract landscape presents unique challenges for both individuals and businesses:",
+    title: "Making Legal Contracts Simple and Accessible",
+    subtitle: "A digital platform that helps people and small businesses handle contracts without the headaches",
+    overview: "Everprove started with a simple idea: legal contracts shouldn't be intimidating. We've created a platform that makes creating and managing contracts straightforward, whether you're an individual renting out your apartment or a small business handling client agreements. The focus was on creating a clean, intuitive experience that guides users through each step while maintaining the legal validity they need.",
+    challengeDescription: "Through user research, I identified several key pain points in how people deal with contracts:",
     challenges: [
-      "Individuals avoid legal protection due to complex contract language",
-      "Businesses need customizable, automated contract workflows",
-      "Traditional contract processes waste valuable time and resources",
-      "Enterprise compliance requirements add layers of complexity",
-      "Integration with existing systems is often problematic"
+      "People often avoid proper contracts due to legal complexity and cost",
+      "Small businesses struggle to maintain consistent contract processes",
+      "Finding and customizing the right template is time-consuming",
+      "Digital signing solutions feel corporate and intimidating",
+      "Users worry about the legal validity of online contracts"
     ],
     solutions: [
       {
-        title: "Consumer-Friendly Platform",
+        title: "Friendly User Experience",
         points: [
-          "Plain-language contract templates",
-          "Guided document creation process",
-          "Mobile-first signing experience",
-          "Secure document storage"
+          "Conversational guidance through contract creation",
+          "Visual contract builder with plain language",
+          "Simple mobile signing process",
+          "Organized document dashboard"
         ]
       },
       {
-        title: "Enterprise Workflow Engine",
+        title: "Smart Workflow Tools",
         points: [
-          "Custom approval workflows",
-          "API-first integration approach",
-          "Automated compliance checks",
-          "Bulk processing capabilities"
+          "Simple entry of contract details",
+          "Collaborative review process",
+          "Automated reminders and tracking",
+          "Quick duplicate and modify options"
         ]
       },
       {
-        title: "Secure Infrastructure",
+        title: "Trust & Security",
         points: [
-          "Blockchain-verified signatures",
-          "Enterprise-grade security",
-          "Audit trail and versioning",
-          "Multi-party collaboration tools"
+          "Clear audit history",
+          "Contract recorded on blockchain",
+          "Valid digital signature",
         ]
       }
     ],
     results: [
-      { stat: "85%", description: "reduction in average contract completion time" },
-      { stat: "3x", description: "increase in contract completion rate" },
-      { stat: "98%", description: "user satisfaction rate" }
+      { stat: "80+%", description: "of users completed their contract in one session" },
+      { stat: "4.8/5", description: "average user satisfaction rating" },
+      { stat: "15min", description: "average time to create and send a contract" }
     ],
     hero: {
-      timeline: "12 Months",
-      role: "UX & UI Designer",
+      timeline: "6 Months",
+      role: "UX/UI Designer",
       platform: "Web and Mobile Applications",
-      team: "3 designers, 8 developers",
+      team: "Solo designer, collaborating with 2 developers",
       involvement: [
         "User Research",
         "UX/UI Design",
-        "User Testing",
-        "Wireframing"
+        "Prototyping",
+        "Usability Testing"
       ]
     }
   };
