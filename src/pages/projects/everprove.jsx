@@ -12,6 +12,11 @@ const Everprove = () => {
     title: "Making Legal Contracts Simple and Accessible",
     subtitle: "A digital platform that helps people and small businesses handle contracts without the headaches",
     overview: "Everprove started with a simple idea: legal contracts shouldn't be intimidating. We've created a platform that makes creating and managing contracts straightforward, whether you're an individual renting out your apartment or a small business handling client agreements. The focus was on creating a clean, intuitive experience that guides users through each step while maintaining the legal validity they need.",
+    overviewStats: [
+      { value: "85%", label: "Faster Completion" },
+      { value: "15min", label: "Average Time to Sign" },
+      { value: "50K+", label: "Contracts Created" }
+    ],
     challengeDescription: "Through user research, I identified several key pain points in how people deal with contracts:",
     challenges: [
       "People often avoid proper contracts due to legal complexity and cost",
@@ -82,7 +87,10 @@ const Everprove = () => {
         subtitle={projectData.subtitle} 
         hero={projectData.hero}
       />
-      <ProjectOverview content={projectData.overview} />
+      <ProjectOverview 
+        content={projectData.overview} 
+        stats={projectData.overviewStats}
+      />
       <ProjectChallenge 
         challenges={projectData.challenges} 
         description={projectData.challengeDescription}

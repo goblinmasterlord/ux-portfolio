@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 
-const ProjectOverview = ({ content }) => {
+const ProjectOverview = ({ content, stats }) => {
   const [ref, controls] = useScrollAnimation();
 
   return (
@@ -24,17 +24,16 @@ const ProjectOverview = ({ content }) => {
             <p className="text-primary/80 text-lg leading-relaxed">
               {content}
             </p>
-            <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-8">
-              <div className="p-6 rounded-xl bg-primary/5">
-                <div className="text-3xl font-display text-accent mb-2">85%</div>
-                <div className="text-primary/60 text-sm">Faster Completion</div>
+            {stats && stats.length > 0 && (
+              <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-8">
+                {stats.map((stat, index) => (
+                  <div key={index} className="p-6 rounded-xl bg-primary/5">
+                    <div className="text-3xl font-display text-accent mb-2">{stat.value}</div>
+                    <div className="text-primary/60 text-sm">{stat.label}</div>
+                  </div>
+                ))}
               </div>
-              <div className="p-6 rounded-xl bg-primary/5">
-                <div className="text-3xl font-display text-accent mb-2">98%</div>
-                <div className="text-primary/60 text-sm">User Satisfaction</div>
-              </div>
-              {/* Add more stats as needed */}
-            </div>
+            )}
           </div>
         </div>
       </motion.div>

@@ -19,6 +19,10 @@ const LoccoCityPage = () => {
     title: "Gamifying Urban Discovery",
     subtitle: "How Locco City Turns City Exploration into Rewards",
     overview: "Locco City revolutionizes retail engagement by blending physical exploration with digital rewards. Similar to Pokémon GO's groundbreaking approach to gaming, we've created an engaging platform that encourages users to explore their city while collecting real-world rewards from their favorite brands.",
+    overviewStats: [
+      { value: "10.000+", label: "active users exploring cities" },
+      { value: "100+", label: "partnered local businesses" },
+    ],
     challengeDescription: "While digital marketing continues to evolve, connecting online engagement with real-world actions remains a significant challenge:",
     challenges: [
       "Traditional advertising struggles to drive physical foot traffic",
@@ -76,16 +80,15 @@ const LoccoCityPage = () => {
         Back to Home
       </Link>
 
-      {console.log('Rendering ProjectHero')}
       <ProjectHero 
         title={projectData.title} 
         subtitle={projectData.subtitle} 
         hero={projectData.hero}
       />
 
-      {console.log('Rendering ProjectOverview')}
       <ProjectOverview 
-        content={projectData.overview} 
+        content={projectData.overview}
+        stats={projectData.overviewStats}
       />
 
       {console.log('Rendering ProjectChallenge')}

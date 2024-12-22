@@ -206,6 +206,16 @@ const ServiceCard = memo(({ service }) => {
 });
 
 const Hero = () => {
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
   return (
     <section className="min-h-screen px-6 lg:px-12 flex flex-col justify-center relative overflow-hidden">
       {/* Simple animated gradient background */}
@@ -233,17 +243,17 @@ const Hero = () => {
 
           {/* CTA Buttons */}
           <div className="flex items-center gap-6 pt-4">
-            <Link 
-              to="#work"
+            <button 
+              onClick={() => scrollToSection('work')}
               className="group inline-flex items-center gap-2 px-6 py-3 bg-[#00FF9D] text-background 
                 rounded-full hover:bg-[#00FF9D]/90 transition-all duration-300"
             >
               Check out my work
               <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
-            </Link>
+            </button>
             
             <Link 
-              to="#contact"
+              to="/contact"
               className="group inline-flex items-center gap-2 text-primary/60 hover:text-primary 
                 transition-colors duration-300"
             >
