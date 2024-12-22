@@ -20,16 +20,15 @@ const Paynance = () => {
     overview: "Paynance is a cutting-edge fintech solution that transforms how businesses handle payments. By combining traditional POS terminals, virtual POS, online payments, and integrated cashier systems, we provide flexible payment solutions that adapt to any business model.",
     overviewStats: [
       { value: "2.5M+", label: "Transactions processed monthly" },
-      { value: "98%", label: "Merchant satisfaction rate" },
-      { value: "6 mins", label: "Average onboarding time" }
+      { value: "1000+", label: "Merchants onboarded" }
     ],
     challengeDescription: "In today's fast-paced business environment, merchants face several hurdles when it comes to payment processing and financial management:",
     challenges: [
       "Merchants need flexible payment solutions that adapt to different business models",
-      "Complex onboarding processes often delay merchant activation",
-      "Businesses struggle with managing multiple payment streams",
-      "Traditional POS systems lack modern features like easy tipping",
-      "Merchants need better visibility into their financial data"
+      "Traditional POS systems lack modern features like easy tipping, multiple business profiles on single terminals, and integrated cashier systems",
+      "Merchants need better visibility into their financial data",
+      "Meeting merchant needs, legal requirements, and compliance standards is difficult",
+      "Complex onboarding processes delay merchant activation"
     ],
     solutions: [
       {
@@ -44,10 +43,10 @@ const Paynance = () => {
       {
         title: "Streamlined Merchant Platform",
         points: [
-          "Intuitive financial dashboard",
-          "Comprehensive transaction management",
-          "Automated payout tracking",
-          "Customizable email reports"
+          "Intuitive financial dashboard focused on merchant needs",
+          "Comprehensive transaction management and reporting",
+          "Easy feedback and support system",
+          "Customizable features for different business types"
         ]
       },
       {
@@ -55,15 +54,15 @@ const Paynance = () => {
         points: [
           "Easy tipping functionality",
           "Recurring payment support",
-          "Integrated KYC process with Onfido",
-          "24/7 merchant support system"
+          "Multiple business profiles on single terminals",
+          "And many more features based on user research"
         ]
       }
     ],
     results: [
       { stat: "2.5M+", description: "Transactions processed monthly" },
-      { stat: "98%", description: "Merchant satisfaction rate" },
-      { stat: "6 mins", description: "Average onboarding time" }
+      { stat: "1000+", description: "Merchants onboarded" },
+      { stat: "98%", description: "Merchant satisfaction rate" }
     ],
     hero: {
       timeline: "12 Months",
@@ -80,42 +79,51 @@ const Paynance = () => {
     aspects: [
       {
         title: "Landing Page Design",
-        description: "The landing page needed to showcase Paynance's unique strengths through compelling visuals and clear messaging. I crafted an experience that balances bold design elements with practical demonstrations of our platform's capabilities, helping merchants quickly understand the value we deliver.",
+        description: "After extensive competitor analysis and user research, I designed a landing page that resonates with our target merchants. Through systematic A/B testing of different value propositions, layouts, and CTAs, we identified the most effective way to communicate Paynance's benefits. The final design combines clear messaging with interactive demonstrations of key features.",
         image: aspect1,
         imageAlt: "Paynance landing page design showcase",
-        metrics: [
-          { value: "+45%", label: "Merchant Sign-ups" },
-          { value: "+60%", label: "User Engagement" }
+        tags: [
+          "Conversion Optimization",
+          "Visual Design",
+          "User Research",
+          "A/B Testing",
+          "Competitor Analysis"
         ]
       },
       {
         title: "Merchant Platform",
-        description: "Extensive merchant interviews and feedback sessions shaped this platform from the ground up. I designed a comprehensive system that includes everything from transaction management to detailed analytics, while keeping the interface intuitive. Each feature was refined through continuous user testing and real-world feedback.",
+        description: "User interviews with 30+ merchants revealed common pain points in existing financial platforms. I designed an intuitive dashboard that brings critical data forward while maintaining a clean interface. The final design emerged through multiple rounds of usability testing, ensuring merchants of all technical levels could efficiently manage their operations.",
         image: aspect2,
         imageAlt: "Merchant platform dashboard interface",
-        metrics: [
-          { value: "98%", label: "Satisfaction Rate" },
-          { value: "-40%", label: "Support Tickets" }
+        tags: [
+          "Dashboard Design",
+          "User Interviews",
+          "User Research",
+          "Competitor Analysis"
         ]
       },
       {
         title: "Streamlined Onboarding",
-        description: "The challenge was making KYC verification less daunting without compromising security. I designed a step-by-step flow with clear guidance throughout. The new process significantly improved completion rates while maintaining compliance requirements.",
+        description: "Through careful analysis of regulatory requirements and user behavior, I developed a verification process that balances security with usability. The solution uses progressive disclosure and contextual guidance to make complex KYC requirements more approachable, while maintaining full compliance with financial regulations.",
         image: aspect3,
         imageAlt: "Onboarding flow visualization",
-        metrics: [
-          { value: "90%", label: "Completion Rate" },
-          { value: "6min", label: "Average Time" }
+        tags: [
+          "User Onboarding",
+          "Security UX",
+          "Process Design",
+          "Error Handling"
         ]
       },
       {
         title: "Mobile & POS Application",
-        description: "Merchant feedback drove the development of standout features like instant refunds, custom payment flows, and smart transaction management. The interface adapts seamlessly between mobile and POS environments, delivering a fast, intuitive experience that merchants actually enjoy using.",
+        description: "Based on extensive field research with merchants, I designed a unified payment interface that works seamlessly across mobile devices and POS terminals. The system handles complex scenarios like split payments and refunds while maintaining a simple, intuitive interface that new staff can master quickly.",
         image: aspect4,
         imageAlt: "Mobile application interface",
-        metrics: [
-          { value: "4.8", label: "App Rating" },
-          { value: "2.5M+", label: "Monthly Transactions" }
+        tags: [
+          "Mobile Design",
+          "POS Interface",
+          "Payment Flows",
+          "Cross-platform App"
         ]
       }
     ]

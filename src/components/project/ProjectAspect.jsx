@@ -1,7 +1,6 @@
-import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 
-const ProjectAspect = ({ title, description, image, imageAlt, metrics, index }) => {
+const ProjectAspect = ({ title, description, image, imageAlt, tags, index }) => {
   return (
     <motion.section 
       initial={{ opacity: 0 }}
@@ -63,27 +62,27 @@ const ProjectAspect = ({ title, description, image, imageAlt, metrics, index }) 
               {description}
             </p>
 
-            {metrics && (
-              <div className="grid grid-cols-2 gap-6">
-                {metrics.map((metric, idx) => (
-                  <motion.div
+            {tags && (
+              <div className="flex flex-wrap gap-3">
+                {tags.map((tag, idx) => (
+                  <motion.span
                     key={idx}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: 0.3 + idx * 0.1 }}
+                    transition={{ 
+                      duration: 0.4, 
+                      delay: 0.3 + idx * 0.1,
+                      type: "spring",
+                      stiffness: 100
+                    }}
                     className="group relative"
                   >
-                    <div className="absolute inset-0 bg-accent/5 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500" />
-                    <div className="relative space-y-1">
-                      <div className="text-2xl font-display text-accent">
-                        {metric.value}
-                      </div>
-                      <div className="text-sm text-primary/60">
-                        {metric.label}
-                      </div>
+                    <div className="absolute inset-0 bg-accent/10 rounded-full blur-lg opacity-0 group-hover:opacity-50 transition-all duration-500" />
+                    <div className="relative px-4 py-2 rounded-full bg-accent/10 text-accent border border-accent/20 text-sm font-medium hover:bg-accent/20 transition-all duration-300">
+                      {tag}
                     </div>
-                  </motion.div>
+                  </motion.span>
                 ))}
               </div>
             )}
@@ -120,18 +119,6 @@ const ProjectAspect = ({ title, description, image, imageAlt, metrics, index }) 
       </div>
     </motion.section>
   );
-};
-
-ProjectAspect.propTypes = {
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-  imageAlt: PropTypes.string.isRequired,
-  index: PropTypes.number.isRequired,
-  metrics: PropTypes.arrayOf(PropTypes.shape({
-    value: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-  })),
 };
 
 export default ProjectAspect;
