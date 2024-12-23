@@ -8,6 +8,7 @@ import Paynance from './pages/projects/paynance';
 import Contact from './pages/Contact';
 import PageTransition from './components/PageTransition';
 import LoccoCityPage from './pages/projects/loccocity';
+import ProtectedContact from './components/ProtectedContact';
 
 console.log('Available routes:', [
   '/',
