@@ -1,11 +1,13 @@
 import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import ProjectHero from '../../components/project/ProjectHero';
 import ProjectOverview from '../../components/project/ProjectOverview';
 import ProjectChallenge from '../../components/project/ProjectChallenge';
 import ProjectSolution from '../../components/project/ProjectSolution';
 import ProjectResults from '../../components/project/ProjectResults';
 import ProjectNextSteps from '../../components/project/ProjectNextSteps';
+import ProjectAspect from '../../components/project/ProjectAspect';
 
 const Everprove = () => {
   const projectData = {
@@ -69,7 +71,48 @@ const Everprove = () => {
         "Prototyping",
         "Usability Testing"
       ]
-    }
+    },
+    aspects: [
+      {
+        title: "Simple Contract Creation Flow",
+        description: "We transformed the intimidating process of creating legal contracts into a friendly, guided experience. Through extensive user research with small business owners and individuals, we developed an intuitive flow that feels more like having a conversation than filling out legal forms. The interface breaks down complex requirements into simple questions, automatically translating responses into proper legal language behind the scenes.",
+        image: "/assets/projects/everprove-flow.jpg",
+        imageAlt: "Everprove's intuitive contract creation flow",
+        tags: [
+          "Conversational UI",
+          "Step-by-Step Guidance",
+          "Progress Tracking",
+          "Smart Defaults",
+          "Plain Language"
+        ]
+      },
+      {
+        title: "Smart Template Builder",
+        description: "We created a powerful template builder that lets businesses design their own smart contracts. Teams can create dynamic templates with conditional logic, automated calculations, and customizable fields that adapt based on user inputs. The builder supports complex if-else scenarios, allowing contracts to automatically adjust their content and requirements based on specific conditions - all while maintaining legal validity.",
+        image: "/assets/projects/everprove-builder.jpg",
+        imageAlt: "Smart contract template builder interface",
+        tags: [
+          "Conditional Logic",
+          "Dynamic Fields",
+          "Custom Calculations",
+          "Template Library",
+          "Version Control"
+        ]
+      },
+      {
+        title: "Instant Contract Access",
+        description: "Accessing contracts is just as easy as creating them. Each digitally signed contract is securely recorded on the blockchain, creating an immutable record that can't be tampered with. What makes it truly special is the accessibility - anyone can instantly retrieve a contract by simply scanning its QR code, pulling the verified document directly from the blockchain. Combined with our comprehensive audit log, it creates a transparent and secure contract management system.",
+        image: "/assets/projects/everprove-signing.jpg",
+        imageAlt: "Contract retrieval and blockchain verification interface",
+        tags: [
+          "QR Code Access",
+          "Blockchain Storage",
+          "Digital Signatures",
+          "Audit Logging",
+          "Instant Retrieval"
+        ]
+      }
+    ]
   };
 
   return (
@@ -87,14 +130,54 @@ const Everprove = () => {
         subtitle={projectData.subtitle} 
         hero={projectData.hero}
       />
+      
       <ProjectOverview 
         content={projectData.overview} 
         stats={projectData.overviewStats}
       />
+      
       <ProjectChallenge 
         challenges={projectData.challenges} 
         description={projectData.challengeDescription}
       />
+
+      <section className="py-32">
+        <div className="container mx-auto px-4">
+          {/* Section Header */}
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center gap-2 mb-4"
+          >
+            <span className="w-8 h-[2px] bg-accent" />
+            <span className="text-accent font-medium tracking-wide">KEY ASPECTS</span>
+          </motion.span>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="max-w-3xl mb-16"
+          >
+            <h2 className="text-4xl font-display mb-6">
+              Breaking down the solution
+            </h2>
+            <p className="text-primary/60 text-lg leading-relaxed">
+              Let's explore how we transformed complex legal processes into simple, user-friendly experiences while maintaining security and validity.
+            </p>
+          </motion.div>
+
+          {/* Project Aspects */}
+          {projectData.aspects.map((aspect, index) => (
+            <ProjectAspect
+              key={aspect.title}
+              {...aspect}
+              index={index}
+            />
+          ))}
+        </div>
+      </section>
+      
       <ProjectSolution solutions={projectData.solutions} />
       <ProjectResults results={projectData.results} />
       <ProjectNextSteps />

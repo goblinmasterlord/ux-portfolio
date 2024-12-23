@@ -1,26 +1,22 @@
-console.log('1. loccocity.jsx file loaded');
-
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, Trophy, Store, Activity, Users, Clock, TrendingUp, ArrowLeft } from 'lucide-react';
+import { motion } from 'framer-motion';
 import ProjectHero from '../../components/project/ProjectHero';
 import ProjectOverview from '../../components/project/ProjectOverview';
 import ProjectChallenge from '../../components/project/ProjectChallenge';
 import ProjectSolution from '../../components/project/ProjectSolution';
 import ProjectResults from '../../components/project/ProjectResults';
 import ProjectNextSteps from '../../components/project/ProjectNextSteps';
-
-console.log('2. loccocity.jsx imports completed');
+import ProjectAspect from '../../components/project/ProjectAspect';
 
 const LoccoCityPage = () => {
-  console.log('Component rendering started');
-  
   const projectData = {
     title: "Gamifying Urban Discovery",
     subtitle: "A location-based platform that transforms city exploration into an engaging treasure hunt, connecting adventurous users with local businesses through real-world rewards",
     overview: "Locco City revolutionizes retail engagement by blending physical exploration with digital rewards. Similar to Pokémon GO's groundbreaking approach to gaming, we've created an engaging platform that encourages users to explore their city while collecting real-world rewards from their favorite brands.",
     overviewStats: [
-      { value: "1000+", label: "active users exploring cities" },
+      { value: "10.000+", label: "active users exploring cities" },
       { value: "100+", label: "partnered local businesses" },
     ],
     challengeDescription: "While digital marketing continues to evolve, connecting online engagement with real-world actions remains a significant challenge:",
@@ -65,16 +61,43 @@ const LoccoCityPage = () => {
         "UI Design",
         "Prototyping"
       ]
-    }
+    },
+    aspects: [
+      {
+        title: "Exploration & Discovery System",
+        description: "We designed an engaging urban exploration system that makes discovering your city feel like an adventure. Using location-based technology, we created a dynamic map that reveals nearby rewards and points of interest. The app uses a combination of fixed locations and randomly spawning rewards to keep exploration exciting and unpredictable, encouraging users to explore new areas of their city.",
+        image: "/assets/projects/loccocity-map.jpg",
+        imageAlt: "Locco City's interactive map and discovery interface",
+        tags: [
+          "Dynamic Mapping",
+          "Location Services",
+          "Real-time Updates",
+          "Discovery Zones",
+          "Local Exploration"
+        ]
+      },
+      {
+        title: "Merchant Dashboard",
+        description: "We developed a powerful yet simple dashboard that gives merchants complete control over their digital presence. Businesses can create and manage rewards, track foot traffic, and analyze customer engagement patterns. The interface includes tools for scheduling promotions, setting reward parameters, and viewing real-time analytics about how users interact with their offers.",
+        image: "/assets/projects/loccocity-merchant.jpg",
+        imageAlt: "Merchant control dashboard interface",
+        tags: [
+          "Analytics Dashboard",
+          "Reward Management",
+          "Traffic Insights",
+          "Campaign Planning",
+          "Performance Metrics"
+        ]
+      },
+
+    ]
   };
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      {console.log('Rendering main container')}
-      
+    <main className="bg-background text-primary">
       <Link 
         to="/" 
-        className="fixed bottom-8 left-8 z-50 flex items-center gap-2 px-4 py-2 bg-gray-800 text-white rounded-full"
+        className="fixed bottom-8 left-8 z-50 flex items-center gap-2 px-4 py-2 bg-background/80 backdrop-blur-sm rounded-full border border-primary/10 text-primary/60 hover:text-accent transition-all duration-300 hover:border-accent/20"
       >
         <ArrowLeft className="w-4 h-4" />
         Back to Home
@@ -85,34 +108,59 @@ const LoccoCityPage = () => {
         subtitle={projectData.subtitle} 
         hero={projectData.hero}
       />
-
+      
       <ProjectOverview 
         content={projectData.overview}
         stats={projectData.overviewStats}
       />
-
-      {console.log('Rendering ProjectChallenge')}
+      
       <ProjectChallenge 
         challenges={projectData.challenges} 
-        description={projectData.challengeDescription} 
+        description={projectData.challengeDescription}
       />
 
-      {console.log('Rendering ProjectSolution')}
-      <ProjectSolution 
-        solutions={projectData.solutions} 
-      />
+      <section className="py-32">
+        <div className="container mx-auto px-4">
+          {/* Section Header */}
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center gap-2 mb-4"
+          >
+            <span className="w-8 h-[2px] bg-accent" />
+            <span className="text-accent font-medium tracking-wide">KEY ASPECTS</span>
+          </motion.span>
 
-      {console.log('Rendering ProjectResults')}
-      <ProjectResults 
-        results={projectData.results} 
-      />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="max-w-3xl mb-16"
+          >
+            <h2 className="text-4xl font-display mb-6">
+              Breaking down the experience
+            </h2>
+            <p className="text-primary/60 text-lg leading-relaxed">
+              Let's explore how we transformed urban exploration into an engaging game that benefits both users and local businesses.
+            </p>
+          </motion.div>
 
-      {console.log('Rendering ProjectNextSteps')}
+          {/* Project Aspects */}
+          {projectData.aspects.map((aspect, index) => (
+            <ProjectAspect
+              key={aspect.title}
+              {...aspect}
+              index={index}
+            />
+          ))}
+        </div>
+      </section>
+      
+      <ProjectSolution solutions={projectData.solutions} />
+      <ProjectResults results={projectData.results} />
       <ProjectNextSteps />
-    </div>
+    </main>
   );
 };
 
-console.log('15. After component definition');
 export default LoccoCityPage;
-console.log('16. After export');
