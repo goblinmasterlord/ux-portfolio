@@ -62,7 +62,7 @@ const AiSection = () => {
             }}
             className="text-primary/60 text-lg leading-relaxed"
           >
-            With the rise of powerful language models, AI has become more accessible and practical than ever. We help you identify and implement the right solutions that can transform how your business handles information, automates tasks, and serves customers.
+            With the rise of powerful language models, AI has become more accessible and practical than ever. Let me identify and implement the right solutions that can transform how your business handles information, automates tasks, and serves customers.
           </motion.p>
         </div>
 
