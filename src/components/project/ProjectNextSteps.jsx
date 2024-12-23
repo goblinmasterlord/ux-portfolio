@@ -1,10 +1,17 @@
 import { motion } from 'framer-motion';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import { ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const ProjectNextSteps = () => {
   const [ref, controls] = useScrollAnimation();
+  const navigate = useNavigate();
+
+  const handleViewMoreWork = (e) => {
+    e.preventDefault();
+    // Navigate to home page and scroll to work section
+    navigate('/', { state: { scrollTo: 'work' } });
+  };
 
   return (
     <section className="px-6 lg:px-12 py-32">
@@ -30,13 +37,13 @@ const ProjectNextSteps = () => {
             Get Started
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
           </Link>
-          <Link
-            to="/"
+          <button
+            onClick={handleViewMoreWork}
             className="group inline-flex items-center gap-2 px-6 py-3 border border-primary/20 rounded-full hover:border-accent hover:text-accent transition-colors duration-300"
           >
             View More Work
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-          </Link>
+          </button>
         </div>
       </motion.div>
     </section>
