@@ -9,6 +9,8 @@ import ProjectSolution from '../../components/project/ProjectSolution';
 import ProjectResults from '../../components/project/ProjectResults';
 import ProjectNextSteps from '../../components/project/ProjectNextSteps';
 import ProjectAspect from '../../components/project/ProjectAspect';
+import aspect1 from '../../assets/projects/locco-aspect-01.jpg';
+import aspect2 from '../../assets/projects/locco-aspect-02.jpg';
 
 const LoccoCityPage = () => {
   const projectData = {
@@ -66,7 +68,7 @@ const LoccoCityPage = () => {
       {
         title: "Exploration & Discovery System",
         description: "We designed an engaging urban exploration system that makes discovering your city feel like an adventure. Using location-based technology, we created a dynamic map that reveals nearby rewards and points of interest. The app uses a combination of fixed locations and randomly spawning rewards to keep exploration exciting and unpredictable, encouraging users to explore new areas of their city.",
-        image: "/assets/projects/loccocity-map.jpg",
+        image: aspect1,
         imageAlt: "Locco City's interactive map and discovery interface",
         tags: [
           "Dynamic Mapping",
@@ -79,7 +81,7 @@ const LoccoCityPage = () => {
       {
         title: "Merchant Dashboard",
         description: "We developed a powerful yet simple dashboard that gives merchants complete control over their digital presence. Businesses can create and manage rewards, track foot traffic, and analyze customer engagement patterns. The interface includes tools for scheduling promotions, setting reward parameters, and viewing real-time analytics about how users interact with their offers.",
-        image: "/assets/projects/loccocity-merchant.jpg",
+        image: aspect2,
         imageAlt: "Merchant control dashboard interface",
         tags: [
           "Analytics Dashboard",
