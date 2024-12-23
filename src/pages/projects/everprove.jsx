@@ -8,6 +8,8 @@ import ProjectSolution from '../../components/project/ProjectSolution';
 import ProjectResults from '../../components/project/ProjectResults';
 import ProjectNextSteps from '../../components/project/ProjectNextSteps';
 import ProjectAspect from '../../components/project/ProjectAspect';
+import aspect1 from '../../assets/projects/everprove-aspect-01.jpg';
+import aspect2 from '../../assets/projects/everprove-aspect-02.jpg';
 
 const Everprove = () => {
   const projectData = {
@@ -76,7 +78,7 @@ const Everprove = () => {
       {
         title: "Simple Contract Creation Flow",
         description: "We transformed the intimidating process of creating legal contracts into a friendly, guided experience. Through extensive user research with small business owners and individuals, we developed an intuitive flow that feels more like having a conversation than filling out legal forms. The interface breaks down complex requirements into simple questions, automatically translating responses into proper legal language behind the scenes.",
-        image: "/assets/projects/everprove-flow.jpg",
+        image: aspect1,
         imageAlt: "Everprove's intuitive contract creation flow",
         tags: [
           "Conversational UI",
@@ -89,8 +91,6 @@ const Everprove = () => {
       {
         title: "Smart Template Builder",
         description: "We created a powerful template builder that lets businesses design their own smart contracts. Teams can create dynamic templates with conditional logic, automated calculations, and customizable fields that adapt based on user inputs. The builder supports complex if-else scenarios, allowing contracts to automatically adjust their content and requirements based on specific conditions - all while maintaining legal validity.",
-        image: "/assets/projects/everprove-builder.jpg",
-        imageAlt: "Smart contract template builder interface",
         tags: [
           "Conditional Logic",
           "Dynamic Fields",
@@ -102,7 +102,7 @@ const Everprove = () => {
       {
         title: "Instant Contract Access",
         description: "Accessing contracts is just as easy as creating them. Each digitally signed contract is securely recorded on the blockchain, creating an immutable record that can't be tampered with. What makes it truly special is the accessibility - anyone can instantly retrieve a contract by simply scanning its QR code, pulling the verified document directly from the blockchain. Combined with our comprehensive audit log, it creates a transparent and secure contract management system.",
-        image: "/assets/projects/everprove-signing.jpg",
+        image: aspect2,
         imageAlt: "Contract retrieval and blockchain verification interface",
         tags: [
           "QR Code Access",

@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion';
 
 const ProjectAspect = ({ title, description, image, imageAlt, tags, index }) => {
+  // Determine if we're using the image layout or text-only layout
+  const hasImage = Boolean(image);
+
   return (
     <motion.section 
       initial={{ opacity: 0 }}
@@ -48,9 +51,9 @@ const ProjectAspect = ({ title, description, image, imageAlt, tags, index }) => 
           </motion.h2>
         </div>
 
-        {/* Main Content Grid */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left Column - Content */}
+        {/* Main Content Grid - Conditional Layout */}
+        <div className={`grid ${hasImage ? 'lg:grid-cols-2 gap-12 lg:gap-16' : 'grid-cols-1 max-w-3xl'} items-center`}>
+          {/* Content Column */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -58,7 +61,7 @@ const ProjectAspect = ({ title, description, image, imageAlt, tags, index }) => 
             transition={{ duration: 0.6, delay: 0.2 }}
             className="space-y-8"
           >
-            <p className="text-base text-primary/80 leading-relaxed">
+            <p className={`text-base text-primary/80 leading-relaxed ${!hasImage ? 'max-w-3xl' : ''}`}>
               {description}
             </p>
 
@@ -88,33 +91,35 @@ const ProjectAspect = ({ title, description, image, imageAlt, tags, index }) => 
             )}
           </motion.div>
 
-          {/* Right Column - Image */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="relative group"
-          >
-            {/* Image container with effects */}
-            <div className="relative rounded-2xl overflow-hidden">
-              {/* Decorative elements */}
-              <div className="absolute -inset-4 bg-accent/10 rounded-2xl blur-2xl opacity-0 group-hover:opacity-50 transition-all duration-700" />
-              <div className="absolute inset-0 bg-gradient-to-tr from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 z-10" />
-              
-              {/* Main image */}
-              <div className="relative rounded-2xl overflow-hidden border border-primary/10">
-                <img 
-                  src={image} 
-                  alt={imageAlt} 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-              </div>
+          {/* Image Column - Only render if image is provided */}
+          {hasImage && (
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="relative group"
+            >
+              {/* Image container with effects */}
+              <div className="relative rounded-2xl overflow-hidden">
+                {/* Decorative elements */}
+                <div className="absolute -inset-4 bg-accent/10 rounded-2xl blur-2xl opacity-0 group-hover:opacity-50 transition-all duration-700" />
+                <div className="absolute inset-0 bg-gradient-to-tr from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 z-10" />
+                
+                {/* Main image */}
+                <div className="relative rounded-2xl overflow-hidden border border-primary/10">
+                  <img 
+                    src={image} 
+                    alt={imageAlt} 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                </div>
 
-              {/* Accent line */}
-              <div className="absolute -bottom-4 left-8 right-8 h-[2px] bg-accent/30 blur-sm" />
-            </div>
-          </motion.div>
+                {/* Accent line */}
+                <div className="absolute -bottom-4 left-8 right-8 h-[2px] bg-accent/30 blur-sm" />
+              </div>
+            </motion.div>
+          )}
         </div>
       </div>
     </motion.section>
