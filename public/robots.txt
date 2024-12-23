@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /private/
+Disallow: /admin/
+Disallow: /api/
+Allow: /
+
+Sitemap: https://uxwithmarci.com/sitemap.xml

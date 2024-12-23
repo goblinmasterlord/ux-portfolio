@@ -10,6 +10,7 @@ import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { ArrowRight } from 'lucide-react';
 import ProcessSection from '../components/ProcessSection';
 import AiSection from '../components/AiSection';
+import ProtectedContact from '../components/ProtectedContact';
 
 // Add these animation variants right after imports
 const fadeInUp = {
@@ -548,22 +549,25 @@ const Home = () => {
       {/* Contact Section */}
       <motion.section id="contact" className="px-6 lg:px-12 py-32 bg-background text-primary">
         <div className="max-w-[1800px] mx-auto">
-          <h2 className="text-primary/30 text-sm font-medium tracking-wider mb-4">GET IN TOUCH</h2>
-          <div className="flex flex-col md:flex-row justify-between items-start gap-4">
-            <h3 className="text-4xl md:text-5xl font-display text-primary max-w-2xl">
-              Let's create something amazing together
-            </h3>
-            <div className="space-y-4">
-              <p className="text-primary/60">Email: marci.mocsonoky@gmail.com</p>
-              <p className="text-primary/60">Phone: +36202312384</p>
-              <a 
-                href="mailto:marci.mocsonoky@gmail.com" 
-                className="group flex items-center gap-2 text-accent hover:text-primary transition-colors duration-300"
-              >
-                Send an Email
-                <ArrowUpRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-              </a>
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center gap-2 mb-4"
+          >
+            <span className="w-8 h-[2px] bg-accent" />
+            <span className="text-accent font-medium tracking-wide">GET IN TOUCH</span>
+          </motion.span>
+          
+          <div className="flex flex-col md:flex-row justify-between items-start gap-12">
+            <div className="max-w-2xl">
+              <h3 className="text-4xl md:text-5xl font-display text-primary mb-6">
+                Let's create something amazing together
+              </h3>
+              <p className="text-primary/60 text-lg leading-relaxed">
+                Have a project in mind? Let's discuss how we can work together to bring your ideas to life.
+              </p>
             </div>
+            <ProtectedContact />
           </div>
         </div>
       </motion.section>
