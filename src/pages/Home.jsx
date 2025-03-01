@@ -1,6 +1,6 @@
-import { useState, useEffect, memo } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ArrowUpRight, MousePointer2, Sparkles, Lightbulb, Layers, Bot, Scale, ShoppingCart, BarChart2, MessageSquare, HeadphonesIcon, Mail, ShoppingBag, Share2, Briefcase, Compass } from 'lucide-react';
+import { useState, useEffect, memo, useRef } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Menu, X, ArrowUpRight, MousePointer2, Sparkles, Lightbulb, Layers, Bot, Scale, ShoppingCart, BarChart2, MessageSquare, HeadphonesIcon, Mail, ShoppingBag, Share2, Briefcase, Compass, Zap, Users } from 'lucide-react';
 import paynanceImage1 from '../assets/projects/paynance-1.png';
 import paynanceImage2 from '../assets/projects/paynance-2.png';
 import loccocityImage1 from '../assets/projects/loccocity.png';
@@ -207,74 +207,259 @@ const ServiceCard = memo(({ service }) => {
 });
 
 const Hero = () => {
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [animationsComplete, setAnimationsComplete] = useState(false);
+  const [disableMouseTracking, setDisableMouseTracking] = useState(true); // Start with mouse tracking disabled
+  const heroRef = useRef(null);
+  const navigate = useNavigate();
+
+  // Set animations as complete after initial animations finish
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAnimationsComplete(true);
+      // Wait a bit longer before enabling mouse tracking to ensure all animations are done
+      setTimeout(() => setDisableMouseTracking(false), 500);
+    }, 3000);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleMouseMove = (e) => {
+    if (disableMouseTracking) return; // Skip mouse tracking until animations are complete
+    
+    if (heroRef.current) {
+      const rect = heroRef.current.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      setMousePosition({ x, y });
     }
   };
 
+  // Calculate parallax effect based on mouse position
+  const calcParallax = (strength = 20) => {
+    if (disableMouseTracking) return { x: 0, y: 0 }; // Return no movement if tracking is disabled
+    
+    return {
+      x: mousePosition.x * strength,
+      y: mousePosition.y * strength
+    };
+  };
+
+  // Scroll to section function
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  // Animated text component
+  const AnimatedText = ({ text, className }) => (
+    <motion.span
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className={className}
+    >
+      {text}
+    </motion.span>
+  );
+
   return (
-    <section className="min-h-screen px-6 lg:px-12 flex flex-col justify-center relative overflow-hidden">
-      {/* Simple animated gradient background */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 -left-1/4 w-[600px] h-[600px] bg-blue/5 rounded-full blur-3xl animate-slow-drift" />
-        <div className="absolute bottom-1/4 -right-1/4 w-[600px] h-[600px] bg-violet/5 rounded-full blur-3xl animate-slow-drift-reverse" />
+    <section 
+      ref={heroRef} 
+      onMouseMove={handleMouseMove}
+      className="relative min-h-[100vh] pt-32 pb-24 px-6 lg:px-12 flex flex-col justify-center overflow-hidden"
+      style={{ paddingTop: 'calc(10vh + 80px)', paddingBottom: 'calc(10vh + 40px)' }} // Increased padding to prevent cut-off
+    >
+      {/* Background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Animated gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue/10 to-violet/10 animate-pulse-slow" />
+        
+        {/* Decorative elements */}
+        <div className="absolute top-1/4 -left-12 w-64 h-64 bg-blue/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-violet/5 rounded-full blur-3xl" />
+        
+        {/* Grid pattern overlay */}
+        <div 
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: 'radial-gradient(circle at center, var(--color-blue) 1px, transparent 1px)',
+            backgroundSize: '24px 24px'
+          }}
+        />
       </div>
 
       {/* Main content */}
-      <div className="max-w-[1800px] mx-auto relative z-10">
-        <div className="space-y-6">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-display">
-            Hey, I'm Marci 👋
-            <br />
-            I make digital products{' '}
-            <span className="text-blue relative inline-block">
-              people love
-            </span>
-          </h1>
-          
-          <p className="text-primary/60 text-lg md:text-xl max-w-[600px] leading-relaxed">
-            I help companies build products that are simple to use and a joy to 
-            interact with. 
-          </p>
-
-          {/* CTA Buttons */}
-          <div className="flex items-center gap-6 pt-4">
-            <button 
-              onClick={() => scrollToSection('work')}
-              className="group inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue to-violet text-white 
-                rounded-full hover:shadow-lg hover:shadow-blue/20 transition-all duration-300"
+      <div className="max-w-[1800px] mx-auto relative z-10 flex flex-col items-center">
+        <div className="w-full max-w-[1200px] mx-auto">
+          {/* Heading with animated text */}
+          <div className="mb-8">
+            <motion.h1 
+              className="text-5xl md:text-7xl lg:text-8xl font-display leading-tight tracking-tight text-center"
+              style={{
+                transform: `translate(${calcParallax(5).x}px, ${calcParallax(5).y}px)`,
+              }}
             >
-              Check out my work
-              <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
-            </button>
+              <div className="overflow-hidden">
+                <AnimatedText text="Hey, I'm Marci" className="inline-flex items-center gap-2">
+                  <motion.span
+                    initial={{ rotate: -15, scale: 0.8, opacity: 0 }}
+                    animate={{ rotate: 0, scale: 1, opacity: 1 }}
+                    transition={{ delay: 0.8, duration: 0.6, type: "spring" }}
+                    className="inline-block"
+                  >
+                    👋
+                  </motion.span>
+                </AnimatedText>
+              </div>
+              
+              <div className="overflow-hidden mt-4">
+                <AnimatedText 
+                  text="I make digital products" 
+                  className="block"
+                />
+              </div>
+              
+              <div className="overflow-hidden mt-4">
+                <span className="relative inline-block">
+                  <AnimatedText 
+                    text="people " 
+                    className="inline-block"
+                  />
+                  
+                  <motion.span
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1.5, duration: 0.6 }}
+                    className="gradient-text font-bold"
+                  >
+                    love
+                  </motion.span>
+                  
+                  {/* Animated underline */}
+                  <motion.div
+                    initial={{ scaleX: 0, opacity: 0 }}
+                    animate={{ scaleX: 1, opacity: 1 }}
+                    transition={{ delay: 1.8, duration: 0.8, ease: "easeOut" }}
+                    className="absolute -bottom-2 left-0 right-0 h-2 bg-gradient-to-r from-blue via-indigo to-violet opacity-70 rounded-full"
+                    style={{ transformOrigin: "left" }}
+                  />
+                </span>
+              </div>
+            </motion.h1>
+          </div>
+          
+          {/* Description with staggered fade-in */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.9 }}
+            className="text-primary/70 text-xl md:text-2xl max-w-[700px] mx-auto text-center leading-relaxed"
+            style={{
+              transform: `translate(${calcParallax(10).x}px, ${calcParallax(10).y}px)`,
+            }}
+          >
+            I help companies build products that are <span className="text-blue font-medium">simple to use</span> and a <span className="text-violet font-medium">joy to interact with</span>. Let's create something amazing together.
+          </motion.p>
+
+          {/* CTA Buttons with hover effects */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 2.1 }}
+            className="flex flex-wrap items-center justify-center gap-6 pt-8"
+          >
+            <motion.button 
+              className="relative overflow-hidden rounded-full px-6 py-3 text-white"
+              onClick={() => scrollToSection('work')}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {/* Static gradient background instead of animated one */}
+              <div className="absolute inset-0 bg-gradient-to-r from-blue via-indigo to-violet" />
+              
+              <span className="relative z-10 flex items-center gap-2">
+                Check out my work
+                <motion.span
+                  animate={{ x: [0, 5, 0] }}
+                  transition={{ 
+                    repeat: Infinity, 
+                    repeatType: "loop", 
+                    duration: 1.5,
+                    ease: "easeInOut"
+                  }}
+                >
+                  →
+                </motion.span>
+              </span>
+            </motion.button>
             
-            <Link 
-              to="/contact"
-              className="group inline-flex items-center gap-2 text-primary/60 hover:text-blue 
-                transition-colors duration-300"
+            <button 
+              className="px-6 py-3 rounded-full border border-primary/20 hover:border-blue hover:text-blue transition-all duration-300"
+              onClick={() => scrollToSection('contact')}
             >
               Let's talk
-              <ArrowUpRight className="w-4 h-4 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
-            </Link>
-          </div>
-
-          {/* Experience Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-20">
-            <div>
-              <h3 className="text-2xl md:text-3xl font-display mb-1">6+ Years</h3>
-              <p className="text-primary/60">Building cool stuff</p>
-            </div>
-            <div>
-              <h3 className="text-2xl md:text-3xl font-display mb-1">20+ Projects</h3>
-              <p className="text-primary/60">Shipped & loved</p>
-            </div>
-          </div>
+            </button>
+          </motion.div>
         </div>
+        
+        {/* Stats section - Redesigned as a horizontal bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 2.3 }}
+          className="w-full max-w-[900px] mx-auto mt-24 mb-8" // Increased margin to move away from bottom
+        >
+          <div className="bg-gradient-to-r from-blue/5 to-violet/5 rounded-2xl p-1">
+            <div className="bg-white/50 backdrop-blur-sm rounded-xl shadow-sm border border-primary/5 flex flex-wrap">
+              {/* Years */}
+              <div className="flex-1 p-6 flex items-center gap-4 group hover:bg-blue/5 transition-colors duration-300 border-r border-primary/10">
+                <div className="text-blue">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect><line x1="16" x2="16" y1="2" y2="6"></line><line x1="8" x2="8" y1="2" y2="6"></line><line x1="3" x2="21" y1="10" y2="10"></line><path d="M8 14h.01"></path><path d="M12 14h.01"></path><path d="M16 14h.01"></path><path d="M8 18h.01"></path><path d="M12 18h.01"></path><path d="M16 18h.01"></path></svg>
+                </div>
+                <div>
+                  <div className="text-2xl font-display text-blue group-hover:scale-110 transition-transform duration-300">6+</div>
+                  <div className="text-sm text-primary/60">Years building cool stuff</div>
+                </div>
+              </div>
+              
+              {/* Projects */}
+              <div className="flex-1 p-6 flex items-center gap-4 group hover:bg-violet/5 transition-colors duration-300 border-r border-primary/10">
+                <div className="text-violet">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="7.5 4.21 12 6.81 16.5 4.21"></polyline><polyline points="7.5 19.79 7.5 14.6 3 12"></polyline><polyline points="21 12 16.5 14.6 16.5 19.79"></polyline><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" x2="12" y1="22.08" y2="12"></line></svg>
+                </div>
+                <div>
+                  <div className="text-2xl font-display text-violet group-hover:scale-110 transition-transform duration-300">20+</div>
+                  <div className="text-sm text-primary/60">Projects shipped & loved</div>
+                </div>
+              </div>
+              
+              {/* Clients */}
+              <div className="flex-1 p-6 flex items-center gap-4 group hover:bg-blue-light/5 transition-colors duration-300 border-r border-primary/10">
+                <div className="text-blue-light">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                </div>
+                <div>
+                  <div className="text-2xl font-display text-blue-light group-hover:scale-110 transition-transform duration-300">15+</div>
+                  <div className="text-sm text-primary/60">Happy client partnerships</div>
+                </div>
+              </div>
+              
+              {/* Industries */}
+              <div className="flex-1 p-6 flex items-center gap-4 group hover:bg-indigo/5 transition-colors duration-300">
+                <div className="text-indigo">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" x2="22" y1="12" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </div>
+                <div>
+                  <div className="text-2xl font-display text-indigo group-hover:scale-110 transition-transform duration-300">3</div>
+                  <div className="text-sm text-primary/60">Industries of expertise</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
