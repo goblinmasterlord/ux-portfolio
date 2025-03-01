@@ -67,7 +67,7 @@ const ProjectCard = memo(({ project, index }) => {
       <div 
         className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500"
         style={{
-          background: 'linear-gradient(45deg, var(--color-accent/0.05), transparent)',
+          background: 'linear-gradient(45deg, var(--color-blue/0.05), var(--color-violet/0.05))',
           backdropFilter: 'blur(2px)'
         }}
       />
@@ -76,7 +76,7 @@ const ProjectCard = memo(({ project, index }) => {
       <div className="relative w-full lg:w-[320px] shrink-0">
         <div className="relative overflow-hidden rounded-xl aspect-[4/3]">
           {/* Gradient overlay on hover */}
-          <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-br from-blue/10 via-indigo/5 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 z-10" />
           
           <img 
             src={project.image} 
@@ -87,7 +87,7 @@ const ProjectCard = memo(({ project, index }) => {
           
           {/* Category badge - now overlaid on image */}
           <div className="absolute top-3 left-3 px-3 py-1.5 bg-background/90 backdrop-blur-sm rounded-full">
-            <span className="text-accent text-sm">{project.category}</span>
+            <span className="text-blue text-sm">{project.category}</span>
           </div>
 
           {project.comingSoon && (
@@ -105,7 +105,7 @@ const ProjectCard = memo(({ project, index }) => {
           <span className="text-primary/40 text-sm mb-2 block">{project.year}</span>
           
           {/* Title */}
-          <h3 className="text-2xl font-display mb-3 group-hover:text-accent transition-colors duration-300">
+          <h3 className="text-2xl font-display mb-3 group-hover:text-blue transition-colors duration-300">
             {project.title}
           </h3>
           
@@ -134,7 +134,7 @@ const ProjectCard = memo(({ project, index }) => {
           <div className="flex flex-wrap gap-6 pt-6 border-t border-primary/10">
             {Object.entries(project.stats).map(([key, value]) => (
               <div key={key} className="space-y-1">
-                <div className="text-lg font-display text-accent">{value}</div>
+                <div className="text-lg font-display text-blue">{value}</div>
                 <div className="text-sm text-primary/40 capitalize">{key}</div>
               </div>
             ))}
@@ -144,7 +144,7 @@ const ProjectCard = memo(({ project, index }) => {
         {/* Floating CTA */}
         {!project.comingSoon && (
           <div className="absolute top-0 right-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
-            <div className="flex items-center gap-2 px-4 py-2 bg-accent/10 rounded-full text-accent">
+            <div className="flex items-center gap-2 px-4 py-2 bg-blue/10 rounded-full text-blue">
               <span className="text-sm">View Case Study</span>
               <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
             </div>
@@ -168,19 +168,19 @@ const ServiceCard = memo(({ service }) => {
       className="group relative p-6 rounded-xl bg-primary/5 hover:bg-primary/10 transition-all duration-500"
     >
       {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-accent/0 via-accent/5 to-accent/0 opacity-0 group-hover:opacity-100 transition-all duration-500" />
+      <div className="absolute inset-0 bg-gradient-to-br from-blue/0 via-indigo/5 to-violet/0 opacity-0 group-hover:opacity-100 transition-all duration-500" />
       
       <div className="relative z-10 flex gap-4">
         {/* Icon */}
-        <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center shrink-0">
-          <div className="text-accent">
+        <div className="w-10 h-10 rounded-lg bg-blue/10 flex items-center justify-center shrink-0">
+          <div className="text-blue">
             {service.icon}
           </div>
         </div>
 
         <div>
           {/* Title */}
-          <h4 className="text-xl font-display text-primary mb-2 group-hover:text-accent transition-colors duration-300">
+          <h4 className="text-xl font-display text-primary mb-2 group-hover:text-blue transition-colors duration-300">
             {service.title}
           </h4>
           
@@ -221,8 +221,8 @@ const Hero = () => {
     <section className="min-h-screen px-6 lg:px-12 flex flex-col justify-center relative overflow-hidden">
       {/* Simple animated gradient background */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 -left-1/4 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl animate-slow-drift" />
-        <div className="absolute bottom-1/4 -right-1/4 w-[600px] h-[600px] bg-[#00FF9D]/5 rounded-full blur-3xl animate-slow-drift-reverse" />
+        <div className="absolute top-1/4 -left-1/4 w-[600px] h-[600px] bg-blue/5 rounded-full blur-3xl animate-slow-drift" />
+        <div className="absolute bottom-1/4 -right-1/4 w-[600px] h-[600px] bg-violet/5 rounded-full blur-3xl animate-slow-drift-reverse" />
       </div>
 
       {/* Main content */}
@@ -232,7 +232,7 @@ const Hero = () => {
             Hey, I'm Marci 👋
             <br />
             I make digital products{' '}
-            <span className="text-[#00FF9D] relative inline-block">
+            <span className="text-blue relative inline-block">
               people love
             </span>
           </h1>
@@ -246,8 +246,8 @@ const Hero = () => {
           <div className="flex items-center gap-6 pt-4">
             <button 
               onClick={() => scrollToSection('work')}
-              className="group inline-flex items-center gap-2 px-6 py-3 bg-[#00FF9D] text-background 
-                rounded-full hover:bg-[#00FF9D]/90 transition-all duration-300"
+              className="group inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue to-violet text-white 
+                rounded-full hover:shadow-lg hover:shadow-blue/20 transition-all duration-300"
             >
               Check out my work
               <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
@@ -255,7 +255,7 @@ const Hero = () => {
             
             <Link 
               to="/contact"
-              className="group inline-flex items-center gap-2 text-primary/60 hover:text-primary 
+              className="group inline-flex items-center gap-2 text-primary/60 hover:text-blue 
                 transition-colors duration-300"
             >
               Let's talk
@@ -467,8 +467,8 @@ const Home = () => {
             animate={{ opacity: 1, y: 0 }}
             className="inline-flex items-center gap-2 mb-4"
           >
-            <span className="w-8 h-[2px] bg-accent" />
-            <span className="text-accent font-medium tracking-wide">SELECTED WORK</span>
+            <span className="w-8 h-[2px] bg-blue" />
+            <span className="text-blue font-medium tracking-wide">SELECTED WORK</span>
           </motion.span>
 
           <motion.div
@@ -506,8 +506,8 @@ const Home = () => {
             animate={{ opacity: 1, y: 0 }}
             className="inline-flex items-center gap-2 mb-4"
           >
-            <span className="w-8 h-[2px] bg-accent" />
-            <span className="text-accent font-medium tracking-wide">SERVICES</span>
+            <span className="w-8 h-[2px] bg-blue" />
+            <span className="text-blue font-medium tracking-wide">SERVICES</span>
           </motion.span>
 
           <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-16">
@@ -543,7 +543,7 @@ const Home = () => {
             </p>
             <Link
               to="/contact"
-              className="group inline-flex items-center gap-2 px-6 py-3 bg-accent text-background rounded-full hover:bg-accent/90 transition-colors duration-300"
+              className="group inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue to-violet text-white rounded-full hover:shadow-lg hover:shadow-blue/20 transition-all duration-300"
             >
               Start a Conversation
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
@@ -568,8 +568,8 @@ const Home = () => {
             animate={{ opacity: 1, y: 0 }}
             className="inline-flex items-center gap-2 mb-4"
           >
-            <span className="w-8 h-[2px] bg-accent" />
-            <span className="text-accent font-medium tracking-wide">GET IN TOUCH</span>
+            <span className="w-8 h-[2px] bg-blue" />
+            <span className="text-blue font-medium tracking-wide">GET IN TOUCH</span>
           </motion.span>
           
           <div className="flex flex-col md:flex-row justify-between items-start gap-12">

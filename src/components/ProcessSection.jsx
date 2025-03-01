@@ -8,14 +8,14 @@ const ProcessSection = () => {
     <section className="px-6 lg:px-12 py-32 relative overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 -left-12 w-64 h-64 bg-accent/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 -left-12 w-64 h-64 bg-blue/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-violet/5 rounded-full blur-3xl" />
         
         {/* Subtle grid pattern overlay */}
         <div 
           className="absolute inset-0 opacity-[0.03]"
           style={{
-            backgroundImage: 'radial-gradient(circle at center, var(--color-accent) 1px, transparent 1px)',
+            backgroundImage: 'radial-gradient(circle at center, var(--color-blue) 1px, transparent 1px)',
             backgroundSize: '24px 24px'
           }}
         />
@@ -88,17 +88,17 @@ const ProcessStep = ({ number, title, description }) => {
       className="group relative"
     >
       {/* Animated background shape */}
-      <div className="absolute -inset-4 bg-accent/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500" />
+      <div className="absolute -inset-4 bg-blue/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500" />
       
       {/* Number with animated border */}
       <div className="relative mb-6">
         <div className="w-20 h-20 relative">
           {/* Animated border */}
-          <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-accent/20 to-accent/0 group-hover:from-accent/40 group-hover:to-accent/20 transition-all duration-500" />
+          <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue/20 to-violet/0 group-hover:from-blue/40 group-hover:to-violet/20 transition-all duration-500" />
           
           {/* Inner content */}
           <div className="absolute inset-[1px] rounded-xl bg-background flex items-center justify-center">
-            <span className="text-3xl font-display text-accent group-hover:scale-110 transition-transform duration-500">
+            <span className="text-3xl font-display text-blue group-hover:scale-110 transition-transform duration-500">
               {number}
             </span>
           </div>
@@ -107,7 +107,7 @@ const ProcessStep = ({ number, title, description }) => {
 
       {/* Content */}
       <div className="relative space-y-4">
-        <h3 className="text-2xl font-display group-hover:text-accent transition-colors duration-300">
+        <h3 className="text-2xl font-display group-hover:text-blue transition-colors duration-300">
           {title}
         </h3>
         <p className="text-primary/60 leading-relaxed">
@@ -117,8 +117,8 @@ const ProcessStep = ({ number, title, description }) => {
 
       {/* Decorative elements */}
       <div className="absolute top-0 right-0 w-20 h-20 opacity-0 group-hover:opacity-100 transition-all duration-500">
-        <div className="absolute inset-0 bg-accent/10 rounded-full blur-xl animate-pulse" />
-        <div className="absolute inset-4 bg-accent/5 rounded-full blur-md animate-float-slow" />
+        <div className="absolute inset-0 bg-blue/10 rounded-full blur-xl animate-pulse" />
+        <div className="absolute inset-4 bg-violet/5 rounded-full blur-md animate-float-slow" />
       </div>
     </motion.div>
   );

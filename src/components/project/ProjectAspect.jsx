@@ -15,13 +15,13 @@ const ProjectAspect = ({ title, description, image, imageAlt, tags, index }) => 
       {/* Dynamic background with subtle pattern */}
       <div className="absolute inset-0">
         <div 
-          className="absolute inset-0 opacity-[0.03]"
+          className="absolute inset-0 opacity-[0.05]"
           style={{
-            backgroundImage: 'radial-gradient(circle at center, var(--color-accent) 1px, transparent 1px)',
+            backgroundImage: 'radial-gradient(circle at center, var(--color-blue) 1px, transparent 1px)',
             backgroundSize: '24px 24px'
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent/5 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue/10 to-transparent" />
       </div>
 
       <div className="container mx-auto px-4">
@@ -34,8 +34,8 @@ const ProjectAspect = ({ title, description, image, imageAlt, tags, index }) => 
             transition={{ duration: 0.6 }}
             className="flex items-center gap-2 mb-4"
           >
-            <span className="w-8 h-[2px] bg-accent" />
-            <span className="text-accent font-medium tracking-wide">
+            <span className="w-8 h-[2px] bg-blue" />
+            <span className="text-blue font-medium tracking-wide">
               {`ASPECT ${String(index + 1).padStart(2, '0')}`}
             </span>
           </motion.div>
@@ -81,8 +81,8 @@ const ProjectAspect = ({ title, description, image, imageAlt, tags, index }) => 
                     }}
                     className="group relative"
                   >
-                    <div className="absolute inset-0 bg-accent/10 rounded-full blur-lg opacity-0 group-hover:opacity-50 transition-all duration-500" />
-                    <div className="relative px-4 py-2 rounded-full bg-accent/10 text-accent border border-accent/20 text-sm font-medium hover:bg-accent/20 transition-all duration-300">
+                    <div className="absolute inset-0 bg-blue/20 rounded-full blur-lg opacity-0 group-hover:opacity-50 transition-all duration-500" />
+                    <div className="relative px-4 py-2 rounded-full bg-blue/10 text-blue border border-blue/20 text-sm font-medium hover:bg-blue/20 transition-all duration-300">
                       {tag}
                     </div>
                   </motion.span>
@@ -101,10 +101,10 @@ const ProjectAspect = ({ title, description, image, imageAlt, tags, index }) => 
               className="relative group"
             >
               {/* Image container with effects */}
-              <div className="relative rounded-2xl overflow-hidden">
+              <div className="relative rounded-2xl overflow-hidden shadow-lg">
                 {/* Decorative elements */}
-                <div className="absolute -inset-4 bg-accent/10 rounded-2xl blur-2xl opacity-0 group-hover:opacity-50 transition-all duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-tr from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 z-10" />
+                <div className="absolute -inset-4 bg-violet/20 rounded-2xl blur-2xl opacity-0 group-hover:opacity-70 transition-all duration-700" />
+                <div className="absolute inset-0 bg-gradient-to-tr from-blue/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 z-10" />
                 
                 {/* Main image */}
                 <div className="relative rounded-2xl overflow-hidden border border-primary/10">
@@ -116,7 +116,7 @@ const ProjectAspect = ({ title, description, image, imageAlt, tags, index }) => 
                 </div>
 
                 {/* Accent line */}
-                <div className="absolute -bottom-4 left-8 right-8 h-[2px] bg-accent/30 blur-sm" />
+                <div className="absolute -bottom-4 left-8 right-8 h-[2px] bg-blue/50 blur-sm" />
               </div>
             </motion.div>
           )}

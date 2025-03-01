@@ -13,13 +13,13 @@ const AiSection = () => {
         {/* Neural network-like pattern */}
         <div className="absolute inset-0 opacity-[0.15]"
           style={{
-            backgroundImage: `radial-gradient(circle at 50% 50%, var(--color-accent) 1px, transparent 1px), 
-                             radial-gradient(circle at 0% 100%, var(--color-accent) 1px, transparent 1px)`,
+            backgroundImage: `radial-gradient(circle at 50% 50%, var(--color-blue) 1px, transparent 1px), 
+                             radial-gradient(circle at 0% 100%, var(--color-violet) 1px, transparent 1px)`,
             backgroundSize: '40px 40px',
             backgroundPosition: '0 0, 20px 20px',
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-accent/5 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-blue/5 to-background" />
       </div>
 
       <motion.div
@@ -41,8 +41,8 @@ const AiSection = () => {
             }}
             className="flex items-center gap-4 mb-6"
           >
-            <Brain className="w-8 h-8 text-accent" />
-            <span className="text-accent font-medium">AI SOLUTIONS</span>
+            <Brain className="w-8 h-8 text-blue" />
+            <span className="text-blue font-medium">AI SOLUTIONS</span>
           </motion.div>
 
           <motion.h2
@@ -72,10 +72,10 @@ const AiSection = () => {
             hidden: { opacity: 0, y: 20 },
             visible: { opacity: 1, y: 0 }
           }}
-          className="rounded-2xl border border-accent/20 p-8 bg-accent/5 backdrop-blur-sm"
+          className="rounded-2xl border border-blue/20 p-8 bg-blue/5 backdrop-blur-sm"
         >
           <div className="flex items-center gap-4 mb-8">
-            <Building className="w-6 h-6 text-accent" />
+            <Building className="w-6 h-6 text-blue" />
             <h3 className="text-2xl font-display">Potential Applications</h3>
           </div>
 
@@ -99,13 +99,13 @@ const UseCaseCard = ({ title, description, impact }) => (
     }}
     className="group p-6 rounded-xl bg-background/50 hover:bg-background/80 transition-all duration-300"
   >
-    <h4 className="text-xl font-display mb-3 group-hover:text-accent transition-colors duration-300">
+    <h4 className="text-xl font-display mb-3 group-hover:text-blue transition-colors duration-300">
       {title}
     </h4>
     <p className="text-primary/60 text-sm mb-4">
       {description}
     </p>
-    <div className="text-accent text-sm font-medium">
+    <div className="text-blue text-sm font-medium">
       {impact}
     </div>
   </motion.div>
@@ -114,17 +114,17 @@ const UseCaseCard = ({ title, description, impact }) => (
 const FinalCard = () => (
   <Link
     to="/contact"
-    className="group p-6 rounded-xl bg-accent/10 hover:bg-accent/15 transition-all duration-300 flex flex-col justify-between h-full"
+    className="group p-6 rounded-xl bg-blue/10 hover:bg-blue/15 transition-all duration-300 flex flex-col justify-between h-full"
   >
     <div>
-      <h4 className="text-xl font-display mb-3 text-accent">
+      <h4 className="text-xl font-display mb-3 text-blue">
         And Many More Possibilities...
       </h4>
       <p className="text-primary/60 text-sm mb-4">
         Language models can help with any task involving text, analysis, or decision-making - from drafting and summarizing to answering questions and generating insights.
       </p>
     </div>
-    <div className="flex items-center gap-2 text-accent group-hover:translate-x-1 transition-transform duration-300">
+    <div className="flex items-center gap-2 text-blue group-hover:translate-x-1 transition-transform duration-300">
       Let's discuss your needs
       <ChevronRight className="w-4 h-4" />
     </div>

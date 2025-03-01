@@ -14,7 +14,7 @@ const ProjectNextSteps = () => {
   };
 
   return (
-    <section className="px-6 lg:px-12 py-32">
+    <section className="px-6 lg:px-12 py-32 bg-light">
       <motion.div
         ref={ref}
         initial="hidden"
@@ -26,20 +26,20 @@ const ProjectNextSteps = () => {
         className="max-w-[1000px] mx-auto text-center"
       >
         <h2 className="text-2xl font-display mb-8">Ready to transform your business?</h2>
-        <p className="text-primary/60 mb-12 max-w-[600px] mx-auto">
+        <p className="text-primary/80 mb-12 max-w-[600px] mx-auto">
           Let's discuss how we can help digitize and streamline your payment solutions.
         </p>
         <div className="flex flex-wrap justify-center gap-6">
           <Link
             to="/contact"
-            className="group inline-flex items-center gap-2 px-6 py-3 bg-accent text-background rounded-full hover:bg-accent/90 transition-colors duration-300"
+            className="bg-gradient-to-r from-blue to-violet text-white px-6 py-3 rounded-full hover:shadow-lg hover:shadow-blue/20 group inline-flex items-center gap-2 transition-all duration-300"
           >
             Get Started
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
           </Link>
           <button
             onClick={handleViewMoreWork}
-            className="group inline-flex items-center gap-2 px-6 py-3 border border-primary/20 rounded-full hover:border-accent hover:text-accent transition-colors duration-300"
+            className="border border-primary/20 px-6 py-3 rounded-full hover:border-blue hover:text-blue group inline-flex items-center gap-2 transition-all duration-300"
           >
             View More Work
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />

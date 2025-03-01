@@ -56,12 +56,12 @@ const Navigation = () => {
             onClick={() => setShowDropdown(false)}
           >
             <div className="flex-1">
-              <h3 className="font-display text-lg group-hover:text-accent transition-colors duration-300">
+              <h3 className="font-display text-lg group-hover:text-blue transition-colors duration-300">
                 {project.title}
               </h3>
               <p className="text-sm text-primary/60">{project.description}</p>
             </div>
-            <ArrowUpRight className="w-5 h-5 text-primary/40 group-hover:text-accent transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+            <ArrowUpRight className="w-5 h-5 text-primary/40 group-hover:text-blue transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
           </Link>
         ))}
       </div>
@@ -99,12 +99,12 @@ const Navigation = () => {
                   onClick={() => setIsOpen(false)}
                 >
                   <div>
-                    <h3 className="font-display text-lg group-hover:text-accent transition-colors duration-300">
+                    <h3 className="font-display text-lg group-hover:text-blue transition-colors duration-300">
                       {project.title}
                     </h3>
                     <p className="text-sm text-primary/60">{project.description}</p>
                   </div>
-                  <ArrowUpRight className="w-5 h-5 text-primary/40 group-hover:text-accent transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  <ArrowUpRight className="w-5 h-5 text-primary/40 group-hover:text-blue transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
                 </Link>
               ))}
             </div>
@@ -140,7 +140,7 @@ const Navigation = () => {
             <div className="relative">
               <button
                 onClick={() => setShowDropdown(!showDropdown)}
-                className="flex items-center gap-2 text-primary/60 hover:text-accent transition-colors duration-300"
+                className="flex items-center gap-2 text-primary/60 hover:text-blue transition-colors duration-300"
               >
                 Work
                 <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${showDropdown ? 'rotate-180' : ''}`} />
@@ -151,7 +151,7 @@ const Navigation = () => {
             </div>
             <Link 
               to="/contact" 
-              className="text-primary/60 hover:text-accent transition-colors duration-300"
+              className="text-primary/60 hover:text-blue transition-colors duration-300"
             >
               Contact
             </Link>

@@ -119,7 +119,7 @@ const Everprove = () => {
     <main className="bg-background text-primary">
       <Link 
         to="/" 
-        className="fixed bottom-8 left-8 z-50 flex items-center gap-2 px-4 py-2 bg-background/80 backdrop-blur-sm rounded-full border border-primary/10 text-primary/60 hover:text-accent transition-all duration-300 hover:border-accent/20"
+        className="fixed bottom-8 left-8 z-50 flex items-center gap-2 px-4 py-2 bg-white/90 backdrop-blur-sm rounded-full border border-primary/10 text-primary/80 hover:text-accent transition-all duration-300 hover:border-accent/20 shadow-sm"
       >
         <ArrowLeft className="w-4 h-4" />
         Back to Home
@@ -129,6 +129,7 @@ const Everprove = () => {
         title={projectData.title} 
         subtitle={projectData.subtitle} 
         hero={projectData.hero}
+        theme="everprove"
       />
       
       <ProjectOverview 
@@ -141,7 +142,7 @@ const Everprove = () => {
         description={projectData.challengeDescription}
       />
 
-      <section className="py-32">
+      <section className="py-32 bg-light">
         <div className="container mx-auto px-4">
           {/* Section Header */}
           <motion.span
@@ -162,7 +163,7 @@ const Everprove = () => {
             <h2 className="text-4xl font-display mb-6">
               Breaking down the solution
             </h2>
-            <p className="text-primary/60 text-lg leading-relaxed">
+            <p className="text-primary/80 text-lg leading-relaxed">
               Let's explore how we transformed complex legal processes into simple, user-friendly experiences while maintaining security and validity.
             </p>
           </motion.div>

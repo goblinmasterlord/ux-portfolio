@@ -5,7 +5,7 @@ const ProjectChallenge = ({ challenges, description }) => {
   const [ref, controls] = useScrollAnimation();
 
   return (
-    <section className="px-6 lg:px-12 py-32 bg-gradient-to-br from-primary/5 to-accent/5">
+    <section className="px-6 lg:px-12 py-32 gradient-bg">
       <motion.div 
         ref={ref}
         initial="hidden"
@@ -43,9 +43,9 @@ const ProjectChallenge = ({ challenges, description }) => {
                       transition: { delay: index * 0.1 }
                     }
                   }}
-                  className="flex items-start gap-4 p-6 rounded-xl bg-background/50 backdrop-blur-sm"
+                  className="flex items-start gap-4 p-6 rounded-xl bg-white shadow-sm"
                 >
-                  <span className="flex-shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent flex items-center justify-center font-display">
+                  <span className="flex-shrink-0 w-8 h-8 rounded-full bg-accent/20 text-accent flex items-center justify-center font-display">
                     {index + 1}
                   </span>
                   <p className="text-primary/80">{challenge}</p>
