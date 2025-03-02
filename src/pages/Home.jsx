@@ -11,6 +11,7 @@ import { ArrowRight } from 'lucide-react';
 import ProcessSection from '../components/ProcessSection';
 import AiSection from '../components/AiSection';
 import ProtectedContact from '../components/ProtectedContact';
+import CreativeHero from '../components/CreativeHero';
 
 // Add these animation variants right after imports
 const fadeInUp = {
@@ -59,12 +60,12 @@ const fadeInScale = {
 // Project Card Component
 const ProjectCard = memo(({ project, index }) => {
   return (
-    <Link 
+    <Link
       to={project.comingSoon ? '#' : project.path}
-      className="group relative flex flex-col lg:flex-row gap-8 p-6 rounded-2xl hover:bg-primary/5 transition-all duration-500"
+      className="group relative flex flex-col lg:flex-row gap-8 p-6 rounded-2xl bg-primary/5 hover:bg-primary/10 transition-all duration-500"
     >
       {/* Subtle gradient border on hover */}
-      <div 
+      <div
         className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500"
         style={{
           background: 'linear-gradient(45deg, var(--color-blue/0.05), var(--color-violet/0.05))',
@@ -72,20 +73,20 @@ const ProjectCard = memo(({ project, index }) => {
         }}
       />
 
-      {/* Image Container - Now smaller and more refined */}
+      {/* Image Container */}
       <div className="relative w-full lg:w-[320px] shrink-0">
         <div className="relative overflow-hidden rounded-xl aspect-[4/3]">
           {/* Gradient overlay on hover */}
           <div className="absolute inset-0 bg-gradient-to-br from-blue/10 via-indigo/5 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 z-10" />
-          
-          <img 
-            src={project.image} 
-            alt={project.title} 
+
+          <img
+            src={project.image}
+            alt={project.title}
             className={`w-full h-full object-cover transform group-hover:scale-[1.02] transition-all duration-700 
               ${project.comingSoon ? 'grayscale' : ''}`}
           />
-          
-          {/* Category badge - now overlaid on image */}
+
+          {/* Category badge */}
           <div className="absolute top-3 left-3 px-3 py-1.5 bg-background/90 backdrop-blur-sm rounded-full">
             <span className="text-blue text-sm">{project.category}</span>
           </div>
@@ -98,26 +99,26 @@ const ProjectCard = memo(({ project, index }) => {
         </div>
       </div>
 
-      {/* Content - Now with better hierarchy */}
+      {/* Content */}
       <div className="relative flex-1 flex flex-col">
         <div className="mb-auto">
           {/* Year */}
           <span className="text-primary/40 text-sm mb-2 block">{project.year}</span>
-          
+
           {/* Title */}
           <h3 className="text-2xl font-display mb-3 group-hover:text-blue transition-colors duration-300">
             {project.title}
           </h3>
-          
+
           {/* Description */}
           <p className="text-primary/60 text-base leading-relaxed mb-6">
             {project.description}
           </p>
 
-          {/* Tags - Now with subtle animation */}
+          {/* Tags */}
           <div className="flex flex-wrap gap-2 mb-6">
             {project.tags.map((tag, i) => (
-              <span 
+              <span
                 key={i}
                 className="px-3 py-1 text-sm bg-primary/5 rounded-full text-primary/60 
                   transform group-hover:translate-x-1 transition-all duration-300"
@@ -129,7 +130,7 @@ const ProjectCard = memo(({ project, index }) => {
           </div>
         </div>
 
-        {/* Stats with refined design */}
+        {/* Stats */}
         {project.stats && (
           <div className="flex flex-wrap gap-6 pt-6 border-t border-primary/10">
             {Object.entries(project.stats).map(([key, value]) => (
@@ -141,13 +142,16 @@ const ProjectCard = memo(({ project, index }) => {
           </div>
         )}
 
-        {/* Floating CTA */}
+        {/* Floating CTA - Moved inside the content container and made responsive */}
         {!project.comingSoon && (
-          <div className="absolute top-0 right-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
-            <div className="flex items-center gap-2 px-4 py-2 bg-blue/10 rounded-full text-blue">
+          <div className="mt-4 lg:mt-6">
+            <Link
+              to={project.path}
+              className="group inline-flex items-center gap-2 px-4 py-2 bg-blue/10 rounded-full text-blue hover:bg-blue/20 transition-all duration-300"
+            >
               <span className="text-sm">View Case Study</span>
               <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
-            </div>
+            </Link>
           </div>
         )}
       </div>

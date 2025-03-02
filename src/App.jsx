@@ -9,6 +9,7 @@ import Contact from './pages/Contact';
 import PageTransition from './components/PageTransition';
 import LoccoCityPage from './pages/projects/loccocity';
 import ProtectedContact from './components/ProtectedContact';
+import CreativeHero from './components/CreativeHero';
 
 console.log('Available routes:', [
   '/',
