@@ -1,19 +1,25 @@
 import { useState, useEffect, memo, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, ArrowUpRight, MousePointer2, Sparkles, Lightbulb, Layers, Bot, Scale, ShoppingCart, BarChart2, MessageSquare, HeadphonesIcon, Mail, ShoppingBag, Share2, Briefcase, Compass, Zap, Users } from 'lucide-react';
+import { 
+  Menu, X, ArrowUpRight, MousePointer2, Sparkles, Lightbulb, 
+  Layers, Bot, Scale, ShoppingCart, BarChart2, MessageSquare, 
+  HeadphonesIcon, Mail, ShoppingBag, Share2, Briefcase, Compass, 
+  Zap, Users, ArrowRight 
+} from 'lucide-react';
 import paynanceImage1 from '../assets/projects/paynance-1.png';
 import paynanceImage2 from '../assets/projects/paynance-2.png';
 import loccocityImage1 from '../assets/projects/loccocity.png';
 import everproveImage from '../assets/projects/everprove.png';
 import { motion } from 'framer-motion';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
-import { ArrowRight } from 'lucide-react';
+import { useEnhancedScrollAnimation } from '../hooks/useEnhancedScrollAnimation';
 import ProcessSection from '../components/ProcessSection';
 import AiSection from '../components/AiSection';
+import RefinedHobbyProjects from '../components/RefinedHobbyProjects';
 import ProtectedContact from '../components/ProtectedContact';
 import CreativeHero from '../components/CreativeHero';
 
-// Add these animation variants right after imports
+// Animation variants
 const fadeInUp = {
   hidden: { opacity: 0, y: 60 },
   visible: { 
@@ -41,7 +47,6 @@ const staggerContainer = {
   }
 };
 
-// Update the animation variants
 const fadeInScale = {
   hidden: { 
     opacity: 0,
@@ -57,117 +62,155 @@ const fadeInScale = {
   }
 };
 
-// Project Card Component
+// Project Card Component with enhanced animations
 const ProjectCard = memo(({ project, index }) => {
-  return (
-    <Link
-      to={project.comingSoon ? '#' : project.path}
-      className="group relative flex flex-col lg:flex-row gap-8 p-6 rounded-2xl bg-primary/5 hover:bg-primary/10 transition-all duration-500"
-    >
-      {/* Subtle gradient border on hover */}
-      <div
-        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500"
-        style={{
-          background: 'linear-gradient(45deg, var(--color-blue/0.05), var(--color-violet/0.05))',
-          backdropFilter: 'blur(2px)'
-        }}
-      />
-
-      {/* Image Container */}
-      <div className="relative w-full lg:w-[320px] shrink-0">
-        <div className="relative overflow-hidden rounded-xl aspect-[4/3]">
-          {/* Gradient overlay on hover */}
-          <div className="absolute inset-0 bg-gradient-to-br from-blue/10 via-indigo/5 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 z-10" />
-
-          <img
-            src={project.image}
-            alt={project.title}
-            className={`w-full h-full object-cover transform group-hover:scale-[1.02] transition-all duration-700 
-              ${project.comingSoon ? 'grayscale' : ''}`}
-          />
-
-          {/* Category badge */}
-          <div className="absolute top-3 left-3 px-3 py-1.5 bg-background/90 backdrop-blur-sm rounded-full">
-            <span className="text-blue text-sm">{project.category}</span>
-          </div>
-
-          {project.comingSoon && (
-            <div className="absolute inset-0 flex items-center justify-center bg-primary/10 backdrop-blur-sm">
-              <span className="text-primary/60 text-sm font-medium">Coming Soon</span>
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* Content */}
-      <div className="relative flex-1 flex flex-col">
-        <div className="mb-auto">
-          {/* Year */}
-          <span className="text-primary/40 text-sm mb-2 block">{project.year}</span>
-
-          {/* Title */}
-          <h3 className="text-2xl font-display mb-3 group-hover:text-blue transition-colors duration-300">
-            {project.title}
-          </h3>
-
-          {/* Description */}
-          <p className="text-primary/60 text-base leading-relaxed mb-6">
-            {project.description}
-          </p>
-
-          {/* Tags */}
-          <div className="flex flex-wrap gap-2 mb-6">
-            {project.tags.map((tag, i) => (
-              <span
-                key={i}
-                className="px-3 py-1 text-sm bg-primary/5 rounded-full text-primary/60 
-                  transform group-hover:translate-x-1 transition-all duration-300"
-                style={{ transitionDelay: `${i * 50}ms` }}
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Stats */}
-        {project.stats && (
-          <div className="flex flex-wrap gap-6 pt-6 border-t border-primary/10">
-            {Object.entries(project.stats).map(([key, value]) => (
-              <div key={key} className="space-y-1">
-                <div className="text-lg font-display text-blue">{value}</div>
-                <div className="text-sm text-primary/40 capitalize">{key}</div>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* Floating CTA - Removed inner Link */}
-        {!project.comingSoon && (
-          <div className="mt-4 lg:mt-6">
-            <span
-              className="group inline-flex items-center gap-2 px-4 py-2 bg-blue/10 rounded-full text-blue hover:bg-blue/20 transition-all duration-300"
-            >
-              <span className="text-sm">View Case Study</span>
-              <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
-            </span>
-          </div>
-        )}
-      </div>
-    </Link>
-  );
-});
-
-// Service Card Component
-const ServiceCard = memo(({ service }) => {
-  const [ref, controls] = useScrollAnimation();
+  const [cardRef, cardControls, cardVariants] = useEnhancedScrollAnimation('fadeUp', { 
+    threshold: 0.1,
+    triggerOnce: true
+  });
 
   return (
     <motion.div
-      ref={ref}
+      ref={cardRef}
       initial="hidden"
-      animate={controls}
-      variants={fadeInScale}
+      animate={cardControls}
+      variants={{
+        hidden: { opacity: 0, y: 40 },
+        visible: { 
+          opacity: 1, 
+          y: 0, 
+          transition: { 
+            duration: 0.8, 
+            delay: index * 0.1, 
+            ease: [0.25, 1, 0.5, 1] 
+          }
+        }
+      }}
+    >
+      <Link
+        to={project.comingSoon ? '#' : project.path}
+        className="group relative flex flex-col lg:flex-row gap-8 p-6 rounded-2xl bg-primary/5 hover:bg-primary/10 transition-all duration-500"
+      >
+        {/* Subtle gradient border on hover */}
+        <div
+          className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500"
+          style={{
+            background: 'linear-gradient(45deg, var(--color-blue/0.05), var(--color-violet/0.05))',
+            backdropFilter: 'blur(2px)'
+          }}
+        />
+
+        {/* Image Container */}
+        <div className="relative w-full lg:w-[320px] shrink-0">
+          <div className="relative overflow-hidden rounded-xl aspect-[4/3]">
+            {/* Gradient overlay on hover */}
+            <div className="absolute inset-0 bg-gradient-to-br from-blue/10 via-indigo/5 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 z-10" />
+
+            <img
+              src={project.image}
+              alt={project.title}
+              className={`w-full h-full object-cover transform group-hover:scale-[1.02] transition-all duration-700 
+                ${project.comingSoon ? 'grayscale' : ''}`}
+            />
+
+            {/* Category badge */}
+            <div className="absolute top-3 left-3 px-3 py-1.5 bg-background/90 backdrop-blur-sm rounded-full">
+              <span className="text-blue text-sm">{project.category}</span>
+            </div>
+
+            {project.comingSoon && (
+              <div className="absolute inset-0 flex items-center justify-center bg-primary/10 backdrop-blur-sm">
+                <span className="text-primary/60 text-sm font-medium">Coming Soon</span>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="relative flex-1 flex flex-col">
+          <div className="mb-auto">
+            {/* Year */}
+            <span className="text-primary/40 text-sm mb-2 block">{project.year}</span>
+
+            {/* Title */}
+            <h3 className="text-2xl font-display mb-3 group-hover:text-blue transition-colors duration-300">
+              {project.title}
+            </h3>
+
+            {/* Description */}
+            <p className="text-primary/60 text-base leading-relaxed mb-6">
+              {project.description}
+            </p>
+
+            {/* Tags */}
+            <div className="flex flex-wrap gap-2 mb-6">
+              {project.tags.map((tag, i) => (
+                <span
+                  key={i}
+                  className="px-3 py-1 text-sm bg-primary/5 rounded-full text-primary/60 
+                    transform group-hover:translate-x-1 transition-all duration-300"
+                  style={{ transitionDelay: `${i * 50}ms` }}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Stats */}
+          {project.stats && (
+            <div className="flex flex-wrap gap-6 pt-6 border-t border-primary/10">
+              {Object.entries(project.stats).map(([key, value]) => (
+                <div key={key} className="space-y-1">
+                  <div className="text-lg font-display text-blue">{value}</div>
+                  <div className="text-sm text-primary/40 capitalize">{key}</div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Floating CTA */}
+          {!project.comingSoon && (
+            <div className="mt-4 lg:mt-6">
+              <span
+                className="group inline-flex items-center gap-2 px-4 py-2 bg-blue/10 rounded-full text-blue hover:bg-blue/20 transition-all duration-300"
+              >
+                <span className="text-sm">View Case Study</span>
+                <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
+              </span>
+            </div>
+          )}
+        </div>
+      </Link>
+    </motion.div>
+  );
+});
+
+// Service Card Component with enhanced animations
+const ServiceCard = memo(({ service, index }) => {
+  const [cardRef, cardControls, cardVariants] = useEnhancedScrollAnimation('scale', { 
+    threshold: 0.1,
+    initialScale: 0.95,
+    triggerOnce: true
+  });
+
+  return (
+    <motion.div
+      ref={cardRef}
+      initial="hidden"
+      animate={cardControls}
+      variants={{
+        hidden: { opacity: 0, scale: 0.95 },
+        visible: { 
+          opacity: 1, 
+          scale: 1, 
+          transition: { 
+            duration: 0.6, 
+            delay: index * 0.1,
+            ease: [0.22, 1, 0.36, 1]
+          }
+        }
+      }}
       className="group relative p-6 rounded-xl bg-primary/5 hover:bg-primary/10 transition-all duration-500"
     >
       {/* Gradient overlay */}
@@ -416,13 +459,16 @@ const Home = () => {
 
           <div className="space-y-6">
             {projects.map((project, index) => (
-              <ProjectCard key={index} project={project} index={index + 1} />
+              <ProjectCard key={index} project={project} index={index} />
             ))}
           </div>
         </motion.div>
       </section>
 
-      {/* Services Section */}
+      {/* Highly Enhanced Hobby Projects Section */}
+      <RefinedHobbyProjects />
+
+      {/* Services Section with enhanced animations */}
       <section id="services" className="px-6 lg:px-12 py-32 bg-background/50">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -453,7 +499,7 @@ const Home = () => {
           {/* Services Grid */}
           <div className="grid md:grid-cols-2 gap-4 mb-16">
             {services.map((service, index) => (
-              <ServiceCard key={index} service={service} />
+              <ServiceCard key={index} service={service} index={index} />
             ))}
           </div>
 
@@ -481,7 +527,7 @@ const Home = () => {
         </motion.div>
       </section>
 
-      {/* Add the Process Section here */}
+      {/* Enhanced Process Section */}
       <ProcessSection />
 
       {/* AI Section */}
@@ -489,7 +535,7 @@ const Home = () => {
         <AiSection />
       </section>
 
-      {/* Contact Section */}
+      {/* Original Contact Section */}
       <motion.section id="contact" className="px-6 lg:px-12 py-32 bg-background text-primary">
         <div className="max-w-[1800px] mx-auto">
           <motion.span
