@@ -105,6 +105,16 @@ h1, h2, h3, h4, h5, h6 {
   }
   
   .colorful-blob {
-    @apply absolute rounded-full blur-3xl opacity-20 animate-pulse-slow;
+    @apply absolute rounded-full blur-3xl opacity-20;
+    animation: float-slow 8s ease-in-out infinite; /* Default animation */
+  }
+
+  /* Keyframes for floating animation (defined in tailwind.config.js) */
+  .animate-float-slow {
+    animation: float-slow 8s ease-in-out infinite;
+  }
+
+  .animate-float-medium {
+    animation: float-medium 6s ease-in-out infinite;
   }
 }
