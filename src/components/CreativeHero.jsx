@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Sparkles, Zap, Clock, Rocket, Users, TrendingUp, Award, Compass, Target, Layers, Code } from 'lucide-react';
+import { ArrowRight, Code } from 'lucide-react';
 
 const CreativeHero = () => {
   const containerRef = useRef(null);
@@ -164,100 +164,39 @@ const CreativeHero = () => {
     );
   };
 
-  // Completely redesigned Creative Stat Cards
-  const CreativeStatCards = () => {
-    const cardsData = [
-      {
-        icon: <Clock className="w-5 h-5 md:w-6 md:h-6" />,
-        title: "6+ Years Experience",
-        color: "blue",
-      },
-      {
-        icon: <Rocket className="w-5 h-5 md:w-6 md:h-6" />,
-        title: "20+ Projects Launched",
-        color: "indigo",
-      },
-      {
-        icon: <Users className="w-5 h-5 md:w-6 md:h-6" />,
-        title: "15+ Happy Clients",
-        color: "violet",
-      },
-      {
-        icon: <Award className="w-5 h-5 md:w-6 md:h-6" />,
-        title: "Cross-Industry Expertise",
-        color: "purple",
-      },
-    ];
-
-    return (
-      <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mt-10 md:mt-16 mb-8 md:mb-12">
-          {cardsData.map((card, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 * index }}
-              whileHover={{ 
-                y: -5,
-                transition: { duration: 0.2 }
-              }}
-              className="relative group"
-            >
-              <div className={`p-4 md:p-6 rounded-xl md:rounded-2xl backdrop-blur-sm bg-gradient-to-br from-${card.color}/5 to-${card.color}/10 border border-${card.color}/10 h-full transition-all duration-300 overflow-hidden`}>
-                {/* Animated gradient accent */}
-                <motion.div 
-                  className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r from-${card.color} to-${card.color}/50 rounded-full`}
-                  initial={{ width: "0%" }}
-                  whileHover={{ width: "100%" }}
-                  transition={{ duration: 0.3 }}
-                />
-                
-                {/* Subtle glow effect */}
-                <div className={`absolute -inset-px bg-${card.color}/5 opacity-0 group-hover:opacity-100 rounded-xl md:rounded-2xl blur-xl transition-opacity duration-500`} />
-                
-                <div className="flex flex-col items-center text-center space-y-2 md:space-y-3 relative z-10">
-                  <div className={`w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-gradient-to-br from-${card.color}/20 to-${card.color}/5 flex items-center justify-center mb-1 md:mb-2 group-hover:shadow-lg group-hover:shadow-${card.color}/10 transition-all duration-300`}>
-                    <motion.div
-                      whileHover={{ rotate: 360 }}
-                      transition={{ duration: 0.5, ease: "easeInOut" }}
-                      className={`text-${card.color}`}
-                    >
-                      {card.icon}
-                    </motion.div>
-                  </div>
-                  <h4 className={`text-sm md:text-base font-display font-medium text-primary group-hover:text-${card.color} transition-colors duration-300`}>
-                    {card.title}
-                  </h4>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    );
-  };
-
-
   return (
     <section
       ref={containerRef}
-      className="min-h-[90vh] px-4 sm:px-6 lg:px-12 flex flex-col justify-center relative overflow-hidden pt-28 pb-16 md:py-24"
+      className="min-h-[90vh] px-4 sm:px-6 lg:px-8 xl:px-12 flex flex-col justify-center relative overflow-hidden pt-28 pb-16 md:py-24 w-full max-w-[2000px] mx-auto"
     >
-      {/* Enhanced subtle background */}
-      <div className="absolute inset-0 z-0">
+      {/* Enhanced creative background */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
         {/* Subtle noise texture overlay */}
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxwYXRoIGQ9Ik0wIDBoMzAwdjMwMEgweiIgZmlsdGVyPSJ1cmwoI2EpIiBvcGFjaXR5PSIuMDUiLz48L3N2Zz4=')] opacity-30" />
         
-        {/* Colorful blobs with improved positioning and animation */}
-        <div className="colorful-blob w-[600px] h-[600px] top-[-15%] left-[-15%] bg-blue/20 animate-float-slow opacity-30" />
-        <div className="colorful-blob w-[700px] h-[700px] bottom-[-25%] right-[-15%] bg-violet/20 animate-float-medium opacity-30" />
+        {/* Subtle fine grid pattern */}
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMjAgMEgwdjIwaDIwVjB6TTEgMWgxOHYxOEgxVjF6IiBmaWxsPSIjMjAyMDIwIiBmaWxsLW9wYWNpdHk9IjAuMDEiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==')] opacity-20" />
         
-        {/* New subtle gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-radial from-transparent to-background/80 opacity-70" />
+        {/* Gradient mesh colors */}
+        <div className="absolute -top-[10%] -right-[10%] w-[50%] h-[50%] rounded-full bg-gradient-to-br from-blue/5 via-indigo/3 to-transparent blur-3xl"></div>
+        <div className="absolute -bottom-[10%] -left-[10%] w-[50%] h-[50%] rounded-full bg-gradient-to-tr from-violet/5 via-purple/3 to-transparent blur-3xl"></div>
+        <div className="absolute top-[30%] -left-[5%] w-[30%] h-[30%] rounded-full bg-gradient-to-r from-indigo/4 via-blue/3 to-transparent blur-3xl"></div>
+        <div className="absolute bottom-[20%] right-[5%] w-[25%] h-[25%] rounded-full bg-gradient-to-l from-purple/4 via-violet/3 to-transparent blur-3xl"></div>
         
-        {/* Subtle grid pattern */}
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNjAgMEgwdjYwaDYwVjB6TTIgMmg1NnY1NkgyVjJ6IiBmaWxsPSIjMjAyMDIwIiBmaWxsLW9wYWNpdHk9IjAuMDIiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==')] opacity-10" />
+        {/* Horizontal accent lines */}
+        <div className="absolute top-[25%] left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-blue/10 to-transparent"></div>
+        <div className="absolute top-[75%] left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-violet/10 to-transparent"></div>
+        
+        {/* Vertical accent lines */}
+        <div className="absolute left-[25%] top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-indigo/10 to-transparent"></div>
+        <div className="absolute left-[75%] top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-purple/10 to-transparent"></div>
+        
+        {/* Diagonal accent lines */}
+        <div className="absolute top-0 left-0 w-[1px] h-full bg-gradient-to-b from-transparent via-blue/5 to-transparent transform rotate-45 origin-top-left"></div>
+        <div className="absolute top-0 right-0 w-[1px] h-full bg-gradient-to-b from-transparent via-violet/5 to-transparent transform -rotate-45 origin-top-right"></div>
+        
+        {/* Radial gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-radial from-transparent to-background/80 opacity-70"></div>
       </div>
 
       {/* Main content */}
@@ -268,9 +207,9 @@ const CreativeHero = () => {
 
           <motion.p
             initial={{ opacity: 1 }}
-            className="text-primary/70 text-lg sm:text-xl md:text-2xl max-w-[700px] leading-relaxed"
+            className="text-primary/70 text-lg sm:text-xl md:text-2xl max-w-[800px] leading-relaxed"
           >
-            I help companies build products that are{' '}
+            With <span className="text-blue font-medium">6+ years of experience</span>, I help companies build products that are{' '}
             <span className="text-blue font-medium">simple to use</span> and a{' '}
             <span className="text-violet font-medium">joy to interact with</span>.
             Let's create something amazing together.
@@ -319,9 +258,6 @@ const CreativeHero = () => {
               </motion.div>
             </motion.button>
           </div>
-
-          {/* Redesigned Creative Stats Cards */}
-          <CreativeStatCards />
         </div>
       </div>
     </section>
