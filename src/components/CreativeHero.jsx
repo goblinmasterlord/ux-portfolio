@@ -7,11 +7,23 @@ const CreativeHero = () => {
   const containerRef = useRef(null);
   const mouseX = useRef(0);
   const mouseY = useRef(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if mobile on mount and window resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Mouse movement tracking (optimized)
   useEffect(() => {
     const handleMouseMove = (e) => {
-      if (containerRef.current) {
+      if (containerRef.current && !isMobile) {
         const rect = containerRef.current.getBoundingClientRect();
         mouseX.current = e.clientX - rect.left;
         mouseY.current = e.clientY - rect.top;
@@ -20,7 +32,7 @@ const CreativeHero = () => {
 
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+  }, [isMobile]);
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -45,6 +57,9 @@ const CreativeHero = () => {
 
     // Use requestAnimationFrame for smoother updates
     useEffect(() => {
+      // Skip animation on mobile
+      if (isMobile) return;
+      
       let animationFrameId;
 
       const updatePosition = () => {
@@ -74,7 +89,7 @@ const CreativeHero = () => {
       animationFrameId = requestAnimationFrame(updatePosition);
 
       return () => cancelAnimationFrame(animationFrameId);
-    }, [x, y]); // Reduced dependencies
+    }, [x, y, isMobile]); // Added isMobile dependency
 
 
     return (
@@ -103,23 +118,32 @@ const CreativeHero = () => {
       );
     };
 
+    // Simple text for mobile
+    const renderSimpleText = (text, className = "") => {
+      return (
+        <span className={`relative ${className}`}>
+          {text}
+        </span>
+      );
+    };
+
     return (
-      <h1 className="text-4xl md:text-6xl lg:text-7xl font-display leading-tight mb-2">
-        <div className="overflow-hidden mb-4">
-          {renderInteractiveText("Hey, I'm Marci")}
+      <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-display leading-tight mb-2">
+        <div className="overflow-hidden mb-3 md:mb-4">
+          {isMobile ? renderSimpleText("Hey, I'm Marci") : renderInteractiveText("Hey, I'm Marci")}
           <motion.span
-            className="inline-block ml-4"
+            className="inline-block ml-2 md:ml-4"
             initial={{ opacity: 1, scale: 1 }}
             whileHover={{ rotate: [-10, 10, -5, 5, 0], transition: { duration: 0.4 } }}
           >
             👋
           </motion.span>
         </div>
-        <div className="overflow-hidden mb-4">
-          {renderInteractiveText("I make digital products")}
+        <div className="overflow-hidden mb-3 md:mb-4">
+          {isMobile ? renderSimpleText("I make digital products") : renderInteractiveText("I make digital products")}
         </div>
         <div className="overflow-hidden relative">
-          {renderInteractiveText("people", "inline-block mr-4")}
+          {isMobile ? renderSimpleText("people", "inline-block mr-2 md:mr-4") : renderInteractiveText("people", "inline-block mr-2 md:mr-4")}
           <span className="relative inline-block">
             <motion.span
               initial={{ opacity: 1 }}
@@ -131,7 +155,7 @@ const CreativeHero = () => {
               initial={{ scaleX: 0, opacity: 0 }}
               animate={{ scaleX: 1, opacity: 1 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              className="absolute -bottom-2 left-0 right-0 h-2 bg-gradient-to-r from-blue via-violet to-purple opacity-70 rounded-full"
+              className="absolute -bottom-1 md:-bottom-2 left-0 right-0 h-1 md:h-2 bg-gradient-to-r from-blue via-violet to-purple opacity-70 rounded-full"
               style={{ transformOrigin: "left" }}
             />
           </span>
@@ -144,22 +168,22 @@ const CreativeHero = () => {
   const CreativeStatCards = () => {
     const cardsData = [
       {
-        icon: <Clock className="w-6 h-6" />,
+        icon: <Clock className="w-5 h-5 md:w-6 md:h-6" />,
         title: "6+ Years Experience",
         color: "blue",
       },
       {
-        icon: <Rocket className="w-6 h-6" />,
+        icon: <Rocket className="w-5 h-5 md:w-6 md:h-6" />,
         title: "20+ Projects Launched",
         color: "indigo",
       },
       {
-        icon: <Users className="w-6 h-6" />,
+        icon: <Users className="w-5 h-5 md:w-6 md:h-6" />,
         title: "15+ Happy Clients",
         color: "violet",
       },
       {
-        icon: <Award className="w-6 h-6" />,
+        icon: <Award className="w-5 h-5 md:w-6 md:h-6" />,
         title: "Cross-Industry Expertise",
         color: "purple",
       },
@@ -167,7 +191,7 @@ const CreativeHero = () => {
 
     return (
       <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mt-10 md:mt-16 mb-8 md:mb-12">
           {cardsData.map((card, index) => (
             <motion.div
               key={index}
@@ -180,7 +204,7 @@ const CreativeHero = () => {
               }}
               className="relative group"
             >
-              <div className={`p-6 rounded-2xl backdrop-blur-sm bg-gradient-to-br from-${card.color}/5 to-${card.color}/10 border border-${card.color}/10 h-full transition-all duration-300 overflow-hidden`}>
+              <div className={`p-4 md:p-6 rounded-xl md:rounded-2xl backdrop-blur-sm bg-gradient-to-br from-${card.color}/5 to-${card.color}/10 border border-${card.color}/10 h-full transition-all duration-300 overflow-hidden`}>
                 {/* Animated gradient accent */}
                 <motion.div 
                   className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r from-${card.color} to-${card.color}/50 rounded-full`}
@@ -190,10 +214,10 @@ const CreativeHero = () => {
                 />
                 
                 {/* Subtle glow effect */}
-                <div className={`absolute -inset-px bg-${card.color}/5 opacity-0 group-hover:opacity-100 rounded-2xl blur-xl transition-opacity duration-500`} />
+                <div className={`absolute -inset-px bg-${card.color}/5 opacity-0 group-hover:opacity-100 rounded-xl md:rounded-2xl blur-xl transition-opacity duration-500`} />
                 
-                <div className="flex flex-col items-center text-center space-y-3 relative z-10">
-                  <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br from-${card.color}/20 to-${card.color}/5 flex items-center justify-center mb-2 group-hover:shadow-lg group-hover:shadow-${card.color}/10 transition-all duration-300`}>
+                <div className="flex flex-col items-center text-center space-y-2 md:space-y-3 relative z-10">
+                  <div className={`w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-gradient-to-br from-${card.color}/20 to-${card.color}/5 flex items-center justify-center mb-1 md:mb-2 group-hover:shadow-lg group-hover:shadow-${card.color}/10 transition-all duration-300`}>
                     <motion.div
                       whileHover={{ rotate: 360 }}
                       transition={{ duration: 0.5, ease: "easeInOut" }}
@@ -202,7 +226,7 @@ const CreativeHero = () => {
                       {card.icon}
                     </motion.div>
                   </div>
-                  <h4 className={`text-base font-display font-medium text-primary group-hover:text-${card.color} transition-colors duration-300`}>
+                  <h4 className={`text-sm md:text-base font-display font-medium text-primary group-hover:text-${card.color} transition-colors duration-300`}>
                     {card.title}
                   </h4>
                 </div>
@@ -218,7 +242,7 @@ const CreativeHero = () => {
   return (
     <section
       ref={containerRef}
-      className="min-h-[80vh] px-6 lg:px-12 flex flex-col justify-center relative overflow-hidden py-24"
+      className="min-h-[90vh] px-4 sm:px-6 lg:px-12 flex flex-col justify-center relative overflow-hidden pt-28 pb-16 md:py-24"
     >
       {/* Enhanced subtle background */}
       <div className="absolute inset-0 z-0">
@@ -238,13 +262,13 @@ const CreativeHero = () => {
 
       {/* Main content */}
       <div className="max-w-[1800px] mx-auto relative z-10">
-        <div className="space-y-8">
+        <div className="space-y-6 md:space-y-8">
           {/* Interactive heading */}
           <InteractiveHeading />
 
           <motion.p
             initial={{ opacity: 1 }}
-            className="text-primary/70 text-xl md:text-2xl max-w-[700px] leading-relaxed"
+            className="text-primary/70 text-lg sm:text-xl md:text-2xl max-w-[700px] leading-relaxed"
           >
             I help companies build products that are{' '}
             <span className="text-blue font-medium">simple to use</span> and a{' '}
@@ -252,14 +276,11 @@ const CreativeHero = () => {
             Let's create something amazing together.
           </motion.p>
 
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 1 }}
-            className="flex flex-wrap items-center gap-6 pt-6"
-          >
+          {/* CTA Buttons - Improved for mobile */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 md:gap-6 pt-4 md:pt-6">
             <motion.button
               onClick={() => scrollToSection('work')}
-              className="relative overflow-hidden rounded-full px-6 py-3 text-white"
+              className="relative overflow-hidden rounded-full px-5 py-2.5 md:px-6 md:py-3 text-white w-full sm:w-auto"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -267,7 +288,7 @@ const CreativeHero = () => {
                 className="absolute inset-0 bg-gradient-to-r from-blue via-indigo to-violet"
               />
 
-              <span className="relative z-10 flex items-center gap-2">
+              <span className="relative z-10 flex items-center justify-center gap-2">
                 Check out my work
                 <motion.span
                   animate={{ x: [0, 5, 0] }}
@@ -278,26 +299,26 @@ const CreativeHero = () => {
                     ease: "easeInOut"
                   }}
                 >
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-3.5 h-3.5 md:w-4 md:h-4" />
                 </motion.span>
               </span>
             </motion.button>
 
             <motion.button
               onClick={() => scrollToSection('hobby-projects')}
-              className="group inline-flex items-center gap-2 text-primary/70 hover:text-purple transition-colors duration-300"
+              className="group inline-flex items-center gap-2 text-primary/70 hover:text-purple transition-colors duration-300 w-full sm:w-auto justify-center sm:justify-start"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              See my hobby projects
+              <span className="text-sm md:text-base">See my hobby projects</span>
               <motion.div
-                className="w-6 h-6 rounded-full bg-lavender flex items-center justify-center"
+                className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-lavender flex items-center justify-center"
                 whileHover={{ scale: 1.2 }}
               >
-                <Code className="w-3 h-3 text-purple" />
+                <Code className="w-2.5 h-2.5 md:w-3 md:h-3 text-purple" />
               </motion.div>
             </motion.button>
-          </motion.div>
+          </div>
 
           {/* Redesigned Creative Stats Cards */}
           <CreativeStatCards />

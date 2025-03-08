@@ -89,11 +89,11 @@ const ProjectCard = memo(({ project, index }) => {
     >
       <Link
         to={project.comingSoon ? '#' : project.path}
-        className="group relative flex flex-col lg:flex-row gap-8 p-6 rounded-2xl bg-primary/5 hover:bg-primary/10 transition-all duration-500"
+        className="group relative flex flex-col lg:flex-row gap-5 md:gap-8 p-4 sm:p-6 rounded-xl md:rounded-2xl bg-primary/5 hover:bg-primary/10 transition-all duration-500"
       >
         {/* Subtle gradient border on hover */}
         <div
-          className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500"
+          className="absolute inset-0 rounded-xl md:rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500"
           style={{
             background: 'linear-gradient(45deg, var(--color-blue/0.05), var(--color-violet/0.05))',
             backdropFilter: 'blur(2px)'
@@ -102,7 +102,7 @@ const ProjectCard = memo(({ project, index }) => {
 
         {/* Image Container */}
         <div className="relative w-full lg:w-[320px] shrink-0">
-          <div className="relative overflow-hidden rounded-xl aspect-[4/3]">
+          <div className="relative overflow-hidden rounded-lg md:rounded-xl aspect-[4/3]">
             {/* Gradient overlay on hover */}
             <div className="absolute inset-0 bg-gradient-to-br from-blue/10 via-indigo/5 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 z-10" />
 
@@ -114,8 +114,8 @@ const ProjectCard = memo(({ project, index }) => {
             />
 
             {/* Category badge */}
-            <div className="absolute top-3 left-3 px-3 py-1.5 bg-background/90 backdrop-blur-sm rounded-full">
-              <span className="text-blue text-sm">{project.category}</span>
+            <div className="absolute top-2 md:top-3 left-2 md:left-3 px-2 md:px-3 py-1 md:py-1.5 bg-background/90 backdrop-blur-sm rounded-full">
+              <span className="text-blue text-xs md:text-sm">{project.category}</span>
             </div>
 
             {project.comingSoon && (
@@ -127,27 +127,27 @@ const ProjectCard = memo(({ project, index }) => {
         </div>
 
         {/* Content */}
-        <div className="relative flex-1 flex flex-col">
+        <div className="relative flex-1 flex flex-col mt-4 lg:mt-0">
           <div className="mb-auto">
             {/* Year */}
-            <span className="text-primary/40 text-sm mb-2 block">{project.year}</span>
+            <span className="text-primary/40 text-xs md:text-sm mb-1 md:mb-2 block">{project.year}</span>
 
             {/* Title */}
-            <h3 className="text-2xl font-display mb-3 group-hover:text-blue transition-colors duration-300">
+            <h3 className="text-xl md:text-2xl font-display mb-2 md:mb-3 group-hover:text-blue transition-colors duration-300">
               {project.title}
             </h3>
 
             {/* Description */}
-            <p className="text-primary/60 text-base leading-relaxed mb-6">
+            <p className="text-primary/60 text-sm md:text-base leading-relaxed mb-4 md:mb-6">
               {project.description}
             </p>
 
             {/* Tags */}
-            <div className="flex flex-wrap gap-2 mb-6">
+            <div className="flex flex-wrap gap-1.5 md:gap-2 mb-4 md:mb-6">
               {project.tags.map((tag, i) => (
                 <span
                   key={i}
-                  className="px-3 py-1 text-sm bg-primary/5 rounded-full text-primary/60 
+                  className="px-2 md:px-3 py-0.5 md:py-1 text-xs bg-primary/5 rounded-full text-primary/60 
                     transform group-hover:translate-x-1 transition-all duration-300"
                   style={{ transitionDelay: `${i * 50}ms` }}
                 >
@@ -159,11 +159,11 @@ const ProjectCard = memo(({ project, index }) => {
 
           {/* Stats */}
           {project.stats && (
-            <div className="flex flex-wrap gap-6 pt-6 border-t border-primary/10">
+            <div className="flex flex-wrap gap-4 md:gap-6 pt-4 md:pt-6 border-t border-primary/10">
               {Object.entries(project.stats).map(([key, value]) => (
-                <div key={key} className="space-y-1">
-                  <div className="text-lg font-display text-blue">{value}</div>
-                  <div className="text-sm text-primary/40 capitalize">{key}</div>
+                <div key={key} className="space-y-0.5 md:space-y-1">
+                  <div className="text-base md:text-lg font-display text-blue">{value}</div>
+                  <div className="text-xs md:text-sm text-primary/40 capitalize">{key}</div>
                 </div>
               ))}
             </div>
@@ -173,10 +173,10 @@ const ProjectCard = memo(({ project, index }) => {
           {!project.comingSoon && (
             <div className="mt-4 lg:mt-6">
               <span
-                className="group inline-flex items-center gap-2 px-4 py-2 bg-blue/10 rounded-full text-blue hover:bg-blue/20 transition-all duration-300"
+                className="group inline-flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-1.5 md:py-2 bg-blue/10 rounded-full text-blue hover:bg-blue/20 transition-all duration-300"
               >
-                <span className="text-sm">View Case Study</span>
-                <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
+                <span className="text-xs md:text-sm">View Case Study</span>
+                <ArrowRight className="w-3.5 h-3.5 md:w-4 md:h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
               </span>
             </div>
           )}
@@ -211,14 +211,14 @@ const ServiceCard = memo(({ service, index }) => {
           }
         }
       }}
-      className="group relative p-6 rounded-xl bg-primary/5 hover:bg-primary/10 transition-all duration-500"
+      className="group relative p-4 sm:p-6 rounded-lg md:rounded-xl bg-primary/5 hover:bg-primary/10 transition-all duration-500"
     >
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue/0 via-indigo/5 to-violet/0 opacity-0 group-hover:opacity-100 transition-all duration-500" />
       
-      <div className="relative z-10 flex gap-4">
+      <div className="relative z-10 flex gap-3 md:gap-4">
         {/* Icon */}
-        <div className="w-10 h-10 rounded-lg bg-blue/10 flex items-center justify-center shrink-0">
+        <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-blue/10 flex items-center justify-center shrink-0">
           <div className="text-blue">
             {service.icon}
           </div>
@@ -226,21 +226,21 @@ const ServiceCard = memo(({ service, index }) => {
 
         <div>
           {/* Title */}
-          <h4 className="text-xl font-display text-primary mb-2 group-hover:text-blue transition-colors duration-300">
+          <h4 className="text-lg md:text-xl font-display text-primary mb-1.5 md:mb-2 group-hover:text-blue transition-colors duration-300">
             {service.title}
           </h4>
           
           {/* Description */}
-          <p className="text-primary/60 text-sm mb-3 leading-relaxed">
+          <p className="text-primary/60 text-xs md:text-sm mb-2 md:mb-3 leading-relaxed">
             {service.description}
           </p>
 
           {/* Features as inline tags */}
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5 md:gap-2">
             {service.features.map((feature, index) => (
               <span 
                 key={index}
-                className="px-2 py-1 text-xs bg-primary/5 rounded-full text-primary/60"
+                className="px-2 py-0.5 md:py-1 text-xs bg-primary/5 rounded-full text-primary/60"
               >
                 {feature}
               </span>
@@ -428,7 +428,7 @@ const Home = () => {
       <CreativeHero />
 
       {/* Work Section */}
-      <section id="work" className="px-6 lg:px-12 py-32 bg-background">
+      <section id="work" className="px-4 sm:px-6 lg:px-12 py-16 md:py-32 bg-background">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -437,27 +437,27 @@ const Home = () => {
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 mb-4"
+            className="inline-flex items-center gap-2 mb-3 md:mb-4"
           >
-            <span className="w-8 h-[2px] bg-blue" />
-            <span className="text-blue font-medium tracking-wide">SELECTED WORK</span>
+            <span className="w-6 md:w-8 h-[2px] bg-blue" />
+            <span className="text-blue font-medium tracking-wide text-xs md:text-sm">SELECTED WORK</span>
           </motion.span>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="max-w-3xl mb-16"
+            className="max-w-3xl mb-8 md:mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-display mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display mb-3 md:mb-6">
               Some of my work
             </h2>
-            <p className="text-primary/60 text-lg md:text-xl leading-relaxed">
+            <p className="text-primary/60 text-base md:text-lg lg:text-xl leading-relaxed">
               Here are some of the favorite projects I've worked on. Each one was a unique challenge solved with unique solutions and close collaboration with amazing teams.
             </p>
           </motion.div>
 
-          <div className="space-y-6">
+          <div className="space-y-4 md:space-y-6">
             {projects.map((project, index) => (
               <ProjectCard key={index} project={project} index={index} />
             ))}
@@ -469,7 +469,7 @@ const Home = () => {
       <RefinedHobbyProjects />
 
       {/* Services Section with enhanced animations */}
-      <section id="services" className="px-6 lg:px-12 py-32 bg-background/50">
+      <section id="services" className="px-4 sm:px-6 lg:px-12 py-16 md:py-32 bg-background/50">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -479,25 +479,25 @@ const Home = () => {
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 mb-4"
+            className="inline-flex items-center gap-2 mb-3 md:mb-4"
           >
-            <span className="w-8 h-[2px] bg-blue" />
-            <span className="text-blue font-medium tracking-wide">SERVICES</span>
+            <span className="w-6 md:w-8 h-[2px] bg-blue" />
+            <span className="text-blue font-medium tracking-wide text-xs md:text-sm">SERVICES</span>
           </motion.span>
 
-          <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-16">
+          <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-8 md:mb-16">
             <div className="max-w-2xl">
-              <h2 className="text-4xl md:text-5xl font-display text-primary mb-6">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display text-primary mb-3 md:mb-6">
                 How I Can Help
               </h2>
-              <p className="text-primary/60 text-lg leading-relaxed">
+              <p className="text-primary/60 text-base md:text-lg leading-relaxed">
                 I bring a structured approach to challenges while keeping things practical and focused on results.
               </p>
             </div>
           </div>
 
           {/* Services Grid */}
-          <div className="grid md:grid-cols-2 gap-4 mb-16">
+          <div className="grid md:grid-cols-2 gap-3 md:gap-4 mb-12 md:mb-16">
             {services.map((service, index) => (
               <ServiceCard key={index} service={service} index={index} />
             ))}
@@ -508,20 +508,20 @@ const Home = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="flex flex-col items-center text-center pt-8 border-t border-primary/10"
+            className="flex flex-col items-center text-center pt-6 md:pt-8 border-t border-primary/10"
           >
-            <h3 className="text-2xl md:text-3xl font-display mb-4">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-display mb-3 md:mb-4">
               Ready to start your next project?
             </h3>
-            <p className="text-primary/60 mb-8 max-w-xl">
+            <p className="text-primary/60 mb-6 md:mb-8 max-w-xl text-sm md:text-base">
               Let's discuss how we can work together to create something amazing.
             </p>
             <Link
               to="/contact"
-              className="group inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue to-violet text-white rounded-full hover:shadow-lg hover:shadow-blue/20 transition-all duration-300"
+              className="group inline-flex items-center gap-2 px-5 py-2.5 md:px-6 md:py-3 bg-gradient-to-r from-blue to-violet text-white rounded-full hover:shadow-lg hover:shadow-blue/20 transition-all duration-300 text-sm md:text-base"
             >
               Start a Conversation
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+              <ArrowRight className="w-3.5 h-3.5 md:w-4 md:h-4 group-hover:translate-x-1 transition-transform duration-300" />
             </Link>
           </motion.div>
         </motion.div>
@@ -531,28 +531,28 @@ const Home = () => {
       <ProcessSection />
 
       {/* AI Section */}
-      <section id="ai" className="px-6 lg:px-12 py-32 bg-background">
+      <section id="ai" className="px-4 sm:px-6 lg:px-12 py-16 md:py-32 bg-background">
         <AiSection />
       </section>
 
       {/* Original Contact Section */}
-      <motion.section id="contact" className="px-6 lg:px-12 py-32 bg-background text-primary">
+      <motion.section id="contact" className="px-4 sm:px-6 lg:px-12 py-16 md:py-32 bg-background text-primary">
         <div className="max-w-[1800px] mx-auto">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 mb-4"
+            className="inline-flex items-center gap-2 mb-3 md:mb-4"
           >
-            <span className="w-8 h-[2px] bg-blue" />
-            <span className="text-blue font-medium tracking-wide">GET IN TOUCH</span>
+            <span className="w-6 md:w-8 h-[2px] bg-blue" />
+            <span className="text-blue font-medium tracking-wide text-xs md:text-sm">GET IN TOUCH</span>
           </motion.span>
           
-          <div className="flex flex-col md:flex-row justify-between items-start gap-12">
+          <div className="flex flex-col md:flex-row justify-between items-start gap-8 md:gap-12">
             <div className="max-w-2xl">
-              <h3 className="text-4xl md:text-5xl font-display text-primary mb-6">
+              <h3 className="text-3xl sm:text-4xl md:text-5xl font-display text-primary mb-3 md:mb-6">
                 Let's create something amazing together
               </h3>
-              <p className="text-primary/60 text-lg leading-relaxed">
+              <p className="text-primary/60 text-base md:text-lg leading-relaxed">
                 Have a project in mind? Let's discuss how we can work together to bring your ideas to life.
               </p>
             </div>
