@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Sparkles, Zap, Clock, Rocket, Users, TrendingUp } from 'lucide-react';
+import { ArrowRight, Sparkles, Zap, Clock, Rocket, Users, TrendingUp, Award, Compass, Target, Layers, Code } from 'lucide-react';
 
 const CreativeHero = () => {
   const containerRef = useRef(null);
@@ -140,60 +140,74 @@ const CreativeHero = () => {
     );
   };
 
-  // Redesigned Creative Stat Cards
+  // Completely redesigned Creative Stat Cards
   const CreativeStatCards = () => {
     const cardsData = [
       {
-        icon: <Clock className="w-6 h-6 text-blue" />,
-        title: "6+ Years in the Game",
-        description: "Building digital experiences that blend user needs with business goals.",
+        icon: <Clock className="w-6 h-6" />,
+        title: "6+ Years Experience",
         color: "blue",
       },
       {
-        icon: <Rocket className="w-6 h-6 text-purple" />,
+        icon: <Rocket className="w-6 h-6" />,
         title: "20+ Projects Launched",
-        description: "From concept to deployment, delivering products users love and businesses thrive on.",
-        color: "purple",
+        color: "indigo",
       },
       {
-        icon: <Users className="w-6 h-6 text-violet" />,
+        icon: <Users className="w-6 h-6" />,
         title: "15+ Happy Clients",
-        description: "Partnering with diverse clients to create impactful digital solutions.",
         color: "violet",
       },
       {
-        icon: <TrendingUp className="w-6 h-6 text-indigo" />,
+        icon: <Award className="w-6 h-6" />,
         title: "Cross-Industry Expertise",
-        description: "Experience across Fintech, Legal-Tech, and Gamification, bringing a broad perspective.",
-        color: "indigo",
+        color: "purple",
       },
     ];
 
     return (
-      <div className="max-w-6xl mx-auto"> {/* Wider container */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-20 mb-12">
+      <div className="max-w-6xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 mb-12">
           {cardsData.map((card, index) => (
-            <div
+            <motion.div
               key={index}
-              className={`relative group p-6 rounded-2xl bg-primary/5 hover:bg-primary/10 transition-all duration-500 border border-${card.color}/10`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 * index }}
+              whileHover={{ 
+                y: -5,
+                transition: { duration: 0.2 }
+              }}
+              className="relative group"
             >
-              {/* Subtle Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue/0 via-indigo/5 to-violet/0 opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-2xl" />
-
-              <div className="flex gap-4 items-start">
-                <div className={`w-10 h-10 rounded-lg bg-${card.color}/10 flex items-center justify-center shrink-0`}>
-                    {card.icon}
-                </div>
-                <div>
-                  <h4 className={`text-xl font-display text-primary mb-2 group-hover:text-${card.color} transition-colors duration-300`}>
+              <div className={`p-6 rounded-2xl backdrop-blur-sm bg-gradient-to-br from-${card.color}/5 to-${card.color}/10 border border-${card.color}/10 h-full transition-all duration-300 overflow-hidden`}>
+                {/* Animated gradient accent */}
+                <motion.div 
+                  className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r from-${card.color} to-${card.color}/50 rounded-full`}
+                  initial={{ width: "0%" }}
+                  whileHover={{ width: "100%" }}
+                  transition={{ duration: 0.3 }}
+                />
+                
+                {/* Subtle glow effect */}
+                <div className={`absolute -inset-px bg-${card.color}/5 opacity-0 group-hover:opacity-100 rounded-2xl blur-xl transition-opacity duration-500`} />
+                
+                <div className="flex flex-col items-center text-center space-y-3 relative z-10">
+                  <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br from-${card.color}/20 to-${card.color}/5 flex items-center justify-center mb-2 group-hover:shadow-lg group-hover:shadow-${card.color}/10 transition-all duration-300`}>
+                    <motion.div
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.5, ease: "easeInOut" }}
+                      className={`text-${card.color}`}
+                    >
+                      {card.icon}
+                    </motion.div>
+                  </div>
+                  <h4 className={`text-base font-display font-medium text-primary group-hover:text-${card.color} transition-colors duration-300`}>
                     {card.title}
                   </h4>
-                  <p className="text-primary/60 text-sm leading-relaxed">
-                    {card.description}
-                  </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -206,13 +220,20 @@ const CreativeHero = () => {
       ref={containerRef}
       className="min-h-[80vh] px-6 lg:px-12 flex flex-col justify-center relative overflow-hidden py-24"
     >
-      {/* Animated background elements */}
+      {/* Enhanced subtle background */}
       <div className="absolute inset-0 z-0">
-        {/* Colorful blobs - Using CSS animations */}
-        <div className="colorful-blob w-[500px] h-[500px] top-[-10%] left-[-10%] bg-purple/30 animate-float-slow" />
-        <div className="colorful-blob w-[600px] h-[600px] bottom-[-20%] right-[-10%] bg-teal/30 animate-float-medium" />
-        <div className="colorful-blob w-[300px] h-[300px] top-[20%] right-[10%] bg-accent/20 animate-float-slow" />
-        <div className="colorful-blob w-[250px] h-[250px] bottom-[30%] left-[10%] bg-yellow/30 animate-float-medium" />
+        {/* Subtle noise texture overlay */}
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxwYXRoIGQ9Ik0wIDBoMzAwdjMwMEgweiIgZmlsdGVyPSJ1cmwoI2EpIiBvcGFjaXR5PSIuMDUiLz48L3N2Zz4=')] opacity-30" />
+        
+        {/* Colorful blobs with improved positioning and animation */}
+        <div className="colorful-blob w-[600px] h-[600px] top-[-15%] left-[-15%] bg-blue/20 animate-float-slow opacity-30" />
+        <div className="colorful-blob w-[700px] h-[700px] bottom-[-25%] right-[-15%] bg-violet/20 animate-float-medium opacity-30" />
+        
+        {/* New subtle gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-radial from-transparent to-background/80 opacity-70" />
+        
+        {/* Subtle grid pattern */}
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNjAgMEgwdjYwaDYwVjB6TTIgMmg1NnY1NkgyVjJ6IiBmaWxsPSIjMjAyMDIwIiBmaWxsLW9wYWNpdHk9IjAuMDIiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==')] opacity-10" />
       </div>
 
       {/* Main content */}
@@ -262,18 +283,20 @@ const CreativeHero = () => {
               </span>
             </motion.button>
 
-            <Link
-              to="/contact"
+            <motion.button
+              onClick={() => scrollToSection('hobby-projects')}
               className="group inline-flex items-center gap-2 text-primary/70 hover:text-purple transition-colors duration-300"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              Let's talk
+              See my hobby projects
               <motion.div
                 className="w-6 h-6 rounded-full bg-lavender flex items-center justify-center"
                 whileHover={{ scale: 1.2 }}
               >
-                <Zap className="w-3 h-3 text-purple" />
+                <Code className="w-3 h-3 text-purple" />
               </motion.div>
-            </Link>
+            </motion.button>
           </motion.div>
 
           {/* Redesigned Creative Stats Cards */}
