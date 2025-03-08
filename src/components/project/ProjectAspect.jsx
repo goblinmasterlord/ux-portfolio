@@ -107,7 +107,7 @@ const ProjectAspect = ({ title, description, image, imageAlt, tags, index }) => 
                 <div className="absolute inset-0 bg-gradient-to-tr from-blue/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 z-10" />
                 
                 {/* Main image */}
-                <div className="relative rounded-2xl overflow-hidden border border-primary/10">
+                <div className="relative rounded-2xl overflow-hidden border border-primary/10 shadow-card group-hover:shadow-card-hover transition-all duration-300">
                   <img 
                     src={image} 
                     alt={imageAlt} 

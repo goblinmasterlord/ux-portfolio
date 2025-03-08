@@ -53,47 +53,47 @@ h1, h2, h3, h4, h5, h6 {
   }
   
   .card {
-    @apply bg-light rounded-xl border border-primary/10 shadow-sm hover:shadow-md transition-all duration-300;
+    @apply bg-light rounded-xl border border-primary/10 shadow-card hover:shadow-card-hover transition-all duration-300;
   }
   
   .card-colorful {
-    @apply relative bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden;
+    @apply relative bg-white rounded-xl shadow-card hover:shadow-card-hover transition-all duration-300 overflow-hidden;
   }
   
   .card-colorful::before {
-    @apply content-[''] absolute -inset-1 bg-gradient-to-r from-blue via-indigo to-violet opacity-30 blur-xl transition-all duration-500;
+    @apply content-[''] absolute inset-0 bg-gradient-to-br from-blue/10 to-violet/10 opacity-0 transition-opacity duration-300;
   }
   
   .card-colorful:hover::before {
-    @apply opacity-60;
+    @apply opacity-100;
   }
   
   .btn-primary {
-    @apply bg-accent text-white px-6 py-3 rounded-full hover:bg-accent/90 transition-all duration-300;
+    @apply bg-blue text-white px-4 py-2 rounded-lg hover:bg-blue/90 transition-all duration-300 shadow-button-blue;
   }
   
   .btn-secondary {
-    @apply bg-secondary text-white px-6 py-3 rounded-full hover:bg-secondary/90 transition-all duration-300;
+    @apply bg-primary/5 text-primary px-4 py-2 rounded-lg hover:bg-primary/10 transition-all duration-300 shadow-button hover:shadow-button-hover;
   }
   
   .btn-purple {
-    @apply bg-purple text-white px-6 py-3 rounded-full hover:bg-purple/90 transition-all duration-300;
+    @apply bg-violet text-white px-4 py-2 rounded-lg hover:bg-violet/90 transition-all duration-300 shadow-button-violet;
   }
   
   .btn-blue {
-    @apply bg-blue text-white px-6 py-3 rounded-full hover:bg-blue/90 transition-all duration-300;
+    @apply bg-blue text-white px-4 py-2 rounded-lg hover:bg-blue/90 transition-all duration-300 shadow-button-blue;
   }
   
   .btn-gradient {
-    @apply relative px-6 py-3 rounded-full text-white overflow-hidden transition-all duration-300;
+    @apply relative overflow-hidden text-white px-4 py-2 rounded-lg transition-all duration-300 shadow-lg;
   }
   
   .btn-gradient::before {
-    @apply content-[''] absolute inset-0 bg-gradient-to-r from-blue via-indigo to-violet transition-all duration-500;
+    @apply content-[''] absolute inset-0 bg-gradient-to-r from-blue to-violet transition-transform duration-300;
   }
   
   .btn-gradient:hover::before {
-    @apply bg-gradient-to-r from-violet via-indigo to-blue;
+    @apply transform scale-105;
   }
   
   .btn-gradient span {
@@ -101,7 +101,7 @@ h1, h2, h3, h4, h5, h6 {
   }
   
   .btn-outline {
-    @apply border border-primary/20 px-6 py-3 rounded-full hover:border-blue hover:text-blue transition-all duration-300;
+    @apply border border-primary/20 text-primary px-4 py-2 rounded-lg hover:bg-primary/5 transition-all duration-300 shadow-button hover:shadow-button-hover;
   }
   
   .colorful-blob {

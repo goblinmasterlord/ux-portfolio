@@ -91,7 +91,7 @@ const Navigation = () => {
       animate={{ x: 0 }}
       exit={{ x: '100%' }}
       transition={{ type: "spring", bounce: 0, duration: 0.4 }}
-      className="fixed inset-y-0 right-0 w-full max-w-[400px] bg-background border-l border-primary/10 p-6 shadow-xl"
+      className="fixed inset-y-0 right-0 w-full max-w-[400px] bg-background border-l border-primary/10 p-6 shadow-2xl"
     >
       <div className="flex flex-col h-full">
         <div className="flex justify-end mb-8">
@@ -99,7 +99,7 @@ const Navigation = () => {
             onClick={() => setIsOpen(false)}
             className="p-2 hover:bg-primary/5 rounded-full transition-colors duration-300"
           >
-            <X className="w-6 h-6" />
+            <X className="w-6 h-6 text-primary/60" />
           </button>
         </div>
         

@@ -51,9 +51,9 @@ const ScrollToTop = () => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 p-3 bg-accent hover:bg-accent/90 
-            text-background rounded-full shadow-lg backdrop-blur-sm 
-            transition-colors duration-300 group"
+          className="fixed bottom-8 right-8 z-50 p-3 bg-blue hover:bg-blue/90 
+            text-background rounded-full shadow-blue-md
+            transition-all duration-300 group"
         >
           <ArrowUp className="w-5 h-5 transform group-hover:-translate-y-0.5 transition-transform duration-300" />
         </motion.button>

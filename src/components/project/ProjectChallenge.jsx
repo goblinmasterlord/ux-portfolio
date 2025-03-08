@@ -43,9 +43,9 @@ const ProjectChallenge = ({ challenges, description }) => {
                       transition: { delay: index * 0.1 }
                     }
                   }}
-                  className="flex items-start gap-4 p-6 rounded-xl bg-white shadow-sm"
+                  className="flex items-start gap-4 p-6 rounded-xl bg-white shadow-card hover:shadow-card-hover transition-all duration-300"
                 >
-                  <span className="flex-shrink-0 w-8 h-8 rounded-full bg-accent/20 text-accent flex items-center justify-center font-display">
+                  <span className="flex-shrink-0 w-8 h-8 rounded-full bg-blue/20 text-blue flex items-center justify-center font-display">
                     {index + 1}
                   </span>
                   <p className="text-primary/80">{challenge}</p>

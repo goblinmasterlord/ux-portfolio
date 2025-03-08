@@ -32,14 +32,14 @@ const ProjectNextSteps = () => {
         <div className="flex flex-wrap justify-center gap-6">
           <Link
             to="/contact"
-            className="bg-gradient-to-r from-blue to-violet text-white px-6 py-3 rounded-full hover:shadow-lg hover:shadow-blue/20 group inline-flex items-center gap-2 transition-all duration-300"
+            className="bg-gradient-to-r from-blue to-violet text-white px-6 py-3 rounded-full shadow-blue-md hover:shadow-blue-lg group inline-flex items-center gap-2 transition-all duration-300"
           >
             Get Started
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
           </Link>
           <button
             onClick={handleViewMoreWork}
-            className="border border-primary/20 px-6 py-3 rounded-full hover:border-blue hover:text-blue group inline-flex items-center gap-2 transition-all duration-300"
+            className="border border-primary/20 text-primary px-6 py-3 rounded-full hover:bg-primary/5 shadow-button hover:shadow-button-hover group inline-flex items-center gap-2 transition-all duration-300"
           >
             View More Work
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />

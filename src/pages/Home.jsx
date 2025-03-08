@@ -13,7 +13,6 @@ import everproveImage from '../assets/projects/everprove.png';
 import { motion } from 'framer-motion';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { useEnhancedScrollAnimation } from '../hooks/useEnhancedScrollAnimation';
-import ProcessSection from '../components/ProcessSection';
 import AiSection from '../components/AiSection';
 import RefinedHobbyProjects from '../components/RefinedHobbyProjects';
 import ProtectedContact from '../components/ProtectedContact';
@@ -86,100 +85,91 @@ const ProjectCard = memo(({ project, index }) => {
           }
         }
       }}
+      className="w-full"
     >
       <Link
         to={project.comingSoon ? '#' : project.path}
-        className="group relative flex flex-col lg:flex-row gap-5 md:gap-8 p-4 sm:p-6 rounded-xl md:rounded-2xl bg-primary/5 hover:bg-primary/10 transition-all duration-500"
+        className="group relative block rounded-xl md:rounded-2xl bg-primary/5 hover:bg-primary/10 transition-all duration-500 shadow-card hover:shadow-card-hover overflow-hidden border border-primary/10 hover:border-blue/20"
       >
-        {/* Subtle gradient border on hover */}
+        {/* Enhanced gradient border on hover */}
         <div
           className="absolute inset-0 rounded-xl md:rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500"
           style={{
-            background: 'linear-gradient(45deg, var(--color-blue/0.05), var(--color-violet/0.05))',
+            background: 'linear-gradient(45deg, var(--color-blue/0.1), var(--color-violet/0.1))',
             backdropFilter: 'blur(2px)'
           }}
         />
 
-        {/* Image Container */}
-        <div className="relative w-full lg:w-[320px] shrink-0">
-          <div className="relative overflow-hidden rounded-lg md:rounded-xl aspect-[4/3]">
-            {/* Gradient overlay on hover */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue/10 via-indigo/5 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 z-10" />
+        <div className="flex flex-col lg:flex-row">
+          {/* Image Container - Fixed dimensions and consistent padding */}
+          <div className="relative w-full lg:w-[320px] lg:min-w-[320px] lg:max-w-[320px] h-[240px] lg:h-auto">
+            <div className="absolute inset-0 m-4 sm:m-6 overflow-hidden rounded-lg md:rounded-xl shadow-md">
+              {/* Enhanced gradient overlay on hover */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue/20 via-indigo/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 z-10" />
 
-            <img
-              src={project.image}
-              alt={project.title}
-              className={`w-full h-full object-cover transform group-hover:scale-[1.02] transition-all duration-700 
-                ${project.comingSoon ? 'grayscale' : ''}`}
-            />
+              <img
+                src={project.image}
+                alt={project.title}
+                className={`w-full h-full object-cover transform group-hover:scale-[1.03] transition-all duration-700 
+                  ${project.comingSoon ? 'grayscale' : ''}`}
+              />
 
-            {/* Category badge */}
-            <div className="absolute top-2 md:top-3 left-2 md:left-3 px-2 md:px-3 py-1 md:py-1.5 bg-background/90 backdrop-blur-sm rounded-full">
-              <span className="text-blue text-xs md:text-sm">{project.category}</span>
+              {/* Category badge */}
+              <div className="absolute top-2 left-2 px-2 md:px-3 py-1 md:py-1.5 bg-background/90 backdrop-blur-sm rounded-full shadow-sm">
+                <span className="text-blue text-xs md:text-sm">{project.category}</span>
+              </div>
+
+              {project.comingSoon && (
+                <div className="absolute inset-0 flex items-center justify-center bg-primary/10 backdrop-blur-sm">
+                  <span className="text-primary/60 text-sm font-medium">Coming Soon</span>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Content - Ensure proper spacing from image */}
+          <div className="relative flex-1 flex flex-col p-4 sm:p-6 pt-0 lg:pt-6">
+            <div className="mb-auto">
+              {/* Year */}
+              <span className="text-primary/40 text-xs md:text-sm mb-1 md:mb-2 block">{project.year}</span>
+
+              {/* Title - Subtle hover effect */}
+              <h3 className="text-xl md:text-2xl font-display mb-2 md:mb-3 group-hover:text-blue transition-colors duration-300">
+                {project.title}
+              </h3>
+
+              {/* Description */}
+              <p className="text-primary/60 text-sm md:text-base leading-relaxed mb-4 md:mb-6">
+                {project.description}
+              </p>
+
+              {/* Tags - Enhanced hover effect */}
+              <div className="flex flex-wrap gap-1.5 md:gap-2 mb-4 md:mb-6">
+                {project.tags.map((tag, i) => (
+                  <span
+                    key={i}
+                    className="px-2 md:px-3 py-0.5 md:py-1 text-xs bg-primary/5 rounded-full text-primary/60 
+                      group-hover:bg-blue/10 group-hover:text-blue transform group-hover:translate-x-1 transition-all duration-300"
+                    style={{ transitionDelay: `${i * 50}ms` }}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
 
-            {project.comingSoon && (
-              <div className="absolute inset-0 flex items-center justify-center bg-primary/10 backdrop-blur-sm">
-                <span className="text-primary/60 text-sm font-medium">Coming Soon</span>
+            {/* Floating CTA - Enhanced */}
+            {!project.comingSoon && (
+              <div className="mt-4 lg:mt-6">
+                <span
+                  className="group inline-flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-1.5 md:py-2 bg-blue/10 rounded-full text-blue hover:bg-blue/20 transition-all duration-300 shadow-button-blue"
+                >
+                  <span className="text-xs md:text-sm">View Case Study</span>
+                  <ArrowRight className="w-3.5 h-3.5 md:w-4 md:h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
+                </span>
               </div>
             )}
           </div>
-        </div>
-
-        {/* Content */}
-        <div className="relative flex-1 flex flex-col mt-4 lg:mt-0">
-          <div className="mb-auto">
-            {/* Year */}
-            <span className="text-primary/40 text-xs md:text-sm mb-1 md:mb-2 block">{project.year}</span>
-
-            {/* Title */}
-            <h3 className="text-xl md:text-2xl font-display mb-2 md:mb-3 group-hover:text-blue transition-colors duration-300">
-              {project.title}
-            </h3>
-
-            {/* Description */}
-            <p className="text-primary/60 text-sm md:text-base leading-relaxed mb-4 md:mb-6">
-              {project.description}
-            </p>
-
-            {/* Tags */}
-            <div className="flex flex-wrap gap-1.5 md:gap-2 mb-4 md:mb-6">
-              {project.tags.map((tag, i) => (
-                <span
-                  key={i}
-                  className="px-2 md:px-3 py-0.5 md:py-1 text-xs bg-primary/5 rounded-full text-primary/60 
-                    transform group-hover:translate-x-1 transition-all duration-300"
-                  style={{ transitionDelay: `${i * 50}ms` }}
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Stats */}
-          {project.stats && (
-            <div className="flex flex-wrap gap-4 md:gap-6 pt-4 md:pt-6 border-t border-primary/10">
-              {Object.entries(project.stats).map(([key, value]) => (
-                <div key={key} className="space-y-0.5 md:space-y-1">
-                  <div className="text-base md:text-lg font-display text-blue">{value}</div>
-                  <div className="text-xs md:text-sm text-primary/40 capitalize">{key}</div>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {/* Floating CTA */}
-          {!project.comingSoon && (
-            <div className="mt-4 lg:mt-6">
-              <span
-                className="group inline-flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-1.5 md:py-2 bg-blue/10 rounded-full text-blue hover:bg-blue/20 transition-all duration-300"
-              >
-                <span className="text-xs md:text-sm">View Case Study</span>
-                <ArrowRight className="w-3.5 h-3.5 md:w-4 md:h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
-              </span>
-            </div>
-          )}
         </div>
       </Link>
     </motion.div>
@@ -200,25 +190,28 @@ const ServiceCard = memo(({ service, index }) => {
       initial="hidden"
       animate={cardControls}
       variants={{
-        hidden: { opacity: 0, scale: 0.95 },
+        hidden: { 
+          opacity: 0,
+          scale: 0.98
+        },
         visible: { 
-          opacity: 1, 
-          scale: 1, 
+          opacity: 1,
+          scale: 1,
           transition: { 
-            duration: 0.6, 
+            duration: 0.5,
             delay: index * 0.1,
-            ease: [0.22, 1, 0.36, 1]
+            ease: [0.25, 1, 0.5, 1]
           }
         }
       }}
-      className="group relative p-4 sm:p-6 rounded-lg md:rounded-xl bg-primary/5 hover:bg-primary/10 transition-all duration-500"
+      className="group relative p-4 sm:p-6 rounded-lg md:rounded-xl bg-primary/5 hover:bg-primary/10 transition-all duration-500 shadow-card hover:shadow-card-hover border border-primary/10 hover:border-blue/20"
     >
       {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue/0 via-indigo/5 to-violet/0 opacity-0 group-hover:opacity-100 transition-all duration-500" />
+      <div className="absolute inset-0 rounded-lg md:rounded-xl bg-gradient-to-br from-blue/5 via-indigo/5 to-violet/5 opacity-0 group-hover:opacity-100 transition-all duration-500" />
       
       <div className="relative z-10 flex gap-3 md:gap-4">
         {/* Icon */}
-        <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-blue/10 flex items-center justify-center shrink-0">
+        <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-blue/10 flex items-center justify-center shrink-0 group-hover:bg-blue/20 transition-all duration-300 shadow-blue-sm">
           <div className="text-blue">
             {service.icon}
           </div>
@@ -240,7 +233,8 @@ const ServiceCard = memo(({ service, index }) => {
             {service.features.map((feature, index) => (
               <span 
                 key={index}
-                className="px-2 py-0.5 md:py-1 text-xs bg-primary/5 rounded-full text-primary/60"
+                className="px-2 py-0.5 md:py-1 text-xs bg-primary/5 rounded-full text-primary/60 group-hover:bg-blue/10 group-hover:text-blue transform group-hover:translate-x-1 transition-all duration-300"
+                style={{ transitionDelay: `${index * 50}ms` }}
               >
                 {feature}
               </span>
@@ -471,9 +465,8 @@ const Home = () => {
       {/* Services Section with enhanced animations */}
       <section id="services" className="px-4 sm:px-6 lg:px-12 py-16 md:py-32 bg-background/50">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           className="max-w-[1800px] mx-auto"
         >
           <motion.span
@@ -485,57 +478,32 @@ const Home = () => {
             <span className="text-blue font-medium tracking-wide text-xs md:text-sm">SERVICES</span>
           </motion.span>
 
-          <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-8 md:mb-16">
-            <div className="max-w-2xl">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display text-primary mb-3 md:mb-6">
-                How I Can Help
-              </h2>
-              <p className="text-primary/60 text-base md:text-lg leading-relaxed">
-                I bring a structured approach to challenges while keeping things practical and focused on results.
-              </p>
-            </div>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="max-w-3xl mb-8 md:mb-16"
+          >
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display mb-3 md:mb-6">
+              How can I help?
+            </h2>
+            <p className="text-primary/60 text-base md:text-lg lg:text-xl leading-relaxed">
+              I offer a range of services to help businesses create better digital experiences. Here's how we can work together:
+            </p>
+          </motion.div>
 
-          {/* Services Grid */}
-          <div className="grid md:grid-cols-2 gap-3 md:gap-4 mb-12 md:mb-16">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {services.map((service, index) => (
               <ServiceCard key={index} service={service} index={index} />
             ))}
           </div>
-
-          {/* CTA Section */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="flex flex-col items-center text-center pt-6 md:pt-8 border-t border-primary/10"
-          >
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-display mb-3 md:mb-4">
-              Ready to start your next project?
-            </h3>
-            <p className="text-primary/60 mb-6 md:mb-8 max-w-xl text-sm md:text-base">
-              Let's discuss how we can work together to create something amazing.
-            </p>
-            <Link
-              to="/contact"
-              className="group inline-flex items-center gap-2 px-5 py-2.5 md:px-6 md:py-3 bg-gradient-to-r from-blue to-violet text-white rounded-full hover:shadow-lg hover:shadow-blue/20 transition-all duration-300 text-sm md:text-base"
-            >
-              Start a Conversation
-              <ArrowRight className="w-3.5 h-3.5 md:w-4 md:h-4 group-hover:translate-x-1 transition-transform duration-300" />
-            </Link>
-          </motion.div>
         </motion.div>
       </section>
 
-      {/* Enhanced Process Section */}
-      <ProcessSection />
-
       {/* AI Section */}
-      <section id="ai" className="px-4 sm:px-6 lg:px-12 py-16 md:py-32 bg-background">
-        <AiSection />
-      </section>
+      <AiSection />
 
-      {/* Original Contact Section */}
+      {/* Contact Section */}
       <motion.section id="contact" className="px-4 sm:px-6 lg:px-12 py-16 md:py-32 bg-background text-primary">
         <div className="max-w-[1800px] mx-auto">
           <motion.span

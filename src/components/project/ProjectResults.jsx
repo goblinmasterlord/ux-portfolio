@@ -21,7 +21,7 @@ const ResultCard = ({ result, index }) => {
       className="relative group"
     >
       <div className="absolute inset-0 bg-gradient-to-br from-blue/10 to-violet/10 rounded-2xl transform group-hover:scale-105 transition-transform duration-500" />
-      <div className="relative p-8 rounded-2xl border border-primary/10 bg-white shadow-sm">
+      <div className="relative p-8 rounded-2xl border border-primary/10 bg-white shadow-card group-hover:shadow-card-hover transition-all duration-300">
         {/* Icon */}
         <div className="w-12 h-12 rounded-xl bg-blue/10 text-blue flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
           {result.icon && <result.icon className="w-6 h-6" />}
