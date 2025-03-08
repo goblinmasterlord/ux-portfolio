@@ -54,7 +54,6 @@ const RefinedHobbyProjects = () => {
       ],
       color: "indigo",
       githubUrl: "https://github.com/goblinmasterlord/robot-chicken",
-      liveUrl: "https://isthatreallyture.vercel.app/",
       features: [
         "Multi-stage AI processing pipeline",
         "Speaker identification and attribution",
@@ -72,7 +71,6 @@ const RefinedHobbyProjects = () => {
       ],
       color: "violet",
       githubUrl: "https://github.com/goblinmasterlord/ux-toolkit",
-      liveUrl: "https://uxtools.ai/",
       features: [
         "AI-powered design critique and feedback",
         "User research analysis and pattern recognition",
@@ -108,7 +106,6 @@ const RefinedHobbyProjects = () => {
       ],
       color: "teal",
       githubUrl: "https://github.com/goblinmasterlord/smart-budget-app",
-      liveUrl: "https://smartbudget-demo.vercel.app/",
       features: [
         "Goal-based financial planning",
         "AI-powered spending analysis and categorization",
@@ -126,7 +123,7 @@ const RefinedHobbyProjects = () => {
       ],
       color: "magenta",
       githubUrl: "https://github.com/goblinmasterlord/artimestudio",
-      liveUrl: "https://artimestudio.com",
+      liveUrl: "https://artimestudio.vercel.app/",
       features: [
         "Immersive 3D elements and animations",
         "Case study showcases with detailed process insights",
@@ -258,7 +255,7 @@ const ProjectCard = ({ project, index, isMobile }) => {
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
       exit="exit"
-      className="group relative bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden border border-primary/10 hover:border-blue/30 transition-all duration-300 shadow-sm hover:shadow-lg h-full"
+      className="group relative bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden border border-primary/10 hover:border-blue/30 transition-all duration-300 shadow-sm hover:shadow-lg h-full flex flex-col"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => {
         setIsHovered(false);
@@ -281,18 +278,18 @@ const ProjectCard = ({ project, index, isMobile }) => {
           {/* Loading state */}
           {!imageLoaded && (
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className={`w-8 h-8 rounded-full border-2 border-t-${project.color} border-r-transparent animate-spin`}></div>
+              <div className="w-8 h-8 rounded-full border-2 border-t-blue border-r-transparent animate-spin"></div>
             </div>
           )}
           
           {/* Gradient overlay that reveals on hover */}
           <div 
-            className={`absolute inset-0 bg-gradient-to-t from-${project.color}/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+            className="absolute inset-0 bg-gradient-to-t from-blue/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           />
           
           {/* Project icon badge */}
           <div className="absolute top-3 left-3">
-            <div className={`w-10 h-10 rounded-lg bg-${project.color} text-white flex items-center justify-center shadow-lg`}>
+            <div className="w-10 h-10 rounded-lg bg-blue text-white flex items-center justify-center shadow-lg">
               {project.icon}
             </div>
           </div>
@@ -300,24 +297,26 @@ const ProjectCard = ({ project, index, isMobile }) => {
       </div>
       
       {/* Content with improved typography and spacing */}
-      <div className="p-5">
+      <div className="p-5 flex-1 flex flex-col">
         {/* Title with animated underline on hover */}
         <h3 className="text-xl font-display text-primary group-hover:text-blue transition-colors duration-300 mb-2 relative inline-block">
           {project.title}
-          <span className={`absolute bottom-0 left-0 w-0 h-[2px] bg-${project.color} group-hover:w-full transition-all duration-300`}></span>
+          <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-blue group-hover:w-full transition-all duration-300"></span>
         </h3>
         
-        {/* Truncated description */}
-        <p className="text-primary/70 text-sm leading-relaxed mb-4 line-clamp-3">
-          {project.description}
-        </p>
+        {/* Description with proper height */}
+        <div className="mb-4 flex-grow">
+          <p className="text-primary/70 text-sm leading-relaxed">
+            {project.description}
+          </p>
+        </div>
         
         {/* Technology tags with consistent styling */}
-        <div className="flex flex-wrap gap-1.5 mb-6 min-h-[28px]">
+        <div className="flex flex-wrap gap-1.5 mb-6">
           {(showAllTech ? project.technologies : project.technologies.slice(0, 3)).map((tech, i) => (
             <span 
               key={i} 
-              className={`px-2 py-1 text-xs bg-${project.color}/10 rounded-md text-${project.color} font-medium transition-all duration-300`}
+              className="px-2 py-1 text-xs bg-blue/10 rounded-md text-blue font-medium transition-all duration-300"
             >
               {tech}
             </span>
@@ -330,7 +329,7 @@ const ProjectCard = ({ project, index, isMobile }) => {
               }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={`px-2 py-1 text-xs bg-${project.color}/10 rounded-md text-${project.color} font-medium flex items-center gap-1 hover:bg-${project.color}/20 transition-all duration-300`}
+              className="px-2 py-1 text-xs bg-blue/10 rounded-md text-blue font-medium flex items-center gap-1 hover:bg-blue/20 transition-all duration-300"
             >
               <Plus className="w-3 h-3" />
               <span>{project.technologies.length - 3} more</span>
@@ -344,7 +343,7 @@ const ProjectCard = ({ project, index, isMobile }) => {
             href={project.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg bg-${project.color}/10 hover:bg-${project.color}/20 text-${project.color} transition-all duration-300 text-sm font-medium`}
+            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-blue/10 hover:bg-blue/20 text-blue transition-all duration-300 text-sm font-medium"
           >
             <Github className="w-4 h-4" />
             <span>GitHub</span>
@@ -355,7 +354,7 @@ const ProjectCard = ({ project, index, isMobile }) => {
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg bg-${project.color} text-white hover:bg-${project.color}/90 transition-all duration-300 text-sm font-medium shadow-sm hover:shadow-md`}
+              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-blue text-white hover:bg-blue/90 transition-all duration-300 text-sm font-medium shadow-sm hover:shadow-md"
             >
               <ExternalLink className="w-4 h-4" />
               <span>Demo</span>
