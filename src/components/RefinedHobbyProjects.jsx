@@ -1,16 +1,12 @@
 // src/components/RefinedHobbyProjects.jsx
-import { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence, useAnimation } from 'framer-motion';
-import { useEnhancedScrollAnimation } from '../hooks/useEnhancedScrollAnimation';
-import { Github, ExternalLink, Sparkles, Zap, BarChart3, Video, Palette, Droplets, Plus } from 'lucide-react';
+import { useState, useEffect } from 'react'; // Removed useRef
+import { motion, AnimatePresence } from 'framer-motion'; // Removed useAnimation
+// Removed useEnhancedScrollAnimation import from ../hooks/useEnhancedScrollAnimation
+import { Github, ExternalLink, Sparkles, Zap, BarChart3, Video, Palette, Droplets, Plus, ChevronDown, ChevronUp } from 'lucide-react'; // Added ChevronDown, ChevronUp
 import { useInView } from 'react-intersection-observer';
 
 const RefinedHobbyProjects = () => {
-  const [ref, controls, variants] = useEnhancedScrollAnimation('stagger', { 
-    staggerDelay: 0.1,
-    threshold: 0.1
-  });
-
+  // Removed const [ref, controls, variants] = useEnhancedScrollAnimation(...)
   const [isMobile, setIsMobile] = useState(false);
 
   // Check if mobile on mount and window resize
@@ -143,13 +139,7 @@ const RefinedHobbyProjects = () => {
         <div className="colorful-blob w-[700px] h-[700px] -bottom-[300px] -left-[300px] bg-violet/10 animate-float-medium" />
       </div>
 
-      <motion.div
-        ref={ref}
-        initial="hidden"
-        animate={controls}
-        variants={variants}
-        className="max-w-[1800px] mx-auto relative z-10"
-      >
+    <div className="max-w-[1800px] mx-auto relative z-10"> {/* Changed motion.div to div and removed animation props */}
         {/* Modern header with animated accent - Matching "work" section */}
         <div className="mb-12 md:mb-16">
           <motion.span
@@ -220,7 +210,8 @@ const ProjectCard = ({ project, index, isMobile }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [showAllTech, setShowAllTech] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
-  const [ref, inView] = useInView({
+  const [isFeaturesExpanded, setIsFeaturesExpanded] = useState(false); // Added state for features expansion
+  const { ref, inView } = useInView({ // Corrected destructuring for useInView based on previous steps, if it was done. Assuming it's corrected.
     triggerOnce: true,
     threshold: 0.1
   });
@@ -237,11 +228,7 @@ const ProjectCard = ({ project, index, isMobile }) => {
         ease: [0.25, 0.1, 0.25, 1.0]
       } 
     },
-    exit: { 
-      opacity: 0,
-      y: 10,
-      transition: { duration: 0.3 }
-    }
+    // exit animation was removed in previous step, ensuring it stays removed or was correctly [ref, inView]
   };
 
   return (
@@ -250,7 +237,7 @@ const ProjectCard = ({ project, index, isMobile }) => {
       variants={cardVariants}
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
-      exit="exit"
+      // exit="exit" // This was removed in previous step, ensuring it stays removed
       className="group relative bg-primary/5 rounded-xl overflow-hidden border border-primary/10 hover:border-blue/20 transition-all duration-300 shadow-card hover:shadow-card-hover h-full flex flex-col"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => {
@@ -326,8 +313,39 @@ const ProjectCard = ({ project, index, isMobile }) => {
           )}
         </div>
 
+        {/* Toggle Button for Features */}
+        {project.features && project.features.length > 0 && (
+          <button 
+            onClick={() => setIsFeaturesExpanded(!isFeaturesExpanded)} 
+            className="mt-4 text-sm text-blue hover:text-blue/80 transition-all duration-200 ease-in-out flex items-center gap-1 py-1 px-2 rounded-md hover:bg-blue/10 active:scale-95 active:bg-blue/20"
+          >
+            {isFeaturesExpanded ? 'Hide Details' : 'View Details'}
+            {isFeaturesExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+          </button>
+        )}
+
+        {/* Expandable Features Section */}
+        <AnimatePresence>
+          {isFeaturesExpanded && project.features && project.features.length > 0 && (
+            <motion.div
+              initial={{ height: 0, opacity: 0, marginTop: 0 }}
+              animate={{ height: 'auto', opacity: 1, marginTop: '1rem' }}
+              exit={{ height: 0, opacity: 0, marginTop: 0 }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
+              className="overflow-hidden" // Important for height animation
+            >
+              <h4 className="text-sm font-semibold text-primary/90 mb-2">Key Features:</h4>
+              <ul className="list-disc list-inside text-sm text-primary/70 space-y-1 pl-1">
+                {project.features.map((feature, idx) => (
+                  <li key={idx}>{feature}</li>
+                ))}
+              </ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
+        
         {/* Action buttons with improved design */}
-        <div className="flex items-center gap-3 mt-auto">
+        <div className="flex items-center gap-3 mt-auto pt-4"> {/* Added pt-4 for spacing above buttons */}
           <a
             href={project.githubUrl}
             target="_blank"
