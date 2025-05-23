@@ -161,6 +161,44 @@ const RefinedHobbyProjects = () => {
         "Optimized performance with progressive enhancement",
         "Custom CMS integration for easy updates"
       ]
+    },
+    {
+      title: "BeautifulData",
+      description: "Data consultancy website showcasing analytics services, case studies, and data visualization expertise.",
+      shortDescription: "Professional data consultancy platform with service showcases, client testimonials, and interactive data visualizations",
+      technologies: ["React", "Vite", "Tailwind CSS", "Framer Motion"],
+      icon: <BarChart3 className="w-6 h-6" />,
+      images: ["/images/Beautifuldata.jpg"],
+      color: "emerald",
+      githubUrl: "https://github.com/goblinmasterlord/data-consultancy",
+      liveUrl: "https://beautifuldata.co.uk",
+      category: "Consultancy",
+      features: [
+        "Professional service portfolio display",
+        "Interactive data visualization demos",
+        "Client case studies and testimonials",
+        "Contact and consultation booking system",
+        "Responsive design for all devices"
+      ]
+    },
+    {
+      title: "Drnd.hu",
+      description: "Hungarian digital platform providing modern web solutions and digital services for local businesses.",
+      shortDescription: "Hungarian digital services platform with modern design, service showcases, and client portfolio displays",
+      technologies: ["React", "Vite", "Tailwind CSS", "Framer Motion"],
+      icon: <Globe className="w-6 h-6" />,
+      images: ["/images/Drnd.jpg"],
+      color: "orange",
+      githubUrl: "https://github.com/goblinmasterlord/drnd",
+      liveUrl: "https://drnd.hu",
+      category: "Digital Agency",
+      features: [
+        "Localized Hungarian content and design",
+        "Service portfolio with detailed descriptions",
+        "Client work showcases and case studies",
+        "Modern responsive design system",
+        "Contact forms and business inquiry handling"
+      ]
     }
   ];
 
