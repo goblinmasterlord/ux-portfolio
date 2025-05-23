@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Documentation
+design-guidelines.md
+dev-guidelines.md
+instructions.md

@@ -48,9 +48,9 @@ const RefinedHobbyProjects = () => {
   // AI-focused projects (hobby/friend projects)
   const aiProjects = [
     {
-      title: "UxTools",
-      description: "A comprehensive toolkit for UX professionals featuring AI-powered tools to enhance design workflows.",
-      shortDescription: "AI-powered UX toolkit with design critique, user research analysis, and accessibility evaluation tools for design professionals",
+      title: "UXTools",
+      description: "A collection of AI-powered tools I built to help with everyday UX tasks.",
+      shortDescription: "AI tools for UX work - design critique, research analysis, and accessibility checks that I actually use",
       technologies: ["React", "Node.js", "Claude API", "Anthropic API"],
       icon: <Brain className="w-6 h-6" />,
       images: ["/images/UXTools.jpg"],
@@ -58,17 +58,15 @@ const RefinedHobbyProjects = () => {
       githubUrl: "https://github.com/goblinmasterlord/ux-toolkit",
       category: "AI Tool",
       features: [
-        "AI-powered design critique and feedback system",
-        "User research analysis with pattern recognition",
-        "Accessibility evaluation and recommendations",
-        "Customizable AI model selection for different tasks",
-        "Real-time collaboration features"
+        "Design critique",
+        "UX audits with actionable suggestions",
+        "Can switch between different AI models"
       ]
     },
     {
       title: "NeuralUXStudio",
-      description: "Educational platform teaching UX professionals how to leverage AI tools in their workflow.",
-      shortDescription: "Comprehensive AI education platform with video tutorials, learning paths, and community features for UX professionals",
+      description: "A site where I document and share what I've learned about using AI in UX work.",
+      shortDescription: "My attempt at teaching others how to use AI in UX through tutorials, case studies, and videos (coming soon)",
       technologies: ["Next.js", "React", "Tailwind CSS", "Supabase"],
       icon: <Video className="w-6 h-6" />,
       images: ["/images/NeuralUX.jpg"],
@@ -77,17 +75,15 @@ const RefinedHobbyProjects = () => {
       liveUrl: "https://neuraluxstudio.com",
       category: "Education",
       features: [
-        "Structured learning paths for different skill levels",
-        "High-quality video tutorials with practical examples",
-        "In-depth blog posts on AI applications in UX",
-        "Community forum for questions and knowledge sharing",
-        "Interactive AI tool demonstrations"
+        "Step-by-step guides for different experience levels",
+        "Blog posts about practical AI applications",
+        "Videos (work in progress)"
       ]
     },
     {
       title: "Is that REALLY true?",
-      description: "Real-time fact-checker using AI that transcribes and analyzes audio/video content for factual accuracy.",
-      shortDescription: "Real-time AI fact-checking tool with audio transcription, claim extraction, and automated verification with source citations",
+      description: "A real-time fact-checker that listens to audio/video and flags questionable claims as they happen.",
+      shortDescription: "Built during a hackathon - transcribes speech in real-time and fact-checks claims with sources",
       technologies: ["React", "Python", "OpenAI Whisper", "RAG", "FFmpeg", "ElasticSearch"],
       icon: <Sparkles className="w-6 h-6" />,
       images: ["/images/Isthattrue.jpg"],
@@ -95,17 +91,17 @@ const RefinedHobbyProjects = () => {
       githubUrl: "https://github.com/goblinmasterlord/robot-chicken",
       category: "Hackathon",
       features: [
-        "Multi-stage AI processing pipeline",
-        "Real-time speaker identification and attribution",
-        "Automated claim extraction and verification",
-        "Source citation with confidence scoring",
-        "Live transcription with fact-checking overlay"
+        "Multi-step AI pipeline for processing speech",
+        "Identifies who's speaking and what they're claiming",
+        "Automatically extracts and verifies factual statements",
+        "Shows sources and confidence levels",
+        "Live overlay on video/audio streams"
       ]
     },
     {
       title: "SmartBudget",
-      description: "Mobile budgeting app providing personalized financial insights using AI for goal-based planning.",
-      shortDescription: "AI-powered personal finance app with intelligent spending analysis, goal-based planning, and predictive insights",
+      description: "A mobile app for personal budgeting that uses AI to give you insights about your spending habits.",
+      shortDescription: "Personal finance app with AI that actually helps you understand where your money goes and how to save",
       technologies: ["React Native", "Node.js", "Gemini API"],
       icon: <BarChart3 className="w-6 h-6" />,
       images: ["/images/Budgeting.jpg"],
@@ -113,11 +109,9 @@ const RefinedHobbyProjects = () => {
       githubUrl: "https://github.com/goblinmasterlord/smart-budget-app",
       category: "Mobile App",
       features: [
-        "Goal-based financial planning with AI insights",
-        "Intelligent spending analysis and categorization",
-        "Personalized saving and investment recommendations",
-        "Predictive cash flow visualization",
-        "Smart notification system for budget alerts"
+        "AI-powered spending analysis",
+        "Smart categorization of expenses",
+        "Personalized recommendations based on set goals"
       ]
     }
   ];
@@ -126,8 +120,8 @@ const RefinedHobbyProjects = () => {
   const clientProjects = [
     {
       title: "Aromate",
-      description: "Personalized fragrance finder helping users discover their perfect scent through interactive quizzes.",
-      shortDescription: "Personalized fragrance recommendation platform with interactive quizzes, detailed profiles, and smart matching algorithms",
+      description: "A fragrance recommendation site that helps people find perfumes they'll actually like.",
+      shortDescription: "Fragrance finder with interactive quizzes and smart recommendations based on your preferences",
       technologies: ["React", "Node.js", "Recommendation Algorithm", "Tailwind CSS"],
       icon: <Droplets className="w-6 h-6" />,
       images: ["/images/Aromate.jpg"],
@@ -136,17 +130,17 @@ const RefinedHobbyProjects = () => {
       liveUrl: "https://aromate.vercel.app/",
       category: "E-commerce",
       features: [
-        "Interactive preference quiz with engaging UI",
-        "Advanced recommendation algorithm",
-        "Detailed fragrance profiles with notes",
-        "Save favorites and comparison features",
-        "Mobile-optimized shopping experience"
+        "Fun quiz that actually works for finding scents",
+        "Recommendation engine based on fragrance notes",
+        "Detailed perfume profiles with ingredient breakdowns",
+        "Save favorites and compare different options",
+        "Works great on mobile"
       ]
     },
     {
       title: "ArtimeStudio",
-      description: "Beautiful portfolio website for a creative studio showcasing their work, services, and team.",
-      shortDescription: "Creative studio portfolio website with immersive 3D elements, case studies, and interactive team profiles",
+      description: "Portfolio website I built for a creative studio to showcase their work and team.",
+      shortDescription: "Creative studio portfolio with smooth animations and transitions",
       technologies: ["React", "Vite", "Tailwind CSS", "Framer Motion"],
       icon: <Palette className="w-6 h-6" />,
       images: ["/images/Artimestudio.jpg"],
@@ -155,17 +149,14 @@ const RefinedHobbyProjects = () => {
       liveUrl: "https://artimestudio.vercel.app/",
       category: "Portfolio",
       features: [
-        "Immersive 3D elements and animations",
-        "Detailed case study showcases",
-        "Interactive team profiles and expertise highlights",
-        "Optimized performance with progressive enhancement",
-        "Custom CMS integration for easy updates"
+        "Smooth transitions and animations",
+        "Fast loading with progressive enhancement"
       ]
     },
     {
       title: "BeautifulData",
-      description: "Data consultancy website showcasing analytics services, case studies, and data visualization expertise.",
-      shortDescription: "Professional data consultancy platform with service showcases, client testimonials, and interactive data visualizations",
+      description: "Website for a data consultancy showcasing their services and previous work.",
+      shortDescription: "Professional consultancy site with service displays and case studies",
       technologies: ["React", "Vite", "Tailwind CSS", "Framer Motion"],
       icon: <BarChart3 className="w-6 h-6" />,
       images: ["/images/Beautifuldata.jpg"],
@@ -174,30 +165,26 @@ const RefinedHobbyProjects = () => {
       liveUrl: "https://beautifuldata.co.uk",
       category: "Consultancy",
       features: [
-        "Professional service portfolio display",
-        "Interactive data visualization demos",
-        "Client case studies and testimonials",
-        "Contact and consultation booking system",
-        "Responsive design for all devices"
+        "Clean presentation of services and expertise",
+        "Blazing performance with Vite and Framer Motion",
+        "Real client case studies and results"
       ]
     },
     {
       title: "Drnd.hu",
-      description: "Hungarian digital platform providing modern web solutions and digital services for local businesses.",
-      shortDescription: "Hungarian digital services platform with modern design, service showcases, and client portfolio displays",
+      description: "Professional website for a Hungarian law firm offering legal services.",
+      shortDescription: "Hungarian law firm website with modern design and clear service presentation",
       technologies: ["React", "Vite", "Tailwind CSS", "Framer Motion"],
       icon: <Globe className="w-6 h-6" />,
       images: ["/images/Drnd.jpg"],
       color: "orange",
       githubUrl: "https://github.com/goblinmasterlord/drnd",
       liveUrl: "https://drnd.hu",
-      category: "Digital Agency",
+      category: "Legal Services",
       features: [
-        "Localized Hungarian content and design",
-        "Service portfolio with detailed descriptions",
-        "Client work showcases and case studies",
-        "Modern responsive design system",
-        "Contact forms and business inquiry handling"
+        "Clear service descriptions and expertise areas",
+        "Modern, trustworthy design",
+        "Contact forms and inquiry handling"
       ]
     }
   ];
