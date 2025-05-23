@@ -11,11 +11,37 @@ The project is a personal UX portfolio website built with React and Vite. It fea
 The project follows a standard React project structure:
 
 - **`public/`**: Contains static assets that are served directly.
+  - **`images/`**: (as per user's initial project_layout, though not seen in `list_dir` output)
 - **`src/`**: Contains the main source code for the application.
     - **`assets/`**: Stores static assets like images and SVGs.
         - **`projects/`**: Contains assets specific to individual project pages.
+            - `paynance-2.png`
+            - `paynance-1.png`
+            - `loccocity.png`
+            - `locco-aspect-02.jpg`
+            - `locco-aspect-01.jpg`
+            - `everprove.png`
+            - `everprove-aspect-02.jpg`
+            - `everprove-aspect-01.jpg`
+            - `aspect-04.jpg`
+            - `aspect-03.jpg`
+            - `aspect-02.jpg`
+            - `aspect-01.jpg`
+        - `react.svg`
+        - `mrci.png`
+        - `mrci.jpeg`
     - **`components/`**: Houses reusable UI components used throughout the application.
         - **`project/`**: Contains components specific to project display.
+            - `ProjectNextStep.jsx`
+            - `ProjectNextSteps.jsx`
+            - `ProjectOverview.jsx`
+            - `ProjectResults.jsx`
+            - `ProjectShowcase.jsx`
+            - `ProjectSolution.jsx`
+            - `ProjectSolutionStrategy.jsx`
+            - `ProjectAspect.jsx`
+            - `ProjectChallenge.jsx`
+            - `ProjectHero.jsx`
         - `AiSection.jsx`
         - `CreativeHero.jsx`
         - `ErrorBoundary.jsx`
@@ -41,10 +67,18 @@ The project follows a standard React project structure:
     - `main.jsx`: The entry point of the React application, responsible for rendering the `App` component.
     - `index.css`: Contains global styles, Tailwind CSS imports, and custom CSS utility classes.
     - `App.css`: Contains additional CSS for `App.jsx` (potentially legacy or component-specific).
+- **`node_modules/`**: Directory where project dependencies are installed.
+- **`.git/`**: Directory for Git version control.
+- **`package-lock.json`**: Records the exact versions of dependencies.
 - **`tailwind.config.js`**: Configuration file for Tailwind CSS, including custom themes, colors, fonts, and animations.
+- **`vercel.json`**: Configuration for Vercel deployments.
 - **`vite.config.js`**: Configuration file for Vite.
-- **`package.json`**: Lists project dependencies and scripts.
+- **`postcss.config.js`**: Configuration for PostCSS.
+- **`eslint.config.js`**: Configuration for ESLint.
 - **`index.html`**: The main HTML file where the React application is mounted.
+- **`package.json`**: Lists project dependencies and scripts.
+- **`.gitignore`**: Specifies intentionally untracked files that Git should ignore.
+- **`README.md`**: General information about the project.
 
 ## Key Technologies and Libraries
 
@@ -85,7 +119,7 @@ Both fonts are imported via Google Fonts CDN in `index.css` and configured in `t
 - **`Navigation.jsx`**: Manages site navigation.
 - **`PageTransition.jsx`**: Wraps page components to provide animated transitions.
 - **`CreativeHero.jsx`**: Key component for the homepage hero section.
-- **`RefinedHobbyProjects.jsx`**: Displays personal projects section with scroll animations (flickering issue fixed).
+- **`RefinedHobbyProjects.jsx`**: Displays personal projects section with scroll animations.
 - **Project Pages (`src/pages/projects/`)**: Individual pages for showcasing specific UX projects (Everprove, Paynance, LoccoCity).
 - **Custom Hooks**:
     - `useEnhancedScrollAnimation.js`: Provides enhanced scroll-triggered animations

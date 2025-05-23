@@ -29,10 +29,12 @@ module.exports = {
         teal: '#00BBF9',
         light: '#F8FAFC',
         dark: '#1E293B',
+        'text-body': '#334155',
       },
       fontFamily: {
-        display: ['Geist', 'sans-serif'],
+        display: ['Satoshi', 'sans-serif'],
         sans: ['Inter', 'sans-serif'],
+        mono: ['GeistMono', 'monospace'],
       },
       boxShadow: {
         'sm': '0 1px 2px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.03)',

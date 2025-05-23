@@ -228,10 +228,15 @@ const RefinedHobbyProjects = () => {
   };
 
   return (
-    <section id="hobby-projects" className="px-4 sm:px-6 lg:px-12 py-16 md:py-32 relative overflow-hidden">
-      {/* Enhanced background with subtle animation */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-background via-blue/5 to-background" />
+    <section 
+      id="hobby-projects" 
+      className="bg-background px-4 sm:px-6 lg:px-12 pt-16 md:pt-32 pb-0 relative overflow-hidden"
+    >
+      {/* Enhanced background: removed full section gradient, kept pattern and blobs */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* The following div created the full section gradient and is now removed/commented out
+        <div className="absolute inset-0 bg-gradient-to-br from-background via-blue/5 to-background" /> 
+        */}
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDYwIDYwIj48cGF0aCBkPSJNNjAgMEgwdjYwaDYwVjB6TTIgMmg1NnY1NkgyVjJ6IiBmaWxsPSIjMjAyMDIwIiBmaWxsLW9wYWNpdHk9IjAuMDIiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==')] opacity-10" />
         <div className="colorful-blob w-[600px] h-[600px] -top-[250px] -right-[250px] bg-blue/10 animate-float-slow" />
         <div className="colorful-blob w-[700px] h-[700px] -bottom-[300px] -left-[300px] bg-violet/10 animate-float-medium" />
@@ -253,7 +258,7 @@ const RefinedHobbyProjects = () => {
           className="inline-flex items-center gap-2 mb-3 md:mb-4"
         >
           <span className="w-6 md:w-8 h-[2px] bg-blue" />
-          <span className="text-blue font-medium tracking-wide text-xs md:text-sm">PERSONAL PROJECTS</span>
+          <span className="text-blue font-semibold tracking-wider text-xs md:text-sm uppercase">Personal Projects</span>
         </motion.span>
         
         <motion.div
@@ -263,11 +268,11 @@ const RefinedHobbyProjects = () => {
           }}
           className="max-w-3xl mb-8 md:mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display mb-3 md:mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-black mb-3 md:mb-6 leading-tight tracking-tight">
             Side Projects & Experiments
           </h2>
           
-          <p className="text-primary/60 text-base md:text-lg lg:text-xl leading-relaxed">
+          <p className="text-text-body text-base md:text-lg lg:text-xl leading-relaxed font-sans">
             A collection of projects exploring AI, building tools for others, and experimenting with new technologies.
           </p>
         </motion.div>
@@ -284,7 +289,7 @@ const RefinedHobbyProjects = () => {
             <div className="p-2 bg-violet/10 rounded-lg">
               <Cpu className="w-5 h-5 text-violet" />
             </div>
-            <h3 className="text-xl md:text-2xl font-display">AI-Powered Projects</h3>
+            <h3 className="text-xl md:text-2xl font-display font-bold">AI-Powered Projects</h3>
             <div className="flex-1 h-[1px] bg-gradient-to-r from-violet/20 to-transparent ml-4" />
           </div>
           
@@ -325,7 +330,7 @@ const RefinedHobbyProjects = () => {
             <div className="p-2 bg-blue/10 rounded-lg">
               <Globe className="w-5 h-5 text-blue" />
             </div>
-            <h3 className="text-xl md:text-2xl font-display">Client Projects</h3>
+            <h3 className="text-xl md:text-2xl font-display font-bold">Client Projects</h3>
             <div className="flex-1 h-[1px] bg-gradient-to-r from-blue/20 to-transparent ml-4" />
           </div>
           
@@ -356,26 +361,6 @@ const RefinedHobbyProjects = () => {
 
         {/* Tech Stack Section */}
         <TechStackSection techStack={techStack} />
-        
-        {/* GitHub link */}
-        <motion.div
-          variants={{
-            hidden: { opacity: 0, y: 10 },
-            visible: { opacity: 1, y: 0, transition: { delay: 0.6, duration: 0.4 } }
-          }}
-          className="mt-12 md:mt-16 flex justify-center"
-        >
-          <a
-            href="https://github.com/goblinmasterlord"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex items-center gap-3 px-6 py-3 bg-primary/5 hover:bg-blue/10 rounded-full transition-all duration-300 shadow-card hover:shadow-card-hover"
-          >
-            <Github className="w-4 h-4 text-primary group-hover:text-blue transition-colors duration-300" />
-            <span className="text-sm text-primary font-medium group-hover:text-blue transition-colors duration-300">Explore more on GitHub</span>
-            <ExternalLink className="w-3 h-3 text-primary/60 group-hover:text-blue/60 transition-colors duration-300" />
-          </a>
-        </motion.div>
       </motion.div>
     </section>
   );
@@ -467,11 +452,11 @@ const CompactProjectCard = ({ project, index, isMobile, type, techLogos }) => {
       <div className="p-3 flex-1 flex flex-col relative z-10">
         {/* Title */}
         <div className="mb-2">
-          <h3 className={`text-sm font-display text-primary group-hover:text-${getTypeColor()} transition-colors duration-300 mb-1 line-clamp-1`}>
+          <h3 className={`text-sm font-display font-semibold text-primary group-hover:text-${getTypeColor()} transition-colors duration-300 mb-1 line-clamp-1`}>
             {project.title}
           </h3>
           
-          <p className="text-primary/70 text-xs leading-relaxed line-clamp-2">
+          <p className="text-text-body text-xs leading-relaxed line-clamp-2 font-sans">
             {project.shortDescription}
           </p>
         </div>
@@ -481,7 +466,7 @@ const CompactProjectCard = ({ project, index, isMobile, type, techLogos }) => {
           {project.technologies.map((tech, i) => (
             <div 
               key={i} 
-              className={`flex items-center gap-1 px-2 py-1 text-xs bg-primary/5 rounded-md text-primary/70 group-hover:bg-${getTypeColor()}/10 group-hover:text-${getTypeColor()} transform group-hover:translate-x-0.5 transition-all duration-300`}
+              className={`flex items-center gap-1 px-2 py-1 text-xs font-sans bg-primary/5 rounded-md text-text-body group-hover:bg-${getTypeColor()}/10 group-hover:text-${getTypeColor()} transform group-hover:translate-x-0.5 transition-all duration-300`}
               style={{ transitionDelay: `${i * 50}ms` }}
             >
               {techLogos[tech] && (
@@ -492,7 +477,7 @@ const CompactProjectCard = ({ project, index, isMobile, type, techLogos }) => {
                   onError={(e) => e.target.style.display = 'none'}
                 />
               )}
-              <span className="truncate">{tech}</span>
+              <span className="truncate font-medium">{tech}</span>
             </div>
           ))}
         </div>
@@ -508,7 +493,7 @@ const CompactProjectCard = ({ project, index, isMobile, type, techLogos }) => {
               className="overflow-hidden mb-3"
             >
               <div className="pt-2 border-t border-primary/10">
-                <h4 className="text-xs font-medium text-primary/80 mb-1">Key Features</h4>
+                <h4 className="text-xs font-semibold text-primary/80 mb-1 font-sans">Key Features</h4>
                 <ul className="space-y-1">
                   {project.features.slice(0, 3).map((feature, i) => (
                     <motion.li
@@ -516,7 +501,7 @@ const CompactProjectCard = ({ project, index, isMobile, type, techLogos }) => {
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.1 }}
-                      className="flex items-start gap-1.5 text-xs text-primary/70"
+                      className="flex items-start gap-1.5 text-xs text-text-body font-sans"
                     >
                       <div className={`w-1 h-1 rounded-full bg-${getTypeColor()} mt-1 flex-shrink-0`} />
                       <span className="line-clamp-1">{feature}</span>
@@ -535,7 +520,7 @@ const CompactProjectCard = ({ project, index, isMobile, type, techLogos }) => {
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={`flex items-center gap-1 px-2 py-1 rounded-md bg-primary/5 hover:bg-${getTypeColor()}/10 text-primary/80 hover:text-${getTypeColor()} transition-all duration-300 text-xs`}
+              className={`flex items-center gap-1 px-2 py-1 rounded-md bg-primary/5 hover:bg-${getTypeColor()}/10 text-text-body hover:text-${getTypeColor()} transition-all duration-300 text-xs font-sans font-medium`}
             >
               <Github className="w-3 h-3" />
               <span>Code</span>
@@ -546,7 +531,7 @@ const CompactProjectCard = ({ project, index, isMobile, type, techLogos }) => {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`flex items-center gap-1 px-2 py-1 rounded-md bg-${getTypeColor()}/10 text-${getTypeColor()} hover:bg-${getTypeColor()}/20 transition-all duration-300 text-xs`}
+                className={`flex items-center gap-1 px-2 py-1 rounded-md bg-${getTypeColor()}/10 text-${getTypeColor()} hover:bg-${getTypeColor()}/20 transition-all duration-300 text-xs font-sans font-medium`}
               >
                 <ExternalLink className="w-3 h-3" />
                 <span>Live</span>
@@ -609,7 +594,7 @@ const TechStackSection = ({ techStack }) => {
       initial="hidden"
       animate={sectionInView ? "visible" : "hidden"}
       variants={containerVariants}
-      className="mb-20 md:mb-24 relative"
+      className="mb-8 md:mb-12 relative"
     >
       {/* Creative background with blur effect */}
       <div className="absolute inset-0 -mx-4 sm:-mx-6 lg:-mx-12 overflow-hidden">
@@ -635,7 +620,7 @@ const TechStackSection = ({ techStack }) => {
             <div className="p-2 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg">
               <Code className="w-5 h-5 text-indigo" />
             </div>
-            <span className="text-indigo font-medium tracking-wide text-sm">TECH STACK</span>
+            <span className="text-indigo font-semibold tracking-wider text-sm uppercase">Tech Stack</span>
           </motion.div>
           
           <motion.h3
@@ -643,8 +628,7 @@ const TechStackSection = ({ techStack }) => {
               hidden: { opacity: 0, y: 20 },
               visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.1 } }
             }}
-            className="text-3xl md:text-4xl font-display mb-4"
-          >
+            className="text-3xl md:text-4xl font-display font-black mb-4 leading-tight tracking-tight">
             Technologies I Love
           </motion.h3>
           
@@ -653,8 +637,7 @@ const TechStackSection = ({ techStack }) => {
               hidden: { opacity: 0, y: 20 },
               visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.2 } }
             }}
-            className="text-primary/60 text-lg max-w-2xl mx-auto"
-          >
+            className="text-text-body text-lg max-w-2xl mx-auto font-sans leading-relaxed">
             The tools and frameworks that power my creative process
           </motion.p>
         </div>
@@ -694,7 +677,7 @@ const TechStackSection = ({ techStack }) => {
                       }}
                     />
                     {/* Fallback text */}
-                    <div className="hidden w-full h-full items-center justify-center text-xs font-medium text-primary/70">
+                    <div className="hidden w-full h-full items-center justify-center text-xs font-medium text-text-body font-sans">
                       {tech.name.charAt(0)}
                     </div>
                   </div>
@@ -710,19 +693,6 @@ const TechStackSection = ({ techStack }) => {
               </motion.div>
             ))}
           </div>
-        </motion.div>
-
-        {/* Bottom text */}
-        <motion.div
-          variants={{
-            hidden: { opacity: 0 },
-            visible: { opacity: 1, transition: { delay: 0.8, duration: 0.5 } }
-          }}
-          className="text-center mt-12 md:mt-16"
-        >
-          <p className="text-primary/50 text-sm">
-            Always exploring new technologies and staying current with industry trends
-          </p>
         </motion.div>
       </div>
     </motion.div>

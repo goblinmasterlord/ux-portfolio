@@ -4,7 +4,7 @@ import {
   Menu, X, ArrowUpRight, MousePointer2, Sparkles, Lightbulb, 
   Layers, Bot, Scale, ShoppingCart, BarChart2, MessageSquare, 
   HeadphonesIcon, Mail, ShoppingBag, Share2, Briefcase, Compass, 
-  Zap, Users, ArrowRight 
+  Zap, Users, ArrowRight, Brain
 } from 'lucide-react';
 import paynanceImage1 from '../assets/projects/paynance-1.png';
 import paynanceImage2 from '../assets/projects/paynance-2.png';
@@ -13,7 +13,7 @@ import everproveImage from '../assets/projects/everprove.png';
 import { motion } from 'framer-motion';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { useEnhancedScrollAnimation } from '../hooks/useEnhancedScrollAnimation';
-import AiSection from '../components/AiSection';
+// import AiSection from '../components/AiSection';
 import RefinedHobbyProjects from '../components/RefinedHobbyProjects';
 import ProtectedContact from '../components/ProtectedContact';
 import CreativeHero from '../components/CreativeHero';
@@ -63,10 +63,11 @@ const fadeInScale = {
 
 // Project Card Component with enhanced animations
 const ProjectCard = memo(({ project, index }) => {
-  const [cardRef, cardControls, cardVariants] = useEnhancedScrollAnimation('fadeUp', { 
+  const [cardRef, cardControls] = useEnhancedScrollAnimation('fadeUp', { 
     threshold: 0.1,
     triggerOnce: true
   });
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <motion.div
@@ -74,83 +75,84 @@ const ProjectCard = memo(({ project, index }) => {
       initial="hidden"
       animate={cardControls}
       variants={{
-        hidden: { opacity: 0, y: 40 },
+        hidden: { opacity: 0, y: 50 },
         visible: { 
           opacity: 1, 
           y: 0, 
           transition: { 
-            duration: 0.8, 
-            delay: index * 0.1, 
+            duration: 0.7, 
+            delay: index * 0.15, 
             ease: [0.25, 1, 0.5, 1] 
           }
         }
       }}
-      className="w-full"
+      className="w-full" // This motion.div is for the entry animation and layout
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       <Link
         to={project.comingSoon ? '#' : project.path}
-        className="group relative block rounded-xl md:rounded-2xl bg-primary/5 hover:bg-primary/10 transition-all duration-500 shadow-card hover:shadow-card-hover overflow-hidden border border-primary/10 hover:border-blue/20"
+        // These classes define the card's shape, shadow, border, and group for hover states.
+        // No bg-white here, it's on the inner div.
+        className="group relative block rounded-xl md:rounded-2xl transition-all duration-500 shadow-lg hover:shadow-xl overflow-hidden border border-primary/5 hover:border-transparent"
       >
-        {/* Enhanced gradient border on hover */}
-        <div
-          className="absolute inset-0 rounded-xl md:rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500"
+        {/* Animated Gradient Border - visible on hover, sits BEHIND the content div */}
+        <motion.div
+          className="absolute -inset-0.5 rounded-xl md:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"
           style={{
-            background: 'linear-gradient(45deg, var(--color-blue/0.1), var(--color-violet/0.1))',
-            backdropFilter: 'blur(2px)'
+            background: 'linear-gradient(120deg, var(--color-blue), var(--color-violet), var(--color-magenta))',
+            backgroundSize: '200% 200%',
+          }}
+          animate={{
+            backgroundPosition: isHovered ? ['0% 50%', '100% 50%', '0% 50%'] : '50% 50%',
+          }}
+          transition={{
+            duration: isHovered ? 4 : 0.5,
+            ease: "linear",
+            repeat: isHovered ? Infinity : 0,
           }}
         />
 
-        <div className="flex flex-col lg:flex-row">
-          {/* Image Container - Fixed dimensions and consistent padding */}
-          <div className="relative w-full lg:w-[320px] lg:min-w-[320px] lg:max-w-[320px] h-[240px] lg:h-auto">
-            <div className="absolute inset-0 m-4 sm:m-6 overflow-hidden rounded-lg md:rounded-xl shadow-md">
-              {/* Enhanced gradient overlay on hover */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue/20 via-indigo/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 z-10" />
-
+        {/* Inner container for actual content, has the white background, sits ABOVE the gradient border */}
+        {/* Rounded slightly less than the Link to make the gradient border visible */}
+        <div className="relative flex flex-col lg:flex-row bg-white rounded-[11px] md:rounded-[15px] z-10 h-full">
+          {/* Image Container - Refined Styling */}
+          <div className="relative w-full lg:w-[380px] lg:min-w-[380px] lg:max-w-[380px] h-[260px] lg:h-auto">
+            <div className="absolute inset-0 m-3 sm:m-4 overflow-hidden rounded-lg md:rounded-xl shadow-md">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue/10 via-transparent to-violet/10 opacity-0 group-hover:opacity-30 transition-opacity duration-500 z-10" />
               <img
                 src={project.image}
                 alt={project.title}
-                className={`w-full h-full object-cover transform group-hover:scale-[1.03] transition-all duration-700 
+                className={`w-full h-full object-cover transform group-hover:scale-[1.04] transition-transform duration-700 ease-in-out
                   ${project.comingSoon ? 'grayscale' : ''}`}
               />
-
-              {/* Category badge */}
-              <div className="absolute top-2 left-2 px-2 md:px-3 py-1 md:py-1.5 bg-background/90 backdrop-blur-sm rounded-full shadow-sm">
-                <span className="text-blue text-xs md:text-sm">{project.category}</span>
+              <div className="absolute top-3 left-3 px-3 py-1.5 bg-background/90 backdrop-blur-md rounded-full shadow-lg border border-white/20">
+                <span className="text-blue text-xs md:text-sm font-medium">{project.category}</span>
               </div>
-
               {project.comingSoon && (
-                <div className="absolute inset-0 flex items-center justify-center bg-primary/10 backdrop-blur-sm">
-                  <span className="text-primary/60 text-sm font-medium">Coming Soon</span>
+                <div className="absolute inset-0 flex items-center justify-center bg-primary/20 backdrop-blur-sm">
+                  <span className="text-white text-sm font-medium bg-black/50 px-3 py-1 rounded-md">Coming Soon</span>
                 </div>
               )}
             </div>
           </div>
 
-          {/* Content - Ensure proper spacing from image */}
-          <div className="relative flex-1 flex flex-col p-4 sm:p-6 pt-0 lg:pt-6">
+          {/* Content - Refined Spacing and Typography */}
+          <div className="relative flex-1 flex flex-col p-4 sm:p-6 lg:p-8">
             <div className="mb-auto">
-              {/* Year */}
-              <span className="text-primary/40 text-xs md:text-sm mb-1 md:mb-2 block">{project.year}</span>
-
-              {/* Title - Subtle hover effect */}
-              <h3 className="text-xl md:text-2xl font-display mb-2 md:mb-3 group-hover:text-blue transition-colors duration-300">
+              <span className="text-primary/50 text-xs md:text-sm mb-1.5 md:mb-2 block font-mono tracking-tight font-medium">{project.year}</span>
+              <h3 className="text-2xl md:text-3xl font-display font-bold mb-3 md:mb-4 text-primary group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue group-hover:to-violet transition-colors duration-400 leading-tight">
                 {project.title}
               </h3>
-
-              {/* Description */}
-              <p className="text-primary/60 text-sm md:text-base leading-relaxed mb-4 md:mb-6">
+              <p className="text-text-body text-sm md:text-base leading-relaxed mb-5 md:mb-8 font-sans">
                 {project.description}
               </p>
-
-              {/* Tags - Enhanced hover effect */}
-              <div className="flex flex-wrap gap-1.5 md:gap-2 mb-4 md:mb-6">
+              <div className="flex flex-wrap gap-2 md:gap-2.5 mb-5 md:mb-8">
                 {project.tags.map((tag, i) => (
                   <span
                     key={i}
-                    className="px-2 md:px-3 py-0.5 md:py-1 text-xs bg-primary/5 rounded-full text-primary/60 
-                      group-hover:bg-blue/10 group-hover:text-blue transform group-hover:translate-x-1 transition-all duration-300"
-                    style={{ transitionDelay: `${i * 50}ms` }}
+                    className="px-2.5 md:px-3 py-1 md:py-1.5 text-xs font-medium bg-primary/5 group-hover:bg-white rounded-md text-text-body group-hover:text-blue transform transition-all duration-300 ease-in-out shadow-sm group-hover:shadow-md border border-transparent group-hover:border-blue/30"
+                    style={{ transitionDelay: `${i * 60}ms` }}
                   >
                     {tag}
                   </span>
@@ -158,14 +160,13 @@ const ProjectCard = memo(({ project, index }) => {
               </div>
             </div>
 
-            {/* Floating CTA - Enhanced */}
             {!project.comingSoon && (
-              <div className="mt-4 lg:mt-6">
+              <div className="mt-auto pt-4">
                 <span
-                  className="group inline-flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-1.5 md:py-2 bg-blue/10 rounded-full text-blue hover:bg-blue/20 transition-all duration-300 shadow-button-blue"
+                  className="group/cta inline-flex items-center gap-2 md:gap-2.5 px-4 md:px-5 py-2 md:py-2.5 bg-gradient-to-r from-blue/90 to-violet/90 hover:from-blue hover:to-violet rounded-lg text-white transition-all duration-400 ease-in-out shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                 >
-                  <span className="text-xs md:text-sm">View Case Study</span>
-                  <ArrowRight className="w-3.5 h-3.5 md:w-4 md:h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
+                  <span className="text-xs md:text-sm font-semibold">View Case Study</span>
+                  <ArrowRight className="w-3.5 h-3.5 md:w-4 md:h-4 transform group-hover/cta:translate-x-1 transition-transform duration-300" />
                 </span>
               </div>
             )}
@@ -178,11 +179,11 @@ const ProjectCard = memo(({ project, index }) => {
 
 // Service Card Component with enhanced animations
 const ServiceCard = memo(({ service, index }) => {
-  const [cardRef, cardControls, cardVariants] = useEnhancedScrollAnimation('scale', { 
+  const [cardRef, cardControls] = useEnhancedScrollAnimation('fadeUp', {
     threshold: 0.1,
-    initialScale: 0.95,
     triggerOnce: true
   });
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <motion.div
@@ -192,49 +193,69 @@ const ServiceCard = memo(({ service, index }) => {
       variants={{
         hidden: { 
           opacity: 0,
-          scale: 0.98
+          y: 40
         },
         visible: { 
           opacity: 1,
-          scale: 1,
+          y: 0,
           transition: { 
-            duration: 0.5,
+            duration: 0.6,
             delay: index * 0.1,
             ease: [0.25, 1, 0.5, 1]
           }
         }
       }}
-      className="group relative p-4 sm:p-6 rounded-lg md:rounded-xl bg-primary/5 hover:bg-primary/10 transition-all duration-500 shadow-card hover:shadow-card-hover border border-primary/10 hover:border-blue/20"
+      className="group relative rounded-xl md:rounded-2xl bg-white hover:bg-white transition-all duration-500 shadow-lg hover:shadow-xl overflow-hidden border border-primary/5 hover:border-transparent h-full flex flex-col"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 rounded-lg md:rounded-xl bg-gradient-to-br from-blue/5 via-indigo/5 to-violet/5 opacity-0 group-hover:opacity-100 transition-all duration-500" />
+      {/* Animated Gradient Border */}
+      <motion.div
+        className="absolute -inset-0.5 rounded-xl md:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"
+        style={{
+          background: 'linear-gradient(120deg, var(--color-indigo), var(--color-violet), var(--color-purple))',
+          backgroundSize: '200% 200%',
+        }}
+        animate={{
+          backgroundPosition: isHovered ? ['0% 50%', '100% 50%', '0% 50%'] : '50% 50%',
+        }}
+        transition={{
+          duration: isHovered ? 4 : 0.5,
+          ease: "linear",
+          repeat: isHovered ? Infinity : 0,
+        }}
+      />
       
-      <div className="relative z-10 flex gap-3 md:gap-4">
-        {/* Icon */}
-        <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-blue/10 flex items-center justify-center shrink-0 group-hover:bg-blue/20 transition-all duration-300 shadow-blue-sm">
-          <div className="text-blue">
-            {service.icon}
+      {/* Inner content container */}
+      <div className="relative z-10 flex flex-col flex-grow p-6 md:p-8 bg-white rounded-[11px] md:rounded-[15px] h-full">
+        {/* Icon and Title */}
+        <div className="flex items-center gap-4 mb-4 md:mb-5">
+          <div className="p-2.5 md:p-3 bg-gradient-to-br from-indigo/10 to-purple/10 rounded-lg shadow-sm group-hover:from-indigo/20 group-hover:to-purple/20 transition-all duration-300 flex-shrink-0">
+            <div className="text-indigo group-hover:text-violet transition-colors duration-300">
+              {service.icon}
+            </div>
+          </div>
+          <div className="flex-grow">
+            <h4 className="text-xl md:text-2xl font-display font-bold text-primary group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo group-hover:to-purple transition-colors duration-400 leading-tight">
+              {service.title}
+            </h4>
           </div>
         </div>
+        
+        {/* Description */}
+        <p className="text-primary/70 text-sm md:text-base leading-relaxed font-sans mb-5 md:mb-6 flex-grow">
+          {service.description}
+        </p>
 
-        <div>
-          {/* Title */}
-          <h4 className="text-lg md:text-xl font-display text-primary mb-1.5 md:mb-2 group-hover:text-blue transition-colors duration-300">
-            {service.title}
-          </h4>
-          
-          {/* Description */}
-          <p className="text-primary/60 text-xs md:text-sm mb-2 md:mb-3 leading-relaxed">
-            {service.description}
-          </p>
-
-          {/* Features as inline tags */}
-          <div className="flex flex-wrap gap-1.5 md:gap-2">
-            {service.features.map((feature, index) => (
+        {/* Features as inline tags */}
+        <div className="mt-auto">
+          <h5 className="text-xs font-semibold text-primary/50 mb-2 uppercase tracking-wider">Key Focus Areas</h5>
+          <div className="flex flex-wrap gap-2">
+            {service.features.map((feature, i) => (
               <span 
-                key={index}
-                className="px-2 py-0.5 md:py-1 text-xs bg-primary/5 rounded-full text-primary/60 group-hover:bg-blue/10 group-hover:text-blue transform group-hover:translate-x-1 transition-all duration-300"
-                style={{ transitionDelay: `${index * 50}ms` }}
+                key={i}
+                className="px-2.5 md:px-3 py-1 md:py-1.5 text-xs font-medium bg-primary/5 group-hover:bg-white rounded-md text-primary/70 group-hover:text-indigo transform transition-all duration-300 ease-in-out shadow-sm group-hover:shadow-md border border-transparent group-hover:border-indigo/30"
+                style={{ transitionDelay: `${i * 50}ms` }}
               >
                 {feature}
               </span>
@@ -320,100 +341,48 @@ const Home = () => {
 
   const services = [
     {
-      icon: <Sparkles className="w-6 h-6" />,
+      icon: <Sparkles className="w-5 h-5 md:w-6 md:h-6" />,
       title: "UX Consultation",
-      description: "I help teams improve their digital products by focusing on what users actually need. Through research and testing, we'll identify problems and create solutions that make sense for your users and business.",
+      description: "Got a digital product that could be better? I help teams dig into what users *really* need. We'll find the sticking points and map out clear, practical solutions that make sense for your users and your business goals.",
       features: [
         "User Research & Testing",
-        "UX Audits",
+        "UX/Usability Audits",
         "Journey Mapping",
-        "Usability Improvements"
+        "Actionable Recommendations"
       ],
     },
     {
-      icon: <Layers className="w-6 h-6" />,
-      title: "UI Design",
-      description: "Creating interfaces that work well and look good. I focus on building consistent design systems and components that can scale with your product while keeping development handoff smooth.",
+      icon: <Lightbulb className="w-5 h-5 md:w-6 md:h-6" />,
+      title: "Product Strategy",
+      description: "Not sure what to build, or how to make your existing product shine? I work with teams to clarify product vision, understand the market, and define features that people will actually use and love.",
       features: [
-        "Design Systems",
-        "Interactive Prototypes",
-        "Responsive Design",
-        "Design-Dev Handoff"
+        "Product Vision & Roadmap",
+        "Market & User Insights",
+        "Feature Prioritization",
+        "Launch & Growth Strategy"
       ],
     },
     {
-      icon: <Lightbulb className="w-6 h-6" />,
-      title: "Product Consultation",
-      description: "Helping teams figure out what to build and why. I focus on understanding your market, users, and business goals to make sure we're building something people actually want to use.",
+      icon: <Bot className="w-5 h-5 md:w-6 md:h-6" />,
+      title: "AI Integration",
+      description: "AI is powerful, but can be complex. I help businesses figure out where AI can *actually* make a difference – for your team and your users – and then design and implement practical, valuable AI solutions without the hype.",
       features: [
-        "Product Strategy",
-        "Feature Planning",
-        "Market Research",
-        "Launch Planning"
+        "AI Use-Case Discovery",
+        "Custom AI Solution Design",
+        "LLM & API Integration",
+        "Ethical AI Considerations"
       ],
     },
     {
-      icon: <Bot className="w-6 h-6" />,
-      title: "AI Solutions",
-      description: "Making AI work for your business in practical ways. I help identify where AI can actually help your team and users, then implement solutions that bring real value without unnecessary complexity.",
+      icon: <Brain className="w-5 h-5 md:w-6 md:h-6" />,
+      title: "AI Workshops & LLM Training",
+      description: "Want to empower your team with AI skills? I run hands-on workshops teaching how to effectively use Large Language Models (LLMs) and other AI tools to boost creativity, productivity, and problem-solving.",
       features: [
-        "AI Use-Case Analysis",
-        "Solution Design",
-        "Integration Planning",
-        "UX Implementation",
+        "Customized LLM Training",
+        "Practical AI Tooling",
+        "Team Upskilling",
+        "Responsible AI Use"
       ],
-    },
-  ];
-
-  // Add aiUseCases data near other data constants (projects, services)
-  const aiUseCases = [
-    {
-      industry: "E-commerce",
-      title: "Smart Shopping Helper",
-      description: "A friendly AI chat assistant that helps customers find what they're looking for, compares products, and makes personalized suggestions - just like having a knowledgeable friend who knows the entire catalog.",
-      features: ["Natural conversations", "Product matching", "Smart recommendations", "Size help"],
-      impact: "35% fewer abandoned carts",
-      icon: ShoppingBag
-    },
-    {
-      industry: "Data Analysis",
-      title: "Data Story Generator",
-      description: "Turn your messy spreadsheets into clear insights. This tool cleans up your data, spots interesting patterns, and explains what it all means in plain English - no data science degree needed.",
-      features: ["Automated cleaning", "Pattern detection", "Clear explanations", "Visual reports"],
-      impact: "Hours of analysis → minutes",
-      icon: BarChart2
-    },
-    {
-      industry: "Content Creation",
-      title: "Social Media Assistant",
-      description: "A helping hand for your social media that learns your brand's style. It suggests post ideas, writes drafts, and helps plan your content calendar - while keeping your unique voice.",
-      features: ["Post suggestions", "Caption writing", "Hashtag research", "Content planning"],
-      impact: "3x faster content creation",
-      icon: Share2
-    },
-    {
-      industry: "Customer Support",
-      title: "Support Chat Enhancer",
-      description: "Works alongside your support team to handle common questions, gather initial info, and suggest solutions - letting your team focus on the complex stuff that really needs their attention.",
-      features: ["Quick responses", "Smart routing", "Solution suggestions", "24/7 availability"],
-      impact: "80% faster first response",
-      icon: HeadphonesIcon
-    },
-    {
-      industry: "Small Business",
-      title: "Email Assistant",
-      description: "Helps manage your inbox by drafting responses, summarizing long emails, and highlighting what needs your attention first - like having a smart email secretary.",
-      features: ["Response drafting", "Priority sorting", "Meeting scheduling", "Follow-up reminders"],
-      impact: "2 hours saved daily",
-      icon: Mail
-    },
-    {
-      industry: "Legal",
-      title: "Legal Doc Assistant",
-      description: "Helps law firms quickly review contracts and documents, spots potential issues, and suggests relevant precedents - making document review less tedious and more thorough.",
-      features: ["Contract analysis", "Issue spotting", "Citation finding", "Summary generation"],
-      impact: "75% faster document review",
-      icon: Scale
     }
   ];
 
@@ -434,7 +403,7 @@ const Home = () => {
             className="inline-flex items-center gap-2 mb-3 md:mb-4"
           >
             <span className="w-6 md:w-8 h-[2px] bg-blue" />
-            <span className="text-blue font-medium tracking-wide text-xs md:text-sm">SELECTED WORK</span>
+            <span className="text-blue font-semibold tracking-wider text-xs md:text-sm uppercase">Selected Work</span>
           </motion.span>
 
           <motion.div
@@ -443,10 +412,10 @@ const Home = () => {
             transition={{ delay: 0.1 }}
             className="max-w-3xl mb-8 md:mb-16"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display mb-3 md:mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-black mb-4 md:mb-6 leading-tight tracking-tight">
               Some of my work
             </h2>
-            <p className="text-primary/60 text-base md:text-lg lg:text-xl leading-relaxed">
+            <p className="text-text-body text-base md:text-lg lg:text-xl leading-relaxed font-sans">
               Here are some of the favorite projects I've worked on. Each one was a unique challenge solved with unique solutions and close collaboration with amazing teams.
             </p>
           </motion.div>
@@ -463,7 +432,7 @@ const Home = () => {
       <RefinedHobbyProjects />
 
       {/* Services Section with enhanced animations */}
-      <section id="services" className="px-4 sm:px-6 lg:px-12 py-16 md:py-32 bg-background/50">
+      <section id="services" className="px-4 sm:px-6 lg:px-12 py-16 md:py-32 bg-gradient-to-br from-background via-indigo/5 to-background">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -474,25 +443,25 @@ const Home = () => {
             animate={{ opacity: 1, y: 0 }}
             className="inline-flex items-center gap-2 mb-3 md:mb-4"
           >
-            <span className="w-6 md:w-8 h-[2px] bg-blue" />
-            <span className="text-blue font-medium tracking-wide text-xs md:text-sm">SERVICES</span>
+            <span className="w-6 md:w-8 h-[2px] bg-indigo" />
+            <span className="text-indigo font-semibold tracking-wider text-xs md:text-sm uppercase">What I Offer</span>
           </motion.span>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="max-w-3xl mb-8 md:mb-16"
+            className="max-w-3xl mb-10 md:mb-20"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display mb-3 md:mb-6">
-              How can I help?
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-black mb-4 md:mb-6 leading-tight tracking-tight">
+              Helping You Build Better Digital Products
             </h2>
-            <p className="text-primary/60 text-base md:text-lg lg:text-xl leading-relaxed">
-              I offer a range of services to help businesses create better digital experiences. Here's how we can work together:
+            <p className="text-text-body text-base md:text-lg lg:text-xl leading-relaxed font-sans">
+              Whether it's refining user experiences, shaping product strategy, integrating AI meaningfully, or upskilling your team – I'm here to help you navigate the complexities and create things people love to use.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6 md:gap-8">
             {services.map((service, index) => (
               <ServiceCard key={index} service={service} index={index} />
             ))}
@@ -500,8 +469,8 @@ const Home = () => {
         </motion.div>
       </section>
 
-      {/* AI Section */}
-      <AiSection />
+      {/* AI Section - REMOVING THIS */}
+      {/* <AiSection /> */}
 
       {/* Contact Section */}
       <motion.section id="contact" className="px-4 sm:px-6 lg:px-12 py-16 md:py-32 bg-background text-primary">
@@ -512,15 +481,15 @@ const Home = () => {
             className="inline-flex items-center gap-2 mb-3 md:mb-4"
           >
             <span className="w-6 md:w-8 h-[2px] bg-blue" />
-            <span className="text-blue font-medium tracking-wide text-xs md:text-sm">GET IN TOUCH</span>
+            <span className="text-blue font-semibold tracking-wider text-xs md:text-sm uppercase">Get in Touch</span>
           </motion.span>
           
           <div className="flex flex-col md:flex-row justify-between items-start gap-8 md:gap-12">
             <div className="max-w-2xl">
-              <h3 className="text-3xl sm:text-4xl md:text-5xl font-display text-primary mb-3 md:mb-6">
+              <h3 className="text-3xl sm:text-4xl md:text-5xl font-display font-black text-primary mb-4 md:mb-6 leading-tight tracking-tight">
                 Let's create something amazing together
               </h3>
-              <p className="text-primary/60 text-base md:text-lg leading-relaxed">
+              <p className="text-text-body text-base md:text-lg leading-relaxed font-sans">
                 Have a project in mind? Let's discuss how we can work together to bring your ideas to life.
               </p>
             </div>

@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Satoshi:wght@400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 @tailwind base;
@@ -6,8 +8,10 @@
 @tailwind utilities;
 
 :root {
-  --font-display: 'Geist', sans-serif;
+  --font-display: 'Satoshi', 'GeistSans', sans-serif;
   --font-sans: 'Inter', sans-serif;
+  --font-mono: 'GeistMono', monospace;
+  --color-text-body: #334155;
   --color-accent: #5B7FFF;
   --color-secondary: #6366F1;
   --color-tertiary: #8B5CF6;
@@ -30,6 +34,11 @@
 
 body {
   @apply bg-background text-primary font-sans;
+}
+
+/* Update default paragraph color if necessary, or apply text-body class where needed */
+p, .text-body-style {
+  @apply text-text-body;
 }
 
 h1, h2, h3, h4, h5, h6 {

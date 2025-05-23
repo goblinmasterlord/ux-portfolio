@@ -128,7 +128,7 @@ const CreativeHero = () => {
     };
 
     return (
-      <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-display leading-tight mb-2">
+      <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-display font-black leading-tight mb-2">
         <div className="overflow-hidden mb-3 md:mb-4">
           {isMobile ? renderSimpleText("Hey, I'm Marci") : renderInteractiveText("Hey, I'm Marci")}
           <motion.span
@@ -207,7 +207,7 @@ const CreativeHero = () => {
 
           <motion.p
             initial={{ opacity: 1 }}
-            className="text-primary/70 text-lg sm:text-xl md:text-2xl max-w-[800px] leading-relaxed"
+            className="text-text-body text-lg sm:text-xl md:text-2xl max-w-[800px] leading-relaxed font-sans"
           >
             With <span className="text-blue font-medium">6+ years of experience</span>, I help companies build products that are{' '}
             <span className="text-blue font-medium">simple to use</span> and a{' '}
@@ -245,7 +245,7 @@ const CreativeHero = () => {
 
             <motion.button
               onClick={() => scrollToSection('hobby-projects')}
-              className="group inline-flex items-center gap-2 text-primary/70 hover:text-purple transition-colors duration-300 w-full sm:w-auto justify-center sm:justify-start"
+              className="group inline-flex items-center gap-2 text-text-body hover:text-purple transition-colors duration-300 w-full sm:w-auto justify-center sm:justify-start"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
