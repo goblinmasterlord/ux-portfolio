@@ -1,7 +1,7 @@
 // src/components/RefinedHobbyProjects.jsx
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Github, ExternalLink, Sparkles, Zap, BarChart3, Video, Palette, Droplets, Plus } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Github, ExternalLink, Sparkles, Zap, BarChart3, Video, Palette, Droplets, ChevronDown, ChevronUp, Brain, Cpu, Globe, Code } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
 
 const RefinedHobbyProjects = () => {
@@ -23,113 +23,162 @@ const RefinedHobbyProjects = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Real hobby projects with detailed descriptions
-  const hobbyProjects = [
+  // Tech logos mapping
+  const techLogos = {
+    "React": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+    "Next.js": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+    "Node.js": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+    "Python": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+    "Tailwind CSS": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+    "TypeScript": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+    "Supabase": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg",
+    "Vite": "https://vitejs.dev/logo.svg",
+    "Claude API": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/openai/openai-original.svg",
+    "Anthropic API": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/openai/openai-original.svg",
+    "OpenAI Whisper": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/openai/openai-original.svg",
+    "RAG": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+    "FFmpeg": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+    "ElasticSearch": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/elasticsearch/elasticsearch-original.svg",
+    "React Native": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+    "Gemini API": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg",
+    "Recommendation Algorithm": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+    "Framer Motion": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/framermotion/framermotion-original.svg"
+  };
+
+  // AI-focused projects (hobby/friend projects)
+  const aiProjects = [
     {
       title: "UxTools",
-      description: "A comprehensive toolkit for UX professionals featuring AI-powered tools to enhance design workflows. The platform offers various utilities that leverage selected AI models to streamline UX processes.",
+      description: "A comprehensive toolkit for UX professionals featuring AI-powered tools to enhance design workflows.",
+      shortDescription: "AI-powered UX toolkit with design critique, user research analysis, and accessibility evaluation tools for design professionals",
       technologies: ["React", "Node.js", "Claude API", "Anthropic API"],
-      icon: <Zap className="w-6 h-6" />,
-      images: [
-        "/images/UXTools.jpg"
-      ],
+      icon: <Brain className="w-6 h-6" />,
+      images: ["/images/UXTools.jpg"],
       color: "violet",
       githubUrl: "https://github.com/goblinmasterlord/ux-toolkit",
+      category: "AI Tool",
       features: [
-        "AI-powered design critique and feedback",
-        "User research analysis and pattern recognition",
+        "AI-powered design critique and feedback system",
+        "User research analysis with pattern recognition",
         "Accessibility evaluation and recommendations",
-        "Customizable AI model selection for different tasks"
+        "Customizable AI model selection for different tasks",
+        "Real-time collaboration features"
       ]
     },
     {
       title: "NeuralUXStudio",
-      description: "An educational platform teaching UX professionals how to leverage AI tools in their workflow. Features video tutorials, blog posts, and practical guides on integrating AI into UX processes.",
+      description: "Educational platform teaching UX professionals how to leverage AI tools in their workflow.",
+      shortDescription: "Comprehensive AI education platform with video tutorials, learning paths, and community features for UX professionals",
       technologies: ["Next.js", "React", "Tailwind CSS", "Supabase"],
       icon: <Video className="w-6 h-6" />,
-      images: [
-        "/images/NeuralUX.jpg"
-      ],
+      images: ["/images/NeuralUX.jpg"],
       color: "purple",
       githubUrl: "https://github.com/goblinmasterlord/ai-consulting",
       liveUrl: "https://neuraluxstudio.com",
+      category: "Education",
       features: [
         "Structured learning paths for different skill levels",
         "High-quality video tutorials with practical examples",
         "In-depth blog posts on AI applications in UX",
-        "Community forum for questions and knowledge sharing"
+        "Community forum for questions and knowledge sharing",
+        "Interactive AI tool demonstrations"
       ]
     },
     {
       title: "Is that REALLY true?",
-      description: "A real-time fact-checker using AI that can transcribe and analyze audio and video content for factual accuracy of the speakers. We've built it for a Hackathon.",
+      description: "Real-time fact-checker using AI that transcribes and analyzes audio/video content for factual accuracy.",
+      shortDescription: "Real-time AI fact-checking tool with audio transcription, claim extraction, and automated verification with source citations",
       technologies: ["React", "Python", "OpenAI Whisper", "RAG", "FFmpeg", "ElasticSearch"],
       icon: <Sparkles className="w-6 h-6" />,
-      images: [
-        "/images/Isthattrue.jpg"
-      ],
+      images: ["/images/Isthattrue.jpg"],
       color: "indigo",
       githubUrl: "https://github.com/goblinmasterlord/robot-chicken",
+      category: "Hackathon",
       features: [
         "Multi-stage AI processing pipeline",
-        "Speaker identification and attribution",
-        "Claim extraction and verification",
-        "Source citation and confidence scoring"
+        "Real-time speaker identification and attribution",
+        "Automated claim extraction and verification",
+        "Source citation with confidence scoring",
+        "Live transcription with fact-checking overlay"
       ]
     },
     {
       title: "SmartBudget",
-      description: "A mobile budgeting app that provides personalized financial insights using AI. Users set financial goals and receive tailored recommendations based on their spending patterns and objectives.",
+      description: "Mobile budgeting app providing personalized financial insights using AI for goal-based planning.",
+      shortDescription: "AI-powered personal finance app with intelligent spending analysis, goal-based planning, and predictive insights",
       technologies: ["React Native", "Node.js", "Gemini API"],
       icon: <BarChart3 className="w-6 h-6" />,
-      images: [
-        "/images/Budgeting.jpg"
-      ],
+      images: ["/images/Budgeting.jpg"],
       color: "teal",
       githubUrl: "https://github.com/goblinmasterlord/smart-budget-app",
+      category: "Mobile App",
       features: [
-        "Goal-based financial planning",
-        "AI-powered spending analysis and categorization",
+        "Goal-based financial planning with AI insights",
+        "Intelligent spending analysis and categorization",
         "Personalized saving and investment recommendations",
-        "Predictive cash flow visualization"
+        "Predictive cash flow visualization",
+        "Smart notification system for budget alerts"
       ]
-    },
+    }
+  ];
+
+  // Client sites and non-AI projects
+  const clientProjects = [
     {
       title: "Aromate",
-      description: "A personalized fragrance finder that helps users discover their perfect scent. Users complete an interactive quiz about their preferences, lifestyle, and personality, and receive tailored perfume recommendations based on their unique profile.",
+      description: "Personalized fragrance finder helping users discover their perfect scent through interactive quizzes.",
+      shortDescription: "Personalized fragrance recommendation platform with interactive quizzes, detailed profiles, and smart matching algorithms",
       technologies: ["React", "Node.js", "Recommendation Algorithm", "Tailwind CSS"],
       icon: <Droplets className="w-6 h-6" />,
-      images: [
-        "/images/Aromate.jpg"
-      ],
+      images: ["/images/Aromate.jpg"],
       color: "blue",
       githubUrl: "https://github.com/goblinmasterlord/aromate",
       liveUrl: "https://aromate.vercel.app/",
+      category: "E-commerce",
       features: [
         "Interactive preference quiz with engaging UI",
-        "Personalized fragrance recommendations",
-        "Detailed fragrance profiles with notes and characteristics",
-        "Save favorites and compare different options"
+        "Advanced recommendation algorithm",
+        "Detailed fragrance profiles with notes",
+        "Save favorites and comparison features",
+        "Mobile-optimized shopping experience"
       ]
     },
     {
       title: "ArtimeStudio",
-      description: "A beautiful portfolio website for a creative studio showcasing their work, services, and team.",
-      technologies: ["React", "Vite", "Tailwind CSS"],
+      description: "Beautiful portfolio website for a creative studio showcasing their work, services, and team.",
+      shortDescription: "Creative studio portfolio website with immersive 3D elements, case studies, and interactive team profiles",
+      technologies: ["React", "Vite", "Tailwind CSS", "Framer Motion"],
       icon: <Palette className="w-6 h-6" />,
-      images: [
-        "/images/Artimestudio.jpg"
-      ],
+      images: ["/images/Artimestudio.jpg"],
       color: "magenta",
       githubUrl: "https://github.com/goblinmasterlord/artimestudio",
       liveUrl: "https://artimestudio.vercel.app/",
+      category: "Portfolio",
       features: [
         "Immersive 3D elements and animations",
-        "Case study showcases with detailed process insights",
+        "Detailed case study showcases",
         "Interactive team profiles and expertise highlights",
-        "Optimized performance with progressive enhancement"
+        "Optimized performance with progressive enhancement",
+        "Custom CMS integration for easy updates"
       ]
     }
+  ];
+
+  // Tech stack data
+  const techStack = [
+    { name: "React", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg", category: "Frontend" },
+    { name: "Next.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg", category: "Framework" },
+    { name: "Node.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg", category: "Backend" },
+    { name: "Python", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg", category: "Backend" },
+    { name: "Tailwind CSS", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg", category: "Styling" },
+    { name: "TypeScript", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg", category: "Language" },
+    { name: "Supabase", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg", category: "Database" },
+    { name: "Vite", logo: "https://vitejs.dev/logo.svg", category: "Build Tool" },
+    { name: "Framer Motion", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/framermotion/framermotion-original.svg", category: "Animation" },
+    { name: "OpenAI", logo: "https://static.vecteezy.com/system/resources/previews/021/059/827/non_2x/chatgpt-logo-chat-gpt-icon-on-white-background-free-vector.jpg", category: "AI" },
+    { name: "Claude", logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/anthropic.svg", category: "AI" },
+    { name: "Gemini", logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/googlegemini.svg", category: "AI" },
+    { name: "ChatGPT", logo: "https://static.vecteezy.com/system/resources/previews/021/059/827/non_2x/chatgpt-logo-chat-gpt-icon-on-white-background-free-vector.jpg", category: "AI" }
   ];
 
   const containerVariants = {
@@ -143,8 +192,18 @@ const RefinedHobbyProjects = () => {
     }
   };
 
+  const itemVariants = {
+    hidden: { opacity: 0, scale: 0.8, y: 20 },
+    visible: { 
+      opacity: 1, 
+      scale: 1,
+      y: 0,
+      transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }
+    }
+  };
+
   return (
-    <section id="hobby-projects" className="px-4 sm:px-6 lg:px-12 py-24 md:py-32 relative overflow-hidden">
+    <section id="hobby-projects" className="px-4 sm:px-6 lg:px-12 py-16 md:py-32 relative overflow-hidden">
       {/* Enhanced background with subtle animation */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-background via-blue/5 to-background" />
@@ -160,64 +219,124 @@ const RefinedHobbyProjects = () => {
         variants={containerVariants}
         className="max-w-[1800px] mx-auto relative z-10"
       >
-        {/* Modern header with animated accent - Matching "work" section */}
-        <div className="mb-12 md:mb-16">
-          <motion.span
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.4 } }
-            }}
-            className="inline-flex items-center gap-2 mb-3 md:mb-4"
-          >
-            <span className="w-6 md:w-8 h-[2px] bg-blue" />
-            <span className="text-blue font-medium tracking-wide text-xs md:text-sm">SIDE PROJECTS</span>
-          </motion.span>
+        {/* Consistent header format like other sections */}
+        <motion.span
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: { opacity: 1, y: 0, transition: { duration: 0.4 } }
+          }}
+          className="inline-flex items-center gap-2 mb-3 md:mb-4"
+        >
+          <span className="w-6 md:w-8 h-[2px] bg-blue" />
+          <span className="text-blue font-medium tracking-wide text-xs md:text-sm">PERSONAL PROJECTS</span>
+        </motion.span>
+        
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: { opacity: 1, y: 0, transition: { duration: 0.4, delay: 0.1 } }
+          }}
+          className="max-w-3xl mb-8 md:mb-16"
+        >
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display mb-3 md:mb-6">
+            Side Projects & Experiments
+          </h2>
+          
+          <p className="text-primary/60 text-base md:text-lg lg:text-xl leading-relaxed">
+            A collection of projects exploring AI, building tools for others, and experimenting with new technologies.
+          </p>
+        </motion.div>
+
+        {/* AI-Focused Projects Section */}
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.2 } }
+          }}
+          className="mb-16 md:mb-20"
+        >
+          <div className="flex items-center gap-3 mb-6 md:mb-8">
+            <div className="p-2 bg-violet/10 rounded-lg">
+              <Cpu className="w-5 h-5 text-violet" />
+            </div>
+            <h3 className="text-xl md:text-2xl font-display">AI-Powered Projects</h3>
+            <div className="flex-1 h-[1px] bg-gradient-to-r from-violet/20 to-transparent ml-4" />
+          </div>
           
           <motion.div
             variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.4 } }
+              hidden: { opacity: 0 },
+              visible: { 
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.1
+                }
+              }
             }}
-            className="max-w-3xl"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display mb-3 md:mb-6">
-              Personal Projects
-            </h2>
-            
-            <p className="text-primary/60 text-base md:text-lg lg:text-xl leading-relaxed">
-              A collection of projects I've built to explore new technologies and solve interesting problems. These represent my curiosity outside of work.
-            </p>
+            {aiProjects.map((project, index) => (
+              <CompactProjectCard 
+                key={project.title} 
+                project={project} 
+                index={index} 
+                isMobile={isMobile}
+                type="ai"
+                techLogos={techLogos}
+              />
+            ))}
           </motion.div>
-        </div>
+        </motion.div>
 
-        {/* Projects Grid - Improved layout with featured projects */}
+        {/* Client Sites Section */}
         <motion.div
           variants={{
-            hidden: { opacity: 0 },
-            visible: { 
-              opacity: 1,
-              transition: {
-                staggerChildren: 0.1
-              }
-            }
+            hidden: { opacity: 0, y: 20 },
+            visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.4 } }
           }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+          className="mb-16 md:mb-20"
         >
-          {hobbyProjects.map((project, index) => (
-            <ProjectCard 
-              key={project.title} 
-              project={project} 
-              index={index} 
-              isMobile={isMobile}
-            />
-          ))}
+          <div className="flex items-center gap-3 mb-6 md:mb-8">
+            <div className="p-2 bg-blue/10 rounded-lg">
+              <Globe className="w-5 h-5 text-blue" />
+            </div>
+            <h3 className="text-xl md:text-2xl font-display">Client Projects</h3>
+            <div className="flex-1 h-[1px] bg-gradient-to-r from-blue/20 to-transparent ml-4" />
+          </div>
+          
+          <motion.div
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { 
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.1
+                }
+              }
+            }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
+          >
+            {clientProjects.map((project, index) => (
+              <CompactProjectCard 
+                key={project.title} 
+                project={project} 
+                index={index} 
+                isMobile={isMobile}
+                type="client"
+                techLogos={techLogos}
+              />
+            ))}
+          </motion.div>
         </motion.div>
+
+        {/* Tech Stack Section */}
+        <TechStackSection techStack={techStack} />
         
-        {/* GitHub link with improved hover effect */}
+        {/* GitHub link */}
         <motion.div
           variants={{
             hidden: { opacity: 0, y: 10 },
-            visible: { opacity: 1, y: 0, transition: { delay: 0.3, duration: 0.4 } }
+            visible: { opacity: 1, y: 0, transition: { delay: 0.6, duration: 0.4 } }
           }}
           className="mt-12 md:mt-16 flex justify-center"
         >
@@ -225,10 +344,11 @@ const RefinedHobbyProjects = () => {
             href="https://github.com/goblinmasterlord"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-center gap-3 px-6 py-3 bg-primary/5 hover:bg-blue/10 rounded-full transition-all duration-300"
+            className="group flex items-center gap-3 px-6 py-3 bg-primary/5 hover:bg-blue/10 rounded-full transition-all duration-300 shadow-card hover:shadow-card-hover"
           >
-            <Github className="w-5 h-5 text-primary group-hover:text-blue transition-colors duration-300" />
-            <span className="text-primary font-medium group-hover:text-blue transition-colors duration-300">More projects on GitHub</span>
+            <Github className="w-4 h-4 text-primary group-hover:text-blue transition-colors duration-300" />
+            <span className="text-sm text-primary font-medium group-hover:text-blue transition-colors duration-300">Explore more on GitHub</span>
+            <ExternalLink className="w-3 h-3 text-primary/60 group-hover:text-blue/60 transition-colors duration-300" />
           </a>
         </motion.div>
       </motion.div>
@@ -236,13 +356,12 @@ const RefinedHobbyProjects = () => {
   );
 };
 
-// Enhanced Project Card with improved hover interactions
-const ProjectCard = ({ project, index, isMobile }) => {
+// Compact Project Card with vertical layout
+const CompactProjectCard = ({ project, index, isMobile, type, techLogos }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const [showAllTech, setShowAllTech] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   
-  // Simplified animation variants
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { 
@@ -255,108 +374,331 @@ const ProjectCard = ({ project, index, isMobile }) => {
     }
   };
 
+  const expandVariants = {
+    collapsed: { height: 0, opacity: 0 },
+    expanded: { 
+      height: "auto", 
+      opacity: 1,
+      transition: {
+        height: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] },
+        opacity: { duration: 0.3, delay: 0.1 }
+      }
+    }
+  };
+
+  const getTypeColor = () => {
+    return type === 'ai' ? 'violet' : 'blue';
+  };
+
+  const getTypeGradient = () => {
+    return type === 'ai' 
+      ? 'from-violet/20 via-purple/10 to-transparent' 
+      : 'from-blue/20 via-indigo/10 to-transparent';
+  };
+
   return (
     <motion.div
       variants={cardVariants}
-      className="group relative bg-primary/5 rounded-xl overflow-hidden border border-primary/10 hover:border-blue/20 transition-all duration-300 shadow-card hover:shadow-card-hover h-full flex flex-col"
+      className="group relative bg-white rounded-xl overflow-hidden border border-primary/10 hover:border-primary/20 transition-all duration-500 shadow-card hover:shadow-lg h-full flex flex-col"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => {
         setIsHovered(false);
-        setShowAllTech(false);
       }}
     >
-      {/* Media container with aspect ratio */}
+      {/* Gradient border effect */}
+      <div className={`absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 bg-gradient-to-br ${getTypeGradient()}`} />
+      
+      {/* Horizontal image container */}
       <div className="relative overflow-hidden">
         <div className="aspect-[16/9] overflow-hidden bg-gradient-to-br from-primary/5 to-primary/10">
-          {/* Main image with smooth transition */}
           {project.images && project.images[0] && (
             <img 
               src={project.images[0]} 
               alt={project.title} 
-              className={`w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.03] ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+              className={`w-full h-full object-cover object-center transition-all duration-700 group-hover:scale-105 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
               onLoad={() => setImageLoaded(true)}
             />
           )}
           
-          {/* Loading state */}
           {!imageLoaded && (
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-8 h-8 rounded-full border-2 border-t-blue border-r-transparent animate-spin"></div>
+              <div className={`w-5 h-5 rounded-full border-2 border-t-${getTypeColor()} border-r-transparent animate-spin`}></div>
             </div>
           )}
           
-          {/* Gradient overlay on hover - Matching "Some of my work" section */}
-          <div 
-            className="absolute inset-0 bg-gradient-to-br from-blue/20 via-indigo/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 z-10"
-          />
+          {/* Overlay gradient */}
+          <div className={`absolute inset-0 bg-gradient-to-br ${getTypeGradient()} opacity-0 group-hover:opacity-100 transition-all duration-500 z-10`} />
+          
+          {/* Project icon */}
+          <div className="absolute bottom-2 right-2 z-20">
+            <div className={`p-1.5 bg-white/90 backdrop-blur-sm rounded-lg shadow-md text-${getTypeColor()} transform group-hover:scale-110 transition-all duration-300`}>
+              {React.cloneElement(project.icon, { className: "w-3 h-3" })}
+            </div>
+          </div>
         </div>
       </div>
       
-      {/* Content with improved typography and spacing */}
-      <div className="p-5 flex-1 flex flex-col">
-        {/* Title with subtle hover effect - Matching "Some of my work" section */}
-        <h3 className="text-xl font-display text-primary group-hover:text-blue transition-colors duration-300 mb-2">
-          {project.title}
-        </h3>
-        
-        {/* Description with proper height */}
-        <div className="mb-4 flex-grow">
-          <p className="text-primary/70 text-sm leading-relaxed">
-            {project.description}
+      {/* Compact content */}
+      <div className="p-3 flex-1 flex flex-col relative z-10">
+        {/* Title */}
+        <div className="mb-2">
+          <h3 className={`text-sm font-display text-primary group-hover:text-${getTypeColor()} transition-colors duration-300 mb-1 line-clamp-1`}>
+            {project.title}
+          </h3>
+          
+          <p className="text-primary/70 text-xs leading-relaxed line-clamp-2">
+            {project.shortDescription}
           </p>
         </div>
         
-        {/* Technology tags with consistent styling */}
-        <div className="flex flex-wrap gap-1.5 mb-6">
-          {(showAllTech ? project.technologies : project.technologies.slice(0, 3)).map((tech, i) => (
-            <span 
+        {/* Compact technology tags with logos */}
+        <div className="flex flex-wrap gap-1 mb-3">
+          {project.technologies.map((tech, i) => (
+            <div 
               key={i} 
-              className="px-2 py-1 text-xs bg-primary/5 rounded-full text-primary/70 group-hover:bg-blue/10 group-hover:text-blue transform group-hover:translate-x-1 transition-all duration-300"
+              className={`flex items-center gap-1 px-2 py-1 text-xs bg-primary/5 rounded-md text-primary/70 group-hover:bg-${getTypeColor()}/10 group-hover:text-${getTypeColor()} transform group-hover:translate-x-0.5 transition-all duration-300`}
               style={{ transitionDelay: `${i * 50}ms` }}
             >
-              {tech}
-            </span>
+              {techLogos[tech] && (
+                <img 
+                  src={techLogos[tech]} 
+                  alt={tech}
+                  className="w-3 h-3 object-contain"
+                  onError={(e) => e.target.style.display = 'none'}
+                />
+              )}
+              <span className="truncate">{tech}</span>
+            </div>
           ))}
-          {!showAllTech && project.technologies.length > 3 && (
-            <motion.button
-              onClick={(e) => {
-                e.stopPropagation();
-                setShowAllTech(true);
-              }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-2 py-1 text-xs bg-primary/5 rounded-full text-primary/70 flex items-center gap-1 hover:bg-blue/10 hover:text-blue transition-all duration-300"
-            >
-              <Plus className="w-3 h-3" />
-              <span>{project.technologies.length - 3} more</span>
-            </motion.button>
-          )}
         </div>
 
-        {/* Action buttons with improved design */}
-        <div className="flex items-center gap-3 mt-auto">
-          <a
-            href={project.githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/5 hover:bg-blue/10 text-primary/80 hover:text-blue transition-all duration-300 text-sm font-medium shadow-button hover:shadow-button-hover"
-          >
-            <Github className="w-4 h-4" />
-            <span>GitHub</span>
-          </a>
-          
-          {project.liveUrl && (
+        {/* Expandable features section */}
+        <AnimatePresence>
+          {isExpanded && (
+            <motion.div
+              initial="collapsed"
+              animate="expanded"
+              exit="collapsed"
+              variants={expandVariants}
+              className="overflow-hidden mb-3"
+            >
+              <div className="pt-2 border-t border-primary/10">
+                <h4 className="text-xs font-medium text-primary/80 mb-1">Key Features</h4>
+                <ul className="space-y-1">
+                  {project.features.slice(0, 3).map((feature, i) => (
+                    <motion.li
+                      key={i}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.1 }}
+                      className="flex items-start gap-1.5 text-xs text-primary/70"
+                    >
+                      <div className={`w-1 h-1 rounded-full bg-${getTypeColor()} mt-1 flex-shrink-0`} />
+                      <span className="line-clamp-1">{feature}</span>
+                    </motion.li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Compact action buttons */}
+        <div className="flex items-center justify-between mt-auto">
+          <div className="flex items-center gap-1">
             <a
-              href={project.liveUrl}
+              href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-blue/10 text-blue hover:bg-blue/20 transition-all duration-300 text-sm font-medium shadow-button-blue"
+              className={`flex items-center gap-1 px-2 py-1 rounded-md bg-primary/5 hover:bg-${getTypeColor()}/10 text-primary/80 hover:text-${getTypeColor()} transition-all duration-300 text-xs`}
             >
-              <ExternalLink className="w-4 h-4" />
-              <span>Demo</span>
+              <Github className="w-3 h-3" />
+              <span>Code</span>
             </a>
-          )}
+            
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`flex items-center gap-1 px-2 py-1 rounded-md bg-${getTypeColor()}/10 text-${getTypeColor()} hover:bg-${getTypeColor()}/20 transition-all duration-300 text-xs`}
+              >
+                <ExternalLink className="w-3 h-3" />
+                <span>Live</span>
+              </a>
+            )}
+          </div>
+
+          {/* Compact expand/collapse button */}
+          <motion.button
+            onClick={() => setIsExpanded(!isExpanded)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className={`p-1 rounded-md bg-primary/5 hover:bg-${getTypeColor()}/10 text-primary/60 hover:text-${getTypeColor()} transition-all duration-300`}
+          >
+            <motion.div
+              animate={{ rotate: isExpanded ? 180 : 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <ChevronDown className="w-3 h-3" />
+            </motion.div>
+          </motion.button>
         </div>
+      </div>
+    </motion.div>
+  );
+};
+
+// Creative Tech Stack Section Component
+const TechStackSection = ({ techStack }) => {
+  const [sectionRef, sectionInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1
+  });
+
+  const containerVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        staggerChildren: 0.05
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, scale: 0.8, y: 20 },
+    visible: { 
+      opacity: 1, 
+      scale: 1,
+      y: 0,
+      transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }
+    }
+  };
+
+  return (
+    <motion.div
+      ref={sectionRef}
+      initial="hidden"
+      animate={sectionInView ? "visible" : "hidden"}
+      variants={containerVariants}
+      className="mb-20 md:mb-24 relative"
+    >
+      {/* Creative background with blur effect */}
+      <div className="absolute inset-0 -mx-4 sm:-mx-6 lg:-mx-12 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-blue/5 to-violet/5 backdrop-blur-3xl" />
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cGF0aCBkPSJNNDAgMEgwdjQwaDQwVjB6TTIgMmgzNnYzNkgyVjJ6IiBmaWxsPSIjMjAyMDIwIiBmaWxsLW9wYWNpdHk9IjAuMDMiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==')] opacity-30" />
+        
+        {/* Floating elements */}
+        <div className="colorful-blob w-[300px] h-[300px] -top-[100px] -right-[100px] bg-blue/10 animate-float-slow" />
+        <div className="colorful-blob w-[400px] h-[400px] -bottom-[150px] -left-[150px] bg-violet/10 animate-float-medium" />
+        <div className="colorful-blob w-[200px] h-[200px] top-[50%] left-[20%] bg-indigo/10 animate-pulse-slow" />
+      </div>
+
+      <div className="relative z-10 px-4 sm:px-6 lg:px-12 py-16 md:py-20">
+        {/* Header */}
+        <div className="text-center mb-12 md:mb-16">
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+            }}
+            className="inline-flex items-center gap-2 mb-4"
+          >
+            <div className="p-2 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg">
+              <Code className="w-5 h-5 text-indigo" />
+            </div>
+            <span className="text-indigo font-medium tracking-wide text-sm">TECH STACK</span>
+          </motion.div>
+          
+          <motion.h3
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.1 } }
+            }}
+            className="text-3xl md:text-4xl font-display mb-4"
+          >
+            Technologies I Love
+          </motion.h3>
+          
+          <motion.p
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.2 } }
+            }}
+            className="text-primary/60 text-lg max-w-2xl mx-auto"
+          >
+            The tools and frameworks that power my creative process
+          </motion.p>
+        </div>
+
+        {/* Tech logos in a creative floating layout */}
+        <motion.div
+          variants={containerVariants}
+          className="relative max-w-5xl mx-auto"
+        >
+          {/* Main grid with better alignment */}
+          <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-13 gap-4 md:gap-6 items-center justify-items-center">
+            {techStack.map((tech, index) => (
+              <motion.div
+                key={tech.name}
+                variants={itemVariants}
+                whileHover={{ 
+                  scale: 1.2, 
+                  y: -8,
+                  transition: { duration: 0.2, ease: "easeOut" }
+                }}
+                className="group relative"
+              >
+                <div className="relative">
+                  {/* Glow effect */}
+                  <div className="absolute inset-0 bg-white/20 rounded-2xl blur-xl scale-150 opacity-0 group-hover:opacity-100 transition-all duration-500" />
+                  
+                  {/* Logo container */}
+                  <div className="relative w-12 h-12 md:w-16 md:h-16 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center border border-white/20">
+                    <img 
+                      src={tech.logo} 
+                      alt={tech.name}
+                      className="w-6 h-6 md:w-8 md:h-8 object-contain filter group-hover:brightness-110 transition-all duration-300"
+                      onError={(e) => {
+                        // Fallback for missing logos
+                        e.target.style.display = 'none';
+                        e.target.nextSibling.style.display = 'flex';
+                      }}
+                    />
+                    {/* Fallback text */}
+                    <div className="hidden w-full h-full items-center justify-center text-xs font-medium text-primary/70">
+                      {tech.name.charAt(0)}
+                    </div>
+                  </div>
+                  
+                  {/* Tooltip */}
+                  <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-20">
+                    <div className="bg-primary text-white text-xs px-3 py-2 rounded-lg whitespace-nowrap shadow-xl backdrop-blur-sm">
+                      {tech.name}
+                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-primary"></div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Bottom text */}
+        <motion.div
+          variants={{
+            hidden: { opacity: 0 },
+            visible: { opacity: 1, transition: { delay: 0.8, duration: 0.5 } }
+          }}
+          className="text-center mt-12 md:mt-16"
+        >
+          <p className="text-primary/50 text-sm">
+            Always exploring new technologies and staying current with industry trends
+          </p>
+        </motion.div>
       </div>
     </motion.div>
   );
