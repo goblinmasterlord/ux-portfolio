@@ -6,7 +6,7 @@ const ProjectSolution = ({ solutions }) => {
   const [ref, controls] = useScrollAnimation();
 
   return (
-    <section className="px-6 lg:px-12 py-32">
+    <section className="px-6 lg:px-12 py-32 bg-light">
       <motion.div 
         ref={ref}
         initial="hidden"
@@ -36,7 +36,7 @@ const ProjectSolution = ({ solutions }) => {
                 className="relative"
               >
                 <div className="flex items-center gap-4 mb-6">
-                  <span className="flex-shrink-0 w-12 h-12 rounded-full bg-accent/10 text-accent flex items-center justify-center font-display">
+                  <span className="flex-shrink-0 w-12 h-12 rounded-full bg-blue/20 text-blue flex items-center justify-center font-display">
                     {index + 1}
                   </span>
                   <h3 className="text-xl font-display">{solution.title}</h3>
@@ -57,7 +57,7 @@ const ProjectSolution = ({ solutions }) => {
                         }}
                         className="flex items-start gap-3 group"
                       >
-                        <span className="flex-shrink-0 w-6 h-6 rounded-full bg-accent/10 text-accent flex items-center justify-center mt-0.5 group-hover:bg-accent group-hover:text-background transition-all duration-300">
+                        <span className="flex-shrink-0 w-6 h-6 rounded-full bg-blue/10 text-blue flex items-center justify-center mt-0.5 group-hover:bg-blue group-hover:text-white transition-all duration-300">
                           <Check className="w-3 h-3" />
                         </span>
                         <p className="text-primary/80 group-hover:text-primary transition-colors duration-300">

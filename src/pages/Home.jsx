@@ -1,17 +1,24 @@
-import { useState, useEffect, memo } from 'react';
-import { Link } from 'react-router-dom';
-import { Menu, X, ArrowUpRight, MousePointer2, Sparkles, Lightbulb, Layers, Bot, Scale, ShoppingCart, BarChart2, MessageSquare, HeadphonesIcon, Mail, ShoppingBag, Share2, Briefcase, Compass } from 'lucide-react';
+import { useState, useEffect, memo, useRef } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { 
+  Menu, X, ArrowUpRight, MousePointer2, Sparkles, Lightbulb, 
+  Layers, Bot, Scale, ShoppingCart, BarChart2, MessageSquare, 
+  HeadphonesIcon, Mail, ShoppingBag, Share2, Briefcase, Compass, 
+  Zap, Users, ArrowRight 
+} from 'lucide-react';
 import paynanceImage1 from '../assets/projects/paynance-1.png';
 import paynanceImage2 from '../assets/projects/paynance-2.png';
 import loccocityImage1 from '../assets/projects/loccocity.png';
 import everproveImage from '../assets/projects/everprove.png';
 import { motion } from 'framer-motion';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
-import { ArrowRight } from 'lucide-react';
-import ProcessSection from '../components/ProcessSection';
+import { useEnhancedScrollAnimation } from '../hooks/useEnhancedScrollAnimation';
 import AiSection from '../components/AiSection';
+import RefinedHobbyProjects from '../components/RefinedHobbyProjects';
+import ProtectedContact from '../components/ProtectedContact';
+import CreativeHero from '../components/CreativeHero';
 
-// Add these animation variants right after imports
+// Animation variants
 const fadeInUp = {
   hidden: { opacity: 0, y: 60 },
   visible: { 
@@ -39,7 +46,6 @@ const staggerContainer = {
   }
 };
 
-// Update the animation variants
 const fadeInScale = {
   hidden: { 
     opacity: 0,
@@ -55,145 +61,180 @@ const fadeInScale = {
   }
 };
 
-// Project Card Component
+// Project Card Component with enhanced animations
 const ProjectCard = memo(({ project, index }) => {
-  return (
-    <Link 
-      to={project.comingSoon ? '#' : project.path}
-      className="group relative flex flex-col lg:flex-row gap-8 p-6 rounded-2xl hover:bg-primary/5 transition-all duration-500"
-    >
-      {/* Subtle gradient border on hover */}
-      <div 
-        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500"
-        style={{
-          background: 'linear-gradient(45deg, var(--color-accent/0.05), transparent)',
-          backdropFilter: 'blur(2px)'
-        }}
-      />
-
-      {/* Image Container - Now smaller and more refined */}
-      <div className="relative w-full lg:w-[320px] shrink-0">
-        <div className="relative overflow-hidden rounded-xl aspect-[4/3]">
-          {/* Gradient overlay on hover */}
-          <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 z-10" />
-          
-          <img 
-            src={project.image} 
-            alt={project.title} 
-            className={`w-full h-full object-cover transform group-hover:scale-[1.02] transition-all duration-700 
-              ${project.comingSoon ? 'grayscale' : ''}`}
-          />
-          
-          {/* Category badge - now overlaid on image */}
-          <div className="absolute top-3 left-3 px-3 py-1.5 bg-background/90 backdrop-blur-sm rounded-full">
-            <span className="text-accent text-sm">{project.category}</span>
-          </div>
-
-          {project.comingSoon && (
-            <div className="absolute inset-0 flex items-center justify-center bg-primary/10 backdrop-blur-sm">
-              <span className="text-primary/60 text-sm font-medium">Coming Soon</span>
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* Content - Now with better hierarchy */}
-      <div className="relative flex-1 flex flex-col">
-        <div className="mb-auto">
-          {/* Year */}
-          <span className="text-primary/40 text-sm mb-2 block">{project.year}</span>
-          
-          {/* Title */}
-          <h3 className="text-2xl font-display mb-3 group-hover:text-accent transition-colors duration-300">
-            {project.title}
-          </h3>
-          
-          {/* Description */}
-          <p className="text-primary/60 text-base leading-relaxed mb-6">
-            {project.description}
-          </p>
-
-          {/* Tags - Now with subtle animation */}
-          <div className="flex flex-wrap gap-2 mb-6">
-            {project.tags.map((tag, i) => (
-              <span 
-                key={i}
-                className="px-3 py-1 text-sm bg-primary/5 rounded-full text-primary/60 
-                  transform group-hover:translate-x-1 transition-all duration-300"
-                style={{ transitionDelay: `${i * 50}ms` }}
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Stats with refined design */}
-        {project.stats && (
-          <div className="flex flex-wrap gap-6 pt-6 border-t border-primary/10">
-            {Object.entries(project.stats).map(([key, value]) => (
-              <div key={key} className="space-y-1">
-                <div className="text-lg font-display text-accent">{value}</div>
-                <div className="text-sm text-primary/40 capitalize">{key}</div>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* Floating CTA */}
-        {!project.comingSoon && (
-          <div className="absolute top-0 right-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
-            <div className="flex items-center gap-2 px-4 py-2 bg-accent/10 rounded-full text-accent">
-              <span className="text-sm">View Case Study</span>
-              <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
-            </div>
-          </div>
-        )}
-      </div>
-    </Link>
-  );
-});
-
-// Service Card Component
-const ServiceCard = memo(({ service }) => {
-  const [ref, controls] = useScrollAnimation();
+  const [cardRef, cardControls, cardVariants] = useEnhancedScrollAnimation('fadeUp', { 
+    threshold: 0.1,
+    triggerOnce: true
+  });
 
   return (
     <motion.div
-      ref={ref}
+      ref={cardRef}
       initial="hidden"
-      animate={controls}
-      variants={fadeInScale}
-      className="group relative p-6 rounded-xl bg-primary/5 hover:bg-primary/10 transition-all duration-500"
+      animate={cardControls}
+      variants={{
+        hidden: { opacity: 0, y: 40 },
+        visible: { 
+          opacity: 1, 
+          y: 0, 
+          transition: { 
+            duration: 0.8, 
+            delay: index * 0.1, 
+            ease: [0.25, 1, 0.5, 1] 
+          }
+        }
+      }}
+      className="w-full"
+    >
+      <Link
+        to={project.comingSoon ? '#' : project.path}
+        className="group relative block rounded-xl md:rounded-2xl bg-primary/5 hover:bg-primary/10 transition-all duration-500 shadow-card hover:shadow-card-hover overflow-hidden border border-primary/10 hover:border-blue/20"
+      >
+        {/* Enhanced gradient border on hover */}
+        <div
+          className="absolute inset-0 rounded-xl md:rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500"
+          style={{
+            background: 'linear-gradient(45deg, var(--color-blue/0.1), var(--color-violet/0.1))',
+            backdropFilter: 'blur(2px)'
+          }}
+        />
+
+        <div className="flex flex-col lg:flex-row">
+          {/* Image Container - Fixed dimensions and consistent padding */}
+          <div className="relative w-full lg:w-[320px] lg:min-w-[320px] lg:max-w-[320px] h-[240px] lg:h-auto">
+            <div className="absolute inset-0 m-4 sm:m-6 overflow-hidden rounded-lg md:rounded-xl shadow-md">
+              {/* Enhanced gradient overlay on hover */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue/20 via-indigo/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 z-10" />
+
+              <img
+                src={project.image}
+                alt={project.title}
+                className={`w-full h-full object-cover transform group-hover:scale-[1.03] transition-all duration-700 
+                  ${project.comingSoon ? 'grayscale' : ''}`}
+              />
+
+              {/* Category badge */}
+              <div className="absolute top-2 left-2 px-2 md:px-3 py-1 md:py-1.5 bg-background/90 backdrop-blur-sm rounded-full shadow-sm">
+                <span className="text-blue text-xs md:text-sm">{project.category}</span>
+              </div>
+
+              {project.comingSoon && (
+                <div className="absolute inset-0 flex items-center justify-center bg-primary/10 backdrop-blur-sm">
+                  <span className="text-primary/60 text-sm font-medium">Coming Soon</span>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Content - Ensure proper spacing from image */}
+          <div className="relative flex-1 flex flex-col p-4 sm:p-6 pt-0 lg:pt-6">
+            <div className="mb-auto">
+              {/* Year */}
+              <span className="text-primary/40 text-xs md:text-sm mb-1 md:mb-2 block">{project.year}</span>
+
+              {/* Title - Subtle hover effect */}
+              <h3 className="text-xl md:text-2xl font-display mb-2 md:mb-3 group-hover:text-blue transition-colors duration-300">
+                {project.title}
+              </h3>
+
+              {/* Description */}
+              <p className="text-primary/60 text-sm md:text-base leading-relaxed mb-4 md:mb-6">
+                {project.description}
+              </p>
+
+              {/* Tags - Enhanced hover effect */}
+              <div className="flex flex-wrap gap-1.5 md:gap-2 mb-4 md:mb-6">
+                {project.tags.map((tag, i) => (
+                  <span
+                    key={i}
+                    className="px-2 md:px-3 py-0.5 md:py-1 text-xs bg-primary/5 rounded-full text-primary/60 
+                      group-hover:bg-blue/10 group-hover:text-blue transform group-hover:translate-x-1 transition-all duration-300"
+                    style={{ transitionDelay: `${i * 50}ms` }}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Floating CTA - Enhanced */}
+            {!project.comingSoon && (
+              <div className="mt-4 lg:mt-6">
+                <span
+                  className="group inline-flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-1.5 md:py-2 bg-blue/10 rounded-full text-blue hover:bg-blue/20 transition-all duration-300 shadow-button-blue"
+                >
+                  <span className="text-xs md:text-sm">View Case Study</span>
+                  <ArrowRight className="w-3.5 h-3.5 md:w-4 md:h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
+                </span>
+              </div>
+            )}
+          </div>
+        </div>
+      </Link>
+    </motion.div>
+  );
+});
+
+// Service Card Component with enhanced animations
+const ServiceCard = memo(({ service, index }) => {
+  const [cardRef, cardControls, cardVariants] = useEnhancedScrollAnimation('scale', { 
+    threshold: 0.1,
+    initialScale: 0.95,
+    triggerOnce: true
+  });
+
+  return (
+    <motion.div
+      ref={cardRef}
+      initial="hidden"
+      animate={cardControls}
+      variants={{
+        hidden: { 
+          opacity: 0,
+          scale: 0.98
+        },
+        visible: { 
+          opacity: 1,
+          scale: 1,
+          transition: { 
+            duration: 0.5,
+            delay: index * 0.1,
+            ease: [0.25, 1, 0.5, 1]
+          }
+        }
+      }}
+      className="group relative p-4 sm:p-6 rounded-lg md:rounded-xl bg-primary/5 hover:bg-primary/10 transition-all duration-500 shadow-card hover:shadow-card-hover border border-primary/10 hover:border-blue/20"
     >
       {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-accent/0 via-accent/5 to-accent/0 opacity-0 group-hover:opacity-100 transition-all duration-500" />
+      <div className="absolute inset-0 rounded-lg md:rounded-xl bg-gradient-to-br from-blue/5 via-indigo/5 to-violet/5 opacity-0 group-hover:opacity-100 transition-all duration-500" />
       
-      <div className="relative z-10 flex gap-4">
+      <div className="relative z-10 flex gap-3 md:gap-4">
         {/* Icon */}
-        <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center shrink-0">
-          <div className="text-accent">
+        <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-blue/10 flex items-center justify-center shrink-0 group-hover:bg-blue/20 transition-all duration-300 shadow-blue-sm">
+          <div className="text-blue">
             {service.icon}
           </div>
         </div>
 
         <div>
           {/* Title */}
-          <h4 className="text-xl font-display text-primary mb-2 group-hover:text-accent transition-colors duration-300">
+          <h4 className="text-lg md:text-xl font-display text-primary mb-1.5 md:mb-2 group-hover:text-blue transition-colors duration-300">
             {service.title}
           </h4>
           
           {/* Description */}
-          <p className="text-primary/60 text-sm mb-3 leading-relaxed">
+          <p className="text-primary/60 text-xs md:text-sm mb-2 md:mb-3 leading-relaxed">
             {service.description}
           </p>
 
           {/* Features as inline tags */}
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5 md:gap-2">
             {service.features.map((feature, index) => (
               <span 
                 key={index}
-                className="px-2 py-1 text-xs bg-primary/5 rounded-full text-primary/60"
+                className="px-2 py-0.5 md:py-1 text-xs bg-primary/5 rounded-full text-primary/60 group-hover:bg-blue/10 group-hover:text-blue transform group-hover:translate-x-1 transition-all duration-300"
+                style={{ transitionDelay: `${index * 50}ms` }}
               >
                 {feature}
               </span>
@@ -205,71 +246,21 @@ const ServiceCard = memo(({ service }) => {
   );
 });
 
-const Hero = () => {
-  return (
-    <section className="min-h-screen px-6 lg:px-12 flex flex-col justify-center relative overflow-hidden">
-      {/* Simple animated gradient background */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 -left-1/4 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl animate-slow-drift" />
-        <div className="absolute bottom-1/4 -right-1/4 w-[600px] h-[600px] bg-[#00FF9D]/5 rounded-full blur-3xl animate-slow-drift-reverse" />
-      </div>
-
-      {/* Main content */}
-      <div className="max-w-[1800px] mx-auto relative z-10">
-        <div className="space-y-6">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-display">
-            Hey, I'm Marci 👋
-            <br />
-            I make digital products{' '}
-            <span className="text-[#00FF9D] relative inline-block">
-              people love
-            </span>
-          </h1>
-          
-          <p className="text-primary/60 text-lg md:text-xl max-w-[600px] leading-relaxed">
-            I help companies build products that are simple to use and a joy to 
-            interact with. 
-          </p>
-
-          {/* CTA Buttons */}
-          <div className="flex items-center gap-6 pt-4">
-            <Link 
-              to="#work"
-              className="group inline-flex items-center gap-2 px-6 py-3 bg-[#00FF9D] text-background 
-                rounded-full hover:bg-[#00FF9D]/90 transition-all duration-300"
-            >
-              Check out my work
-              <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
-            </Link>
-            
-            <Link 
-              to="#contact"
-              className="group inline-flex items-center gap-2 text-primary/60 hover:text-primary 
-                transition-colors duration-300"
-            >
-              Let's talk
-              <ArrowUpRight className="w-4 h-4 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
-            </Link>
-          </div>
-
-          {/* Experience Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-20">
-            <div>
-              <h3 className="text-2xl md:text-3xl font-display mb-1">6+ Years</h3>
-              <p className="text-primary/60">Building cool stuff</p>
-            </div>
-            <div>
-              <h3 className="text-2xl md:text-3xl font-display mb-1">20+ Projects</h3>
-              <p className="text-primary/60">Shipped & loved</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
 const Home = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    // Check if we have a scrollTo parameter in the state
+    if (location.state?.scrollTo) {
+      const element = document.getElementById(location.state.scrollTo);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      // Clear the state after scrolling
+      window.history.replaceState({}, document.title);
+    }
+  }, [location]);
+
   const projects = [
     {
       title: "Paynance Banking Platform",
@@ -428,10 +419,10 @@ const Home = () => {
 
   return (
     <main className="bg-background">
-      <Hero />
+      <CreativeHero />
 
       {/* Work Section */}
-      <section id="work" className="px-6 lg:px-12 py-32 bg-background">
+      <section id="work" className="px-4 sm:px-6 lg:px-12 py-16 md:py-32 bg-background">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -440,120 +431,100 @@ const Home = () => {
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 mb-4"
+            className="inline-flex items-center gap-2 mb-3 md:mb-4"
           >
-            <span className="w-8 h-[2px] bg-accent" />
-            <span className="text-accent font-medium tracking-wide">SELECTED WORK</span>
+            <span className="w-6 md:w-8 h-[2px] bg-blue" />
+            <span className="text-blue font-medium tracking-wide text-xs md:text-sm">SELECTED WORK</span>
           </motion.span>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="max-w-3xl mb-16"
+            className="max-w-3xl mb-8 md:mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-display mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display mb-3 md:mb-6">
               Some of my work
             </h2>
-            <p className="text-primary/60 text-lg md:text-xl leading-relaxed">
+            <p className="text-primary/60 text-base md:text-lg lg:text-xl leading-relaxed">
               Here are some of the favorite projects I've worked on. Each one was a unique challenge solved with unique solutions and close collaboration with amazing teams.
             </p>
           </motion.div>
 
-          <div className="space-y-6">
+          <div className="space-y-4 md:space-y-6">
             {projects.map((project, index) => (
-              <ProjectCard key={index} project={project} index={index + 1} />
+              <ProjectCard key={index} project={project} index={index} />
             ))}
           </div>
         </motion.div>
       </section>
 
-      {/* Services Section */}
-      <section id="services" className="px-6 lg:px-12 py-32 bg-background/50">
+      {/* Highly Enhanced Hobby Projects Section */}
+      <RefinedHobbyProjects />
+
+      {/* Services Section with enhanced animations */}
+      <section id="services" className="px-4 sm:px-6 lg:px-12 py-16 md:py-32 bg-background/50">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           className="max-w-[1800px] mx-auto"
         >
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 mb-4"
+            className="inline-flex items-center gap-2 mb-3 md:mb-4"
           >
-            <span className="w-8 h-[2px] bg-accent" />
-            <span className="text-accent font-medium tracking-wide">SERVICES</span>
+            <span className="w-6 md:w-8 h-[2px] bg-blue" />
+            <span className="text-blue font-medium tracking-wide text-xs md:text-sm">SERVICES</span>
           </motion.span>
 
-          <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-16">
-            <div className="max-w-2xl">
-              <h2 className="text-4xl md:text-5xl font-display text-primary mb-6">
-                How I Can Help
-              </h2>
-              <p className="text-primary/60 text-lg leading-relaxed">
-                I bring a structured approach to challenges while keeping things practical and focused on results.
-              </p>
-            </div>
-          </div>
-
-          {/* Services Grid */}
-          <div className="grid md:grid-cols-2 gap-4 mb-16">
-            {services.map((service, index) => (
-              <ServiceCard key={index} service={service} />
-            ))}
-          </div>
-
-          {/* CTA Section */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="flex flex-col items-center text-center pt-8 border-t border-primary/10"
+            transition={{ delay: 0.1 }}
+            className="max-w-3xl mb-8 md:mb-16"
           >
-            <h3 className="text-2xl md:text-3xl font-display mb-4">
-              Ready to start your next project?
-            </h3>
-            <p className="text-primary/60 mb-8 max-w-xl">
-              Let's discuss how we can work together to create something amazing.
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display mb-3 md:mb-6">
+              How can I help?
+            </h2>
+            <p className="text-primary/60 text-base md:text-lg lg:text-xl leading-relaxed">
+              I offer a range of services to help businesses create better digital experiences. Here's how we can work together:
             </p>
-            <Link
-              to="/contact"
-              className="group inline-flex items-center gap-2 px-6 py-3 bg-accent text-background rounded-full hover:bg-accent/90 transition-colors duration-300"
-            >
-              Start a Conversation
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-            </Link>
           </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            {services.map((service, index) => (
+              <ServiceCard key={index} service={service} index={index} />
+            ))}
+          </div>
         </motion.div>
       </section>
 
-      {/* Add the Process Section here */}
-      <ProcessSection />
-
       {/* AI Section */}
-      <section id="ai" className="px-6 lg:px-12 py-32 bg-background">
-        <AiSection />
-      </section>
+      <AiSection />
 
       {/* Contact Section */}
-      <motion.section id="contact" className="px-6 lg:px-12 py-32 bg-background text-primary">
+      <motion.section id="contact" className="px-4 sm:px-6 lg:px-12 py-16 md:py-32 bg-background text-primary">
         <div className="max-w-[1800px] mx-auto">
-          <h2 className="text-primary/30 text-sm font-medium tracking-wider mb-4">GET IN TOUCH</h2>
-          <div className="flex flex-col md:flex-row justify-between items-start gap-4">
-            <h3 className="text-4xl md:text-5xl font-display text-primary max-w-2xl">
-              Let's create something amazing together
-            </h3>
-            <div className="space-y-4">
-              <p className="text-primary/60">Email: marci.mocsonoky@gmail.com</p>
-              <p className="text-primary/60">Phone: +36202312384</p>
-              <a 
-                href="mailto:marci.mocsonoky@gmail.com" 
-                className="group flex items-center gap-2 text-accent hover:text-primary transition-colors duration-300"
-              >
-                Send an Email
-                <ArrowUpRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-              </a>
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center gap-2 mb-3 md:mb-4"
+          >
+            <span className="w-6 md:w-8 h-[2px] bg-blue" />
+            <span className="text-blue font-medium tracking-wide text-xs md:text-sm">GET IN TOUCH</span>
+          </motion.span>
+          
+          <div className="flex flex-col md:flex-row justify-between items-start gap-8 md:gap-12">
+            <div className="max-w-2xl">
+              <h3 className="text-3xl sm:text-4xl md:text-5xl font-display text-primary mb-3 md:mb-6">
+                Let's create something amazing together
+              </h3>
+              <p className="text-primary/60 text-base md:text-lg leading-relaxed">
+                Have a project in mind? Let's discuss how we can work together to bring your ideas to life.
+              </p>
             </div>
+            <ProtectedContact />
           </div>
         </div>
       </motion.section>

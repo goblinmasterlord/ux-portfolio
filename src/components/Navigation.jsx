@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, ArrowUpRight } from 'lucide-react';
+import { Menu, X, ChevronDown, ArrowUpRight, Code } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Navigation = () => {
@@ -8,6 +8,22 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
+
+  // Scroll to section function
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+      setIsOpen(false);
+      setShowDropdown(false);
+    } else if (location.pathname !== '/') {
+      // If we're not on the home page, navigate to home and then scroll
+      window.location.href = `/#${sectionId}`;
+    }
+  };
 
   const projects = [
     {
@@ -56,12 +72,12 @@ const Navigation = () => {
             onClick={() => setShowDropdown(false)}
           >
             <div className="flex-1">
-              <h3 className="font-display text-lg group-hover:text-accent transition-colors duration-300">
+              <h3 className="font-display text-lg group-hover:text-blue transition-colors duration-300">
                 {project.title}
               </h3>
               <p className="text-sm text-primary/60">{project.description}</p>
             </div>
-            <ArrowUpRight className="w-5 h-5 text-primary/40 group-hover:text-accent transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+            <ArrowUpRight className="w-5 h-5 text-primary/40 group-hover:text-blue transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
           </Link>
         ))}
       </div>
@@ -75,7 +91,7 @@ const Navigation = () => {
       animate={{ x: 0 }}
       exit={{ x: '100%' }}
       transition={{ type: "spring", bounce: 0, duration: 0.4 }}
-      className="fixed inset-y-0 right-0 w-full max-w-[400px] bg-background border-l border-primary/10 p-6 shadow-xl"
+      className="fixed inset-y-0 right-0 w-full max-w-[400px] bg-background border-l border-primary/10 p-6 shadow-2xl"
     >
       <div className="flex flex-col h-full">
         <div className="flex justify-end mb-8">
@@ -83,7 +99,7 @@ const Navigation = () => {
             onClick={() => setIsOpen(false)}
             className="p-2 hover:bg-primary/5 rounded-full transition-colors duration-300"
           >
-            <X className="w-6 h-6" />
+            <X className="w-6 h-6 text-primary/60" />
           </button>
         </div>
         
@@ -99,14 +115,36 @@ const Navigation = () => {
                   onClick={() => setIsOpen(false)}
                 >
                   <div>
-                    <h3 className="font-display text-lg group-hover:text-accent transition-colors duration-300">
+                    <h3 className="font-display text-lg group-hover:text-blue transition-colors duration-300">
                       {project.title}
                     </h3>
                     <p className="text-sm text-primary/60">{project.description}</p>
                   </div>
-                  <ArrowUpRight className="w-5 h-5 text-primary/40 group-hover:text-accent transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  <ArrowUpRight className="w-5 h-5 text-primary/40 group-hover:text-blue transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
                 </Link>
               ))}
+            </div>
+          </div>
+          
+          {/* Hobby Projects Link in Mobile */}
+          <div className="space-y-2">
+            <h3 className="text-primary/40 text-sm font-medium px-4">Personal Work</h3>
+            <div className="space-y-1">
+              <button
+                onClick={() => scrollToSection('hobby-projects')}
+                className="group flex items-center justify-between w-full text-left p-4 rounded-xl hover:bg-primary/5 transition-all duration-300"
+              >
+                <div className="flex items-center gap-3">
+                  <Code className="w-5 h-5 text-blue" />
+                  <div>
+                    <h3 className="font-display text-lg group-hover:text-blue transition-colors duration-300">
+                      Hobby Projects
+                    </h3>
+                    <p className="text-sm text-primary/60">Creative coding experiments</p>
+                  </div>
+                </div>
+                <ArrowUpRight className="w-5 h-5 text-primary/40 group-hover:text-blue transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+              </button>
             </div>
           </div>
         </div>
@@ -140,7 +178,7 @@ const Navigation = () => {
             <div className="relative">
               <button
                 onClick={() => setShowDropdown(!showDropdown)}
-                className="flex items-center gap-2 text-primary/60 hover:text-accent transition-colors duration-300"
+                className="flex items-center gap-2 text-primary/60 hover:text-blue transition-colors duration-300"
               >
                 Work
                 <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${showDropdown ? 'rotate-180' : ''}`} />
@@ -149,9 +187,18 @@ const Navigation = () => {
                 {showDropdown && <DropdownMenu />}
               </AnimatePresence>
             </div>
+            
+            {/* Hobby Projects Link in Desktop */}
+            <button
+              onClick={() => scrollToSection('hobby-projects')}
+              className="flex items-center gap-2 text-primary/60 hover:text-blue transition-colors duration-300"
+            >
+              Hobby Projects
+            </button>
+            
             <Link 
               to="/contact" 
-              className="text-primary/60 hover:text-accent transition-colors duration-300"
+              className="text-primary/60 hover:text-blue transition-colors duration-300"
             >
               Contact
             </Link>
