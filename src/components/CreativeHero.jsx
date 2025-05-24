@@ -128,8 +128,8 @@ const CreativeHero = () => {
     };
 
     return (
-      <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-display font-black leading-tight mb-2">
-        <div className="overflow-hidden mb-3 md:mb-4">
+      <h1 className="text-hero mb-4 md:mb-6">
+        <div className="overflow-hidden mb-2 md:mb-3">
           {isMobile ? renderSimpleText("Hey, I'm Marci") : renderInteractiveText("Hey, I'm Marci")}
           <motion.span
             className="inline-block ml-2 md:ml-4"
@@ -139,7 +139,7 @@ const CreativeHero = () => {
             👋
           </motion.span>
         </div>
-        <div className="overflow-hidden mb-3 md:mb-4">
+        <div className="overflow-hidden mb-2 md:mb-3">
           {isMobile ? renderSimpleText("I make digital products") : renderInteractiveText("I make digital products")}
         </div>
         <div className="overflow-hidden relative">
@@ -147,7 +147,7 @@ const CreativeHero = () => {
           <span className="relative inline-block">
             <motion.span
               initial={{ opacity: 1 }}
-              className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-blue to-violet font-bold"
+              className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-blue to-violet font-black"
             >
               love
             </motion.span>
@@ -155,7 +155,7 @@ const CreativeHero = () => {
               initial={{ scaleX: 0, opacity: 0 }}
               animate={{ scaleX: 1, opacity: 1 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              className="absolute -bottom-1 md:-bottom-2 left-0 right-0 h-1 md:h-2 bg-gradient-to-r from-blue via-violet to-purple opacity-70 rounded-full"
+              className="absolute -bottom-1 md:-bottom-2 left-0 right-0 h-1 md:h-2 bg-gradient-to-r from-blue via-violet to-purple opacity-80 rounded-full"
               style={{ transformOrigin: "left" }}
             />
           </span>
@@ -207,11 +207,11 @@ const CreativeHero = () => {
 
           <motion.p
             initial={{ opacity: 1 }}
-            className="text-text-body text-lg sm:text-xl md:text-2xl max-w-[800px] leading-relaxed font-sans"
+            className="text-body-large max-w-[800px] text-secondary font-sans"
           >
-            With <span className="text-blue font-medium">6+ years of experience</span>, I help companies build products that are{' '}
-            <span className="text-blue font-medium">simple to use</span> and a{' '}
-            <span className="text-violet font-medium">joy to interact with</span>.
+            With <span className="text-blue font-semibold">6+ years of experience</span>, I help companies build products that are{' '}
+            <span className="text-blue font-semibold">simple to use</span> and a{' '}
+            <span className="text-violet font-semibold">joy to interact with</span>.
             Let's create something amazing together.
           </motion.p>
 
@@ -227,7 +227,7 @@ const CreativeHero = () => {
                 className="absolute inset-0 bg-gradient-to-r from-blue via-indigo to-violet"
               />
 
-              <span className="relative z-10 flex items-center justify-center gap-2">
+              <span className="relative z-10 flex items-center justify-center gap-2 font-semibold text-sm md:text-base">
                 Check out my work
                 <motion.span
                   animate={{ x: [0, 5, 0] }}
@@ -245,11 +245,11 @@ const CreativeHero = () => {
 
             <motion.button
               onClick={() => scrollToSection('hobby-projects')}
-              className="group inline-flex items-center gap-2 text-text-body hover:text-purple transition-colors duration-300 w-full sm:w-auto justify-center sm:justify-start"
+              className="group inline-flex items-center gap-2 text-muted hover:text-purple transition-colors duration-300 w-full sm:w-auto justify-center sm:justify-start"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span className="text-sm md:text-base">See my hobby projects</span>
+              <span className="text-sm md:text-base font-medium">See my hobby projects</span>
               <motion.div
                 className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-lavender flex items-center justify-center"
                 whileHover={{ scale: 1.2 }}

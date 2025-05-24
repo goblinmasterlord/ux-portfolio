@@ -72,10 +72,10 @@ const Navigation = () => {
             onClick={() => setShowDropdown(false)}
           >
             <div className="flex-1">
-              <h3 className="font-display text-lg group-hover:text-blue transition-colors duration-300">
+              <h3 className="font-display text-body group-hover:text-blue transition-colors duration-300">
                 {project.title}
               </h3>
-              <p className="text-sm text-primary/60">{project.description}</p>
+              <p className="text-body-small text-muted">{project.description}</p>
             </div>
             <ArrowUpRight className="w-5 h-5 text-primary/40 group-hover:text-blue transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
           </Link>
@@ -103,32 +103,32 @@ const Navigation = () => {
           </button>
         </div>
         
-        <div className="space-y-6 flex-1">
-          <div className="space-y-2">
-            <h3 className="text-primary/40 text-sm font-medium px-4">Projects</h3>
-            <div className="space-y-1">
-              {projects.map((project, index) => (
-                <Link
-                  key={index}
-                  to={project.path}
-                  className="group flex items-center justify-between p-4 rounded-xl hover:bg-primary/5 transition-all duration-300"
-                  onClick={() => setIsOpen(false)}
-                >
-                  <div>
-                    <h3 className="font-display text-lg group-hover:text-blue transition-colors duration-300">
-                      {project.title}
-                    </h3>
-                    <p className="text-sm text-primary/60">{project.description}</p>
-                  </div>
-                  <ArrowUpRight className="w-5 h-5 text-primary/40 group-hover:text-blue transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-                </Link>
-              ))}
+                  <div className="space-y-6 flex-1">
+            <div className="space-y-2">
+              <h3 className="text-muted text-body-small font-medium px-4">Projects</h3>
+              <div className="space-y-1">
+                {projects.map((project, index) => (
+                  <Link
+                    key={index}
+                    to={project.path}
+                    className="group flex items-center justify-between p-4 rounded-xl hover:bg-primary/5 transition-all duration-300"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <div>
+                      <h3 className="font-display text-body group-hover:text-blue transition-colors duration-300">
+                        {project.title}
+                      </h3>
+                      <p className="text-body-small text-muted">{project.description}</p>
+                    </div>
+                    <ArrowUpRight className="w-5 h-5 text-muted group-hover:text-blue transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  </Link>
+                ))}
+              </div>
             </div>
-          </div>
           
           {/* Hobby Projects Link in Mobile */}
           <div className="space-y-2">
-            <h3 className="text-primary/40 text-sm font-medium px-4">Personal Work</h3>
+            <h3 className="text-muted text-body-small font-medium px-4">Personal Work</h3>
             <div className="space-y-1">
               <button
                 onClick={() => scrollToSection('hobby-projects')}
@@ -137,13 +137,13 @@ const Navigation = () => {
                 <div className="flex items-center gap-3">
                   <Code className="w-5 h-5 text-blue" />
                   <div>
-                    <h3 className="font-display text-lg group-hover:text-blue transition-colors duration-300">
+                    <h3 className="font-display text-body group-hover:text-blue transition-colors duration-300">
                       Hobby Projects
                     </h3>
-                    <p className="text-sm text-primary/60">Creative coding experiments</p>
+                    <p className="text-body-small text-muted">Creative coding experiments</p>
                   </div>
                 </div>
-                <ArrowUpRight className="w-5 h-5 text-primary/40 group-hover:text-blue transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                <ArrowUpRight className="w-5 h-5 text-muted group-hover:text-blue transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
               </button>
             </div>
           </div>
@@ -155,7 +155,7 @@ const Navigation = () => {
             className="flex items-center justify-between p-4 rounded-xl hover:bg-primary/5 transition-all duration-300"
             onClick={() => setIsOpen(false)}
           >
-            <span className="font-display text-lg">Get in Touch</span>
+            <span className="font-display text-body">Get in Touch</span>
             <ArrowUpRight className="w-5 h-5" />
           </Link>
         </div>
@@ -169,7 +169,7 @@ const Navigation = () => {
       
       <div className="relative px-6 lg:px-12 py-6">
         <div className="max-w-[1800px] mx-auto flex justify-between items-center">
-          <Link to="/" className="text-xl font-display">
+          <Link to="/" className="text-card-title font-display">
             Marci's Site
           </Link>
 
@@ -178,7 +178,7 @@ const Navigation = () => {
             <div className="relative">
               <button
                 onClick={() => setShowDropdown(!showDropdown)}
-                className="flex items-center gap-2 text-primary/60 hover:text-blue transition-colors duration-300"
+                className="flex items-center gap-2 text-muted hover:text-blue transition-colors duration-300"
               >
                 Work
                 <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${showDropdown ? 'rotate-180' : ''}`} />
@@ -191,14 +191,14 @@ const Navigation = () => {
             {/* Hobby Projects Link in Desktop */}
             <button
               onClick={() => scrollToSection('hobby-projects')}
-              className="flex items-center gap-2 text-primary/60 hover:text-blue transition-colors duration-300"
+              className="flex items-center gap-2 text-muted hover:text-blue transition-colors duration-300"
             >
               Hobby Projects
             </button>
             
             <Link 
               to="/contact" 
-              className="text-primary/60 hover:text-blue transition-colors duration-300"
+              className="text-muted hover:text-blue transition-colors duration-300"
             >
               Contact
             </Link>

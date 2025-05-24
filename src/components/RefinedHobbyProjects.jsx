@@ -202,8 +202,7 @@ const RefinedHobbyProjects = () => {
     { name: "Framer Motion", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/framermotion/framermotion-original.svg", category: "Animation" },
     { name: "OpenAI", logo: "https://static.vecteezy.com/system/resources/previews/021/059/827/non_2x/chatgpt-logo-chat-gpt-icon-on-white-background-free-vector.jpg", category: "AI" },
     { name: "Claude", logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/anthropic.svg", category: "AI" },
-    { name: "Gemini", logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/googlegemini.svg", category: "AI" },
-    { name: "ChatGPT", logo: "https://static.vecteezy.com/system/resources/previews/021/059/827/non_2x/chatgpt-logo-chat-gpt-icon-on-white-background-free-vector.jpg", category: "AI" }
+    { name: "Gemini", logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/googlegemini.svg", category: "AI" }
   ];
 
   const containerVariants = {
@@ -258,7 +257,7 @@ const RefinedHobbyProjects = () => {
           className="inline-flex items-center gap-2 mb-3 md:mb-4"
         >
           <span className="w-6 md:w-8 h-[2px] bg-blue" />
-          <span className="text-blue font-semibold tracking-wider text-xs md:text-sm uppercase">Personal Projects</span>
+          <span className="text-blue font-semibold tracking-wider text-caption uppercase">Personal Projects</span>
         </motion.span>
         
         <motion.div
@@ -268,11 +267,11 @@ const RefinedHobbyProjects = () => {
           }}
           className="max-w-3xl mb-8 md:mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-black mb-3 md:mb-6 leading-tight tracking-tight">
+          <h2 className="text-section-title mb-3 md:mb-6">
             Side Projects & Experiments
           </h2>
           
-          <p className="text-text-body text-base md:text-lg lg:text-xl leading-relaxed font-sans">
+          <p className="text-body-large text-secondary font-sans">
             A collection of projects exploring AI, building tools for others, and experimenting with new technologies.
           </p>
         </motion.div>
@@ -289,7 +288,7 @@ const RefinedHobbyProjects = () => {
             <div className="p-2 bg-violet/10 rounded-lg">
               <Cpu className="w-5 h-5 text-violet" />
             </div>
-            <h3 className="text-xl md:text-2xl font-display font-bold">AI-Powered Projects</h3>
+            <h3 className="text-card-title">AI-Powered Projects</h3>
             <div className="flex-1 h-[1px] bg-gradient-to-r from-violet/20 to-transparent ml-4" />
           </div>
           
@@ -330,7 +329,7 @@ const RefinedHobbyProjects = () => {
             <div className="p-2 bg-blue/10 rounded-lg">
               <Globe className="w-5 h-5 text-blue" />
             </div>
-            <h3 className="text-xl md:text-2xl font-display font-bold">Client Projects</h3>
+            <h3 className="text-card-title">Client Projects</h3>
             <div className="flex-1 h-[1px] bg-gradient-to-r from-blue/20 to-transparent ml-4" />
           </div>
           
@@ -452,11 +451,11 @@ const CompactProjectCard = ({ project, index, isMobile, type, techLogos }) => {
       <div className="p-3 flex-1 flex flex-col relative z-10">
         {/* Title */}
         <div className="mb-2">
-          <h3 className={`text-sm font-display font-semibold text-primary group-hover:text-${getTypeColor()} transition-colors duration-300 mb-1 line-clamp-1`}>
+          <h3 className={`text-body-small font-display font-semibold text-primary group-hover:text-${getTypeColor()} transition-colors duration-300 mb-1 line-clamp-1`}>
             {project.title}
           </h3>
           
-          <p className="text-text-body text-xs leading-relaxed line-clamp-2 font-sans">
+          <p className="text-caption text-secondary leading-relaxed line-clamp-2 font-sans">
             {project.shortDescription}
           </p>
         </div>
@@ -466,7 +465,7 @@ const CompactProjectCard = ({ project, index, isMobile, type, techLogos }) => {
           {project.technologies.map((tech, i) => (
             <div 
               key={i} 
-              className={`flex items-center gap-1 px-2 py-1 text-xs font-sans bg-primary/5 rounded-md text-text-body group-hover:bg-${getTypeColor()}/10 group-hover:text-${getTypeColor()} transform group-hover:translate-x-0.5 transition-all duration-300`}
+              className={`flex items-center gap-1 px-2 py-1 text-caption font-sans bg-primary/5 rounded-md text-muted group-hover:bg-${getTypeColor()}/10 group-hover:text-${getTypeColor()} transform group-hover:translate-x-0.5 transition-all duration-300`}
               style={{ transitionDelay: `${i * 50}ms` }}
             >
               {techLogos[tech] && (
@@ -493,7 +492,7 @@ const CompactProjectCard = ({ project, index, isMobile, type, techLogos }) => {
               className="overflow-hidden mb-3"
             >
               <div className="pt-2 border-t border-primary/10">
-                <h4 className="text-xs font-semibold text-primary/80 mb-1 font-sans">Key Features</h4>
+                <h4 className="text-caption font-semibold text-muted mb-1 font-sans">Key Features</h4>
                 <ul className="space-y-1">
                   {project.features.slice(0, 3).map((feature, i) => (
                     <motion.li
@@ -501,7 +500,7 @@ const CompactProjectCard = ({ project, index, isMobile, type, techLogos }) => {
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.1 }}
-                      className="flex items-start gap-1.5 text-xs text-text-body font-sans"
+                      className="flex items-start gap-1.5 text-caption text-secondary font-sans"
                     >
                       <div className={`w-1 h-1 rounded-full bg-${getTypeColor()} mt-1 flex-shrink-0`} />
                       <span className="line-clamp-1">{feature}</span>
@@ -520,7 +519,7 @@ const CompactProjectCard = ({ project, index, isMobile, type, techLogos }) => {
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={`flex items-center gap-1 px-2 py-1 rounded-md bg-primary/5 hover:bg-${getTypeColor()}/10 text-text-body hover:text-${getTypeColor()} transition-all duration-300 text-xs font-sans font-medium`}
+              className={`flex items-center gap-1 px-2 py-1 rounded-md bg-primary/5 hover:bg-${getTypeColor()}/10 text-muted hover:text-${getTypeColor()} transition-all duration-300 text-caption font-sans font-medium`}
             >
               <Github className="w-3 h-3" />
               <span>Code</span>
@@ -531,7 +530,7 @@ const CompactProjectCard = ({ project, index, isMobile, type, techLogos }) => {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`flex items-center gap-1 px-2 py-1 rounded-md bg-${getTypeColor()}/10 text-${getTypeColor()} hover:bg-${getTypeColor()}/20 transition-all duration-300 text-xs font-sans font-medium`}
+                className={`flex items-center gap-1 px-2 py-1 rounded-md bg-${getTypeColor()}/10 text-${getTypeColor()} hover:bg-${getTypeColor()}/20 transition-all duration-300 text-caption font-sans font-medium`}
               >
                 <ExternalLink className="w-3 h-3" />
                 <span>Live</span>
@@ -544,7 +543,7 @@ const CompactProjectCard = ({ project, index, isMobile, type, techLogos }) => {
             onClick={() => setIsExpanded(!isExpanded)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className={`p-1 rounded-md bg-primary/5 hover:bg-${getTypeColor()}/10 text-primary/60 hover:text-${getTypeColor()} transition-all duration-300`}
+            className={`p-1 rounded-md bg-primary/5 hover:bg-${getTypeColor()}/10 text-muted hover:text-${getTypeColor()} transition-all duration-300`}
           >
             <motion.div
               animate={{ rotate: isExpanded ? 180 : 0 }}
@@ -620,7 +619,7 @@ const TechStackSection = ({ techStack }) => {
             <div className="p-2 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg">
               <Code className="w-5 h-5 text-indigo" />
             </div>
-            <span className="text-indigo font-semibold tracking-wider text-sm uppercase">Tech Stack</span>
+            <span className="text-indigo font-semibold tracking-wider text-caption uppercase">Tech Stack</span>
           </motion.div>
           
           <motion.h3
@@ -628,7 +627,7 @@ const TechStackSection = ({ techStack }) => {
               hidden: { opacity: 0, y: 20 },
               visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.1 } }
             }}
-            className="text-3xl md:text-4xl font-display font-black mb-4 leading-tight tracking-tight">
+            className="text-card-title mb-4">
             Technologies I Love
           </motion.h3>
           
@@ -637,7 +636,7 @@ const TechStackSection = ({ techStack }) => {
               hidden: { opacity: 0, y: 20 },
               visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.2 } }
             }}
-            className="text-text-body text-lg max-w-2xl mx-auto font-sans leading-relaxed">
+            className="text-body text-secondary max-w-2xl mx-auto font-sans">
             The tools and frameworks that power my creative process
           </motion.p>
         </div>
@@ -677,14 +676,14 @@ const TechStackSection = ({ techStack }) => {
                       }}
                     />
                     {/* Fallback text */}
-                    <div className="hidden w-full h-full items-center justify-center text-xs font-medium text-text-body font-sans">
+                    <div className="hidden w-full h-full items-center justify-center text-caption font-medium text-secondary font-sans">
                       {tech.name.charAt(0)}
                     </div>
                   </div>
                   
                   {/* Tooltip */}
                   <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-20">
-                    <div className="bg-primary text-white text-xs px-3 py-2 rounded-lg whitespace-nowrap shadow-xl backdrop-blur-sm">
+                    <div className="bg-primary text-white text-caption px-3 py-2 rounded-lg whitespace-nowrap shadow-xl backdrop-blur-sm">
                       {tech.name}
                       <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-primary"></div>
                     </div>

@@ -30,11 +30,13 @@ module.exports = {
         light: '#F8FAFC',
         dark: '#1E293B',
         'text-body': '#334155',
+        'text-muted': '#64748B',
+        'text-subtle': '#94A3B8',
       },
       fontFamily: {
-        display: ['Satoshi', 'sans-serif'],
-        sans: ['Inter', 'sans-serif'],
-        mono: ['GeistMono', 'monospace'],
+        display: ['Satoshi', 'Geist Sans', 'sans-serif'],
+        sans: ['Geist Sans', 'Inter', 'sans-serif'],
+        mono: ['Geist Mono', 'monospace'],
       },
       boxShadow: {
         'sm': '0 1px 2px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.03)',

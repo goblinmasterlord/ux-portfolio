@@ -140,18 +140,18 @@ const ProjectCard = memo(({ project, index }) => {
           {/* Content - Refined Spacing and Typography */}
           <div className="relative flex-1 flex flex-col p-4 sm:p-6 lg:p-8">
             <div className="mb-auto">
-              <span className="text-primary/50 text-xs md:text-sm mb-1.5 md:mb-2 block font-mono tracking-tight font-medium">{project.year}</span>
-              <h3 className="text-2xl md:text-3xl font-display font-bold mb-3 md:mb-4 text-primary group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue group-hover:to-violet transition-colors duration-400 leading-tight">
+              <span className="text-muted text-caption mb-1.5 md:mb-2 block font-mono tracking-tight font-medium">{project.year}</span>
+              <h3 className="text-card-title mb-3 md:mb-4 text-primary group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue group-hover:to-violet transition-colors duration-400">
                 {project.title}
               </h3>
-              <p className="text-text-body text-sm md:text-base leading-relaxed mb-5 md:mb-8 font-sans">
+              <p className="text-body-small text-secondary mb-5 md:mb-8 font-sans">
                 {project.description}
               </p>
               <div className="flex flex-wrap gap-2 md:gap-2.5 mb-5 md:mb-8">
                 {project.tags.map((tag, i) => (
                   <span
                     key={i}
-                    className="px-2.5 md:px-3 py-1 md:py-1.5 text-xs font-medium bg-primary/5 group-hover:bg-white rounded-md text-text-body group-hover:text-blue transform transition-all duration-300 ease-in-out shadow-sm group-hover:shadow-md border border-transparent group-hover:border-blue/30"
+                    className="px-2.5 md:px-3 py-1 md:py-1.5 text-caption font-medium bg-primary/5 group-hover:bg-white rounded-md text-muted group-hover:text-blue transform transition-all duration-300 ease-in-out shadow-sm group-hover:shadow-md border border-transparent group-hover:border-blue/30"
                     style={{ transitionDelay: `${i * 60}ms` }}
                   >
                     {tag}
@@ -165,7 +165,7 @@ const ProjectCard = memo(({ project, index }) => {
                 <span
                   className="group/cta inline-flex items-center gap-2 md:gap-2.5 px-4 md:px-5 py-2 md:py-2.5 bg-gradient-to-r from-blue/90 to-violet/90 hover:from-blue hover:to-violet rounded-lg text-white transition-all duration-400 ease-in-out shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                 >
-                  <span className="text-xs md:text-sm font-semibold">View Case Study</span>
+                  <span className="text-caption font-semibold">View Case Study</span>
                   <ArrowRight className="w-3.5 h-3.5 md:w-4 md:h-4 transform group-hover/cta:translate-x-1 transition-transform duration-300" />
                 </span>
               </div>
@@ -236,25 +236,25 @@ const ServiceCard = memo(({ service, index }) => {
             </div>
           </div>
           <div className="flex-grow">
-            <h4 className="text-xl md:text-2xl font-display font-bold text-primary group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo group-hover:to-purple transition-colors duration-400 leading-tight">
+            <h4 className="text-card-title text-primary group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo group-hover:to-purple transition-colors duration-400">
               {service.title}
             </h4>
           </div>
         </div>
         
         {/* Description */}
-        <p className="text-primary/70 text-sm md:text-base leading-relaxed font-sans mb-5 md:mb-6 flex-grow">
+        <p className="text-body-small text-secondary mb-5 md:mb-6 flex-grow font-sans">
           {service.description}
         </p>
 
         {/* Features as inline tags */}
         <div className="mt-auto">
-          <h5 className="text-xs font-semibold text-primary/50 mb-2 uppercase tracking-wider">Key Focus Areas</h5>
+          <h5 className="text-caption font-semibold text-muted mb-2 uppercase tracking-wider">Key Focus Areas</h5>
           <div className="flex flex-wrap gap-2">
             {service.features.map((feature, i) => (
               <span 
                 key={i}
-                className="px-2.5 md:px-3 py-1 md:py-1.5 text-xs font-medium bg-primary/5 group-hover:bg-white rounded-md text-primary/70 group-hover:text-indigo transform transition-all duration-300 ease-in-out shadow-sm group-hover:shadow-md border border-transparent group-hover:border-indigo/30"
+                className="px-2.5 md:px-3 py-1 md:py-1.5 text-caption font-medium bg-primary/5 group-hover:bg-white rounded-md text-muted group-hover:text-indigo transform transition-all duration-300 ease-in-out shadow-sm group-hover:shadow-md border border-transparent group-hover:border-indigo/30"
                 style={{ transitionDelay: `${i * 50}ms` }}
               >
                 {feature}
@@ -403,7 +403,7 @@ const Home = () => {
             className="inline-flex items-center gap-2 mb-3 md:mb-4"
           >
             <span className="w-6 md:w-8 h-[2px] bg-blue" />
-            <span className="text-blue font-semibold tracking-wider text-xs md:text-sm uppercase">Selected Work</span>
+            <span className="text-blue font-semibold tracking-wider text-caption uppercase">Selected Work</span>
           </motion.span>
 
           <motion.div
@@ -412,10 +412,10 @@ const Home = () => {
             transition={{ delay: 0.1 }}
             className="max-w-3xl mb-8 md:mb-16"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-black mb-4 md:mb-6 leading-tight tracking-tight">
+            <h2 className="text-section-title mb-4 md:mb-6">
               Some of my work
             </h2>
-            <p className="text-text-body text-base md:text-lg lg:text-xl leading-relaxed font-sans">
+            <p className="text-body-large text-secondary font-sans">
               Here are some of the favorite projects I've worked on. Each one was a unique challenge solved with unique solutions and close collaboration with amazing teams.
             </p>
           </motion.div>
@@ -444,7 +444,7 @@ const Home = () => {
             className="inline-flex items-center gap-2 mb-3 md:mb-4"
           >
             <span className="w-6 md:w-8 h-[2px] bg-indigo" />
-            <span className="text-indigo font-semibold tracking-wider text-xs md:text-sm uppercase">What I Offer</span>
+            <span className="text-indigo font-semibold tracking-wider text-caption uppercase">What I Offer</span>
           </motion.span>
 
           <motion.div
@@ -453,10 +453,10 @@ const Home = () => {
             transition={{ delay: 0.1 }}
             className="max-w-3xl mb-10 md:mb-20"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-black mb-4 md:mb-6 leading-tight tracking-tight">
+            <h2 className="text-section-title mb-4 md:mb-6">
               Helping You Build Better Digital Products
             </h2>
-            <p className="text-text-body text-base md:text-lg lg:text-xl leading-relaxed font-sans">
+            <p className="text-body-large text-secondary font-sans">
               Whether it's refining user experiences, shaping product strategy, integrating AI meaningfully, or upskilling your team – I'm here to help you navigate the complexities and create things people love to use.
             </p>
           </motion.div>
@@ -481,15 +481,15 @@ const Home = () => {
             className="inline-flex items-center gap-2 mb-3 md:mb-4"
           >
             <span className="w-6 md:w-8 h-[2px] bg-blue" />
-            <span className="text-blue font-semibold tracking-wider text-xs md:text-sm uppercase">Get in Touch</span>
+            <span className="text-blue font-semibold tracking-wider text-caption uppercase">Get in Touch</span>
           </motion.span>
           
           <div className="flex flex-col md:flex-row justify-between items-start gap-8 md:gap-12">
             <div className="max-w-2xl">
-              <h3 className="text-3xl sm:text-4xl md:text-5xl font-display font-black text-primary mb-4 md:mb-6 leading-tight tracking-tight">
+              <h3 className="text-section-title text-primary mb-4 md:mb-6">
                 Let's create something amazing together
               </h3>
-              <p className="text-text-body text-base md:text-lg leading-relaxed font-sans">
+              <p className="text-body text-secondary font-sans">
                 Have a project in mind? Let's discuss how we can work together to bring your ideas to life.
               </p>
             </div>
