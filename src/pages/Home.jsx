@@ -12,12 +12,26 @@ const Home = () => {
   const location = useLocation();
 
   useEffect(() => {
+    // Handle state-based scrolling (if used)
     if (location.state?.scrollTo) {
       const element = document.getElementById(location.state.scrollTo);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
       }
       window.history.replaceState({}, document.title);
+    }
+
+    // Handle hash-based scrolling (from Navigation.jsx)
+    if (location.hash) {
+      const id = location.hash.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      }
     }
   }, [location]);
 

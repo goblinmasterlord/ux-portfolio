@@ -56,7 +56,15 @@
 - `PageTransition.jsx`: Wrapper for page transition animations.
 - `Navigation.jsx`: Main navbar.
 
+## Design Patterns
+- **Project Pages**:
+  - **Hero**: Full-screen image with overlay, centered title/subtitle.
+  - **Challenge Section**: "Broken Grid" layout (1-2-3 column spans) with large numbering.
+  - **Aspects Section**: Alternating grid (Image/Text) with glassmorphism cards.
+  - **Typography**: `Fraunces` for display headings, `Inter` for body.
+
 ## Recent Changes (Context)
-- Switched fonts to Geist + Inter.
-- Fixed animation flickering in `RefinedHobbyProjects.jsx`.
-- Redesigned Personal Projects section to separate AI and Client work.
+- **Creative Overhaul**: Redesigned Everprove, Paynance, and Loccocity with unique but consistent themes.
+- **Standardization**: Unified "Challenge" sections across all projects to use the "Broken Grid" pattern.
+- **Fixes**: Resolved layout issues in Paynance (narrow columns) and Loccocity (broken journey section).
+- **Theme**: Shifted to a dark, premium aesthetic for project pages.

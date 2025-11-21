@@ -2,14 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Github, ExternalLink, Sparkles, Zap, BarChart3, Video, Palette, Droplets, ChevronDown, ChevronUp, Brain, Cpu, Globe, Code } from 'lucide-react';
-import { useInView } from 'react-intersection-observer';
 
 const RefinedHobbyProjects = () => {
-  const [sectionRef, sectionInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1
-  });
-
   const [isMobile, setIsMobile] = useState(false);
 
   // Check if mobile on mount and window resize
@@ -17,7 +11,7 @@ const RefinedHobbyProjects = () => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    
+
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
@@ -216,35 +210,22 @@ const RefinedHobbyProjects = () => {
     }
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, scale: 0.8, y: 20 },
-    visible: { 
-      opacity: 1, 
-      scale: 1,
-      y: 0,
-      transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }
-    }
-  };
-
   return (
-    <section 
-      id="hobby-projects" 
+    <section
+      id="hobby-projects"
       className="bg-background px-4 sm:px-6 lg:px-12 pt-16 md:pt-32 pb-0 relative overflow-hidden"
     >
       {/* Enhanced background: removed full section gradient, kept pattern and blobs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* The following div created the full section gradient and is now removed/commented out
-        <div className="absolute inset-0 bg-gradient-to-br from-background via-blue/5 to-background" /> 
-        */}
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDYwIDYwIj48cGF0aCBkPSJNNjAgMEgwdjYwaDYwVjB6TTIgMmg1NnY1NkgyVjJ6IiBmaWxsPSIjMjAyMDIwIiBmaWxsLW9wYWNpdHk9IjAuMDIiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==')] opacity-10" />
         <div className="colorful-blob w-[600px] h-[600px] -top-[250px] -right-[250px] bg-blue/10 animate-float-slow" />
         <div className="colorful-blob w-[700px] h-[700px] -bottom-[300px] -left-[300px] bg-violet/10 animate-float-medium" />
       </div>
 
       <motion.div
-        ref={sectionRef}
         initial="hidden"
-        animate={sectionInView ? "visible" : "hidden"}
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
         variants={containerVariants}
         className="max-w-[1800px] mx-auto relative z-10"
       >
@@ -259,7 +240,7 @@ const RefinedHobbyProjects = () => {
           <span className="w-6 md:w-8 h-[2px] bg-blue" />
           <span className="text-blue font-semibold tracking-wider text-caption uppercase">Personal Projects</span>
         </motion.span>
-        
+
         <motion.div
           variants={{
             hidden: { opacity: 0, y: 20 },
@@ -270,7 +251,7 @@ const RefinedHobbyProjects = () => {
           <h2 className="text-section-title mb-3 md:mb-6">
             Side Projects & Experiments
           </h2>
-          
+
           <p className="text-body-large text-secondary font-sans">
             A collection of projects exploring AI, building tools for others, and experimenting with new technologies.
           </p>
@@ -291,11 +272,11 @@ const RefinedHobbyProjects = () => {
             <h3 className="text-card-title">AI-Powered Projects</h3>
             <div className="flex-1 h-[1px] bg-gradient-to-r from-violet/20 to-transparent ml-4" />
           </div>
-          
+
           <motion.div
             variants={{
               hidden: { opacity: 0 },
-              visible: { 
+              visible: {
                 opacity: 1,
                 transition: {
                   staggerChildren: 0.1
@@ -305,10 +286,10 @@ const RefinedHobbyProjects = () => {
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
           >
             {aiProjects.map((project, index) => (
-              <CompactProjectCard 
-                key={project.title} 
-                project={project} 
-                index={index} 
+              <CompactProjectCard
+                key={project.title}
+                project={project}
+                index={index}
                 isMobile={isMobile}
                 type="ai"
                 techLogos={techLogos}
@@ -332,11 +313,11 @@ const RefinedHobbyProjects = () => {
             <h3 className="text-card-title">Client Projects</h3>
             <div className="flex-1 h-[1px] bg-gradient-to-r from-blue/20 to-transparent ml-4" />
           </div>
-          
+
           <motion.div
             variants={{
               hidden: { opacity: 0 },
-              visible: { 
+              visible: {
                 opacity: 1,
                 transition: {
                   staggerChildren: 0.1
@@ -346,10 +327,10 @@ const RefinedHobbyProjects = () => {
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
           >
             {clientProjects.map((project, index) => (
-              <CompactProjectCard 
-                key={project.title} 
-                project={project} 
-                index={index} 
+              <CompactProjectCard
+                key={project.title}
+                project={project}
+                index={index}
                 isMobile={isMobile}
                 type="client"
                 techLogos={techLogos}
@@ -370,23 +351,23 @@ const CompactProjectCard = ({ project, index, isMobile, type, techLogos }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
-  
+
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      transition: { 
-        duration: 0.5, 
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
         ease: [0.25, 0.1, 0.25, 1.0]
-      } 
+      }
     }
   };
 
   const expandVariants = {
     collapsed: { height: 0, opacity: 0 },
-    expanded: { 
-      height: "auto", 
+    expanded: {
+      height: "auto",
       opacity: 1,
       transition: {
         height: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] },
@@ -400,8 +381,8 @@ const CompactProjectCard = ({ project, index, isMobile, type, techLogos }) => {
   };
 
   const getTypeGradient = () => {
-    return type === 'ai' 
-      ? 'from-violet/20 via-purple/10 to-transparent' 
+    return type === 'ai'
+      ? 'from-violet/20 via-purple/10 to-transparent'
       : 'from-blue/20 via-indigo/10 to-transparent';
   };
 
@@ -416,28 +397,28 @@ const CompactProjectCard = ({ project, index, isMobile, type, techLogos }) => {
     >
       {/* Gradient border effect */}
       <div className={`absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 bg-gradient-to-br ${getTypeGradient()}`} />
-      
+
       {/* Horizontal image container */}
       <div className="relative overflow-hidden">
         <div className="aspect-[16/9] overflow-hidden bg-gradient-to-br from-primary/5 to-primary/10">
           {project.images && project.images[0] && (
-            <img 
-              src={project.images[0]} 
-              alt={project.title} 
+            <img
+              src={project.images[0]}
+              alt={project.title}
               className={`w-full h-full object-cover object-center transition-all duration-700 group-hover:scale-105 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
               onLoad={() => setImageLoaded(true)}
             />
           )}
-          
+
           {!imageLoaded && (
             <div className="absolute inset-0 flex items-center justify-center">
               <div className={`w-5 h-5 rounded-full border-2 border-t-${getTypeColor()} border-r-transparent animate-spin`}></div>
             </div>
           )}
-          
+
           {/* Overlay gradient */}
           <div className={`absolute inset-0 bg-gradient-to-br ${getTypeGradient()} opacity-0 group-hover:opacity-100 transition-all duration-500 z-10`} />
-          
+
           {/* Project icon */}
           <div className="absolute bottom-2 right-2 z-20">
             <div className={`p-1.5 bg-white/90 backdrop-blur-sm rounded-lg shadow-md text-${getTypeColor()} transform group-hover:scale-110 transition-all duration-300`}>
@@ -446,7 +427,7 @@ const CompactProjectCard = ({ project, index, isMobile, type, techLogos }) => {
           </div>
         </div>
       </div>
-      
+
       {/* Compact content */}
       <div className="p-3 flex-1 flex flex-col relative z-10">
         {/* Title */}
@@ -454,23 +435,23 @@ const CompactProjectCard = ({ project, index, isMobile, type, techLogos }) => {
           <h3 className={`text-body-small font-display font-semibold text-primary group-hover:text-${getTypeColor()} transition-colors duration-300 mb-1 line-clamp-1`}>
             {project.title}
           </h3>
-          
+
           <p className="text-caption text-secondary leading-relaxed line-clamp-2 font-sans">
             {project.shortDescription}
           </p>
         </div>
-        
+
         {/* Compact technology tags with logos */}
         <div className="flex flex-wrap gap-1 mb-3">
           {project.technologies.map((tech, i) => (
-            <div 
-              key={i} 
+            <div
+              key={i}
               className={`flex items-center gap-1 px-2 py-1 text-caption font-sans bg-primary/5 rounded-md text-muted group-hover:bg-${getTypeColor()}/10 group-hover:text-${getTypeColor()} transform group-hover:translate-x-0.5 transition-all duration-300`}
               style={{ transitionDelay: `${i * 50}ms` }}
             >
               {techLogos[tech] && (
-                <img 
-                  src={techLogos[tech]} 
+                <img
+                  src={techLogos[tech]}
                   alt={tech}
                   className="w-3 h-3 object-contain"
                   onError={(e) => e.target.style.display = 'none'}
@@ -524,7 +505,7 @@ const CompactProjectCard = ({ project, index, isMobile, type, techLogos }) => {
               <Github className="w-3 h-3" />
               <span>Code</span>
             </a>
-            
+
             {project.liveUrl && (
               <a
                 href={project.liveUrl}
@@ -560,11 +541,6 @@ const CompactProjectCard = ({ project, index, isMobile, type, techLogos }) => {
 
 // Creative Tech Stack Section Component
 const TechStackSection = ({ techStack }) => {
-  const [sectionRef, sectionInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1
-  });
-
   const containerVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
@@ -579,8 +555,8 @@ const TechStackSection = ({ techStack }) => {
 
   const itemVariants = {
     hidden: { opacity: 0, scale: 0.8, y: 20 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       scale: 1,
       y: 0,
       transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }
@@ -589,9 +565,9 @@ const TechStackSection = ({ techStack }) => {
 
   return (
     <motion.div
-      ref={sectionRef}
       initial="hidden"
-      animate={sectionInView ? "visible" : "hidden"}
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
       variants={containerVariants}
       className="mb-8 md:mb-12 relative"
     >
@@ -599,7 +575,7 @@ const TechStackSection = ({ techStack }) => {
       <div className="absolute inset-0 -mx-4 sm:-mx-6 lg:-mx-12 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-blue/5 to-violet/5 backdrop-blur-3xl" />
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cGF0aCBkPSJNNDAgMEgwdjQwaDQwVjB6TTIgMmgzNnYzNkgyVjJ6IiBmaWxsPSIjMjAyMDIwIiBmaWxsLW9wYWNpdHk9IjAuMDMiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==')] opacity-30" />
-        
+
         {/* Floating elements */}
         <div className="colorful-blob w-[300px] h-[300px] -top-[100px] -right-[100px] bg-blue/10 animate-float-slow" />
         <div className="colorful-blob w-[400px] h-[400px] -bottom-[150px] -left-[150px] bg-violet/10 animate-float-medium" />
@@ -621,7 +597,7 @@ const TechStackSection = ({ techStack }) => {
             </div>
             <span className="text-indigo font-semibold tracking-wider text-caption uppercase">Tech Stack</span>
           </motion.div>
-          
+
           <motion.h3
             variants={{
               hidden: { opacity: 0, y: 20 },
@@ -630,7 +606,7 @@ const TechStackSection = ({ techStack }) => {
             className="text-card-title mb-4">
             Technologies I Love
           </motion.h3>
-          
+
           <motion.p
             variants={{
               hidden: { opacity: 0, y: 20 },
@@ -652,8 +628,8 @@ const TechStackSection = ({ techStack }) => {
               <motion.div
                 key={tech.name}
                 variants={itemVariants}
-                whileHover={{ 
-                  scale: 1.2, 
+                whileHover={{
+                  scale: 1.2,
                   y: -8,
                   transition: { duration: 0.2, ease: "easeOut" }
                 }}
@@ -662,11 +638,11 @@ const TechStackSection = ({ techStack }) => {
                 <div className="relative">
                   {/* Glow effect */}
                   <div className="absolute inset-0 bg-white/20 rounded-2xl blur-xl scale-150 opacity-0 group-hover:opacity-100 transition-all duration-500" />
-                  
+
                   {/* Logo container */}
                   <div className="relative w-12 h-12 md:w-16 md:h-16 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center border border-white/20">
-                    <img 
-                      src={tech.logo} 
+                    <img
+                      src={tech.logo}
                       alt={tech.name}
                       className="w-6 h-6 md:w-8 md:h-8 object-contain filter group-hover:brightness-110 transition-all duration-300"
                       onError={(e) => {
@@ -680,7 +656,7 @@ const TechStackSection = ({ techStack }) => {
                       {tech.name.charAt(0)}
                     </div>
                   </div>
-                  
+
                   {/* Tooltip */}
                   <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-20">
                     <div className="bg-primary text-white text-caption px-3 py-2 rounded-lg whitespace-nowrap shadow-xl backdrop-blur-sm">

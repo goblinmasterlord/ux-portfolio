@@ -51,8 +51,8 @@ const Navigation = () => {
 
   const handleScrollTo = (id) => {
     if (location.pathname !== '/') {
-      // If not on home, navigate to home with state
-      // This requires handling in Home.jsx (which we added)
+      // If not on home, navigate to home with hash
+      window.location.href = `/#${id}`;
     } else {
       const element = document.getElementById(id);
       if (element) {
@@ -72,8 +72,8 @@ const Navigation = () => {
       >
         <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-12">
           <div className={`relative rounded-2xl transition-all duration-300 ${isScrolled
-              ? 'bg-background/80 backdrop-blur-md border border-white/5 shadow-lg px-6 py-3'
-              : 'bg-transparent px-0 py-0'
+            ? 'bg-background/80 backdrop-blur-md border border-white/5 shadow-lg px-6 py-3'
+            : 'bg-transparent px-0 py-0'
             }`}>
             <div className="flex items-center justify-between">
               {/* Logo */}
@@ -112,8 +112,8 @@ const Navigation = () => {
                               to={project.path}
                               onMouseEnter={() => setActiveProject(project)}
                               className={`group/item flex items-center justify-between p-3 rounded-xl transition-all duration-300 ${activeProject.title === project.title
-                                  ? 'bg-white/10'
-                                  : 'hover:bg-white/5'
+                                ? 'bg-white/10'
+                                : 'hover:bg-white/5'
                                 }`}
                             >
                               <div>
@@ -132,7 +132,7 @@ const Navigation = () => {
                             onClick={() => handleScrollTo('hobby-projects')}
                             className="text-left p-3 rounded-xl hover:bg-white/5 text-sm text-secondary hover:text-primary transition-colors"
                           >
-                            View Hobby Projects
+                            View Lab Projects
                           </button>
                         </div>
 
@@ -163,7 +163,7 @@ const Navigation = () => {
                 </div>
 
                 <button onClick={() => handleScrollTo('services')} className="text-sm font-medium text-secondary hover:text-primary transition-colors">Services</button>
-                <button onClick={() => handleScrollTo('hobby-projects')} className="text-sm font-medium text-secondary hover:text-primary transition-colors">Playground</button>
+                <button onClick={() => handleScrollTo('hobby-projects')} className="text-sm font-medium text-secondary hover:text-primary transition-colors">Lab</button>
 
                 <Link to="/contact" className="px-5 py-2 rounded-full bg-white/5 hover:bg-white/10 text-primary text-sm font-medium transition-colors border border-white/5 hover:border-accent/20">
                   Let's Talk
@@ -204,7 +204,7 @@ const Navigation = () => {
               ))}
               <div className="h-px bg-white/10 w-full" />
               <button onClick={() => handleScrollTo('services')} className="text-xl text-secondary">Services</button>
-              <button onClick={() => handleScrollTo('hobby-projects')} className="text-xl text-secondary">Playground</button>
+              <button onClick={() => handleScrollTo('hobby-projects')} className="text-xl text-secondary">Lab</button>
               <Link to="/contact" className="px-8 py-3 rounded-full bg-accent text-background font-bold mx-auto mt-4">
                 Let's Talk
               </Link>

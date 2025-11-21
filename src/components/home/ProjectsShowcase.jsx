@@ -1,66 +1,84 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ExternalLink } from 'lucide-react';
 import { projects } from '../../data/projects';
 
 const ProjectCard = ({ project, index }) => {
+    const isExternal = project.isExternal;
+    const LinkComponent = isExternal ? 'a' : Link;
+    const linkProps = isExternal
+        ? { href: project.path, target: "_blank", rel: "noopener noreferrer" }
+        : { to: project.comingSoon ? '#' : project.path };
+
     return (
         <motion.div
-            className="group relative w-[85vw] md:w-[60vw] lg:w-[45vw] flex-shrink-0 aspect-[4/3] md:aspect-[16/9] rounded-2xl overflow-hidden bg-surface border border-white/10"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.1 }}
+            className={`group relative rounded-3xl overflow-hidden bg-surface border border-white/5 hover:border-white/10 transition-colors duration-500 ${project.span || 'md:col-span-1'}`}
         >
-            <Link to={project.comingSoon ? '#' : project.path} className="block h-full w-full">
+            <LinkComponent {...linkProps} className="block h-full w-full min-h-[400px] flex flex-col">
+                {/* Image Background */}
                 <div className="absolute inset-0 overflow-hidden">
                     <motion.img
                         whileHover={{ scale: 1.05 }}
                         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                         src={project.image}
                         alt={project.title}
-                        className={`w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-500 ${project.comingSoon ? 'grayscale' : ''}`}
+                        className={`w-full h-full object-cover opacity-50 group-hover:opacity-30 transition-opacity duration-500 ${project.comingSoon ? 'grayscale' : ''}`}
                     />
                 </div>
 
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-80" />
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent opacity-90" />
 
-                <div className="absolute bottom-0 left-0 w-full p-6 md:p-10 flex flex-col justify-end h-full">
+                {/* Content */}
+                <div className="relative z-10 p-6 md:p-8 flex flex-col h-full justify-end">
                     <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                        <div className="flex items-center gap-3 mb-3">
-                            <span className="px-3 py-1 text-xs font-mono border border-white/20 rounded-full text-accent backdrop-blur-md bg-black/20">
+                        {/* Tags */}
+                        <div className="flex flex-wrap items-center gap-2 mb-4">
+                            <span className="px-3 py-1 text-xs font-mono border border-white/10 rounded-full text-accent backdrop-blur-md bg-black/40">
                                 {project.category}
                             </span>
-                            <span className="text-secondary text-sm font-mono">{project.year}</span>
+                            {project.tags && project.tags.slice(0, 2).map(tag => (
+                                <span key={tag} className="px-3 py-1 text-xs font-mono border border-white/5 rounded-full text-secondary backdrop-blur-md bg-white/5">
+                                    {tag}
+                                </span>
+                            ))}
                         </div>
 
-                        <h3 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-primary mb-4 leading-tight">
+                        {/* Title */}
+                        <h3 className="text-2xl md:text-3xl lg:text-4xl font-display font-bold text-primary mb-3 leading-tight">
                             {project.title}
                         </h3>
 
-                        <p className="text-secondary max-w-xl line-clamp-2 mb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                        {/* Description */}
+                        <p className="text-secondary text-sm md:text-base line-clamp-2 mb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 max-w-xl">
                             {project.description}
                         </p>
 
+                        {/* Action */}
                         {!project.comingSoon && (
                             <div className="flex items-center gap-2 text-accent font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200">
-                                View Case Study <ArrowRight className="w-4 h-4" />
+                                {isExternal ? (
+                                    <>Visit Website <ExternalLink className="w-4 h-4" /></>
+                                ) : (
+                                    <>View Case Study <ArrowRight className="w-4 h-4" /></>
+                                )}
                             </div>
                         )}
                     </div>
                 </div>
-            </Link>
+            </LinkComponent>
         </motion.div>
     );
 };
 
 const ProjectsShowcase = () => {
-    const containerRef = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-    });
-
-    const x = useTransform(scrollYProgress, [0, 1], ["0%", "-50%"]);
-
     return (
-        <section ref={containerRef} id="work" className="relative bg-background py-20 md:py-32 overflow-hidden">
+        <section id="work" className="relative bg-background py-20 md:py-32 overflow-hidden">
             <div className="px-4 sm:px-6 lg:px-12 mb-12 md:mb-20 flex flex-col md:flex-row justify-between items-end gap-6">
                 <div>
                     <motion.span
@@ -81,26 +99,15 @@ const ProjectsShowcase = () => {
                         Crafting digital products that solve real problems.
                     </motion.h2>
                 </div>
-
-                <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2 }}
-                >
-                    <span className="text-secondary hidden md:block">
-                        Scroll to explore &rarr;
-                    </span>
-                </motion.div>
             </div>
 
-            {/* Horizontal Scroll Container */}
-            <div className="flex overflow-x-auto pb-12 px-4 sm:px-6 lg:px-12 gap-6 md:gap-10 snap-x snap-mandatory hide-scrollbar">
-                {projects.map((project, index) => (
-                    <div key={index} className="snap-center">
-                        <ProjectCard project={project} index={index} />
-                    </div>
-                ))}
+            {/* Bento Grid Container */}
+            <div className="px-4 sm:px-6 lg:px-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {projects.map((project, index) => (
+                        <ProjectCard key={index} project={project} index={index} />
+                    ))}
+                </div>
             </div>
         </section>
     );
