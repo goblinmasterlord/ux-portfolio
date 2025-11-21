@@ -5,54 +5,6 @@ import everproveImage from '../assets/projects/everprove.png';
 
 export const projects = [
     {
-        id: "eclipse",
-        title: "Eclipse - Automated Redaction",
-        category: "AI Tool",
-        path: "https://eclipse.education",
-        isExternal: true,
-        image: "https://placehold.co/1200x800/1a1a1a/666666/png?text=Eclipse+Education", // Placeholder
-        description: "An automated document redaction tool designed for educational institutions and legal firms. It uses advanced AI to identify and redact sensitive information from PDFs securely and efficiently.",
-        year: "2024",
-        tags: ["AI", "Privacy", "React", "PDF Processing"],
-        span: "md:col-span-2", // Large emphasis
-        stats: {
-            "Efficiency": "100x faster",
-            "Accuracy": "99.9%"
-        }
-    },
-    {
-        id: "kovetkezotoken",
-        title: "Következő Token AI Training",
-        category: "Education",
-        path: "https://kovetkezotoken.hu",
-        isExternal: true,
-        image: "https://placehold.co/800x1000/1a1a1a/666666/png?text=Kovetkezo+Token", // Placeholder
-        description: "Practical AI training for businesses and professionals in Hungary. Focusing on real-world applications of ChatGPT, prompt engineering, and AI strategy for teams.",
-        year: "2024",
-        tags: ["Education", "AI Consulting", "Corporate Training"],
-        span: "md:col-span-1 md:row-span-2", // Tall emphasis
-        stats: {
-            "Students": "500+",
-            "Courses": "12+"
-        }
-    },
-    {
-        id: "smartdocs",
-        title: "SmartDocs Legal AI",
-        category: "Legal-Tech",
-        path: "https://ai-document-processing-rho.vercel.app/",
-        isExternal: true,
-        image: "https://placehold.co/800x600/1a1a1a/666666/png?text=SmartDocs", // Placeholder
-        description: "Intelligent document processing for law firms. Automates ID verification, signature generation, and contract creation using Hungarian Civil Code (Ptk.) compliant templates.",
-        year: "2024",
-        tags: ["Legal-Tech", "Document Automation", "AI"],
-        span: "md:col-span-1",
-        stats: {
-            "Docs Processed": "Automated",
-            "Compliance": "100%"
-        }
-    },
-    {
         id: "paynance",
         title: "Paynance Banking Platform",
         category: "Fintech",

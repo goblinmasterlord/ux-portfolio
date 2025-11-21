@@ -1,96 +1,106 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Github, ExternalLink, ArrowUpRight } from 'lucide-react';
+import React, { useEffect } from 'react';
+import { motion, useAnimation, useInView } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
+import { useRef } from 'react';
 
 const projects = [
     {
         title: "UXTools",
-        description: "A collection of AI-powered tools I built to help with everyday UX tasks. Includes design critique, research analysis, and accessibility checks.",
-        tags: ["React", "Node.js", "Claude API"],
+        description: "AI-powered design critique & accessibility checker.",
+        tags: ["React", "Claude API"],
         image: "/images/UXTools.jpg",
         link: "https://github.com/goblinmasterlord/ux-toolkit",
-        color: "violet",
-        size: "large" // Spans 2 cols
+        color: "violet"
     },
     {
-        title: "NeuralUXStudio",
-        description: "A platform documenting my journey and learnings in AI-driven UX design, featuring tutorials and case studies.",
-        tags: ["Next.js", "Supabase", "Education"],
+        title: "NeuralUX",
+        description: "Educational platform for AI-driven design.",
+        tags: ["Next.js", "Supabase"],
         image: "/images/NeuralUX.jpg",
         link: "https://neuraluxstudio.com",
-        color: "purple",
-        size: "medium"
+        color: "purple"
     },
     {
-        title: "Is that REALLY true?",
-        description: "Real-time fact-checker built for a hackathon. Listens to audio/video and flags questionable claims using RAG and Whisper.",
-        tags: ["Python", "Whisper", "RAG"],
+        title: "FactCheck",
+        description: "Real-time audio/video claim verification.",
+        tags: ["Python", "Whisper"],
         image: "/images/Isthattrue.jpg",
         link: "https://github.com/goblinmasterlord/robot-chicken",
-        color: "indigo",
-        size: "medium"
+        color: "indigo"
     },
     {
         title: "SmartBudget",
-        description: "AI-powered mobile app that analyzes spending habits and provides personalized financial advice.",
-        tags: ["React Native", "Gemini API"],
+        description: "AI financial advisor & spending analyzer.",
+        tags: ["React Native", "Gemini"],
         image: "/images/Budgeting.jpg",
         link: "https://github.com/goblinmasterlord/smart-budget-app",
-        color: "teal",
-        size: "medium"
+        color: "teal"
     },
     {
         title: "Aromate",
-        description: "Fragrance recommendation engine helping users find their perfect scent through interactive quizzes.",
+        description: "Algorithmic fragrance recommendation engine.",
         tags: ["React", "Algorithm"],
         image: "/images/Aromate.jpg",
         link: "https://aromate.vercel.app/",
-        color: "blue",
-        size: "large"
+        color: "blue"
     },
     {
-        title: "ArtimeStudio",
-        description: "Portfolio website built for a creative studio to showcase their work with smooth animations.",
-        tags: ["React", "Framer Motion"],
+        title: "Artime",
+        description: "Minimalist portfolio for creative studios.",
+        tags: ["Framer Motion"],
         image: "/images/Artimestudio.jpg",
         link: "https://artimestudio.vercel.app/",
-        color: "magenta",
-        size: "medium"
+        color: "magenta"
     },
     {
         title: "BeautifulData",
-        description: "Professional consultancy site showcasing data services and case studies.",
+        description: "Data visualization consultancy portfolio.",
         tags: ["React", "Vite"],
         image: "/images/Beautifuldata.jpg",
         link: "https://beautifuldata.co.uk",
-        color: "emerald",
-        size: "medium"
+        color: "emerald"
     },
     {
-        title: "Drnd.hu",
-        description: "Modern website for a Hungarian law firm with clear service presentation.",
-        tags: ["React", "Tailwind"],
-        image: "/images/Drnd.jpg",
-        link: "https://drnd.hu",
-        color: "orange",
-        size: "medium"
+        title: "AI Doc Processor",
+        description: "Automated document extraction & structuring.",
+        tags: ["AI", "Automation"],
+        image: "https://placehold.co/600x400/1a1a1a/white?text=AI+Docs",
+        link: "https://ai-document-processing-rho.vercel.app/",
+        color: "cyan"
     }
 ];
 
 const BentoCard = ({ project, index }) => {
-    const isLarge = project.size === "large";
+    // Individual card animation control for maximum stability
+    const controls = useAnimation();
+    const ref = useRef(null);
+    const inView = useInView(ref, { once: true, margin: "-50px" });
+
+    useEffect(() => {
+        if (inView) {
+            controls.start("visible");
+        }
+    }, [controls, inView]);
 
     return (
         <motion.a
+            ref={ref}
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.05 }}
-            className={`group relative overflow-hidden rounded-3xl bg-surface border border-white/5 hover:border-white/10 transition-all duration-500 ${isLarge ? 'md:col-span-2 md:row-span-2' : 'col-span-1'
-                } min-h-[300px] flex flex-col`}
+            initial="hidden"
+            animate={controls}
+            variants={{
+                hidden: { opacity: 0, y: 30, scale: 0.95, filter: "blur(8px)" },
+                visible: {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    filter: "blur(0px)",
+                    transition: { duration: 0.7, delay: index * 0.05, ease: [0.2, 0.8, 0.2, 1] }
+                }
+            }}
+            className="group relative overflow-hidden rounded-2xl bg-surface border border-white/5 hover:border-white/10 transition-all duration-500 h-[280px] flex flex-col"
         >
             {/* Background Image with Overlay */}
             <div className="absolute inset-0 z-0">
@@ -103,24 +113,24 @@ const BentoCard = ({ project, index }) => {
             </div>
 
             {/* Content */}
-            <div className="relative z-10 p-6 flex flex-col h-full justify-end">
-                <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                    <div className="flex justify-between items-center mb-2">
-                        <h3 className="text-2xl font-display font-bold text-primary">{project.title}</h3>
-                        <div className={`p-2 rounded-full bg-white/10 backdrop-blur-md text-${project.color}-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300`}>
-                            <ArrowUpRight className="w-5 h-5" />
+            <div className="relative z-10 p-5 flex flex-col h-full justify-end">
+                <div className="transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                    <div className="flex justify-between items-center mb-1">
+                        <h3 className="text-lg font-display font-bold text-primary">{project.title}</h3>
+                        <div className={`p-1.5 rounded-full bg-white/10 backdrop-blur-md text-${project.color}-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300`}>
+                            <ArrowUpRight className="w-4 h-4" />
                         </div>
                     </div>
 
-                    <p className="text-secondary text-sm mb-4 line-clamp-2 group-hover:line-clamp-none transition-all duration-300">
+                    <p className="text-secondary text-xs mb-3 line-clamp-2 group-hover:text-primary/90 transition-colors duration-300">
                         {project.description}
                     </p>
 
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-1.5">
                         {project.tags.map((tag, i) => (
                             <span
                                 key={i}
-                                className="text-xs font-mono px-2 py-1 rounded-md bg-white/10 backdrop-blur-sm text-primary/80 border border-white/5"
+                                className="text-[10px] font-mono px-1.5 py-0.5 rounded-md bg-white/10 backdrop-blur-sm text-primary/80 border border-white/5"
                             >
                                 {tag}
                             </span>
@@ -156,13 +166,22 @@ const HobbyProjects = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-section-title text-primary max-w-2xl"
+                        className="text-section-title text-primary max-w-2xl mb-6"
                     >
                         Experiments, Tools, and <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-blue to-accent-purple">Side Quests</span>
                     </motion.h2>
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2 }}
+                        className="text-lg md:text-xl text-secondary max-w-2xl leading-relaxed"
+                    >
+                        A collection of experimental projects, open-source tools, and creative coding explorations.
+                    </motion.p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 auto-rows-[300px]">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                     {projects.map((project, index) => (
                         <BentoCard key={index} project={project} index={index} />
                     ))}

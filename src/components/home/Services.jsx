@@ -1,81 +1,76 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Sparkles, Lightbulb, Bot, Brain } from 'lucide-react';
+import React, { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+import { Layout, Code, Smartphone, Database, Zap, Globe } from 'lucide-react';
 
 const services = [
     {
-        icon: <Sparkles className="w-6 h-6" />,
-        title: "UX Consultation",
-        description: "I help teams dig into what users really need. We'll find the sticking points and map out clear, practical solutions.",
-        features: ["User Research", "UX Audits", "Journey Mapping"]
+        icon: Layout,
+        title: "UI/UX Design",
+        description: "Crafting intuitive, user-centric interfaces that blend aesthetics with functionality. I focus on creating systems that scale.",
+        color: "blue"
     },
     {
-        icon: <Lightbulb className="w-6 h-6" />,
-        title: "Product Strategy",
-        description: "I work with teams to clarify product vision, understand the market, and define features that people will actually use.",
-        features: ["Product Vision", "Market Insights", "Growth Strategy"]
+        icon: Code,
+        title: "Frontend Development",
+        description: "Building responsive, high-performance web applications using modern frameworks like React, Next.js, and Tailwind CSS.",
+        color: "purple"
     },
     {
-        icon: <Bot className="w-6 h-6" />,
-        title: "AI Integration",
-        description: "I help businesses figure out where AI can actually make a difference and design practical, valuable AI solutions.",
-        features: ["Use-Case Discovery", "Solution Design", "LLM Integration"]
+        icon: Smartphone,
+        title: "Mobile Solutions",
+        description: "Designing and developing cross-platform mobile experiences that feel native and fluid on any device.",
+        color: "emerald"
     },
     {
-        icon: <Brain className="w-6 h-6" />,
-        title: "AI Workshops",
-        description: "I run hands-on workshops teaching how to effectively use Large Language Models (LLMs) to boost productivity.",
-        features: ["LLM Training", "Prompt Engineering", "Team Upskilling"]
+        icon: Database,
+        title: "System Architecture",
+        description: "Planning and implementing robust, scalable backend structures and database schemas for data-heavy applications.",
+        color: "orange"
+    },
+    {
+        icon: Zap,
+        title: "Performance Optimization",
+        description: "Auditing and refining applications for maximum speed, accessibility, and SEO performance.",
+        color: "yellow"
+    },
+    {
+        icon: Globe,
+        title: "Web3 & Blockchain",
+        description: "Designing trustless interfaces and integrating decentralized protocols into seamless user journeys.",
+        color: "cyan"
     }
 ];
 
 const ServiceCard = ({ service, index }) => {
+    const ref = useRef(null);
+    const inView = useInView(ref, { once: true, margin: "-50px" });
+
     return (
         <motion.div
+            ref={ref}
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.1 }}
-            className="group relative p-8 rounded-2xl bg-surface/50 border border-white/5 hover:border-accent/20 transition-all duration-300 hover:bg-surface"
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: index * 0.1, ease: [0.2, 0.8, 0.2, 1] }}
+            className="group p-8 rounded-3xl bg-surface border border-white/5 hover:border-white/10 hover:bg-white/5 transition-all duration-300"
         >
-            <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
-
-            <div className="relative z-10">
-                <div className="w-12 h-12 rounded-lg bg-white/5 flex items-center justify-center text-accent mb-6 group-hover:scale-110 transition-transform duration-300">
-                    {service.icon}
-                </div>
-
-                <h3 className="text-xl font-display font-bold text-primary mb-4 group-hover:text-accent transition-colors">
-                    {service.title}
-                </h3>
-
-                <p className="text-secondary text-sm leading-relaxed mb-6">
-                    {service.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2">
-                    {service.features.map((feature, i) => (
-                        <span
-                            key={i}
-                            className="text-xs font-mono px-2 py-1 rounded bg-white/5 text-secondary group-hover:text-primary transition-colors"
-                        >
-                            {feature}
-                        </span>
-                    ))}
-                </div>
+            <div className={`w-12 h-12 rounded-xl bg-${service.color}-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                <service.icon className={`w-6 h-6 text-${service.color}-400`} />
             </div>
+            <h3 className="text-xl font-display font-bold text-primary mb-3">
+                {service.title}
+            </h3>
+            <p className="text-secondary text-sm leading-relaxed group-hover:text-primary/80 transition-colors duration-300">
+                {service.description}
+            </p>
         </motion.div>
     );
 };
 
 const Services = () => {
     return (
-        <section id="services" className="py-20 md:py-32 bg-background relative overflow-hidden">
-            {/* Decorative Elements */}
-            <div className="absolute top-1/2 left-0 w-1/3 h-1/3 bg-accent/5 rounded-full blur-[100px] -translate-y-1/2 pointer-events-none" />
-
-            <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
-                <div className="mb-16 md:mb-24 max-w-3xl">
+        <section id="services" className="py-20 md:py-32 bg-background relative">
+            <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12">
+                <div className="mb-16 md:mb-24">
                     <motion.span
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -89,13 +84,14 @@ const Services = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-section-title text-primary"
+                        className="text-section-title text-primary max-w-3xl"
                     >
-                        Helping you build better digital products through design and strategy.
+                        Comprehensive solutions for <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue via-indigo-500 to-purple-500">digital transformation.</span>
                     </motion.h2>
                 </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {services.map((service, index) => (
                         <ServiceCard key={index} service={service} index={index} />
                     ))}

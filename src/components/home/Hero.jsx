@@ -1,107 +1,130 @@
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
 
 const Hero = () => {
     const containerRef = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start start", "end start"]
-    });
+    const { scrollY } = useScroll();
 
-    const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-    const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+    // Mouse interaction
+    const mouseX = useMotionValue(0);
+    const mouseY = useMotionValue(0);
+
+    // Smooth spring animation for mouse movement
+    const springConfig = { damping: 25, stiffness: 150 };
+    const x = useSpring(mouseX, springConfig);
+    const y = useSpring(mouseY, springConfig);
+
+    const handleMouseMove = (e) => {
+        const { clientX, clientY } = e;
+        const { innerWidth, innerHeight } = window;
+        // Normalize coordinates -1 to 1
+        const normalizedX = (clientX / innerWidth) * 2 - 1;
+        const normalizedY = (clientY / innerHeight) * 2 - 1;
+
+        mouseX.set(normalizedX * 50); // Move 50px max
+        mouseY.set(normalizedY * 50);
+    };
+
+    // Parallax for background elements
+    const y1 = useTransform(scrollY, [0, 500], [0, 200]);
+    const y2 = useTransform(scrollY, [0, 500], [0, -150]);
 
     return (
-        <section ref={containerRef} className="relative h-screen w-full overflow-hidden bg-background flex flex-col justify-center items-center px-4 sm:px-6 lg:px-12">
-            {/* Background Noise & Gradient */}
-            <div className="absolute inset-0 bg-noise opacity-20 pointer-events-none z-0"></div>
-            <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-accent/10 rounded-full blur-[120px] animate-pulse-slow pointer-events-none"></div>
-            <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-accent-purple/10 rounded-full blur-[120px] animate-pulse-slow pointer-events-none" style={{ animationDelay: '2s' }}></div>
-
-            <motion.div
-                style={{ y, opacity }}
-                className="relative z-10 max-w-[1800px] w-full mx-auto text-center flex flex-col items-center"
-            >
+        <section
+            ref={containerRef}
+            onMouseMove={handleMouseMove}
+            className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden bg-background px-4 sm:px-6"
+        >
+            {/* Ambient Background */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <motion.div
-                    initial={{ opacity: 0, y: 100 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                    className="mb-6 md:mb-10"
-                >
-                    <span className="inline-block py-1 px-3 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm text-sm md:text-base text-accent font-mono mb-6">
-                        Available for new projects
-                    </span>
-                    <h1 className="text-display font-bold text-primary leading-[0.9] tracking-tighter">
-                        <span className="block overflow-hidden">
-                            <motion.span
-                                initial={{ y: "100%" }}
-                                animate={{ y: 0 }}
-                                transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                                className="block"
-                            >
-                                Designing
-                            </motion.span>
-                        </span>
-                        <span className="block overflow-hidden text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary to-secondary">
-                            <motion.span
-                                initial={{ y: "100%" }}
-                                animate={{ y: 0 }}
-                                transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                                className="block"
-                            >
-                                Digital
-                            </motion.span>
-                        </span>
-                        <span className="block overflow-hidden">
-                            <motion.span
-                                initial={{ y: "100%" }}
-                                animate={{ y: 0 }}
-                                transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                                className="block italic font-serif text-accent"
-                            >
-                                Masterpieces
-                            </motion.span>
-                        </span>
-                    </h1>
-                </motion.div>
-
-                <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                    className="max-w-2xl text-lg md:text-xl text-secondary leading-relaxed mb-12 font-sans"
-                >
-                    I craft high-end digital experiences that blend aesthetic excellence with technical precision.
-                    Specializing in fintech, AI interfaces, and immersive web applications.
-                </motion.p>
-
+                    style={{ x, y, translateY: y1 }}
+                    className="absolute top-[-10%] left-[-10%] w-[60vw] h-[60vw] bg-accent-purple/10 rounded-full blur-[150px] mix-blend-screen"
+                />
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 1, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                    className="flex flex-col sm:flex-row gap-6 items-center"
-                >
-                    <a href="#work" className="group relative px-8 py-4 bg-primary text-background rounded-full font-bold text-lg overflow-hidden transition-transform hover:scale-105 active:scale-95">
-                        <span className="relative z-10 group-hover:text-background transition-colors">View Work</span>
-                        <div className="absolute inset-0 bg-accent transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 ease-out"></div>
-                    </a>
-                    <a href="#contact" className="text-primary font-medium hover:text-accent transition-colors flex items-center gap-2 group">
-                        Contact Me
-                        <ArrowDown className="w-4 h-4 transform -rotate-90 group-hover:translate-x-1 transition-transform" />
-                    </a>
-                </motion.div>
-            </motion.div>
+                    style={{ x: useTransform(x, v => -v), y: useTransform(y, v => -v), translateY: y2 }}
+                    className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] bg-accent-blue/10 rounded-full blur-[150px] mix-blend-screen"
+                />
+            </div>
 
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.5, duration: 1 }}
-                className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-secondary/50"
-            >
-                <span className="text-xs uppercase tracking-widest">Scroll</span>
-                <div className="w-[1px] h-12 bg-gradient-to-b from-secondary/50 to-transparent"></div>
-            </motion.div>
+            {/* Main Content */}
+            <div className="relative z-10 w-full max-w-[1600px] mx-auto">
+                <div className="flex flex-col items-center md:items-start">
+
+                    {/* Line 1: Designing */}
+                    <div className="overflow-hidden mb-2 md:mb-4 self-start md:ml-[5%]">
+                        <motion.h1
+                            initial={{ y: "100%" }}
+                            animate={{ y: 0 }}
+                            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+                            className="text-[12vw] md:text-[9rem] leading-[0.85] font-display font-bold text-primary tracking-tighter"
+                        >
+                            Designing
+                        </motion.h1>
+                    </div>
+
+                    {/* Line 2: Digital (Outlined/Hollow) */}
+                    <div className="overflow-hidden mb-2 md:mb-4 self-center">
+                        <motion.h1
+                            initial={{ y: "100%" }}
+                            animate={{ y: 0 }}
+                            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+                            className="text-[12vw] md:text-[9rem] leading-[0.85] font-display font-bold text-transparent tracking-tighter"
+                            style={{ WebkitTextStroke: "1px rgba(255, 255, 255, 0.3)" }}
+                        >
+                            Digital
+                        </motion.h1>
+                    </div>
+
+                    {/* Line 3: Experiences (Italic) */}
+                    <div className="overflow-hidden self-end md:mr-[5%] relative">
+                        <motion.div
+                            initial={{ width: 0 }}
+                            animate={{ width: "100%" }}
+                            transition={{ duration: 1.2, ease: "easeInOut", delay: 0.6 }}
+                            className="absolute bottom-2 md:bottom-6 left-0 h-[2px] bg-accent"
+                        />
+                        <motion.h1
+                            initial={{ y: "100%" }}
+                            animate={{ y: 0 }}
+                            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
+                            className="text-[12vw] md:text-[9rem] leading-[0.85] font-serif italic text-white mix-blend-overlay tracking-tighter pr-4"
+                        >
+                            Reality
+                        </motion.h1>
+                    </div>
+                </div>
+
+                {/* Subtext & CTA */}
+                <div className="mt-12 md:mt-24 flex flex-col md:flex-row justify-between items-end w-full px-4 md:px-12">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.8, duration: 0.8 }}
+                        className="max-w-md mb-8 md:mb-0"
+                    >
+                        <p className="text-secondary text-lg md:text-xl leading-relaxed font-light">
+                            I architect digital ecosystems where <span className="text-white font-medium">strategy</span> meets <span className="text-white font-medium">artistry</span>.
+                            Building the future of interaction, one pixel at a time.
+                        </p>
+                    </motion.div>
+
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 1, duration: 0.8 }}
+                        className="flex flex-col items-center gap-4"
+                    >
+                        <span className="text-xs font-mono text-accent uppercase tracking-widest">Scroll to Explore</span>
+                        <motion.div
+                            animate={{ y: [0, 10, 0] }}
+                            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                            className="w-px h-16 bg-gradient-to-b from-accent to-transparent"
+                        />
+                    </motion.div>
+                </div>
+            </div>
         </section>
     );
 };

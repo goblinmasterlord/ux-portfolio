@@ -25,6 +25,18 @@ const projects = [
     category: "Smart City / IoT",
     image: loccocityImage,
     path: "/projects/loccocity"
+  },
+  {
+    title: "Eclipse",
+    category: "EdTech Platform",
+    image: "/images/Eclipse.jpg", // Using string path as we don't have import yet
+    path: "/projects/eclipse"
+  },
+  {
+    title: "KovetkezoToken",
+    category: "Crypto News",
+    image: "/images/KovetkezoToken.jpg", // Using string path
+    path: "/projects/kovetkezotoken"
   }
 ];
 

@@ -1,70 +1,60 @@
-# CLAUDE.md - Project Context Guide
-
-## Project Overview
-**UX Portfolio** is a personal portfolio website built with **React** and **Vite**. It features a modern, high-end aesthetic with smooth animations and a focus on UX/UI design.
-- **Theme**: Light mode default, clean, professional.
-- **Inspiration**: clay.global, high-end agency sites.
+# UX Portfolio - Project Context
 
 ## Tech Stack
-- **Framework**: React 18
-- **Build Tool**: Vite
-- **Styling**: Tailwind CSS (v3.4)
-- **Animations**: Framer Motion (v11)
-- **Routing**: React Router DOM (v6)
+- **Framework**: React 18 + Vite
+- **Styling**: Tailwind CSS
+- **Animation**: Framer Motion
 - **Icons**: Lucide React
-- **Linting**: ESLint
-
-## Development Commands
-- `npm run dev`: Start development server (Port 3000)
-- `npm run build`: Build for production
-- `npm run preview`: Preview production build
-- `npm run lint`: Run ESLint
+- **Routing**: React Router DOM
 
 ## Project Structure
-- `src/components`: Reusable UI components.
-  - `project/`: Components specific to project case studies.
-- `src/pages`: Route components.
-  - `projects/`: Individual case study pages (Everprove, Paynance, LoccoCity).
-- `src/hooks`: Custom hooks (`useScrollAnimation`, `useEnhancedScrollAnimation`).
-- `src/assets`: Static assets (images, SVGs).
-- `src/index.css`: Global styles, Tailwind imports, Font imports.
+```
+src/
+  components/
+    home/
+      Hero.jsx            # Creative, interactive hero section
+      ProjectsShowcase.jsx # Main project gallery (Bento/Grid)
+      Services.jsx        # Services offered (Staggered list)
+      HobbyProjects.jsx   # Experimental projects (Grid)
+      TechStack.jsx       # Magnetic icon grid
+    Navigation.jsx        # Main nav with hash scrolling
+    Footer.jsx           
+  pages/
+    Home.jsx              # Landing page
+    Contact.jsx           # Contact page
+    ProjectDetail.jsx     # Dynamic project page template
+  assets/                 # Images and static assets
+```
 
-## Styling & Design System
-- **Tailwind Config**: Custom colors and fonts defined in `tailwind.config.js`.
+## Design System
+- **Theme**: Premium Dark (`#0a0a0a`)
+- **Typography**: 
+  - Headings: `Fraunces` (Serif, Bold, Display)
+  - Body: `Inter` (Sans-serif, Clean)
+  - Accents: `JetBrains Mono` (Technical details)
 - **Colors**:
-  - Background: `#FFFFFF`
-  - Primary Text: `#1E293B` (Slate 800)
-  - Accents: `#5B7FFF`, `#6366F1` (Indigo), `#8B5CF6` (Violet)
-- **Fonts**:
-  - **Display**: Geist Sans (Google Fonts)
-  - **Body**: Inter (Google Fonts)
-- **Animations**: Custom Tailwind animations (`float-slow`, `pulse-slow`) + Framer Motion.
+  - Background: `bg-background` (#050505)
+  - Surface: `bg-surface` (#0a0a0a)
+  - Primary Text: `text-primary` (#ffffff)
+  - Secondary Text: `text-secondary` (#a1a1aa)
+  - Accents: Blue, Purple, Emerald (Gradients)
 
-## Critical Development Guidelines
-1.  **Mobile-First**: Always ensure designs work on mobile. Use Tailwind breakpoints (`md:`, `lg:`).
-2.  **Animations**:
-    - Use **Framer Motion** for complex element transitions.
-    - **Avoid Dual Observers**: Do not use multiple intersection observers on the same element to prevent flickering. Use `useInView` or the provided custom hooks carefully.
-    - **Performance**: Be mindful of heavy animations on scroll.
-3.  **Fonts**: Use the defined font families (`font-display`, `font-sans`). Do not introduce new fonts without updating `index.css` and `tailwind.config.js`.
-4.  **Images**: Store images in `src/assets` or `public/images`. Use optimized formats where possible.
-5.  **Routing**: Add new pages to `App.jsx` within `<AnimatedRoutes>`.
+## Animation Guidelines (Critical)
+1.  **Scroll Triggers**: Use `viewport={{ once: true }}` for ALL scroll animations to prevent flickering.
+2.  **Locking**: For complex grids (like HobbyProjects), use `useAnimation` + `useEffect` to manually lock the animation state once triggered.
+3.  **Easing**: Use "Luxury" easing: `[0.2, 0.8, 0.2, 1]`.
+4.  **Performance**: Animate `transform` and `opacity` only. Avoid animating layout properties like `height` or `width` if possible (use scale instead).
 
-## Key Components
-- `CreativeHero.jsx`: Main homepage hero.
-- `RefinedHobbyProjects.jsx`: Showcase of personal projects (AI & Client work).
-- `PageTransition.jsx`: Wrapper for page transition animations.
-- `Navigation.jsx`: Main navbar.
+## Component Rules
+-   **Hero**: Must be bold, asymmetrical, and interactive. No generic layouts.
+-   **Cards**: 
+    -   Images must be high quality.
+    -   Text overlays must be readable (Darken background on hover).
+    -   Interactions should be subtle (Scale, Sheen).
+-   **Navigation**: Handles cross-page scrolling via URL hashes.
 
-## Design Patterns
-- **Project Pages**:
-  - **Hero**: Full-screen image with overlay, centered title/subtitle.
-  - **Challenge Section**: "Broken Grid" layout (1-2-3 column spans) with large numbering.
-  - **Aspects Section**: Alternating grid (Image/Text) with glassmorphism cards.
-  - **Typography**: `Fraunces` for display headings, `Inter` for body.
-
-## Recent Changes (Context)
-- **Creative Overhaul**: Redesigned Everprove, Paynance, and Loccocity with unique but consistent themes.
-- **Standardization**: Unified "Challenge" sections across all projects to use the "Broken Grid" pattern.
-- **Fixes**: Resolved layout issues in Paynance (narrow columns) and Loccocity (broken journey section).
-- **Theme**: Shifted to a dark, premium aesthetic for project pages.
+## Recent Changes
+-   **Hero**: Redesigned with "Deconstructed Typography" and mouse interaction.
+-   **Animations**: Overhauled to remove flickering. Implemented "Focus & Scale" effect.
+-   **Services**: Added new premium Services component.
+-   **Hobby Projects**: Recreated with robust animation locking.
