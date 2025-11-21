@@ -30,14 +30,14 @@ const AnimatedRoutes = () => {
         <Route path="/" element={<PageTransition><Home /></PageTransition>} />
         <Route path="/projects/everprove" element={<PageTransition><Everprove /></PageTransition>} />
         <Route path="/projects/paynance" element={<PageTransition><Paynance /></PageTransition>} />
-        <Route 
-          path="/projects/loccocity" 
+        <Route
+          path="/projects/loccocity"
           element={
             <PageTransition>
               {console.log('Rendering LoccoCityPage route')}
               <LoccoCityPage />
             </PageTransition>
-          } 
+          }
         />
         <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
       </Routes>
@@ -45,13 +45,18 @@ const AnimatedRoutes = () => {
   );
 };
 
+import Footer from './components/Footer';
+
 const App = () => {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <div className="bg-background min-h-screen">
+      <div className="bg-background min-h-screen flex flex-col">
         <Navigation />
-        <AnimatedRoutes />
+        <div className="flex-grow">
+          <AnimatedRoutes />
+        </div>
+        <Footer />
       </div>
     </BrowserRouter>
   );
