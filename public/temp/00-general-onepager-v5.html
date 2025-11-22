@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Képzési Portfólió 2025 | Következő Token</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Geist+Sans:wght@100;200;300;400;500;600;700;800;900&family=Geist+Mono:wght@100;200;300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            /* Brand Colors */
+            --color-cream: #DAD3C7;
+            --color-sage: #61665C;
+            --color-coral: #D58F7C;
+            --color-sand: #E3C08A;
+            --color-moss: #AEBAA7;
+            --color-charcoal: #0E1110;
+            --color-white: #FFFFFF;
+            --color-light-gray: #F8F7F5;
+            --color-medium-gray: #E5E5E5;
+            
+            /* Typography Scale - Expert System */
+            --font-display: 2.25rem;     /* 36px - Main headers */
+            --font-title-lg: 1.75rem;    /* 28px - Section titles */
+            --font-title: 1.375rem;      /* 22px - Subsection titles */
+            --font-subtitle: 1.125rem;   /* 18px - Card titles */
+            --font-body-lg: 1rem;        /* 16px - Intro text */
+            --font-body: 0.9375rem;      /* 15px - Body text */
+            --font-small: 0.8125rem;     /* 13px - Secondary text */
+            --font-micro: 0.6875rem;     /* 11px - Labels */
+            
+            /* Line Heights for Optimal Readability */
+            --lh-tight: 1.2;
+            --lh-base: 1.5;
+            --lh-relaxed: 1.65;
+            --lh-loose: 1.8;
+            
+            /* Letter Spacing */
+            --ls-tight: -0.02em;
+            --ls-normal: 0;
+            --ls-wide: 0.025em;
+            --ls-wider: 0.05em;
+            --ls-widest: 0.1em;
+        }
+        
+        body {
+            font-family: 'Geist Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--color-white);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: var(--color-charcoal);
+            font-size: var(--font-body);
+            line-height: var(--lh-base);
+            letter-spacing: var(--ls-normal);
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+        }
+        
+        .page {
+            width: 794px;
+            background: white;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            display: flex;
+            flex-direction: column;
+            min-height: 1123px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Header - More Compact Design */
+        .header {
+            background: var(--color-light-gray);
+            padding: 2rem 3rem 1.75rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, 
+                var(--color-cream) 0%, 
+                var(--color-sage) 25%, 
+                var(--color-coral) 50%, 
+                var(--color-sand) 75%, 
+                var(--color-moss) 100%
+            );
+        }
+        
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .logo {
+            height: 32px;
+            width: auto;
+        }
+        
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        
+        .brand-name {
+            font-size: 1.125rem;
+            font-weight: 300;
+            letter-spacing: var(--ls-tight);
+            color: var(--color-charcoal);
+            line-height: 1;
+        }
+        
+        .brand-tagline {
+            font-size: 0.625rem;
+            font-weight: 500;
+            letter-spacing: var(--ls-widest);
+            color: var(--color-sage);
+            text-transform: uppercase;
+        }
+        
+        .header-info {
+            text-align: center;
+            max-width: 580px;
+        }
+        
+        .header-title {
+            font-size: var(--font-display);
+            font-weight: 200;
+            line-height: var(--lh-tight);
+            letter-spacing: var(--ls-tight);
+            margin-bottom: 0.5rem;
+            color: var(--color-charcoal);
+        }
+        
+        .header-subtitle {
+            font-size: var(--font-body);
+            font-weight: 400;
+            line-height: var(--lh-base);
+            color: #666;
+            letter-spacing: var(--ls-normal);
+        }
+        
+        /* Content */
+        .content {
+            flex: 1;
+            padding: 2.5rem 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+        
+        /* Section Titles - Typography Excellence */
+        .section-title {
+            font-size: var(--font-title-lg);
+            font-weight: 300;
+            line-height: var(--lh-tight);
+            letter-spacing: var(--ls-tight);
+            color: var(--color-charcoal);
+            margin-bottom: 0.5rem;
+        }
+        
+        .section-intro {
+            font-size: var(--font-body);
+            font-weight: 400;
+            line-height: var(--lh-relaxed);
+            color: #666;
+            margin-bottom: 1.75rem;
+            max-width: 90%;
+        }
+        
+        /* Stats Section - Static Design */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
+        }
+        
+        .stat-card {
+            background: var(--color-white);
+            border: 1px solid var(--color-medium-gray);
+            padding: 1.25rem;
+            position: relative;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+        }
+        
+        .stat-card:nth-child(1)::before { background: var(--color-sage); }
+        .stat-card:nth-child(2)::before { background: var(--color-coral); }
+        .stat-card:nth-child(3)::before { background: var(--color-moss); }
+        .stat-card:nth-child(4)::before { background: var(--color-sand); }
+        
+        .stat-value {
+            font-family: 'Geist Mono', monospace;
+            font-size: 2rem;
+            font-weight: 200;
+            line-height: 1;
+            letter-spacing: var(--ls-tight);
+            color: var(--color-charcoal);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: var(--font-small);
+            font-weight: 500;
+            letter-spacing: var(--ls-wide);
+            color: var(--color-charcoal);
+            margin-bottom: 0.25rem;
+        }
+        
+        .stat-context {
+            font-size: var(--font-micro);
+            font-weight: 400;
+            letter-spacing: var(--ls-normal);
+            color: #999;
+            font-family: 'Geist Mono', monospace;
+        }
+        
+        /* Icon Styles */
+        .icon {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            stroke-width: 1.5;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        
+        .icon-sm {
+            width: 14px;
+            height: 14px;
+        }
+        
+        .icon-lg {
+            width: 22px;
+            height: 22px;
+        }
+        
+        /* Opportunities Section */
+        .opportunities-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+        }
+        
+        .opportunity-card {
+            background: var(--color-white);
+            border: 1px solid var(--color-medium-gray);
+            padding: 1.5rem;
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .opportunity-number {
+            font-family: 'Geist Mono', monospace;
+            font-size: var(--font-micro);
+            font-weight: 600;
+            width: 26px;
+            height: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-light-gray);
+            color: var(--color-sage);
+            flex-shrink: 0;
+        }
+        
+        .opportunity-content {
+            flex: 1;
+        }
+        
+        .opportunity-title {
+            font-size: var(--font-body);
+            font-weight: 500;
+            line-height: var(--lh-tight);
+            letter-spacing: var(--ls-normal);
+            color: var(--color-charcoal);
+            margin-bottom: 0.375rem;
+        }
+        
+        .opportunity-desc {
+            font-size: var(--font-small);
+            font-weight: 400;
+            line-height: var(--lh-relaxed);
+            color: #666;
+            margin-bottom: 0.625rem;
+        }
+        
+        .opportunity-metric {
+            font-family: 'Geist Mono', monospace;
+            font-size: var(--font-small);
+            font-weight: 500;
+            color: var(--color-coral);
+            letter-spacing: var(--ls-normal);
+        }
+        
+        /* Challenges - Creative Minimalist Design */
+        .challenges-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .challenge-item {
+            background: linear-gradient(135deg, #FFFFFF 0%, #FDFBFA 100%);
+            padding: 1.5rem;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(213, 143, 124, 0.08);
+            min-height: 120px;
+        }
+        
+        .challenge-item::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            height: 3px;
+            background: linear-gradient(90deg, 
+                rgba(213, 143, 124, 0.15) 0%, 
+                rgba(213, 143, 124, 0.35) 50%,
+                rgba(213, 143, 124, 0.15) 100%);
+        }
+        
+        .challenge-item::after {
+            content: '';
+            position: absolute;
+            top: 0.75rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, 
+                rgba(213, 143, 124, 0.06) 0%, 
+                rgba(213, 143, 124, 0.02) 40%,
+                transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .challenge-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(213, 143, 124, 0.6);
+            opacity: 1;
+            margin-bottom: 0.75rem;
+        }
+        
+        .challenge-icon svg {
+            stroke-width: 1.75;
+        }
+        
+        .challenge-title {
+            font-size: 0.9375rem;
+            font-weight: 400;
+            line-height: 1.3;
+            color: #2A2A2A;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.5rem;
+        }
+        
+        .challenge-desc {
+            font-size: 0.78125rem;
+            line-height: 1.55;
+            color: #808080;
+            flex: 1;
+            font-weight: 300;
+        }
+        
+        /* Use Cases - Modern Clean Design */
+        .use-cases-section {
+            background: linear-gradient(to bottom, var(--color-white) 0%, var(--color-light-gray) 100%);
+            margin: 0 -3rem;
+            padding: 2rem 3rem;
+        }
+        
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.125rem;
+        }
+        
+        .use-case-card {
+            background: var(--color-white);
+            border: 1px solid var(--color-medium-gray);
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .use-case-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 1.25rem;
+            background: var(--color-light-gray);
+            border-bottom: 1px solid var(--color-medium-gray);
+        }
+        
+        .use-case-icon-wrapper {
+            width: 32px;
+            height: 32px;
+            background: var(--color-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .use-case-header-text {
+            flex: 1;
+        }
+        
+        .use-case-industry {
+            font-size: var(--font-micro);
+            font-weight: 600;
+            letter-spacing: var(--ls-widest);
+            text-transform: uppercase;
+            color: var(--color-sage);
+            margin-bottom: 0.125rem;
+        }
+        
+        .use-case-company {
+            font-size: var(--font-body);
+            font-weight: 600;
+            line-height: var(--lh-tight);
+            color: var(--color-charcoal);
+            margin-bottom: 0.5rem;
+        }
+        
+        .use-case-content {
+            padding: 1.25rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .use-case-desc {
+            font-size: var(--font-small);
+            line-height: var(--lh-relaxed);
+            color: #666;
+            margin-bottom: 0.75rem;
+            flex-grow: 1;
+        }
+        
+        .use-case-result {
+            font-size: var(--font-small);
+            font-weight: 500;
+            color: var(--color-sage);
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+            padding: 0.5rem 0.75rem;
+            background: var(--color-light-gray);
+            margin: 0 -1.25rem -1.25rem;
+            border-top: 1px solid var(--color-medium-gray);
+        }
+        
+        /* Training Programs - Updated Structure */
+        .primary-training-label,
+        .followup-training-label {
+            font-size: var(--font-micro);
+            font-weight: 600;
+            letter-spacing: var(--ls-widest);
+            text-transform: uppercase;
+            color: var(--color-sage);
+            margin-bottom: 1rem;
+            margin-top: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--color-medium-gray);
+        }
+        
+        .primary-training-label {
+            margin-top: 0;
+        }
+        
+        .primary-training-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .followup-training-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+        }
+        
+        .training-card {
+            background: var(--color-white);
+            border: 1px solid var(--color-medium-gray);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .training-card.primary-training {
+            border-width: 2px;
+            border-color: var(--color-sage);
+        }
+        
+        .training-card.followup-training {
+            opacity: 0.95;
+        }
+        
+        .training-header {
+            padding: 1.125rem;
+            background: var(--color-light-gray);
+            border-bottom: 1px solid var(--color-medium-gray);
+        }
+        
+        .primary-training .training-header {
+            background: linear-gradient(to right, var(--color-light-gray) 0%, rgba(97, 102, 92, 0.05) 100%);
+        }
+        
+        .training-number {
+            font-family: 'Geist Mono', monospace;
+            font-size: var(--font-micro);
+            font-weight: 600;
+            letter-spacing: var(--ls-wider);
+            margin-bottom: 0.375rem;
+        }
+        
+        .training-card:nth-child(1) .training-number { color: var(--color-sand); }
+        .training-card:nth-child(2) .training-number { color: var(--color-sage); }
+        .followup-training:nth-child(1) .training-number { color: var(--color-coral); }
+        .followup-training:nth-child(2) .training-number { color: var(--color-moss); }
+        
+        .training-title {
+            font-size: var(--font-body);
+            font-weight: 500;
+            line-height: var(--lh-tight);
+            color: var(--color-charcoal);
+            margin-bottom: 0.25rem;
+        }
+        
+        .training-audience {
+            font-size: var(--font-micro);
+            font-weight: 500;
+            letter-spacing: var(--ls-widest);
+            text-transform: uppercase;
+            color: #999;
+        }
+        
+        .training-content {
+            padding: 1.125rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .training-outcomes {
+            list-style: none;
+            margin-bottom: 0.875rem;
+            flex: 1;
+        }
+        
+        .training-outcomes li {
+            font-size: var(--font-small);
+            line-height: var(--lh-relaxed);
+            color: #555;
+            padding: 0.3125rem 0;
+            padding-left: 1.125rem;
+            position: relative;
+        }
+        
+        .training-outcomes li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--color-sage);
+        }
+        
+        .training-meta {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 0.625rem;
+            border-top: 1px solid var(--color-medium-gray);
+            font-family: 'Geist Mono', monospace;
+            font-size: var(--font-micro);
+            color: #999;
+        }
+        
+        /* AI Augmentation Section */
+        .augmentation-section {
+            background: linear-gradient(135deg, var(--color-charcoal) 0%, #1a1c1a 100%);
+            padding: 1.5rem 1.75rem;
+            margin-bottom: 1.75rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .augmentation-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, rgba(97, 102, 92, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(50%, -50%);
+        }
+        
+        .augmentation-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .augmentation-title {
+            font-size: var(--font-subtitle);
+            font-weight: 300;
+            line-height: var(--lh-tight);
+            letter-spacing: var(--ls-tight);
+            color: var(--color-white);
+            margin-bottom: 0.625rem;
+        }
+        
+        .augmentation-intro {
+            font-size: var(--font-small);
+            line-height: var(--lh-relaxed);
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.125rem;
+            max-width: 85%;
+        }
+        
+        .augmentation-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.75rem;
+        }
+        
+        .augmentation-card {
+            position: relative;
+        }
+        
+        .augmentation-number {
+            font-family: 'Geist Mono', monospace;
+            font-size: var(--font-micro);
+            font-weight: 600;
+            color: var(--color-sand);
+            margin-bottom: 0.375rem;
+            letter-spacing: var(--ls-wider);
+        }
+        
+        .augmentation-card-title {
+            font-size: var(--font-body);
+            font-weight: 500;
+            color: var(--color-white);
+            margin-bottom: 0.3125rem;
+        }
+        
+        .augmentation-card-desc {
+            font-size: var(--font-micro);
+            line-height: var(--lh-relaxed);
+            color: rgba(255, 255, 255, 0.65);
+        }
+        
+        /* CTA Section - Minimalist Modern */
+        .cta-section {
+            background: var(--color-charcoal);
+            color: var(--color-white);
+            padding: 2.25rem 3rem;
+            text-align: center;
+            margin-top: auto;
+            position: relative;
+        }
+        
+        .cta-content {
+            max-width: 580px;
+            margin: 0 auto;
+        }
+        
+        .cta-title {
+            font-size: var(--font-title-lg);
+            font-weight: 200;
+            line-height: var(--lh-tight);
+            letter-spacing: var(--ls-tight);
+            margin-bottom: 0.875rem;
+        }
+        
+        .cta-subtitle {
+            font-size: var(--font-body);
+            font-weight: 400;
+            line-height: var(--lh-relaxed);
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-contacts {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+            font-size: var(--font-body);
+            color: var(--color-white);
+        }
+        
+        /* Ensure footer icons align perfectly with text */
+        .cta-section .contact-item .icon {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            display: block;
+        }
+        
+        .contact-label {
+            font-size: var(--font-micro);
+            font-weight: 500;
+            letter-spacing: var(--ls-widest);
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+                margin: 0;
+                padding: 0;
+            }
+            
+            .page {
+                width: auto;
+                margin: 0;
+                box-shadow: none;
+                page-break-after: always;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-content">
+                <div class="logo-container">
+                    <svg class="logo" viewBox="0 0 360 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="9.07086" y="0.137817" width="44.2205" height="53" rx="11.3386" fill="#DAD3C7"/>
+                        <rect x="83.9055" y="2.41736" width="47.0551" height="47.871" rx="11.3386" fill="#61665C"/>
+                        <rect x="159.307" y="2.41736" width="49.3228" height="47.871" rx="11.3386" fill="#D58F7C"/>
+                        <rect x="234.709" y="2.41736" width="50.4567" height="47.871" rx="11.3386" fill="#E3C08A"/>
+                        <rect x="310.11" y="3.55713" width="49.8898" height="46.7312" rx="11.3386" fill="#AEBAA7"/>
+                        <rect x="1.70079" y="1.8386" width="49.8898" height="49.5984" rx="9.63779" stroke="black" stroke-width="3.40157"/>
+                        <rect x="77.1024" y="1.8386" width="49.8898" height="49.5984" rx="9.63779" stroke="black" stroke-width="3.40157"/>
+                        <rect x="152.504" y="1.8386" width="49.8898" height="49.5984" rx="9.63779" stroke="black" stroke-width="3.40157"/>
+                        <rect x="227.906" y="1.8386" width="49.8898" height="49.5984" rx="9.63779" stroke="black" stroke-width="3.40157"/>
+                        <rect x="303.307" y="1.8386" width="49.8898" height="49.5984" rx="9.63779" stroke="black" stroke-width="3.40157"/>
+                    </svg>
+                    <div class="brand-text">
+                        <div class="brand-name">Következő Token</div>
+                        <div class="brand-tagline">AI Képzések</div>
+                    </div>
+                </div>
+                <div class="header-info">
+                    <h1 class="header-title">AI: Partner a Vállalati Növekedésben</h1>
+                    <p class="header-subtitle">Gyakorlati képzések • Mérhető eredmények • Magyar nyelven</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Content -->
+        <div class="content">
+            <!-- Stats Section -->
+            <div class="stats-section">
+                <h2 class="section-title">Az AI forradalom számokban</h2>
+                <p class="section-intro">A mesterséges intelligencia átlépte a kísérleti fázis határát. Ma már bizonyított üzleti eredményeket hoz, és egyedülálló lehetőséget kínál a versenyképesség növelésére.</p>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">42%</div>
+                        <div class="stat-label">Időmegtakarítás</div>
+                        <div class="stat-context">BCG, 2024</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">77%</div>
+                        <div class="stat-label">Pozitív hatás a munkára</div>
+                        <div class="stat-context">Microsoft, 2024</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">90%</div>
+                        <div class="stat-label">Használja rendszeresen</div>
+                        <div class="stat-context">a16z, 2024</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">85%</div>
+                        <div class="stat-label">Várható ROI növekedés</div>
+                        <div class="stat-context">Deloitte, 2025</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Strategic Opportunities -->
+            <div class="opportunities-section">
+                <h2 class="section-title">Miért most ideális az AI adoptáció?</h2>
+                <p class="section-intro">A technológia mára kiforrott és minden eddiginél könnyebben elérhető. Ez ideális helyzetet teremt arra, hogy a vállalatok felfedezzék, hogyan támogathatja az AI a növekedést és teheti hatékonyabbá a mindennapi munkát.</p>
+                <div class="opportunities-grid">
+                    <div class="opportunity-card">
+                        <div class="opportunity-number">01</div>
+                        <div class="opportunity-content">
+                            <div class="opportunity-title">Gyorsabb terjedés mint a PC</div>
+                            <div class="opportunity-desc">Az AI adoptáció sebessége meghaladja az internet és a PC terjedését.</div>
+                            <div class="opportunity-metric">2 év → 39% adoptáció</div>
+                        </div>
+                    </div>
+                    <div class="opportunity-card">
+                        <div class="opportunity-number">02</div>
+                        <div class="opportunity-content">
+                            <div class="opportunity-title">Azonnali megtérülés</div>
+                            <div class="opportunity-desc">A vállalatok többsége már az első évben pozitív ROI-t lát.</div>
+                            <div class="opportunity-metric">76% pozitív ROI</div>
+                        </div>
+                    </div>
+                    <div class="opportunity-card">
+                        <div class="opportunity-number">03</div>
+                        <div class="opportunity-content">
+                            <div class="opportunity-title">Mélyülő szakadék</div>
+                            <div class="opportunity-desc">Az AI vezetők és lemaradók közötti különbség exponenciálisan nő.</div>
+                            <div class="opportunity-metric">1% érte el a teljes potenciált</div>
+                        </div>
+                    </div>
+                    <div class="opportunity-card">
+                        <div class="opportunity-number">04</div>
+                        <div class="opportunity-content">
+                            <div class="opportunity-title">Mérhető időmegtakarítás</div>
+                            <div class="opportunity-desc">Fejlesztők 56%-kal gyorsabbak, átlag dolgozók heti 2-3 órát spórolnak.</div>
+                            <div class="opportunity-metric">5.4% munkaidő megtakarítás</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Challenges - Modern Card Design -->
+            <div class="challenges-section">
+                <h2 class="section-title">Tipikus kihívások az AI bevezetés során</h2>
+                <p class="section-intro">Nem vagy egyedül ezekkel a kihívásokkal. A legtöbb szervezet hasonló akadályokba ütközik a bevezetés során. A közös munka során segítünk ezeket felismerni és hatékonyan kezelni.</p>
+                <div class="challenges-grid">
+                    <div class="challenge-item">
+                        <div class="challenge-icon">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M12 8v4"></path>
+                                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                            </svg>
+                        </div>
+                        <div class="challenge-title">Tudáshiány</div>
+                        <div class="challenge-desc">A csapatok bizonytalanok az AI valós képességeiben és korlátaiban.</div>
+                    </div>
+                    <div class="challenge-item">
+                        <div class="challenge-icon">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M9 11l3 3L22 4"></path>
+                                <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"></path>
+                            </svg>
+                        </div>
+                        <div class="challenge-title">Stratégiai bizonytalanság</div>
+                        <div class="challenge-desc">Nehéz meghatározni, melyik területen hozná a leggyorsabb és legnagyobb értéket az AI.</div>
+                    </div>
+                    <div class="challenge-item">
+                        <div class="challenge-icon">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                        <div class="challenge-title">Változásmenedzsment</div>
+                        <div class="challenge-desc">Az új eszközök bevezetése és a megszokott folyamatok megváltoztatása kihívást jelenthet a csapatok számára.</div>
+                    </div>
+                    <div class="challenge-item">
+                        <div class="challenge-icon">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <line x1="12" y1="2" x2="12" y2="22"></line>
+                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                            </svg>
+                        </div>
+                        <div class="challenge-title">ROI kimutatás</div>
+                        <div class="challenge-desc">Az AI bevezetésének üzleti hasznát nem mindig egyszerű számszerűsíteni és bemutatni a vezetés felé.</div>
+                    </div>
+                    <div class="challenge-item">
+                        <div class="challenge-icon">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <rect x="3" y="11" width="18" height="10" rx="2" ry="2"></rect>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                            </svg>
+                        </div>
+                        <div class="challenge-title">Biztonság és compliance</div>
+                        <div class="challenge-desc">Az adatbiztonság, a megfelelőség és az etikus használat kulcsfontosságú kérdések, amelyek alapos tervezést igényelnek.</div>
+                    </div>
+                    <div class="challenge-item">
+                        <div class="challenge-icon">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                <polyline points="17 6 23 6 23 12"></polyline>
+                            </svg>
+                        </div>
+                        <div class="challenge-title">Skálázási nehézségek</div>
+                        <div class="challenge-desc">A sikeres kísérleti projektek kiterjesztése a teljes szervezetre gyakran ütközik technikai és szervezeti akadályokba.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Use Cases - Modern Design -->
+            <div class="use-cases-section">
+                <h2 class="section-title">Az AI már most átalakítja az iparágakat</h2>
+                <p class="section-intro">Az elmélettől a gyakorlatig: az AI már nem a jövő, hanem a jelen. Vezető vállalatok világszerte alkalmazzák a technológiát a hatékonyság növelésére, az ügyfélélmény javítására és új üzleti érték teremtésére. Íme néhány inspiráló példa.</p>
+                <div class="use-cases-grid">
+                    <div class="use-case-card">
+                        <div class="use-case-header">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                            </svg>
+                            <div class="use-case-industry">Pénzügy</div>
+                        </div>
+                        <div class="use-case-content">
+                            <div class="use-case-company">Morgan Stanley</div>
+                            <div class="use-case-desc">Egy belső, GPT-4 alapú asszisztenst fejlesztettek, amely lehetővé teszi a pénzügyi tanácsadók számára, hogy másodpercek alatt hozzáférjenek a hatalmas belső tudásbázishoz.</div>
+                            <div class="use-case-result">
+                                <svg class="icon icon-sm" viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                Időmegtakarítás
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="use-case-card">
+                        <div class="use-case-header">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                            </svg>
+                            <div class="use-case-industry">Egészségügy</div>
+                        </div>
+                        <div class="use-case-content">
+                            <div class="use-case-company">Ambience Healthcare</div>
+                            <div class="use-case-desc">AI-alapú eszközük automatikusan generálja az orvosi dokumentációt a betegvizsgálatok után, drasztikusan csökkentve az orvosok adminisztrációs terheit.</div>
+                            <div class="use-case-result">
+                                <svg class="icon icon-sm" viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                Kevesebb adminisztráció
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="use-case-card">
+                        <div class="use-case-header">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <circle cx="9" cy="21" r="1"></circle>
+                                <circle cx="20" cy="21" r="1"></circle>
+                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                            </svg>
+                            <div class="use-case-industry">Kereskedelem</div>
+                        </div>
+                        <div class="use-case-content">
+                            <div class="use-case-company">Lowe's</div>
+                            <div class="use-case-desc">Egyedi AI-asszisztenst kínálnak, amely személyre szabott tanácsokkal és részletes útmutatókkal segíti a vásárlókat otthoni felújítási projektjeikben.</div>
+                            <div class="use-case-result">
+                                <svg class="icon icon-sm" viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                Jobb ügyfélélmény
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="use-case-card">
+                        <div class="use-case-header">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M2 21h20"></path>
+                                <path d="M2 21v-8l5 3v-3l5 3V8l10 6v7"></path>
+                                <path d="M14 8V5h2v3"></path>
+                                <path d="M18 10V5h2v5"></path>
+                            </svg>
+                            <div class="use-case-industry">Gyártás</div>
+                        </div>
+                        <div class="use-case-content">
+                            <div class="use-case-company">Foxconn</div>
+                            <div class="use-case-desc">Vizuális minőségellenőrzés AI-val: a gyártósoron készült képek automatikus elemzése a hibák korai felismerésére, gyorsabb ellenőrzés és alacsonyabb selejt arány.</div>
+                            <div class="use-case-result">
+                                <svg class="icon icon-sm" viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                Kevesebb selejt
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="use-case-card">
+                        <div class="use-case-header">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            </svg>
+                            <div class="use-case-industry">Ügyfélszolgálat</div>
+                        </div>
+                        <div class="use-case-content">
+                            <div class="use-case-company">Klarna</div>
+                            <div class="use-case-desc">Ügyfélszolgálati AI-asszisztensük az első hónapban 2,3 millió beszélgetést kezelt, ami 700 teljes munkaidős ügynök munkájával egyenértékű, és javította az ügyfél-elégedettséget.</div>
+                            <div class="use-case-result">
+                                <svg class="icon icon-sm" viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                Gyorsabb ügyintézés
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="use-case-card">
+                        <div class="use-case-header">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                            <div class="use-case-industry">Marketing</div>
+                        </div>
+                        <div class="use-case-content">
+                            <div class="use-case-company">Coca-Cola</div>
+                            <div class="use-case-desc">A 'Create Real Magic' platformjuk lehetővé teszi a felhasználók számára, hogy a márka elemeit felhasználva generáljanak saját, egyedi műalkotásokat, forradalmasítva a marketing tartalmak készítését.</div>
+                            <div class="use-case-result">
+                                <svg class="icon icon-sm" viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                Gyorsabb tartalomkészítés
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- AI Augmentation Section -->
+            <div class="augmentation-section">
+                <div class="augmentation-content">
+                    <h2 class="augmentation-title">Az AI nem helyettesít – felhatalmaz</h2>
+                    <p class="augmentation-intro">
+                        Az AI nem az emberi munka kiváltásáról szól, hanem képességeink kiterjesztéséről. Három területen segít a mindennapokban:
+                    </p>
+                    <div class="augmentation-grid">
+                        <div class="augmentation-card">
+                            <div class="augmentation-number">01</div>
+                            <div class="augmentation-card-title">Gyorsítás</div>
+                            <div class="augmentation-card-desc">
+                                Automatizálja a repetitív feladatokat. Órák helyett percek alatt.
+                            </div>
+                        </div>
+                        <div class="augmentation-card">
+                            <div class="augmentation-number">02</div>
+                            <div class="augmentation-card-title">Asszisztálás</div>
+                            <div class="augmentation-card-desc">
+                                Támogat döntésekben és ötletelésben. Mint egy mindig elérhető szakértő.
+                            </div>
+                        </div>
+                        <div class="augmentation-card">
+                            <div class="augmentation-number">03</div>
+                            <div class="augmentation-card-title">Kiegészítés</div>
+                            <div class="augmentation-card-desc">
+                                Új képességeket ad: kódolás, fordítás, elemzés. Amit eddig nem tudtál.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Training Programs - Updated Structure -->
+            <div class="training-section">
+                <h2 class="section-title">Képzési programjaink – minden szinthez</h2>
+                <p class="section-intro">Hiszünk a személyre szabott megoldásokban. Minden szervezeti szinthez praktikus, azonnal használható tudást adunk át.</p>
+                
+                <!-- Primary Training Programs -->
+                <div class="primary-training-label">Alapképzéseink</div>
+                <div class="primary-training-grid">
+                    <div class="training-card primary-training">
+                        <div class="training-header">
+                            <div class="training-number">01</div>
+                            <div class="training-title">AI Alapozó</div>
+                            <div class="training-audience">Minden dolgozó</div>
+                        </div>
+                        <div class="training-content">
+                            <ul class="training-outcomes">
+                                <li>Szilárd alapok: Az AI működésének és logikájának megértése a magabiztos használathoz.</li>
+                                <li>Tudatos kommunikáció: Hatékony promptolási technikák, amikkel minőségi eredményt érsz el.</li>
+                                <li>Okos eszközválasztás: Az AI ökoszisztéma átlátása, hogy mindig a legjobb eszközt használd.</li>
+                                <li>Gyakorlati integráció: Az AI beépítése a mindennapi feladatokba a hatékonyság növeléséért.</li>
+                            </ul>
+                            <div class="training-meta">
+                                <span>2 óra</span>
+                                <span>Interaktív</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="training-card primary-training">
+                        <div class="training-header">
+                            <div class="training-number">02</div>
+                            <div class="training-title">Vezetői Workshop</div>
+                            <div class="training-audience">Felsővezetés</div>
+                        </div>
+                        <div class="training-content">
+                            <ul class="training-outcomes">
+                                <li>Stratégiai jövőkép: Az AI szerepének meghatározása a vállalati célok elérésében.</li>
+                                <li>Értékteremtési fókusz: A legnagyobb üzleti potenciállal bíró területek azonosítása.</li>
+                                <li>Kockázatkezelés és irányítás: Biztonságos és felelős AI bevezetés kereteinek kialakítása.</li>
+                                <li>Szervezeti felkészítés: A változás menedzselése a sikeres adoptációért.</li>
+                            </ul>
+                            <div class="training-meta">
+                                <span>3-4 óra</span>
+                                <span>Workshop</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Follow-up Programs -->
+                <div class="followup-training-label">Továbbépíthető programok</div>
+                <div class="followup-training-grid">
+                    <div class="training-card followup-training">
+                        <div class="training-header">
+                            <div class="training-number">03</div>
+                            <div class="training-title">AI a Gyakorlatban</div>
+                            <div class="training-audience">Középvezetők</div>
+                        </div>
+                        <div class="training-content">
+                            <ul class="training-outcomes">
+                                <li>Mesteri promptolás: Komplex feladatok megoldása iteratív technikákkal.</li>
+                                <li>Folyamatok újratervezése: Meglévő munkafolyamatok átalakítása AI eszközökkel.</li>
+                                <li>AI-alapú csapatvezetés: A csapat AI-készségeinek fejlesztése és közös tudás építése.</li>
+                                <li>Mérhető eredmények: Konkrét mérőszámok (KPI-ok) meghatározása a sikeresség követésére.</li>
+                            </ul>
+                            <div class="training-meta">
+                                <span>3-5 óra</span>
+                                <span>Gyakorlati</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="training-card followup-training">
+                        <div class="training-header">
+                            <div class="training-number">04</div>
+                            <div class="training-title">Szakmai Alkalmazások</div>
+                            <div class="training-audience">Csapatok</div>
+                        </div>
+                        <div class="training-content">
+                            <ul class="training-outcomes">
+                                <li>Marketing, HR, Pénzügy és más területek specifikus AI eszközei.</li>
+                                <li>Napi rutinok és ismétlődő feladatok automatizálása.</li>
+                                <li>Saját prompt-sablonok és egyszerű munkafolyamatok építése.</li>
+                                <li>Valós céges projektek feldolgozása AI-val.</li>
+                            </ul>
+                            <div class="training-meta">
+                                <span>2-4 óra</span>
+                                <span>Testreszabott</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <div class="cta-content">
+                <h2 class="cta-title">Kezdjük el a közös munkát</h2>
+                <p class="cta-subtitle">Segítünk megtalálni a megfelelő AI stratégiát és képzési programot a szervezeted számára.</p>
+                <div class="cta-contacts">
+                    <div class="contact-item">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        <div>
+                            <div class="contact-label">Email</div>
+                            <div>hello@kovetkezotoken.hu</div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                        <div>
+                            <div class="contact-label">Telefon</div>
+                            <div>+36 30 123 4567</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

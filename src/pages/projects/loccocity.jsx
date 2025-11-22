@@ -3,6 +3,7 @@ import { motion, useScroll } from 'framer-motion';
 import { ArrowLeft, Trophy, Navigation as NavIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import NextProject from '../../components/project/NextProject';
+import SolutionGrid from '../../components/project/SolutionGrid';
 import loccocityImage from '../../assets/projects/loccocity.png';
 import aspect1 from '../../assets/projects/locco-aspect-01.jpg';
 import aspect2 from '../../assets/projects/locco-aspect-02.jpg';
@@ -89,7 +90,8 @@ const Loccocity = () => {
         <main ref={containerRef} className="bg-background min-h-screen text-primary selection:bg-accent/30 overflow-x-hidden relative">
 
             {/* Central Path Line */}
-            <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-accent/30 to-transparent -translate-x-1/2 hidden md:block" />
+            {/* Central Path Line - REMOVED */}
+            {/* <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-accent/30 to-transparent -translate-x-1/2 hidden md:block" /> */}
 
             {/* Close Button - Fixed High Z-Index */}
             <Link
@@ -118,7 +120,7 @@ const Loccocity = () => {
                         transition={{ duration: 0.8, ease: "easeOut" }}
                     >
                         <span className="inline-block px-3 py-1 mb-6 text-xs font-mono tracking-widest text-accent uppercase border border-accent/20 rounded-full bg-accent/5">
-                            Smart City / IoT
+                            Gamified Marketing App
                         </span>
                         <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold mb-6 tracking-tight leading-tight">
                             {projectData.title}
@@ -217,40 +219,8 @@ const Loccocity = () => {
             </section>
 
             {/* Solution Cards - Premium Design */}
-            <section className="py-32 relative overflow-hidden">
-                {/* Background Glow */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/20 blur-[120px] rounded-full pointer-events-none" />
-
-                <div className="container mx-auto px-6 relative z-10">
-                    <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                        {projectData.solutions.map((solution, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ delay: index * 0.1 }}
-                                className="group relative p-1 rounded-3xl bg-gradient-to-b from-white/10 to-white/5 hover:from-accent/50 hover:to-accent/10 transition-all duration-500"
-                            >
-                                <div className="absolute inset-0 bg-accent/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                                <div className="relative h-full bg-background/90 backdrop-blur-xl rounded-[20px] p-8 border border-white/5 group-hover:border-transparent transition-colors">
-                                    <div className="mb-8 w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center text-accent group-hover:scale-110 group-hover:bg-accent group-hover:text-black transition-all duration-500">
-                                        {solution.icon}
-                                    </div>
-                                    <h3 className="text-2xl font-display font-bold mb-6 group-hover:text-accent transition-colors">{solution.title}</h3>
-                                    <ul className="space-y-4">
-                                        {solution.points.map((point, i) => (
-                                            <li key={i} className="flex items-start gap-3 text-secondary group-hover:text-primary transition-colors">
-                                                <div className="w-1.5 h-1.5 rounded-full bg-accent/50 mt-2 shrink-0 group-hover:bg-accent" />
-                                                <span>{point}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
+            {/* Solution Cards - Premium Design */}
+            <SolutionGrid solutions={projectData.solutions} />
 
             {/* Next Project */}
             <NextProject project={nextProject} />

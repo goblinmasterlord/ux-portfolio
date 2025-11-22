@@ -22,7 +22,7 @@ const projects = [
   },
   {
     title: "Loccocity",
-    category: "Smart City / IoT",
+    category: "Gamified Marketing App",
     image: loccocityImage,
     path: "/projects/loccocity"
   },
@@ -34,8 +34,8 @@ const projects = [
   },
   {
     title: "KovetkezoToken",
-    category: "Crypto News",
-    image: "/images/KovetkezoToken.jpg", // Using string path
+    category: "AI Consultancy",
+    image: "/images/KovetkezoToken.jpg",
     path: "/projects/kovetkezotoken"
   }
 ];
@@ -144,7 +144,7 @@ const Navigation = () => {
                             onClick={() => handleScrollTo('hobby-projects')}
                             className="text-left p-3 rounded-xl hover:bg-white/5 text-sm text-secondary hover:text-primary transition-colors"
                           >
-                            View Lab Projects
+                            View Hobby Projects
                           </button>
                         </div>
 
@@ -175,7 +175,7 @@ const Navigation = () => {
                 </div>
 
                 <button onClick={() => handleScrollTo('services')} className="text-sm font-medium text-secondary hover:text-primary transition-colors">Services</button>
-                <button onClick={() => handleScrollTo('hobby-projects')} className="text-sm font-medium text-secondary hover:text-primary transition-colors">Lab</button>
+                <button onClick={() => handleScrollTo('hobby-projects')} className="text-sm font-medium text-secondary hover:text-primary transition-colors">Hobby projects</button>
 
                 <Link to="/contact" className="px-5 py-2 rounded-full bg-white/5 hover:bg-white/10 text-primary text-sm font-medium transition-colors border border-white/5 hover:border-accent/20">
                   Let's Talk
@@ -216,7 +216,7 @@ const Navigation = () => {
               ))}
               <div className="h-px bg-white/10 w-full" />
               <button onClick={() => handleScrollTo('services')} className="text-xl text-secondary">Services</button>
-              <button onClick={() => handleScrollTo('hobby-projects')} className="text-xl text-secondary">Lab</button>
+              <button onClick={() => handleScrollTo('hobby-projects')} className="text-xl text-secondary">Hobby projects</button>
               <Link to="/contact" className="px-8 py-3 rounded-full bg-accent text-background font-bold mx-auto mt-4">
                 Let's Talk
               </Link>

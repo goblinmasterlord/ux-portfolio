@@ -5,6 +5,7 @@ import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import Everprove from './pages/projects/everprove';
 import Paynance from './pages/projects/paynance';
+import KovetkezoToken from './pages/projects/kovetkezotoken';
 import Contact from './pages/Contact';
 import PageTransition from './components/PageTransition';
 import LoccoCityPage from './pages/projects/loccocity';
@@ -30,6 +31,7 @@ const AnimatedRoutes = () => {
         <Route path="/" element={<PageTransition><Home /></PageTransition>} />
         <Route path="/projects/everprove" element={<PageTransition><Everprove /></PageTransition>} />
         <Route path="/projects/paynance" element={<PageTransition><Paynance /></PageTransition>} />
+        <Route path="/projects/kovetkezotoken" element={<PageTransition><KovetkezoToken /></PageTransition>} />
         <Route
           path="/projects/loccocity"
           element={

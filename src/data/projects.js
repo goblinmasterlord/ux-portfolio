@@ -2,6 +2,7 @@ import paynanceImage1 from '../assets/projects/paynance-1.png';
 import paynanceImage2 from '../assets/projects/paynance-2.png';
 import loccocityImage1 from '../assets/projects/loccocity.png';
 import everproveImage from '../assets/projects/everprove.png';
+import kovetkezoTokenImage from '../assets/projects/kovetkezotoken.jpg';
 
 export const projects = [
     {
@@ -45,6 +46,20 @@ export const projects = [
         stats: {
             "Contract Creation": "5 minutes average",
             "Cost Savings": "95% vs traditional",
+        }
+    },
+    {
+        id: "kovetkezotoken",
+        title: "Következő Token",
+        category: "AI Consulting",
+        path: "/projects/kovetkezotoken",
+        image: kovetkezoTokenImage,
+        description: "Bridging the gap between AI technology and business application. As Founder & Lead Consultant, I help companies implement practical AI solutions through strategic training and consulting.",
+        year: "2023",
+        tags: ["AI Consulting", "Corporate Training", "Business Strategy", "Education"],
+        stats: {
+            "Trained": "500+ Professionals",
+            "Partners": "20+ Companies"
         }
     },
     {

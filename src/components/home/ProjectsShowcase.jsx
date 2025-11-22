@@ -57,9 +57,9 @@ const projects = [
     {
         id: 'kovetkezotoken',
         title: "KovetkezoToken",
-        category: "Crypto News",
-        tag: "Data Visualization",
-        description: "Hungary's leading digital asset intelligence hub. Provides real-time market data, sentiment analysis, and expert insights, translating complex financial data into accessible dashboards.",
+        category: "AI Consultancy",
+        tag: "Strategic Implementation",
+        description: "Helping businesses bridge the gap between AI hype and practical application. Specialized in agentic workflows, custom LLM solutions, and corporate training.",
         image: "/images/KovetkezoToken.jpg",
         path: "/projects/kovetkezotoken",
         color: "indigo",
