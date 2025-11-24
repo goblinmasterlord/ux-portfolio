@@ -4,6 +4,7 @@ import { ArrowLeft, Brain, Cpu, Network, Workflow, Terminal, Zap, Layers, Code2,
 import { Link } from 'react-router-dom';
 import NextProject from '../../components/project/NextProject';
 import SolutionGrid from '../../components/project/SolutionGrid';
+import Button from '../../components/ui/Button';
 import projectImage from '../../assets/projects/kovetkezotoken.jpg';
 import aspect1 from '../../assets/projects/aspect-01.jpg';
 
