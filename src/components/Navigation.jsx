@@ -10,10 +10,10 @@ import loccocityImage from '../assets/projects/loccocity.png';
 
 const projects = [
   {
-    title: "Everprove",
-    category: "Fintech / Blockchain",
-    image: everproveImage,
-    path: "/projects/everprove"
+    title: "Eclipse",
+    category: "EdTech Platform",
+    image: "/images/Eclipse.jpg", // Using string path as we don't have import yet
+    path: "/projects/eclipse"
   },
   {
     title: "Paynance",
@@ -22,22 +22,22 @@ const projects = [
     path: "/projects/paynance"
   },
   {
-    title: "Loccocity",
-    category: "Gamified Marketing App",
-    image: loccocityImage,
-    path: "/projects/loccocity"
-  },
-  {
-    title: "Eclipse",
-    category: "EdTech Platform",
-    image: "/images/Eclipse.jpg", // Using string path as we don't have import yet
-    path: "/projects/eclipse"
-  },
-  {
     title: "KovetkezoToken",
     category: "AI Consultancy",
     image: "/images/KovetkezoToken.jpg",
     path: "/projects/kovetkezotoken"
+  },
+  {
+    title: "Everprove",
+    category: "Fintech / Blockchain",
+    image: everproveImage,
+    path: "/projects/everprove"
+  },
+  {
+    title: "Loccocity",
+    category: "Gamified Marketing App",
+    image: loccocityImage,
+    path: "/projects/loccocity"
   }
 ];
 
@@ -80,16 +80,14 @@ const Navigation = () => {
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-  isScrolled ? 'py-4' : 'py-6'
-} `}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'py-4' : 'py-6'
+          } `}
       >
         <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-12">
-          <div className={`relative rounded-2xl transition-all duration-300 ${
-  isScrolled
-    ? 'bg-background/80 backdrop-blur-md border border-white/5 shadow-lg px-6 py-3'
-    : 'bg-transparent px-0 py-0'
-} `}>
+          <div className={`relative rounded-2xl transition-all duration-300 ${isScrolled
+            ? 'bg-background/80 backdrop-blur-md border border-white/5 shadow-lg px-6 py-3'
+            : 'bg-transparent px-0 py-0'
+            } `}>
             <div className="flex items-center justify-between">
               {/* Logo */}
               <Link to="/" className="text-2xl font-display font-bold text-primary tracking-tight z-50 relative">
@@ -106,7 +104,7 @@ const Navigation = () => {
                   onMouseLeave={() => setIsProjectsOpen(false)}
                 >
                   <button className="flex items-center gap-1 text-sm font-medium text-secondary hover:text-primary transition-colors py-2">
-                    Work <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${ isProjectsOpen ? 'rotate-180' : '' } `} />
+                    Work <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isProjectsOpen ? 'rotate-180' : ''} `} />
                   </button>
 
                   {/* Creative Mega Menu */}
@@ -126,30 +124,22 @@ const Navigation = () => {
                               key={project.title}
                               to={project.path}
                               onMouseEnter={() => setActiveProject(project)}
-                              className={`group/item flex items-center justify-between p-3 rounded-xl transition-all duration-300 ${
-  activeProject.title === project.title
-    ? 'bg-white/10'
-    : 'hover:bg-white/5'
-} `}
+                              className={`group/item flex items-center justify-between p-3 rounded-xl transition-all duration-300 ${activeProject.title === project.title
+                                ? 'bg-white/10'
+                                : 'hover:bg-white/5'
+                                } `}
                             >
                               <div>
-                                <div className={`font-display font-bold text-lg transition-colors ${
-  activeProject.title === project.title ? 'text-accent' : 'text-primary'
-} `}>
+                                <div className={`font-display font-bold text-lg transition-colors ${activeProject.title === project.title ? 'text-accent' : 'text-primary'
+                                  } `}>
                                   {project.title}
                                 </div>
                                 <div className="text-xs text-secondary font-mono flex items-center gap-2">
                                   {project.category}
-                                  {project.title === "Eclipse" && (
-                                    <span className="px-2 py-0.5 rounded bg-white/10 text-white/70 text-[10px] font-mono uppercase tracking-wider border border-white/10">
-                                      Coming Soon
-                                    </span>
-                                  )}
                                 </div>
                               </div>
-                              <ArrowRight className={`w-4 h-4 text-accent opacity-0 -translate-x-2 transition-all duration-300 ${
-  activeProject.title === project.title ? 'opacity-100 translate-x-0' : 'group-hover/item:opacity-50'
-} `} />
+                              <ArrowRight className={`w-4 h-4 text-accent opacity-0 -translate-x-2 transition-all duration-300 ${activeProject.title === project.title ? 'opacity-100 translate-x-0' : 'group-hover/item:opacity-50'
+                                } `} />
                             </Link>
                           ))}
                           <div className="h-px bg-white/5 my-2" />

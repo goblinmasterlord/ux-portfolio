@@ -11,39 +11,6 @@ import loccocityImage from '../../assets/projects/loccocity.png';
 // Project Data
 const projects = [
     {
-        id: 'paynance',
-        title: "Paynance",
-        category: "Fintech / SaaS",
-        tag: "Financial Systems Design",
-        description: "A complete fintech ecosystem bridging the gap between digital and physical commerce. Redesigned the merchant experience from the ground up, integrating POS terminals with a real-time analytics dashboard that empowers over 1,000 active merchants.",
-        image: paynanceImage,
-        path: "/projects/paynance",
-        color: "blue",
-        layout: "large" // 2x2
-    },
-    {
-        id: 'everprove',
-        title: "Everprove",
-        category: "LegalTech",
-        tag: "Decentralized Trust",
-        description: "Democratizing legal security through blockchain technology. Transformed complex cryptographic processes into a friendly, conversational interface that helps individuals and small businesses create valid, tamper-proof contracts in minutes.",
-        image: everproveImage,
-        path: "/projects/everprove",
-        color: "emerald",
-        layout: "tall" // 1x2
-    },
-    {
-        id: 'loccocity',
-        title: "Loccocity",
-        category: "Smart City",
-        tag: "Augmented Reality UX",
-        description: "Reimagining urban discovery through gamification. A location-based platform that connects adventurous users with local businesses, turning city exploration into a rewarding treasure hunt with real-world incentives.",
-        image: loccocityImage,
-        path: "/projects/loccocity",
-        color: "orange",
-        layout: "standard" // 1x1
-    },
-    {
         id: 'eclipse',
         title: "Eclipse",
         category: "EdTech",
@@ -52,7 +19,18 @@ const projects = [
         image: "/images/Eclipse.jpg",
         path: "/projects/eclipse",
         color: "violet",
-        layout: "standard" // 1x1
+        layout: "large" // 2x2
+    },
+    {
+        id: 'paynance',
+        title: "Paynance",
+        category: "Fintech / SaaS",
+        tag: "Financial Systems Design",
+        description: "A complete fintech ecosystem bridging the gap between digital and physical commerce. Redesigned the merchant experience from the ground up, integrating POS terminals with a real-time analytics dashboard that empowers over 1,000 active merchants.",
+        image: paynanceImage,
+        path: "/projects/paynance",
+        color: "blue",
+        layout: "tall" // 1x2
     },
     {
         id: 'kovetkezotoken',
@@ -63,6 +41,28 @@ const projects = [
         image: "/images/KovetkezoToken.jpg",
         path: "/projects/kovetkezotoken",
         color: "indigo",
+        layout: "standard" // 1x1
+    },
+    {
+        id: 'everprove',
+        title: "Everprove",
+        category: "LegalTech",
+        tag: "Decentralized Trust",
+        description: "Democratizing legal security through blockchain technology. Transformed complex cryptographic processes into a friendly, conversational interface that helps individuals and small businesses create valid, tamper-proof contracts in minutes.",
+        image: everproveImage,
+        path: "/projects/everprove",
+        color: "emerald",
+        layout: "standard" // 1x1
+    },
+    {
+        id: 'loccocity',
+        title: "Loccocity",
+        category: "Smart City",
+        tag: "Augmented Reality UX",
+        description: "Reimagining urban discovery through gamification. A location-based platform that connects adventurous users with local businesses, turning city exploration into a rewarding treasure hunt with real-world incentives.",
+        image: loccocityImage,
+        path: "/projects/loccocity",
+        color: "orange",
         layout: "standard" // 1x1
     }
 ];
@@ -133,11 +133,6 @@ const Card = ({ project }) => {
                                 <span className="text-white/60 text-xs font-mono uppercase tracking-wider">
                                     {project.tag}
                                 </span>
-                                {project.title === "Eclipse" && (
-                                    <span className="px-2 py-0.5 rounded bg-white/10 text-white/70 text-[10px] font-mono uppercase tracking-wider border border-white/10">
-                                        Coming Soon
-                                    </span>
-                                )}
                             </div>
 
                             <div className="p-3 rounded-full bg-white/10 backdrop-blur-md text-white opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:rotate-45 border border-white/10">
