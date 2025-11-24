@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Linkedin, Github, ArrowUpRight, Copy, Check, Twitter, Instagram } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import Button from '../components/ui/Button';
 
 const Contact = () => {
     const [copied, setCopied] = useState(false);
@@ -70,7 +71,7 @@ const Contact = () => {
                             </span>
                             <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold text-primary leading-[0.9] tracking-tight mb-6">
                                 Let's start a <br />
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue via-indigo-500 to-violet">conversation.</span>
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-indigo-500 to-violet-500">conversation.</span>
                             </h1>
                             <p className="text-xl text-secondary max-w-lg leading-relaxed font-sans">
                                 Interested in working together? I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
@@ -179,15 +180,14 @@ const Contact = () => {
 };
 
 const SocialButton = ({ href, icon: Icon, label }) => (
-    <a
+    <Button
         href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="group flex items-center gap-3 px-6 py-3 rounded-full bg-white/5 border border-white/10 hover:border-accent/30 hover:bg-white/10 transition-all duration-300"
+        variant="secondary"
+        icon={Icon}
+        className="!px-6 !py-3"
     >
-        <Icon className="w-5 h-5 text-secondary group-hover:text-accent transition-colors" />
-        <span className="text-secondary font-medium group-hover:text-primary transition-colors">{label}</span>
-    </a>
+        {label}
+    </Button>
 );
 
 export default Contact;

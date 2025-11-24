@@ -119,7 +119,7 @@ const techStack = [
         items: [
             { name: "Anthropic models", desc: "Claude Opus 4.1, Sonnet 4.5 primarily for coding related tasks", icon: <Bot /> },
             { name: "OpenAI models", desc: "GPT 5.1 and GPT 5 as the primary models for complex reasoning tasks", icon: <Zap /> },
-            { name: "Google models", desc: "Gemini 3, 2.5 Pro and Flash as daily driver and for general tasks", icon: <Brain /> }
+            { name: "Google models", desc: "Gemini 3, 2.5 Pro and 2.5 Flash as daily driver and for general tasks", icon: <Brain /> }
         ]
     },
     {
@@ -419,10 +419,11 @@ const KovetkezoToken = () => {
                 </div>
             </section>
 
-            {/* Workflow Visualization - General & Strategic */}
+            {/* Agentic Workflows & Case Study */}
             <section className="py-32 bg-surface/20 border-y border-white/5">
                 <div className="container mx-auto px-6">
-                    <div className="flex flex-col md:flex-row items-center gap-16">
+                    {/* General Strategy */}
+                    <div className="flex flex-col md:flex-row items-center gap-16 mb-24">
                         <div className="w-full md:w-1/2">
                             <span className="text-accent font-mono tracking-widest uppercase text-sm">The Power of Agents</span>
                             <h2 className="text-4xl font-display font-bold mt-4 mb-6">Agentic Workflows</h2>
@@ -495,6 +496,118 @@ const KovetkezoToken = () => {
                                 <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-20">
                                     <circle cx="50%" cy="50%" r="100" stroke="white" strokeWidth="1" strokeDasharray="4 4" fill="none" />
                                 </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Connecting Line */}
+                    <div className="w-px h-24 bg-gradient-to-b from-white/5 via-accent/50 to-white/5 mx-auto my-8" />
+
+                    {/* Case Study */}
+                    <div className="flex flex-col md:flex-row-reverse items-center gap-16">
+                        <div className="w-full md:w-1/2">
+                            <span className="text-accent font-mono tracking-widest uppercase text-sm">Applied Strategy</span>
+                            <h2 className="text-4xl font-display font-bold mt-4 mb-6">Case Study: Legal AI Automation</h2>
+                            <p className="text-lg text-secondary leading-relaxed mb-8">
+                                I build specialized tools that solve expensive business problems.
+                                For a legal firm, I engineered an intelligent document processing system using <strong>Gemini 2.5 Pro</strong> that automates the entire contract lifecycle.
+                            </p>
+
+                            <ul className="space-y-6 mb-8">
+                                <li className="flex items-start gap-4 text-white">
+                                    <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center text-accent text-sm font-bold shrink-0">1</div>
+                                    <div>
+                                        <span className="font-bold block mb-1">Structured Data Extraction</span>
+                                        <span className="text-secondary text-sm">
+                                            Processing raw ID cards and address documents to extract validated, structured JSON data for contract population.
+                                        </span>
+                                    </div>
+                                </li>
+                                <li className="flex items-start gap-4 text-white">
+                                    <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center text-accent text-sm font-bold shrink-0">2</div>
+                                    <div>
+                                        <span className="font-bold block mb-1">Intelligent Templating</span>
+                                        <span className="text-secondary text-sm">
+                                            Dynamically generating standard contracts based on pre-defined legal templates and extracted entities.
+                                        </span>
+                                    </div>
+                                </li>
+                                <li className="flex items-start gap-4 text-white">
+                                    <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center text-accent text-sm font-bold shrink-0">3</div>
+                                    <div>
+                                        <span className="font-bold block mb-1">Agentic Drafting</span>
+                                        <span className="text-secondary text-sm">
+                                            For custom requests, an agent analyzes the context, verifies all necessary legal requirements are met, and drafts a bespoke agreement.
+                                        </span>
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <Button
+                                href="https://ai-document-processing-rho.vercel.app/"
+                                variant="primary"
+                                icon={Globe}
+                            >
+                                View Live Demo
+                            </Button>
+                        </div>
+
+                        <div className="w-full md:w-1/2">
+                            <div className="relative aspect-square rounded-3xl bg-background border border-white/10 p-8 flex items-center justify-center overflow-hidden group">
+                                {/* Abstract Visualization of Nodes */}
+                                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-accent/10 via-transparent to-transparent" />
+
+                                {/* Flow Visualization */}
+                                <div className="relative z-10 w-full max-w-sm">
+                                    {/* Step 1: Input */}
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 20 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.2 }}
+                                        className="flex items-center gap-4 mb-8"
+                                    >
+                                        <div className="w-12 h-12 rounded-xl bg-surface border border-white/10 flex items-center justify-center shrink-0">
+                                            <Layers className="w-6 h-6 text-blue-400" />
+                                        </div>
+                                        <div className="h-px flex-grow bg-gradient-to-r from-white/20 to-transparent" />
+                                        <span className="text-xs font-mono text-secondary uppercase">Raw Documents</span>
+                                    </motion.div>
+
+                                    {/* Step 2: Processing (The Brain) */}
+                                    <motion.div
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        whileInView={{ opacity: 1, scale: 1 }}
+                                        transition={{ delay: 0.4 }}
+                                        className="relative p-6 rounded-2xl bg-surface/50 border border-accent/30 backdrop-blur-sm mb-8 text-center"
+                                    >
+                                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-accent text-black text-[10px] font-bold uppercase tracking-wider rounded-full">
+                                            Gemini 2.5 Pro
+                                        </div>
+                                        <Brain className="w-12 h-12 text-accent mx-auto mb-2" />
+                                        <div className="flex justify-center gap-2 mt-4">
+                                            <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
+                                            <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse delay-75" />
+                                            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse delay-150" />
+                                        </div>
+                                    </motion.div>
+
+                                    {/* Step 3: Output */}
+                                    <motion.div
+                                        initial={{ opacity: 0, y: -20 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.6 }}
+                                        className="flex items-center gap-4"
+                                    >
+                                        <span className="text-xs font-mono text-secondary uppercase text-right flex-grow">Valid Contract</span>
+                                        <div className="h-px w-12 bg-gradient-to-l from-white/20 to-transparent" />
+                                        <div className="w-12 h-12 rounded-xl bg-surface border border-white/10 flex items-center justify-center shrink-0">
+                                            <Code2 className="w-6 h-6 text-emerald-400" />
+                                        </div>
+                                    </motion.div>
+
+                                    {/* Connecting Line */}
+                                    <div className="absolute left-6 top-12 bottom-12 w-px bg-white/10 -z-10" />
+                                </div>
                             </div>
                         </div>
                     </div>

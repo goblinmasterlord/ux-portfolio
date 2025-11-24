@@ -70,7 +70,7 @@ const Services = () => {
     return (
         <section id="services" className="py-20 md:py-32 bg-background relative">
             <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12">
-                <div className="mb-16 md:mb-24">
+                <div className="mb-16 md:mb-24 overflow-visible min-h-[200px]">
                     <motion.span
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -84,10 +84,11 @@ const Services = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-section-title text-primary max-w-3xl"
+                        style={{ overflow: 'visible' }}
+                        className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-primary max-w-3xl leading-[1.4]"
                     >
                         Comprehensive solutions for <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue via-indigo-500 to-purple-500">digital transformation.</span>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500">digital transformation.</span>
                     </motion.h2>
                 </div>
 

@@ -15,7 +15,7 @@ const projects = [
         title: "Paynance",
         category: "Fintech / SaaS",
         tag: "Financial Systems Design",
-        description: "Designed a comprehensive fintech ecosystem spanning web, mobile, and POS terminals. Led the UX overhaul of the merchant platform serving 1,000+ active merchants, focusing on real-time analytics and automated invoicing.",
+        description: "A complete fintech ecosystem bridging the gap between digital and physical commerce. Redesigned the merchant experience from the ground up, integrating POS terminals with a real-time analytics dashboard that empowers over 1,000 active merchants.",
         image: paynanceImage,
         path: "/projects/paynance",
         color: "blue",
@@ -26,7 +26,7 @@ const projects = [
         title: "Everprove",
         category: "LegalTech",
         tag: "Decentralized Trust",
-        description: "Designed trustless legal-tech solutions on blockchain infrastructure. Simplified cryptographic processes into intuitive user journeys, increasing user activation by 40% through a redesigned onboarding flow.",
+        description: "Democratizing legal security through blockchain technology. Transformed complex cryptographic processes into a friendly, conversational interface that helps individuals and small businesses create valid, tamper-proof contracts in minutes.",
         image: everproveImage,
         path: "/projects/everprove",
         color: "emerald",
@@ -37,7 +37,7 @@ const projects = [
         title: "Loccocity",
         category: "Smart City",
         tag: "Augmented Reality UX",
-        description: "Gamified urban exploration platform connecting local businesses with citizens. Features immersive AR challenges and a rewards system to boost local engagement and tourism.",
+        description: "Reimagining urban discovery through gamification. A location-based platform that connects adventurous users with local businesses, turning city exploration into a rewarding treasure hunt with real-world incentives.",
         image: loccocityImage,
         path: "/projects/loccocity",
         color: "orange",
@@ -48,7 +48,7 @@ const projects = [
         title: "Eclipse",
         category: "EdTech",
         tag: "Adaptive Learning Algorithms",
-        description: "An adaptive AI learning platform that personalizes English language education. Uses natural language processing to tailor curriculum to each student's pace, significantly reducing manual processing time.",
+        description: "Intelligent document redaction for educational institutions. An AI-powered privacy tool that processes hundreds of pages instantly, using semantic analysis to identify PII and sensitive relationships, giving administrators granular control over what to protect.",
         image: "/images/Eclipse.jpg",
         path: "/projects/eclipse",
         color: "violet",
@@ -133,6 +133,11 @@ const Card = ({ project }) => {
                                 <span className="text-white/60 text-xs font-mono uppercase tracking-wider">
                                     {project.tag}
                                 </span>
+                                {project.title === "Eclipse" && (
+                                    <span className="px-2 py-0.5 rounded bg-white/10 text-white/70 text-[10px] font-mono uppercase tracking-wider border border-white/10">
+                                        Coming Soon
+                                    </span>
+                                )}
                             </div>
 
                             <div className="p-3 rounded-full bg-white/10 backdrop-blur-md text-white opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:rotate-45 border border-white/10">
@@ -178,7 +183,7 @@ const ProjectsShowcase = () => {
             <div className="absolute top-1/4 right-0 w-[800px] h-[800px] bg-blue/5 rounded-full blur-[150px] pointer-events-none" />
 
             <div className="max-w-[1600px] mx-auto relative z-10">
-                <div className="mb-16 md:mb-24">
+                <div className="mb-16 md:mb-24 overflow-visible min-h-[250px]">
                     <motion.span
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -192,10 +197,11 @@ const ProjectsShowcase = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-5xl md:text-7xl font-display font-bold text-primary max-w-4xl leading-tight tracking-tight mb-6"
+                        style={{ overflow: 'visible' }}
+                        className="text-5xl md:text-7xl font-display font-bold text-primary max-w-4xl leading-[1.4] tracking-tight mb-6"
                     >
                         Crafting digital <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue via-indigo-500 to-violet">masterpieces.</span>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-indigo-500 to-violet-500">masterpieces.</span>
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}

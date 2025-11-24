@@ -65,7 +65,7 @@ const Navigation = () => {
   const handleScrollTo = (id) => {
     if (location.pathname !== '/') {
       // If not on home, navigate to home with hash
-      window.location.href = `/#${id}`;
+      window.location.href = `/ #${ id } `;
     } else {
       const element = document.getElementById(id);
       if (element) {
@@ -80,12 +80,12 @@ const Navigation = () => {
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top - 0 left - 0 right - 0 z - 50 transition - all duration - 300 ${
   isScrolled ? 'py-4' : 'py-6'
 } `}
       >
         <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-12">
-          <div className={`relative rounded-2xl transition-all duration-300 ${
+          <div className={`relative rounded - 2xl transition - all duration - 300 ${
   isScrolled
     ? 'bg-background/80 backdrop-blur-md border border-white/5 shadow-lg px-6 py-3'
     : 'bg-transparent px-0 py-0'
@@ -106,7 +106,7 @@ const Navigation = () => {
                   onMouseLeave={() => setIsProjectsOpen(false)}
                 >
                   <button className="flex items-center gap-1 text-sm font-medium text-secondary hover:text-primary transition-colors py-2">
-                    Work <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${ isProjectsOpen ? 'rotate-180' : '' } `} />
+                    Work <ChevronDown className={`w - 4 h - 4 transition - transform duration - 300 ${ isProjectsOpen ? 'rotate-180' : '' } `} />
                   </button>
 
                   {/* Creative Mega Menu */}
@@ -126,14 +126,14 @@ const Navigation = () => {
                               key={project.title}
                               to={project.path}
                               onMouseEnter={() => setActiveProject(project)}
-                              className={`group/item flex items-center justify-between p-3 rounded-xl transition-all duration-300 ${
+                              className={`group / item flex items - center justify - between p - 3 rounded - xl transition - all duration - 300 ${
   activeProject.title === project.title
     ? 'bg-white/10'
     : 'hover:bg-white/5'
 } `}
                             >
                               <div>
-                                <div className={`font-display font-bold text-lg transition-colors ${
+                                <div className={`font - display font - bold text - lg transition - colors ${
   activeProject.title === project.title ? 'text-accent' : 'text-primary'
 } `}>
                                   {project.title}
@@ -147,7 +147,7 @@ const Navigation = () => {
                                   )}
                                 </div>
                               </div>
-                              <ArrowRight className={`w-4 h-4 text-accent opacity-0 -translate-x-2 transition-all duration-300 ${
+                              <ArrowRight className={`w - 4 h - 4 text - accent opacity - 0 - translate - x - 2 transition - all duration - 300 ${
   activeProject.title === project.title ? 'opacity-100 translate-x-0' : 'group-hover/item:opacity-50'
 } `} />
                             </Link>

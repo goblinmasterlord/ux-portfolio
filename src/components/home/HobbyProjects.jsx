@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion, useAnimation, useInView } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Github } from 'lucide-react';
 import { useRef } from 'react';
 
 const projects = [
@@ -64,7 +64,7 @@ const projects = [
         title: "AI Doc Processor",
         description: "Automated document extraction & structuring.",
         tags: ["AI", "Automation"],
-        image: "https://placehold.co/600x400/1a1a1a/white?text=AI+Docs",
+        image: "/images/AIDocProcessor.jpg",
         link: "https://ai-document-processing-rho.vercel.app/",
         color: "cyan"
     }
@@ -75,6 +75,7 @@ const BentoCard = ({ project, index }) => {
     const controls = useAnimation();
     const ref = useRef(null);
     const inView = useInView(ref, { once: true, margin: "-50px" });
+    const isGithub = project.link.includes("github.com");
 
     useEffect(() => {
         if (inView) {
@@ -117,8 +118,13 @@ const BentoCard = ({ project, index }) => {
                 <div className="transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
                     <div className="flex justify-between items-center mb-1">
                         <h3 className="text-lg font-display font-bold text-primary">{project.title}</h3>
-                        <div className={`p-1.5 rounded-full bg-white/10 backdrop-blur-md text-${project.color}-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300`}>
-                            <ArrowUpRight className="w-4 h-4" />
+
+                        {/* Link Icon - Differentiated */}
+                        <div className={`p-2 rounded-full backdrop-blur-md transition-all duration-300 opacity-0 group-hover:opacity-100 ${isGithub
+                            ? 'bg-white/10 text-white/70 hover:bg-white/20 hover:text-white'
+                            : `bg-${project.color}-500/20 text-${project.color}-300 hover:bg-${project.color}-500/30 hover:text-${project.color}-200 border border-${project.color}-500/30`
+                            }`}>
+                            {isGithub ? <Github className="w-4 h-4" /> : <ArrowUpRight className="w-4 h-4" />}
                         </div>
                     </div>
 
@@ -152,7 +158,7 @@ const HobbyProjects = () => {
             </div>
 
             <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
-                <div className="mb-12 md:mb-16">
+                <div className="mb-12 md:mb-16 overflow-visible min-h-[200px]">
                     <motion.span
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -166,9 +172,10 @@ const HobbyProjects = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-section-title text-primary max-w-2xl mb-6"
+                        style={{ overflow: 'visible' }}
+                        className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-primary max-w-2xl mb-6 leading-[1.4]"
                     >
-                        Experiments, Tools, and <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-blue to-accent-purple">Side Quests</span>
+                        Experiments, Tools, and <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-purple">Side Quests</span>
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
