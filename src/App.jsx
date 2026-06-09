@@ -12,6 +12,7 @@ import PageTransition from './components/PageTransition';
 import LoccoCityPage from './pages/projects/loccocity';
 import ProtectedContact from './components/ProtectedContact';
 import CreativeHero from './components/CreativeHero';
+import usePageTracking from './hooks/usePageTracking';
 
 console.log('Available routes:', [
   '/',
@@ -25,6 +26,7 @@ console.log('Available routes:', [
 
 const AnimatedRoutes = () => {
   const location = useLocation();
+  usePageTracking();
   console.log('Current location:', location);
   console.log('LoccoCityPage component available:', typeof LoccoCityPage);
 

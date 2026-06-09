@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import { helloEmail, openMailto } from '../utils/email';
 
 const MinimalNav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -80,7 +81,8 @@ const MinimalNav = () => {
               
               {/* CTA */}
               <a
-                href="mailto:hello@uxwithmarci.com"
+                href="#"
+                onClick={openMailto(helloEmail())}
                 className="px-4 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg hover:bg-gray-800 transition-colors duration-200"
               >
                 Let's talk
@@ -142,7 +144,8 @@ const MinimalNav = () => {
             
             <motion.div className="pt-4 border-t border-gray-200">
               <a
-                href="mailto:hello@uxwithmarci.com"
+                href="#"
+                onClick={openMailto(helloEmail())}
                 className="block w-full py-3 text-center text-white bg-gray-900 rounded-lg"
               >
                 Let's work together

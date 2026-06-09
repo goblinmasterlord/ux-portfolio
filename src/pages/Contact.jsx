@@ -3,10 +3,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Linkedin, Github, ArrowUpRight, Copy, Check, Twitter, Instagram } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Button from '../components/ui/Button';
+import { personalEmail, openMailto } from '../utils/email';
 
 const Contact = () => {
     const [copied, setCopied] = useState(false);
-    const email = "marci.mocsonoky@gmail.com";
+    const email = personalEmail();
 
     const handleCopyEmail = () => {
         navigator.clipboard.writeText(email);
@@ -116,7 +117,7 @@ const Contact = () => {
 
                                 <div className="space-y-2 mb-8">
                                     <h3 className="text-sm text-secondary uppercase tracking-wider font-semibold">Email Me</h3>
-                                    <a href={`mailto:${email}`} className="block text-2xl md:text-3xl font-display font-medium text-primary hover:text-accent transition-colors">
+                                    <a href="#" onClick={openMailto(email)} className="block text-2xl md:text-3xl font-display font-medium text-primary hover:text-accent transition-colors">
                                         {email}
                                     </a>
                                 </div>

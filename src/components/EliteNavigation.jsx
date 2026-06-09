@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { helloEmail, openMailto } from '../utils/email';
 
 const EliteNavigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -116,7 +117,8 @@ const EliteNavigation = () => {
               
               {/* CTA Button */}
               <motion.a
-                href="mailto:hello@uxwithmarci.com"
+                href="#"
+                onClick={openMailto(helloEmail())}
                 className="relative overflow-hidden px-6 py-2.5 rounded-full glass border border-primary/10 group"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -231,7 +233,8 @@ const EliteNavigation = () => {
               }}
             >
               <a
-                href="mailto:hello@uxwithmarci.com"
+                href="#"
+                onClick={openMailto(helloEmail())}
                 className="flex items-center justify-between p-4 rounded-xl bg-gradient-to-r from-accent-coral to-accent-electric text-white"
               >
                 <span className="font-medium">Let's work together</span>

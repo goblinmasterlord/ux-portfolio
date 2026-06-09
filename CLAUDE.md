@@ -1,60 +1,65 @@
-# UX Portfolio - Project Context
+# CLAUDE.md
 
-## Tech Stack
-- **Framework**: React 18 + Vite
-- **Styling**: Tailwind CSS
-- **Animation**: Framer Motion
-- **Icons**: Lucide React
-- **Routing**: React Router DOM
+Behavioral guidelines to reduce common LLM coding mistakes. Merge with project-specific instructions as needed.
 
-## Project Structure
+**Tradeoff:** These guidelines bias toward caution over speed. For trivial tasks, use judgment.
+
+## 1. Think Before Coding
+
+**Don't assume. Don't hide confusion. Surface tradeoffs.**
+
+Before implementing:
+- State your assumptions explicitly. If uncertain, ask.
+- If multiple interpretations exist, present them - don't pick silently.
+- If a simpler approach exists, say so. Push back when warranted.
+- If something is unclear, stop. Name what's confusing. Ask.
+
+## 2. Simplicity First
+
+**Minimum code that solves the problem. Nothing speculative.**
+
+- No features beyond what was asked.
+- No abstractions for single-use code.
+- No "flexibility" or "configurability" that wasn't requested.
+- No error handling for impossible scenarios.
+- If you write 200 lines and it could be 50, rewrite it.
+
+Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, simplify.
+
+## 3. Surgical Changes
+
+**Touch only what you must. Clean up only your own mess.**
+
+When editing existing code:
+- Don't "improve" adjacent code, comments, or formatting.
+- Don't refactor things that aren't broken.
+- Match existing style, even if you'd do it differently.
+- If you notice unrelated dead code, mention it - don't delete it.
+
+When your changes create orphans:
+- Remove imports/variables/functions that YOUR changes made unused.
+- Don't remove pre-existing dead code unless asked.
+
+The test: Every changed line should trace directly to the user's request.
+
+## 4. Goal-Driven Execution
+
+**Define success criteria. Loop until verified.**
+
+Transform tasks into verifiable goals:
+- "Add validation" → "Write tests for invalid inputs, then make them pass"
+- "Fix the bug" → "Write a test that reproduces it, then make it pass"
+- "Refactor X" → "Ensure tests pass before and after"
+
+For multi-step tasks, state a brief plan:
 ```
-src/
-  components/
-    home/
-      Hero.jsx            # Creative, interactive hero section
-      ProjectsShowcase.jsx # Main project gallery (Bento/Grid)
-      Services.jsx        # Services offered (Staggered list)
-      HobbyProjects.jsx   # Experimental projects (Grid)
-      TechStack.jsx       # Magnetic icon grid
-    Navigation.jsx        # Main nav with hash scrolling
-    Footer.jsx           
-  pages/
-    Home.jsx              # Landing page
-    Contact.jsx           # Contact page
-    ProjectDetail.jsx     # Dynamic project page template
-  assets/                 # Images and static assets
+1. [Step] → verify: [check]
+2. [Step] → verify: [check]
+3. [Step] → verify: [check]
 ```
 
-## Design System
-- **Theme**: Premium Dark (`#0a0a0a`)
-- **Typography**: 
-  - Headings: `Fraunces` (Serif, Bold, Display)
-  - Body: `Inter` (Sans-serif, Clean)
-  - Accents: `JetBrains Mono` (Technical details)
-- **Colors**:
-  - Background: `bg-background` (#050505)
-  - Surface: `bg-surface` (#0a0a0a)
-  - Primary Text: `text-primary` (#ffffff)
-  - Secondary Text: `text-secondary` (#a1a1aa)
-  - Accents: Blue, Purple, Emerald (Gradients)
+Strong success criteria let you loop independently. Weak criteria ("make it work") require constant clarification.
 
-## Animation Guidelines (Critical)
-1.  **Scroll Triggers**: Use `viewport={{ once: true }}` for ALL scroll animations to prevent flickering.
-2.  **Locking**: For complex grids (like HobbyProjects), use `useAnimation` + `useEffect` to manually lock the animation state once triggered.
-3.  **Easing**: Use "Luxury" easing: `[0.2, 0.8, 0.2, 1]`.
-4.  **Performance**: Animate `transform` and `opacity` only. Avoid animating layout properties like `height` or `width` if possible (use scale instead).
+---
 
-## Component Rules
--   **Hero**: Must be bold, asymmetrical, and interactive. No generic layouts.
--   **Cards**: 
-    -   Images must be high quality.
-    -   Text overlays must be readable (Darken background on hover).
-    -   Interactions should be subtle (Scale, Sheen).
--   **Navigation**: Handles cross-page scrolling via URL hashes.
-
-## Recent Changes
--   **Hero**: Redesigned with "Deconstructed Typography" and mouse interaction.
--   **Animations**: Overhauled to remove flickering. Implemented "Focus & Scale" effect.
--   **Services**: Added new premium Services component.
--   **Hobby Projects**: Recreated with robust animation locking.
+**These guidelines are working if:** fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, and clarifying questions come before implementation rather than after mistakes.
