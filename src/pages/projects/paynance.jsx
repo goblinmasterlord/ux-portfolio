@@ -1,257 +1,123 @@
-import React, { useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { ArrowLeft, CreditCard, Smartphone, LayoutDashboard } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import NextProject from '../../components/project/NextProject';
-import SolutionGrid from '../../components/project/SolutionGrid';
-import paynanceImage from '../../assets/projects/paynance-1.png';
+import { caseStudies } from '../../data/projects';
+import { CaseHero, CaseSection, Lead, NumberedList, AspectList, FeatureColumns, StatRow, NextProject } from '../../components/case';
 import aspect1 from '../../assets/projects/aspect-01.jpg';
 import aspect2 from '../../assets/projects/aspect-02.jpg';
 import aspect3 from '../../assets/projects/aspect-03.jpg';
 import aspect4 from '../../assets/projects/aspect-04.jpg';
-import loccocityImage from '../../assets/projects/loccocity.png';
 
-const Paynance = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+const project = caseStudies.find((p) => p.id === 'paynance');
 
-  const projectData = {
-    title: "Revolutionizing Payment Solutions for Modern Businesses",
-    subtitle: "A comprehensive fintech platform that simplifies merchant payments and business management",
-    overview: "Paynance is a cutting-edge fintech solution that transforms how businesses handle payments. By combining traditional POS terminals, virtual POS, online payments, and integrated cashier systems, we provide flexible payment solutions that adapt to any business model.",
-    overviewStats: [
-      { value: "2.5M+", label: "Transactions processed monthly" },
-      { value: "1000+", label: "Merchants onboarded" }
-    ],
-    challengeDescription: "In today's fast-paced business environment, merchants face several hurdles when it comes to payment processing and financial management:",
-    challenges: [
-      "Merchants need flexible payment solutions that adapt to different business models",
-      "Traditional POS systems lack modern features like easy tipping, multiple business profiles on single terminals, and integrated cashier systems",
-      "Merchants need better visibility into their financial data",
-      "Meeting merchant needs, legal requirements, and compliance standards is difficult",
-      "Complex onboarding processes delay merchant activation"
-    ],
-    solutions: [
-      {
-        title: "Flexible Payment Infrastructure",
-        icon: <CreditCard className="w-8 h-8" />,
-        points: [
-          "Multiple business profiles on single terminals",
-          "Support for various payment methods and systems",
-          "Integrated cashier systems for seamless operations",
-          "Modern, fast, and user-friendly terminals"
-        ]
-      },
-      {
-        title: "Streamlined Merchant Platform",
-        icon: <LayoutDashboard className="w-8 h-8" />,
-        points: [
-          "Intuitive financial dashboard focused on merchant needs",
-          "Comprehensive transaction management and reporting",
-          "Easy feedback and support system",
-          "Customizable features for different business types"
-        ]
-      },
-      {
-        title: "Enhanced Business Features",
-        icon: <Smartphone className="w-8 h-8" />,
-        points: [
-          "Easy tipping functionality",
-          "Recurring payment support",
-          "Multiple business profiles on single terminals",
-          "And many more features based on user research"
-        ]
-      }
-    ],
-    results: [
-      { stat: "2.5M+", description: "Transactions processed monthly" },
-      { stat: "1000+", description: "Merchants onboarded" },
-      { stat: "98%", description: "Merchant satisfaction rate" }
-    ],
-    aspects: [
-      {
-        title: "Landing Page Design",
-        description: "After extensive competitor analysis and user research, I designed a landing page that resonates with our target merchants. Through systematic A/B testing of different value propositions, layouts, and CTAs, we identified the most effective way to communicate Paynance's benefits. The final design combines clear messaging with interactive demonstrations of key features.",
+const challenges = [
+    'Merchants need flexible payment solutions that adapt to different business models.',
+    'Traditional POS systems lack modern features like easy tipping, multiple business profiles on a single terminal and integrated cashier systems.',
+    'Merchants need better visibility into their financial data.',
+    'Balancing merchant needs with legal requirements and compliance standards is difficult.',
+    'Complex onboarding processes delay merchant activation.',
+];
+
+const aspects = [
+    {
+        title: 'Landing page',
+        description: "After extensive competitor analysis and user research, I designed a landing page that resonates with our target merchants. Systematic A/B testing of value propositions, layouts and CTAs showed us the most effective way to communicate Paynance's benefits. The final design pairs clear messaging with interactive demonstrations of key features.",
         image: aspect1,
-        imageAlt: "Paynance landing page design showcase",
-        tags: ["Conversion Optimization", "Visual Design", "User Research", "A/B Testing", "Competitor Analysis"]
-      },
-      {
-        title: "Merchant Platform",
-        description: "User interviews with 30+ merchants revealed common pain points in existing financial platforms. I designed an intuitive dashboard that brings critical data forward while maintaining a clean interface. The final design emerged through multiple rounds of usability testing, ensuring merchants of all technical levels could efficiently manage their operations.",
+        imageAlt: 'Paynance landing page',
+        tags: ['Conversion optimisation', 'Visual design', 'User research', 'A/B testing', 'Competitor analysis'],
+    },
+    {
+        title: 'Merchant platform',
+        description: 'Interviews with 30+ merchants revealed common pain points in existing financial platforms. I designed a dashboard that brings critical data forward while keeping the interface clean. The final design emerged through several rounds of usability testing, so merchants of every technical level can manage their operations efficiently.',
         image: aspect2,
-        imageAlt: "Merchant platform dashboard interface",
-        tags: ["Dashboard Design", "User Interviews", "User Research", "Competitor Analysis"]
-      },
-      {
-        title: "Streamlined Onboarding",
-        description: "Through careful analysis of regulatory requirements and user behavior, I developed a verification process that balances security with usability. The solution uses progressive disclosure and contextual guidance to make complex KYC requirements more approachable, while maintaining full compliance with financial regulations.",
+        imageAlt: 'Merchant platform dashboard',
+        tags: ['Dashboard design', 'User interviews', 'User research', 'Competitor analysis'],
+    },
+    {
+        title: 'Streamlined onboarding',
+        description: 'Through careful analysis of regulatory requirements and user behaviour, I developed a verification process that balances security with usability. Progressive disclosure and contextual guidance make complex KYC requirements approachable while keeping full compliance with financial regulations.',
         image: aspect3,
-        imageAlt: "Onboarding flow visualization",
-        tags: ["User Onboarding", "Security UX", "Process Design", "Error Handling"]
-      },
-      {
-        title: "Mobile & POS Application",
-        description: "Based on extensive field research with merchants, I designed a unified payment interface that works seamlessly across mobile devices and POS terminals. The system handles complex scenarios like split payments and refunds while maintaining a simple, intuitive interface that new staff can master quickly.",
+        imageAlt: 'KYC onboarding flow',
+        tags: ['User onboarding', 'Security UX', 'Process design', 'Error handling'],
+    },
+    {
+        title: 'Mobile & POS app',
+        description: 'Based on extensive field research with merchants, I designed a unified payment interface that works across mobile devices and POS terminals. It handles complex scenarios like split payments and refunds while staying simple enough for new staff to master quickly.',
         image: aspect4,
-        imageAlt: "Mobile application interface",
-        tags: ["Mobile Design", "POS Interface", "Payment Flows", "Cross-platform App"]
-      }
-    ]
-  };
+        imageAlt: 'Mobile and POS application screens',
+        tags: ['Mobile design', 'POS interface', 'Payment flows', 'Cross-platform app'],
+    },
+];
 
-  const nextProject = {
-    title: "Loccocity",
-    category: "Gamified Marketing App",
-    image: loccocityImage,
-    path: "/projects/loccocity"
-  };
+const solutions = [
+    {
+        title: 'Flexible payment infrastructure',
+        points: [
+            'Multiple business profiles on a single terminal',
+            'Support for various payment methods and systems',
+            'Integrated cashier systems for seamless operations',
+            'Modern, fast and user-friendly terminals',
+        ],
+    },
+    {
+        title: 'Streamlined merchant platform',
+        points: [
+            'Financial dashboard focused on merchant needs',
+            'Comprehensive transaction management and reporting',
+            'Easy feedback and support system',
+            'Customisable features for different business types',
+        ],
+    },
+    {
+        title: 'Enhanced business features',
+        points: [
+            'Easy tipping',
+            'Recurring payment support',
+            'Multiple business profiles on a single terminal',
+            'Many more features driven by user research',
+        ],
+    },
+];
 
-  return (
-    <main className="bg-background min-h-screen text-primary selection:bg-accent/30 overflow-x-hidden">
+const results = [
+    { value: '2.5M+', label: 'Transactions processed monthly' },
+    { value: '1,000+', label: 'Merchants onboarded' },
+    { value: '98%', label: 'Merchant satisfaction rate' },
+];
 
-      {/* Close Button - Fixed High Z-Index */}
-      <Link
-        to="/"
-        className="fixed top-6 right-6 z-[60] p-3 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-white hover:bg-white hover:text-black transition-all duration-300 group"
-      >
-        <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-        <span className="sr-only">Back to Home</span>
-      </Link>
+const Paynance = () => (
+    <main>
+        <CaseHero
+            project={project}
+            title="Payment solutions for *modern* businesses"
+            intro="A comprehensive fintech platform that simplifies merchant payments and business management."
+            meta={[{ label: 'Scope', value: 'Landing page, KYC onboarding, merchant dashboard, POS app' }]}
+            aspect="aspect-[4/3] md:aspect-[16/10]"
+        />
 
-      {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/80 to-background z-10" />
-          <img
-            src={paynanceImage}
-            alt="Paynance Hero"
-            className="w-full h-full object-cover opacity-50"
-          />
-        </div>
+        <CaseSection index="01" label="Overview">
+            <Lead>
+                Paynance changes how businesses handle payments. It combines traditional POS terminals, virtual POS,
+                online payments and integrated cashier systems into flexible payment solutions that adapt to any
+                business model.
+            </Lead>
+        </CaseSection>
 
-        <div className="relative z-10 container mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            <span className="inline-block px-3 py-1 mb-6 text-xs font-mono tracking-widest text-accent uppercase border border-accent/20 rounded-full bg-accent/5">
-              Fintech / SaaS
-            </span>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold mb-6 tracking-tight leading-tight">
-              {projectData.title}
-            </h1>
-            <p className="text-xl md:text-2xl text-secondary max-w-3xl mx-auto font-light leading-relaxed">
-              {projectData.subtitle}
-            </p>
-          </motion.div>
-        </div>
-      </section>
+        <CaseSection index="02" label="Challenge" title="Merchants face real hurdles in payments and *financial* management">
+            <NumberedList items={challenges} />
+        </CaseSection>
 
-      {/* Broken Grid Challenges */}
-      <section className="py-32 bg-surface/20">
-        <div className="container mx-auto px-6">
-          <div className="max-w-2xl mb-24">
-            <span className="text-accent font-mono tracking-widest uppercase text-sm">The Challenge</span>
-            <h3 className="text-3xl md:text-4xl font-display font-bold mt-4">
-              {projectData.challengeDescription}
-            </h3>
-          </div>
+        <CaseSection index="03" label="The work" title="Four products, one *merchant* journey" wide>
+            <AspectList items={aspects} />
+        </CaseSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projectData.challenges.map((challenge, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className={`p-8 bg-background border border-white/5 rounded-3xl hover:border-accent/30 transition-colors ${index === 0 ? 'md:col-span-2 bg-accent/5' : ''
-                  } ${index === 3 ? 'md:col-span-2' : ''
-                  }`}
-              >
-                <span className="text-4xl font-display font-bold text-white/10 mb-4 block">0{index + 1}</span>
-                <p className="text-lg text-primary">{challenge}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+        <CaseSection index="04" label="Solution" title="Engineered for *impact*" wide dark>
+            <FeatureColumns groups={solutions} />
+        </CaseSection>
 
-      {/* Overlapping Aspects - REFACTORED LAYOUT */}
-      <section className="py-32 overflow-hidden">
-        <div className="container mx-auto px-6">
-          <div className="space-y-32">
-            {projectData.aspects.map((aspect, index) => (
-              <div key={index} className={`flex flex-col md:flex-row gap-12 items-center ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
+        <CaseSection index="05" label="Results">
+            <StatRow stats={results} />
+        </CaseSection>
 
-                {/* Image Side */}
-                <div className="w-full md:w-1/2">
-                  <motion.div
-                    whileHover={{ scale: 0.98 }}
-                    transition={{ duration: 0.5 }}
-                    className="rounded-3xl overflow-hidden border border-white/10 shadow-2xl"
-                  >
-                    <img src={aspect.image} alt={aspect.imageAlt} className="w-full h-auto" />
-                  </motion.div>
-                </div>
-
-                {/* Content Side */}
-                <div className="w-full md:w-1/2">
-                  <div className="p-8 md:p-12 bg-surface/50 backdrop-blur-sm border border-white/10 rounded-3xl">
-                    <h3 className="text-3xl font-display font-bold mb-6">{aspect.title}</h3>
-                    <p className="text-secondary leading-relaxed mb-8 text-lg">
-                      {aspect.description}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {aspect.tags.map((tag, i) => (
-                        <span key={i} className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-secondary">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Solutions - Premium Cards */}
-      {/* Solutions - Premium Cards */}
-      <SolutionGrid solutions={projectData.solutions} />
-
-      {/* Results - Massive Typography */}
-      <section className="py-32">
-        <div className="container mx-auto px-6">
-          <div className="space-y-24">
-            {projectData.results.map((result, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                className="flex flex-col md:flex-row items-baseline gap-4 md:gap-12 border-b border-white/10 pb-12"
-              >
-                <span className="text-6xl md:text-9xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent to-white">
-                  {result.stat}
-                </span>
-                <span className="text-xl md:text-2xl text-secondary max-w-md">
-                  {result.description}
-                </span>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Next Project */}
-      <NextProject project={nextProject} />
-
+        <NextProject currentId={project.id} />
     </main>
-  );
-};
+);
 
 export default Paynance;

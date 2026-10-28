@@ -1,105 +1,66 @@
-import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { Layout, Code, Smartphone, Database, Zap, Globe } from 'lucide-react';
+import SectionLabel from '../site/SectionLabel';
+import { Reveal, RevealText } from '../site/Reveal';
 
 const services = [
     {
-        icon: Layout,
-        title: "UI/UX Design",
-        description: "Crafting intuitive, user-centric interfaces that blend aesthetics with functionality. I focus on creating systems that scale.",
-        color: "blue"
+        title: 'Product strategy',
+        body: 'From a fuzzy idea to a roadmap a team can commit to: discovery, user research, positioning and the metrics that show it works.',
+        items: ['Discovery sprints', 'User research', 'Roadmaps', 'KPI frameworks'],
     },
     {
-        icon: Code,
-        title: "Frontend Development",
-        description: "Building responsive, high-performance web applications using modern frameworks like React, Next.js, and Tailwind CSS.",
-        color: "purple"
+        title: 'AI implementation',
+        body: 'Choosing the right models, engineering prompts and building the agentic workflows that keep AI dependable in production.',
+        items: ['Model selection', 'Prompt engineering', 'Agentic workflows', 'Rapid prototypes'],
     },
     {
-        icon: Smartphone,
-        title: "Mobile Solutions",
-        description: "Designing and developing cross-platform mobile experiences that feel native and fluid on any device.",
-        color: "emerald"
+        title: 'UX & interface design',
+        body: 'Flows, systems and interfaces for complex products, from fintech dashboards and KYC onboarding to mobile and POS.',
+        items: ['UX architecture', 'Design systems', 'Usability testing', 'Frontend builds'],
     },
     {
-        icon: Database,
-        title: "System Architecture",
-        description: "Planning and implementing robust, scalable backend structures and database schemas for data-heavy applications.",
-        color: "orange"
+        title: 'Training & enablement',
+        body: 'Workshops for every level of a company, from executive strategy sessions to hands-on training for functional teams.',
+        items: ['Executive workshops', 'Team training', 'Prompt libraries', 'Change management'],
     },
-    {
-        icon: Zap,
-        title: "Performance Optimization",
-        description: "Auditing and refining applications for maximum speed, accessibility, and SEO performance.",
-        color: "yellow"
-    },
-    {
-        icon: Globe,
-        title: "Web3 & Blockchain",
-        description: "Designing trustless interfaces and integrating decentralized protocols into seamless user journeys.",
-        color: "cyan"
-    }
 ];
 
-const ServiceCard = ({ service, index }) => {
-    const ref = useRef(null);
-    const inView = useInView(ref, { once: true, margin: "-50px" });
-
-    return (
-        <motion.div
-            ref={ref}
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: index * 0.1, ease: [0.2, 0.8, 0.2, 1] }}
-            className="group p-8 rounded-3xl bg-surface border border-white/5 hover:border-white/10 hover:bg-white/5 transition-all duration-300"
-        >
-            <div className={`w-12 h-12 rounded-xl bg-${service.color}-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                <service.icon className={`w-6 h-6 text-${service.color}-400`} />
+// Rows fill with ink from the bottom on hover (desktop); content is always visible.
+const Services = () => (
+    <section id="services" className="shell pt-section">
+        <div className="grid-12 gap-y-8 border-t border-line pt-6 mb-16 md:mb-24">
+            <div className="col-span-4 md:col-span-3">
+                <SectionLabel index="03">Services</SectionLabel>
             </div>
-            <h3 className="text-xl font-display font-bold text-primary mb-3">
-                {service.title}
-            </h3>
-            <p className="text-secondary text-sm leading-relaxed group-hover:text-primary/80 transition-colors duration-300">
-                {service.description}
-            </p>
-        </motion.div>
-    );
-};
+            <RevealText className="col-span-4 md:col-span-9 text-display-l font-medium text-balance">
+                Strategy, design and *engineering,* in one head.
+            </RevealText>
+        </div>
 
-const Services = () => {
-    return (
-        <section id="services" className="py-20 md:py-32 bg-background relative">
-            <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12">
-                <div className="mb-16 md:mb-24 overflow-visible min-h-[200px]">
-                    <motion.span
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-accent font-mono text-sm tracking-widest uppercase mb-4 block"
-                    >
-                        Expertise
-                    </motion.span>
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
-                        style={{ overflow: 'visible' }}
-                        className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-primary max-w-3xl leading-[1.4]"
-                    >
-                        Comprehensive solutions for <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500">digital transformation.</span>
-                    </motion.h2>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {services.map((service, index) => (
-                        <ServiceCard key={index} service={service} index={index} />
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
-};
+        <ol className="border-t border-line">
+            {services.map((s, i) => (
+                <Reveal as="li" key={s.title} delay={i * 0.06} className="group relative border-b border-line">
+                    <span
+                        aria-hidden="true"
+                        className="absolute inset-0 bg-ink origin-bottom scale-y-0 transition-transform duration-700 ease-expo md:group-hover:scale-y-100"
+                    />
+                    <div className="relative grid-12 gap-y-4 py-8 md:py-10 transition-colors duration-500 md:group-hover:text-paper">
+                        <span className="col-span-4 md:col-span-1 font-mono text-[0.75rem] pt-2 md:pl-3">0{i + 1}</span>
+                        <h3 className="col-span-4 md:col-span-4 lg:col-span-3 md:col-start-2 lg:col-start-4 text-display-s font-medium transition-transform duration-700 ease-expo md:group-hover:translate-x-3">
+                            {s.title}
+                        </h3>
+                        <p className="col-span-4 md:col-span-4 text-[0.98rem] leading-relaxed text-ink-2 md:group-hover:text-paper/75 transition-colors duration-500 text-pretty">
+                            {s.body}
+                        </p>
+                        <ul className="col-span-4 md:col-span-3 lg:col-span-2 flex flex-wrap md:flex-col gap-x-4 gap-y-1.5 label text-mute md:group-hover:text-paper/60 transition-colors duration-500 md:pt-1.5 leading-[1.5]">
+                            {s.items.map((item) => (
+                                <li key={item}>{item}</li>
+                            ))}
+                        </ul>
+                    </div>
+                </Reveal>
+            ))}
+        </ol>
+    </section>
+);
 
 export default Services;

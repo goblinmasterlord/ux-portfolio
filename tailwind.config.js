@@ -7,41 +7,57 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: '#0a0a0a', // Obsidian
-        surface: '#121212', // Slightly lighter for cards
-        primary: '#f8fafc', // Slate 50
-        secondary: '#94a3b8', // Slate 400
-        accent: '#38bdf8', // Sky 400 - Neon Blue
-        'accent-purple': '#c084fc', // Purple 400
-        'accent-glow': 'rgba(56, 189, 248, 0.5)',
-        muted: '#334155', // Slate 700
-        border: '#1e293b', // Slate 800
+        paper: 'rgb(var(--paper) / <alpha-value>)',
+        'paper-2': 'rgb(var(--paper-2) / <alpha-value>)',
+        ink: 'rgb(var(--ink) / <alpha-value>)',
+        'ink-2': 'rgb(var(--ink-2) / <alpha-value>)',
+        mute: 'rgb(var(--mute) / <alpha-value>)',
+        signal: 'rgb(var(--signal) / <alpha-value>)',
+        'signal-soft': 'rgb(var(--signal-soft) / <alpha-value>)',
+        line: 'rgb(var(--ink) / 0.14)',
+        'line-inv': 'rgb(var(--paper) / 0.16)',
       },
       fontFamily: {
-        display: ['Fraunces', 'serif'],
-        sans: ['General Sans', 'Inter', 'sans-serif'],
-        mono: ['Geist Mono', 'monospace'],
+        sans: ['"Geist Variable"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        serif: ['"Instrument Serif"', 'ui-serif', 'Georgia', 'serif'],
+        mono: ['"Geist Mono Variable"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
-      backgroundImage: {
-        'noise': "url('/noise.png')", // We will need to ensure this asset exists or use a CSS gradient trick
-        'gradient-dark': 'linear-gradient(to bottom right, #0a0a0a, #121212)',
-        'gradient-glow': 'conic-gradient(from 180deg at 50% 50%, #2a8af6 0deg, #a853ba 180deg, #e92a67 360deg)',
+      fontSize: {
+        // Fluid display sizes (min @ 375px → max @ 1600px)
+        'display-xl': ['clamp(3.1rem, 8.2vw, 9.5rem)', { lineHeight: '0.92', letterSpacing: '-0.045em' }],
+        'display-l': ['clamp(2.6rem, 6vw, 6.75rem)', { lineHeight: '0.95', letterSpacing: '-0.04em' }],
+        'display-m': ['clamp(2rem, 4vw, 4.25rem)', { lineHeight: '1', letterSpacing: '-0.035em' }],
+        'display-s': ['clamp(1.6rem, 2.6vw, 2.75rem)', { lineHeight: '1.08', letterSpacing: '-0.03em' }],
+        lead: ['clamp(1.2rem, 1.6vw, 1.6rem)', { lineHeight: '1.35', letterSpacing: '-0.015em' }],
+        label: ['0.72rem', { lineHeight: '1', letterSpacing: '0.06em' }],
       },
-      animation: {
-        'float': 'float 6s ease-in-out infinite',
-        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'spin-slow': 'spin 12s linear infinite',
-        'magnetic': 'magnetic 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both',
+      spacing: {
+        gutter: 'var(--gutter)',
+        section: 'clamp(6rem, 14vw, 13rem)',
+      },
+      transitionTimingFunction: {
+        expo: 'cubic-bezier(0.16, 1, 0.3, 1)',
+        quart: 'cubic-bezier(0.76, 0, 0.24, 1)',
       },
       keyframes: {
-        float: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-20px)' },
+        marquee: {
+          from: { transform: 'translate3d(0,0,0)' },
+          to: { transform: 'translate3d(-50%,0,0)' },
         },
-        magnetic: {
-          '0%': { transform: 'translate(0, 0)' },
-          '100%': { transform: 'translate(var(--mx, 0), var(--my, 0))' },
-        }
+        blink: {
+          '0%, 49%': { opacity: '1' },
+          '50%, 100%': { opacity: '0' },
+        },
+        pulseDot: {
+          '0%': { boxShadow: '0 0 0 0 rgb(var(--signal) / 0.5)' },
+          '70%': { boxShadow: '0 0 0 7px rgb(var(--signal) / 0)' },
+          '100%': { boxShadow: '0 0 0 0 rgb(var(--signal) / 0)' },
+        },
+      },
+      animation: {
+        marquee: 'marquee 40s linear infinite',
+        blink: 'blink 1.05s steps(1) infinite',
+        'pulse-dot': 'pulseDot 2.2s ease-out infinite',
       },
     },
   },
