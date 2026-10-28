@@ -16,7 +16,8 @@ const Footer = () => {
             {/* The /contact page renders the block itself as its main content */}
             {pathname !== '/contact' && (
                 <div className="shell pt-section pb-24 md:pb-32">
-                    <ContactBlock />
+                    {/* numbered only where it continues the home page's (01)–(04) sequence */}
+                    <ContactBlock index={pathname === '/' ? '05' : undefined} />
                 </div>
             )}
 

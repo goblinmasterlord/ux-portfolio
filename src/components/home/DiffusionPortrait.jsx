@@ -20,7 +20,7 @@ const DiffusionPortrait = ({ src, alt, className = '', delay = 600 }) => {
         let done = false;
         const pointer = { x: -1, y: -1, active: false };
         const small = document.createElement('canvas');
-        const sctx = small.getContext('2d');
+        const sctx = small.getContext('2d', { willReadFrequently: true });
 
         const setup = () => {
             const rect = canvas.getBoundingClientRect();
@@ -31,7 +31,7 @@ const DiffusionPortrait = ({ src, alt, className = '', delay = 600 }) => {
             gray = document.createElement('canvas');
             gray.width = canvas.width;
             gray.height = canvas.height;
-            const g = gray.getContext('2d');
+            const g = gray.getContext('2d', { willReadFrequently: true });
             const scale = Math.max(canvas.width / img.width, canvas.height / img.height);
             const w = img.width * scale;
             const h = img.height * scale;

@@ -52,10 +52,10 @@ const fits = [
     'Prototypes built with real models',
 ];
 
-export const ContactBlock = ({ headingAs = 'h2' }) => (
+export const ContactBlock = ({ headingAs = 'h2', index }) => (
     <div className="grid-12 gap-y-12">
         <div className="col-span-4 md:col-span-12">
-            <SectionLabel index="05" inverted>Contact</SectionLabel>
+            <SectionLabel index={index} inverted>Contact</SectionLabel>
         </div>
         <RevealText as={headingAs} className="col-span-4 md:col-span-8 text-display-l font-medium text-balance">
             Have a problem AI could *actually* solve?
