@@ -11,9 +11,9 @@ export const caseStudies = [
         sector: 'EdTech · AI SaaS',
         year: '2025',
         role: 'UX architecture, prompt engineering, frontend',
-        summary: 'AI document redaction for schools. Semantic analysis finds personal data in 200-page files and maps it to real people, so administrators decide what to protect in minutes, not days.',
+        summary: 'AI document redaction for schools. Semantic analysis finds personal data in 200-page files and maps it to real people, so administrators decide exactly what to redact.',
         image: '/images/Eclipse.jpg',
-        stat: { value: '200+', label: 'pages analysed per upload' },
+        stat: { value: '200+', label: 'page documents handled' },
     },
     {
         id: 'paynance',
@@ -24,7 +24,7 @@ export const caseStudies = [
         role: 'Lead product designer, research',
         summary: 'A payment platform for merchants, covering everything from the landing page and KYC onboarding to the merchant dashboard and the POS app used at the counter.',
         image: paynanceImage,
-        stat: { value: '1,000+', label: 'merchants onboarded' },
+        stat: { value: '2.5M+', label: 'transactions a month' },
     },
     {
         id: 'kovetkezotoken',
@@ -35,7 +35,6 @@ export const caseStudies = [
         role: 'Founder, lead consultant',
         summary: 'My AI consultancy. I train teams from the boardroom to the front line and build the agentic workflows that make AI part of day-to-day operations.',
         image: '/images/KovetkezoToken.jpg',
-        stat: { value: '500+', label: 'professionals trained' },
     },
     {
         id: 'everprove',
@@ -55,7 +54,7 @@ export const caseStudies = [
         sector: 'Gamification · Mobile',
         year: '2023',
         role: 'Product & UX design',
-        summary: 'A location-based treasure hunt that sends players to local businesses, rewarding exploration and bringing in measurable foot traffic.',
+        summary: 'A location-based treasure hunt that sends players to local businesses, rewarding exploration and bringing foot traffic to their doors.',
         image: loccocityImage,
         stat: { value: '10,000+', label: 'players' },
     },

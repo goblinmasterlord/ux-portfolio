@@ -6,10 +6,11 @@ import { Reveal } from '../site/Reveal';
 const STATEMENT =
     'Most AI projects stall somewhere between the demo and the daily routine. I work in that gap: researching what people actually need, prototyping with real models, and shipping interfaces that make intelligence feel *obvious.*';
 
+// Only figures confirmed by the owner — don't add estimates here.
 const stats = [
-    { value: 500, suffix: '+', label: 'Professionals trained in applied AI' },
-    { value: 20, suffix: '+', label: 'Companies advised on AI adoption' },
+    { value: 2.5, decimals: 1, suffix: 'M+', label: 'Monthly transactions on Paynance' },
     { value: 1000, suffix: '+', label: 'Merchants onboarded at Paynance' },
+    { value: 50, suffix: 'K+', label: 'Contracts created on Everprove' },
     { value: 10000, suffix: '+', label: 'Players exploring Locco City' },
 ];
 
@@ -40,9 +41,9 @@ const ScrubStatement = () => {
     );
 };
 
-const format = (n) => n.toLocaleString('en-US');
+const format = (n, decimals) => n.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
 
-const CountUp = ({ value, suffix }) => {
+const CountUp = ({ value, suffix, decimals = 0 }) => {
     const ref = useRef(null);
     const inView = useInView(ref, { once: true, amount: 0.6 });
     const reduce = useReducedMotion();
@@ -54,7 +55,7 @@ const CountUp = ({ value, suffix }) => {
         const start = performance.now();
         const tick = (t) => {
             const p = Math.min(1, (t - start) / 1600);
-            setN(Math.round(value * (1 - Math.pow(1 - p, 4))));
+            setN(value * (1 - Math.pow(1 - p, 4)));
             if (p < 1) raf = requestAnimationFrame(tick);
         };
         raf = requestAnimationFrame(tick);
@@ -63,8 +64,9 @@ const CountUp = ({ value, suffix }) => {
 
     return (
         <span ref={ref} className="tabular">
-            {format(n)}
-            <span className="text-signal">{suffix}</span>
+            {format(n, decimals)}
+            {suffix.replace('+', '')}
+            {suffix.includes('+') && <span className="text-signal">+</span>}
         </span>
     );
 };
@@ -89,7 +91,7 @@ const Approach = () => (
                 >
                     <dt className="label text-mute mb-6 md:mb-10 max-w-[18ch] leading-[1.4]">{s.label}</dt>
                     <dd className="text-display-m font-medium">
-                        <CountUp value={s.value} suffix={s.suffix} />
+                        <CountUp value={s.value} suffix={s.suffix} decimals={s.decimals} />
                     </dd>
                 </Reveal>
             ))}

@@ -67,7 +67,12 @@ const ProjectEntry = ({ project, index, onActive }) => {
                 <div className="col-span-4 md:col-span-8 flex flex-wrap items-baseline justify-between gap-3 border-t border-line pt-3 label text-mute">
                     <span>{project.role}</span>
                     <span>
-                        <span className="text-ink">{project.stat.value}</span> {project.stat.label} · {project.year}
+                        {project.stat && (
+                            <>
+                                <span className="text-ink">{project.stat.value}</span> {project.stat.label} ·{' '}
+                            </>
+                        )}
+                        {project.year}
                     </span>
                 </div>
             </div>
