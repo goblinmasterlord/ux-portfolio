@@ -1,6 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { easeOutExpo } from '../../lib/motion';
 import useSectionNav from '../../hooks/useSectionNav';
+import { caseStudies, labProjects } from '../../data/projects';
 import TokenHeadline from './TokenHeadline';
 import DiffusionPortrait from './DiffusionPortrait';
 
@@ -39,8 +40,8 @@ const Hero = () => {
 
                 <motion.nav {...fade(1.25, reduce)} className="col-span-4 md:col-span-3 md:col-start-10 flex flex-col border-t border-line" aria-label="Hero">
                     {[
-                        ['work', 'Selected work', '05'],
-                        ['lab', 'Lab & experiments', '08'],
+                        ['work', 'Selected work', String(caseStudies.length).padStart(2, '0')],
+                        ['lab', 'Lab & experiments', String(labProjects.length).padStart(2, '0')],
                         ['contact', 'Start a conversation', '→'],
                     ].map(([id, label, meta]) => (
                         <button

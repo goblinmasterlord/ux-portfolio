@@ -21,7 +21,7 @@ export const caseStudies = [
         path: '/projects/paynance',
         sector: 'Fintech · Payments',
         year: '2024',
-        role: 'Lead product designer, research',
+        role: 'Product & UX design, research',
         summary: 'A payment platform for merchants, covering everything from the landing page and KYC onboarding to the merchant dashboard and the POS app used at the counter.',
         image: paynanceImage,
         stat: { value: '2.5M+', label: 'transactions a month' },
@@ -33,7 +33,7 @@ export const caseStudies = [
         sector: 'AI Consulting · Training',
         year: '2023—',
         role: 'Founder, lead consultant',
-        summary: 'My AI consultancy. I train teams from the boardroom to the front line and build the agentic workflows that make AI part of day-to-day operations.',
+        summary: 'My AI consultancy. I teach teams to use AI well and build the automations that put it to work in their daily operations.',
         image: '/images/KovetkezoToken.jpg',
     },
     {
@@ -65,15 +65,23 @@ export const getNextCaseStudy = (id) => {
     return caseStudies[(i + 1) % caseStudies.length];
 };
 
+// Own side projects (curated from GitHub). `link: null` = private repo, shown without a link.
 export const labProjects = [
-    { title: 'UXTools', description: 'AI design critique and accessibility checker.', stack: ['React', 'Claude API'], image: '/images/UXTools.jpg', link: 'https://github.com/goblinmasterlord/ux-toolkit' },
-    { title: 'NeuralUX', description: 'Learning platform for AI-driven design.', stack: ['Next.js', 'Supabase'], image: '/images/NeuralUX.jpg', link: 'https://neuraluxstudio.com' },
-    { title: 'FactCheck', description: 'Real-time claim verification for audio and video.', stack: ['Python', 'Whisper'], image: '/images/Isthattrue.jpg', link: 'https://github.com/goblinmasterlord/robot-chicken' },
-    { title: 'SmartBudget', description: 'AI financial advisor and spending analyser.', stack: ['React Native', 'Gemini'], image: '/images/Budgeting.jpg', link: 'https://github.com/goblinmasterlord/smart-budget-app' },
-    { title: 'Aromate', description: 'Algorithmic fragrance recommendations.', stack: ['React', 'Algorithms'], image: '/images/Aromate.jpg', link: 'https://aromate.vercel.app/' },
-    { title: 'Artime', description: 'Minimal portfolio for a creative studio.', stack: ['React', 'Framer Motion'], image: '/images/Artimestudio.jpg', link: 'https://artimestudio.vercel.app/' },
-    { title: 'BeautifulData', description: 'Site for a data-visualisation consultancy.', stack: ['React', 'Vite'], image: '/images/Beautifuldata.jpg', link: 'https://beautifuldata.co.uk' },
-    { title: 'AI Doc Processor', description: 'Automated document extraction and structuring.', stack: ['LLMs', 'Automation'], image: '/images/AIDocProcessor.jpg', link: 'https://ai-document-processing-rho.vercel.app/' },
+    {
+        title: 'Noctiluca',
+        description: 'A scroll-driven deep-sea dive. 262,144 plankton on the GPU light up as you move, with procedural creatures and generative sound, and every fact cites its source.',
+        stack: ['WebGL2', 'TypeScript', 'Web Audio'],
+        year: '2026',
+        image: '/images/lab/noctiluca.jpg',
+        link: null,
+        featured: true,
+    },
+    { title: 'AI Doc Processor', description: 'Drafts company-formation papers and contracts from ID scans.', stack: ['Next.js', 'Gemini', 'Vercel AI SDK'], year: '2025', image: '/images/AIDocProcessor.jpg', link: 'https://ai-document-processing-rho.vercel.app/' },
+    { title: 'BanánMester', description: 'Turns one product photo into a set of ad creatives.', stack: ['React', 'TypeScript', 'Gemini'], year: '2026', link: 'https://github.com/goblinmasterlord/productphotogenerator' },
+    { title: 'Tamahagane', description: 'Forge a Japanese sword in ten stages; your choices shape the blade.', stack: ['Three.js', 'Vite'], year: '2026', link: 'https://tamahagane-green.vercel.app' },
+    { title: 'Still', description: "Native macOS time tracker you drive by typing '45m review #studio'.", stack: ['SwiftUI', 'macOS'], year: '2026', link: null },
+    { title: 'Aromate', description: 'Perfume finder built on weighted note matching.', stack: ['React', 'Vite'], year: '2026', image: '/images/Aromate.jpg', link: 'https://aromate.vercel.app/' },
+    { title: 'Breakdownz', description: 'Djent riff generator with a step sequencer and Web Audio playback.', stack: ['React', 'Web Audio'], year: '2026', link: 'https://github.com/goblinmasterlord/breakdownz' },
 ];
 
 export const links = {

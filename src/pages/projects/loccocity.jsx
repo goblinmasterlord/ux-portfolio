@@ -1,55 +1,34 @@
 import { caseStudies } from '../../data/projects';
-import { CaseHero, CaseSection, Lead, Prose, NumberedList, AspectList, FeatureColumns, StatRow, NextProject } from '../../components/case';
+import { CaseHero, CaseSection, Lead, Prose, NumberedList, AspectList, StatRow, NextProject } from '../../components/case';
 import aspect1 from '../../assets/projects/locco-aspect-01.jpg';
 
 const project = caseStudies.find((p) => p.id === 'loccocity');
 
 const challenges = [
-    'Traditional advertising struggles to drive physical foot traffic.',
-    'Local businesses need innovative ways to attract customers.',
+    'Traditional advertising struggles to bring people through the door of local businesses.',
     'Digital and physical retail experiences remain disconnected.',
-    'Young consumers seek gamified experiences in everyday activities.',
+    'Young consumers look for gamified experiences in everyday activities.',
     'Customer loyalty programmes lack engaging elements.',
 ];
 
 const aspects = [
     {
         title: 'Exploration & discovery system',
-        description: 'We designed an urban exploration system that makes discovering your city feel like an adventure. Using location-based technology, we built a dynamic map that reveals nearby rewards and points of interest. The app combines fixed locations with randomly spawning rewards, keeping exploration unpredictable and nudging players towards new areas of their city.',
+        description: 'We designed an exploration system around a dynamic map that reveals nearby rewards and points of interest. The app combines fixed locations with randomly spawning rewards, keeping exploration unpredictable and nudging players towards new areas of their city. Coupons activate by proximity and are easy to redeem.',
         image: aspect1,
         imageAlt: "Locco City's interactive map and discovery interface",
         tags: ['Dynamic mapping', 'Location services', 'Real-time updates', 'Discovery zones', 'Local exploration'],
     },
     {
         title: 'Merchant dashboard',
-        description: 'We developed a powerful yet simple dashboard that gives merchants full control over their presence in the game. Businesses can create and manage rewards, track foot traffic and analyse customer engagement. The interface includes tools for scheduling promotions, setting reward parameters and viewing real-time analytics on how players interact with their offers.',
+        description: 'The merchant dashboard gives businesses control over their presence in the game. They can create and manage rewards, track foot traffic and analyse engagement, schedule promotions, set reward parameters and see how players interact with their offers.',
         // No merchant dashboard screenshot exists yet, so this block is text-only
         tags: ['Analytics dashboard', 'Reward management', 'Traffic insights', 'Campaign planning', 'Performance metrics'],
     },
 ];
 
-const solutions = [
-    {
-        title: 'Gamified urban exploration',
-        points: [
-            'Location-based reward discovery',
-            'Tailored rewards for each user',
-            'Achievement-based progression',
-            'Real-time reward availability',
-        ],
-    },
-    {
-        title: 'Seamless reward experience',
-        points: [
-            'Proximity-based coupon activation',
-            'Easy redemption process',
-            'Brand partnership integration',
-        ],
-    },
-];
-
 const results = [
-    { value: '10,000+', label: 'Active users exploring cities' },
+    { value: '10,000+', label: 'Active players' },
     { value: '100+', label: 'Partnered local businesses' },
 ];
 
@@ -58,7 +37,7 @@ const LoccoCity = () => (
         <CaseHero
             project={project}
             title="Gamifying *urban* discovery"
-            intro="A location-based platform that turns city exploration into a treasure hunt, connecting adventurous players with local businesses through real-world rewards."
+            intro="A location-based game that turns city exploration into a treasure hunt, connecting players with local businesses through real-world rewards."
             meta={[{ label: 'Scope', value: 'Player map and discovery, merchant dashboard' }]}
             aspect="aspect-[4/3] md:aspect-[16/10]"
         />
@@ -66,12 +45,14 @@ const LoccoCity = () => (
         <CaseSection index="01" label="Overview">
             <Lead>
                 Locco City blends physical exploration with digital rewards, so shopping streets become a game board
-                and local businesses become the destinations.
+                and local businesses become the destinations. Much like Pokémon GO&apos;s approach to gaming, it
+                encourages people to explore their city while collecting <strong>real-world rewards</strong> from
+                their favourite brands.
             </Lead>
             <Prose>
                 <p>
-                    Much like Pokémon GO&apos;s approach to gaming, the platform encourages people to explore their city
-                    while collecting <strong>real-world rewards</strong> from their favourite brands.
+                    I worked on product and UX across both sides of the platform: the player map and discovery
+                    experience, and the merchant dashboard.
                 </p>
             </Prose>
         </CaseSection>
@@ -84,11 +65,7 @@ const LoccoCity = () => (
             <AspectList items={aspects} />
         </CaseSection>
 
-        <CaseSection index="04" label="Solution" title="Two sides of one *adventure*" wide dark>
-            <FeatureColumns groups={solutions} />
-        </CaseSection>
-
-        <CaseSection index="05" label="Results">
+        <CaseSection index="04" label="Results" dark>
             <StatRow stats={results} />
         </CaseSection>
 
