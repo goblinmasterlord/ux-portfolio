@@ -1,231 +1,99 @@
-import React, { useEffect, useRef } from 'react';
-import { motion, useScroll } from 'framer-motion';
-import { ArrowLeft, Trophy, Navigation as NavIcon } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import NextProject from '../../components/project/NextProject';
-import SolutionGrid from '../../components/project/SolutionGrid';
-import loccocityImage from '../../assets/projects/loccocity.png';
+import { caseStudies } from '../../data/projects';
+import { CaseHero, CaseSection, Lead, Prose, NumberedList, AspectList, FeatureColumns, StatRow, NextProject } from '../../components/case';
 import aspect1 from '../../assets/projects/locco-aspect-01.jpg';
-import aspect2 from '../../assets/projects/locco-aspect-02.jpg';
-import everproveImage from '../../assets/projects/everprove.png';
 
-const Loccocity = () => {
-    const containerRef = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start start", "end end"]
-    });
+const project = caseStudies.find((p) => p.id === 'loccocity');
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
+const challenges = [
+    'Traditional advertising struggles to drive physical foot traffic.',
+    'Local businesses need innovative ways to attract customers.',
+    'Digital and physical retail experiences remain disconnected.',
+    'Young consumers seek gamified experiences in everyday activities.',
+    'Customer loyalty programmes lack engaging elements.',
+];
 
-    const projectData = {
-        title: "Gamifying Urban Discovery",
-        subtitle: "A location-based platform that transforms city exploration into an engaging treasure hunt, connecting adventurous users with local businesses through real-world rewards",
-        overview: "Locco City revolutionizes retail engagement by blending physical exploration with digital rewards. Similar to Pokémon GO's groundbreaking approach to gaming, we've created an engaging platform that encourages users to explore their city while collecting real-world rewards from their favorite brands.",
-        overviewStats: [
-            { value: "10.000+", label: "active users exploring cities" },
-            { value: "100+", label: "partnered local businesses" },
+const aspects = [
+    {
+        title: 'Exploration & discovery system',
+        description: 'We designed an urban exploration system that makes discovering your city feel like an adventure. Using location-based technology, we built a dynamic map that reveals nearby rewards and points of interest. The app combines fixed locations with randomly spawning rewards, keeping exploration unpredictable and nudging players towards new areas of their city.',
+        image: aspect1,
+        imageAlt: "Locco City's interactive map and discovery interface",
+        tags: ['Dynamic mapping', 'Location services', 'Real-time updates', 'Discovery zones', 'Local exploration'],
+    },
+    {
+        title: 'Merchant dashboard',
+        description: 'We developed a powerful yet simple dashboard that gives merchants full control over their presence in the game. Businesses can create and manage rewards, track foot traffic and analyse customer engagement. The interface includes tools for scheduling promotions, setting reward parameters and viewing real-time analytics on how players interact with their offers.',
+        // No merchant dashboard screenshot exists yet, so this block is text-only
+        tags: ['Analytics dashboard', 'Reward management', 'Traffic insights', 'Campaign planning', 'Performance metrics'],
+    },
+];
+
+const solutions = [
+    {
+        title: 'Gamified urban exploration',
+        points: [
+            'Location-based reward discovery',
+            'Tailored rewards for each user',
+            'Achievement-based progression',
+            'Real-time reward availability',
         ],
-        challengeDescription: "While digital marketing continues to evolve, connecting online engagement with real-world actions remains a significant challenge:",
-        challenges: [
-            "Traditional advertising struggles to drive physical foot traffic",
-            "Local businesses need innovative ways to attract customers",
-            "Digital and physical retail experiences remain disconnected",
-            "Young consumers seek gamified experiences in everyday activities",
-            "Customer loyalty programs lack engaging elements"
+    },
+    {
+        title: 'Seamless reward experience',
+        points: [
+            'Proximity-based coupon activation',
+            'Easy redemption process',
+            'Brand partnership integration',
         ],
-        solutions: [
-            {
-                title: "Gamified Urban Exploration",
-                icon: <NavIcon className="w-6 h-6" />,
-                points: [
-                    "Location-based reward discovery",
-                    "Tailored rewards for each user",
-                    "Achievement-based progression",
-                    "Real-time reward availability"
-                ]
-            },
-            {
-                title: "Seamless Reward Experience",
-                icon: <Trophy className="w-6 h-6" />,
-                points: [
-                    "Proximity-based coupon activation",
-                    "Easy redemption process",
-                    "Brand partnership integration"
-                ]
-            }
-        ],
-        results: [
-            { stat: "10.000+", description: "active users exploring cities" },
-            { stat: "100+", description: "partnered local businesses" },
-        ],
-        aspects: [
-            {
-                title: "Exploration & Discovery System",
-                description: "We designed an engaging urban exploration system that makes discovering your city feel like an adventure. Using location-based technology, we created a dynamic map that reveals nearby rewards and points of interest. The app uses a combination of fixed locations and randomly spawning rewards to keep exploration exciting and unpredictable, encouraging users to explore new areas of their city.",
-                image: aspect1,
-                imageAlt: "Locco City's interactive map and discovery interface",
-                tags: ["Dynamic Mapping", "Location Services", "Real-time Updates", "Discovery Zones", "Local Exploration"]
-            },
-            {
-                title: "Merchant Dashboard",
-                description: "We developed a powerful yet simple dashboard that gives merchants complete control over their digital presence. Businesses can create and manage rewards, track foot traffic, and analyze customer engagement patterns. The interface includes tools for scheduling promotions, setting reward parameters, and viewing real-time analytics about how users interact with their offers.",
-                image: aspect2,
-                imageAlt: "Merchant control dashboard interface",
-                tags: ["Analytics Dashboard", "Reward Management", "Traffic Insights", "Campaign Planning", "Performance Metrics"]
-            }
-        ]
-    };
+    },
+];
 
-    const nextProject = {
-        title: "Everprove",
-        category: "Fintech / Blockchain",
-        image: everproveImage,
-        path: "/projects/everprove"
-    };
+const results = [
+    { value: '10,000+', label: 'Active users exploring cities' },
+    { value: '100+', label: 'Partnered local businesses' },
+];
 
-    return (
-        <main ref={containerRef} className="bg-background min-h-screen text-primary selection:bg-accent/30 overflow-x-hidden relative">
+const LoccoCity = () => (
+    <main>
+        <CaseHero
+            project={project}
+            title="Gamifying *urban* discovery"
+            intro="A location-based platform that turns city exploration into a treasure hunt, connecting adventurous players with local businesses through real-world rewards."
+            meta={[{ label: 'Scope', value: 'Player map and discovery, merchant dashboard' }]}
+            aspect="aspect-[4/3] md:aspect-[16/10]"
+        />
 
-            {/* Central Path Line */}
-            {/* Central Path Line - REMOVED */}
-            {/* <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-accent/30 to-transparent -translate-x-1/2 hidden md:block" /> */}
+        <CaseSection index="01" label="Overview">
+            <Lead>
+                Locco City blends physical exploration with digital rewards, so shopping streets become a game board
+                and local businesses become the destinations.
+            </Lead>
+            <Prose>
+                <p>
+                    Much like Pokémon GO&apos;s approach to gaming, the platform encourages people to explore their city
+                    while collecting <strong>real-world rewards</strong> from their favourite brands.
+                </p>
+            </Prose>
+        </CaseSection>
 
-            {/* Close Button - Fixed High Z-Index */}
-            <Link
-                to="/"
-                className="fixed top-6 right-6 z-[60] p-3 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-white hover:bg-white hover:text-black transition-all duration-300 group"
-            >
-                <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-                <span className="sr-only">Back to Home</span>
-            </Link>
+        <CaseSection index="02" label="Challenge" title="Online engagement rarely turns into *real-world* action">
+            <NumberedList items={challenges} />
+        </CaseSection>
 
-            {/* Hero Section */}
-            <section className="relative h-screen flex items-center justify-center overflow-hidden">
-                <div className="absolute inset-0 z-0">
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/80 to-background z-10" />
-                    <img
-                        src={loccocityImage}
-                        alt="Loccocity Hero"
-                        className="w-full h-full object-cover opacity-50"
-                    />
-                </div>
+        <CaseSection index="03" label="The work" title="One map for players, one dashboard for *merchants*" wide>
+            <AspectList items={aspects} />
+        </CaseSection>
 
-                <div className="relative z-10 container mx-auto px-6 text-center">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                    >
-                        <span className="inline-block px-3 py-1 mb-6 text-xs font-mono tracking-widest text-accent uppercase border border-accent/20 rounded-full bg-accent/5">
-                            Gamified Marketing App
-                        </span>
-                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold mb-6 tracking-tight leading-tight">
-                            {projectData.title}
-                        </h1>
-                        <p className="text-xl md:text-2xl text-secondary max-w-3xl mx-auto font-light leading-relaxed">
-                            {projectData.subtitle}
-                        </p>
-                    </motion.div>
-                </div>
-            </section>
+        <CaseSection index="04" label="Solution" title="Two sides of one *adventure*" wide dark>
+            <FeatureColumns groups={solutions} />
+        </CaseSection>
 
-            {/* Journey Overview */}
-            <section className="py-32 relative z-10">
-                <div className="container mx-auto px-6">
-                    <div className="grid md:grid-cols-2 gap-12 md:gap-24 items-start">
-                        <div className="md:text-right md:pr-12">
-                            <h2 className="text-4xl md:text-6xl font-display font-bold mb-8">
-                                The<br />Journey
-                            </h2>
-                            <p className="text-xl text-secondary leading-relaxed">
-                                {projectData.overview}
-                            </p>
-                        </div>
-                        <div className="md:pl-12 space-y-12 pt-8 md:pt-0">
-                            {projectData.overviewStats.map((stat, index) => (
-                                <div key={index} className="relative pl-8 md:pl-0 border-l-2 border-accent md:border-l-0">
-                                    <div className="text-5xl font-bold text-accent mb-2">{stat.value}</div>
-                                    <div className="text-sm font-mono text-secondary uppercase">{stat.label}</div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </section>
+        <CaseSection index="05" label="Results">
+            <StatRow stats={results} />
+        </CaseSection>
 
-            {/* Broken Grid Challenges */}
-            <section className="py-32 bg-surface/20">
-                <div className="container mx-auto px-6">
-                    <div className="max-w-2xl mb-24">
-                        <span className="text-accent font-mono tracking-widest uppercase text-sm">The Challenge</span>
-                        <h3 className="text-3xl md:text-4xl font-display font-bold mt-4">
-                            {projectData.challengeDescription}
-                        </h3>
-                    </div>
+        <NextProject currentId={project.id} />
+    </main>
+);
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {projectData.challenges.map((challenge, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ delay: index * 0.1 }}
-                                className={`p-8 bg-background border border-white/5 rounded-3xl hover:border-accent/30 transition-colors ${index === 0 ? 'md:col-span-2 bg-accent/5' : ''
-                                    } ${index === 3 ? 'md:col-span-2' : ''
-                                    }`}
-                            >
-                                <span className="text-4xl font-display font-bold text-white/10 mb-4 block">0{index + 1}</span>
-                                <p className="text-lg text-primary">{challenge}</p>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Connected Aspects */}
-            <section className="py-32 relative z-10">
-                <div className="container mx-auto px-6 space-y-48">
-                    {projectData.aspects.map((aspect, index) => (
-                        <div key={index} className={`flex flex-col md:flex-row gap-12 items-center ${index % 2 === 1 ? 'md:flex-row-reverse' : ''
-                            }`}>
-                            <div className="flex-1">
-                                <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl group">
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
-                                    <img src={aspect.image} alt={aspect.imageAlt} className="w-full h-auto group-hover:scale-105 transition-transform duration-700" />
-                                    <div className="absolute bottom-6 left-6 z-20">
-                                        <div className="flex gap-2">
-                                            {aspect.tags.slice(0, 3).map((tag, i) => (
-                                                <span key={i} className="px-3 py-1 rounded-full bg-black/50 backdrop-blur-md text-xs font-mono border border-white/10">
-                                                    {tag}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="flex-1 md:px-12">
-                                <h3 className="text-3xl md:text-4xl font-display font-bold mb-6">{aspect.title}</h3>
-                                <p className="text-lg text-secondary leading-relaxed">
-                                    {aspect.description}
-                                </p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
-            {/* Solution Cards - Premium Design */}
-            {/* Solution Cards - Premium Design */}
-            <SolutionGrid solutions={projectData.solutions} />
-
-            {/* Next Project */}
-            <NextProject project={nextProject} />
-        </main>
-    );
-};
-
-export default Loccocity;
+export default LoccoCity;

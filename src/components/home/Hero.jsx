@@ -18,7 +18,7 @@ const Hero = () => {
             <motion.div {...fade(0.2)} className="grid-12 label text-mute mb-6 md:mb-10">
                 <span className="col-span-2 md:col-span-3"><span className="text-ink">(00)</span> Index</span>
                 <span className="col-span-2 md:col-span-3 text-right md:text-left">Portfolio 2019—2026</span>
-                <span className="hidden md:block col-span-3">Product strategy · UX · AI</span>
+                <span className="hidden lg:block col-span-3">Product strategy · UX · AI</span>
             </motion.div>
 
             <TokenHeadline className="text-[clamp(3rem,8vw,10rem)] leading-[0.95] tracking-[-0.045em] font-medium max-w-[14ch] md:max-w-none" />

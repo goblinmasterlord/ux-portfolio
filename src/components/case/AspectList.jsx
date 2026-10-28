@@ -1,6 +1,7 @@
 // <AspectList> — the deliverables of a project, one block each, alternating image and text
 // across the 12-column grid. Place it in <CaseSection wide>.
-//   items     [{ title, description, image, imageAlt, tags: ["…"] }]
+//   items     [{ title, description, image?, imageAlt, tags: ["…"] }]
+//             (no image → a text-only block; better than reusing a screenshot that doesn't fit)
 //   figStart  number of the first figure caption (default 1), so numbering runs across the page
 import { Reveal } from '../site/Reveal';
 import Figure from './Figure';
@@ -10,17 +11,24 @@ const pad = (n) => String(n).padStart(2, '0');
 
 export const AspectBlock = ({ item, index, total, fig, flip = false }) => {
     const dark = useDark();
+    const hasImage = Boolean(item.image);
     return (
-        <article className="grid-12 gap-y-8 items-end">
-            <Figure
+        <article className={`grid-12 gap-y-8 items-end ${hasImage ? '' : 'border-t border-line pt-8'}`}>
+            {hasImage && <Figure
                 src={item.image}
                 alt={item.imageAlt || item.title}
                 aspect="aspect-[4/3]"
                 fig={pad(fig)}
                 caption={item.imageAlt}
                 className={`col-span-4 md:col-span-7 md:row-start-1 ${flip ? 'md:col-start-6' : 'md:col-start-1'}`}
-            />
-            <Reveal className={`col-span-4 md:col-span-4 md:row-start-1 md:pb-10 ${flip ? 'md:col-start-1' : 'md:col-start-9'}`}>
+            />}
+            <Reveal
+                className={
+                    hasImage
+                        ? `col-span-4 md:col-span-4 md:row-start-1 md:pb-10 ${flip ? 'md:col-start-1' : 'md:col-start-9'}`
+                        : 'col-span-4 md:col-span-6 md:col-start-5'
+                }
+            >
                 <p className={`label tabular ${dark ? 'text-paper/50' : 'text-mute'}`}>
                     {pad(index + 1)} / {pad(total)}
                 </p>
@@ -45,12 +53,15 @@ export const AspectBlock = ({ item, index, total, fig, flip = false }) => {
     );
 };
 
-const AspectList = ({ items, figStart = 1 }) => (
-    <div className="flex flex-col gap-24 md:gap-40">
-        {items.map((item, i) => (
-            <AspectBlock key={item.title} item={item} index={i} total={items.length} fig={figStart + i} flip={i % 2 === 1} />
-        ))}
-    </div>
-);
+const AspectList = ({ items, figStart = 1 }) => {
+    let fig = figStart - 1;
+    return (
+        <div className="flex flex-col gap-24 md:gap-40">
+            {items.map((item, i) => (
+                <AspectBlock key={item.title} item={item} index={i} total={items.length} fig={item.image ? ++fig : fig} flip={i % 2 === 1} />
+            ))}
+        </div>
+    );
+};
 
 export default AspectList;

@@ -1,5 +1,5 @@
 // <CaseSection> — the backbone of a case study. A hairline rule with big space above it,
-// a sticky "(01) —— Label" in the left 3 columns and content in columns 5–12.
+// a "(01) —— Label" in the left 3 columns (sticky unless `wide`) and content in columns 5–12.
 //   index      "01", "02"… (sections are numbered in page order)
 //   label      short section name, e.g. "Challenge"
 //   title      optional h2 statement; *asterisks* mark the serif-italic accent
@@ -19,7 +19,8 @@ const CaseSection = ({ index, label, title, wide = false, dark = false, id, chil
 
     const body = (
         <div className="grid-12 gap-y-10">
-            <div className="col-span-4 md:col-span-3 md:sticky md:top-28 self-start">
+            {/* Sticky only when the label has its own column; in wide sections content runs underneath it */}
+            <div className={`col-span-4 md:col-span-3 self-start ${wide ? '' : 'md:sticky md:top-28'}`}>
                 <SectionLabel index={index} inverted={dark}>{label}</SectionLabel>
             </div>
             {wide ? (

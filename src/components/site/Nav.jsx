@@ -59,16 +59,16 @@ const Nav = () => {
                 }`}
             >
                 <div className="shell grid-12 items-center h-16 md:h-[4.5rem] text-[0.82rem] font-medium tracking-[-0.01em]">
-                    <Link to="/" className="col-span-2 md:col-span-3 flex items-center gap-2.5 whitespace-nowrap" aria-label="Márton Mocsonoky, home">
+                    <Link to="/" className="col-span-2 md:col-span-4 lg:col-span-3 flex items-center gap-2.5 whitespace-nowrap" aria-label="Márton Mocsonoky, home">
                         <span className="font-serif italic text-[1.35rem] leading-none -mt-0.5">M</span>
                         <span>Márton Mocsonoky</span>
                     </Link>
-                    <p className="hidden md:block col-span-3 text-paper/60">Product &amp; AI. Independent.</p>
-                    <p className="hidden md:flex col-span-3 items-center gap-2 text-paper/60">
+                    <p className="hidden lg:block col-span-3 text-paper/60">Product &amp; AI. Independent.</p>
+                    <p className="hidden lg:flex col-span-3 items-center gap-2 text-paper/60">
                         <span className="w-1.5 h-1.5 rounded-full bg-paper" />
                         Taking on new projects · <Clock />
                     </p>
-                    <nav className="hidden md:flex col-span-3 justify-end gap-6" aria-label="Primary">
+                    <nav className="hidden md:flex md:col-span-8 lg:col-span-3 justify-end gap-6" aria-label="Primary">
                         {sections.map((s) => (
                             <button key={s.id} onClick={() => handleSection(s.id)} className="link-draw">
                                 {s.label}

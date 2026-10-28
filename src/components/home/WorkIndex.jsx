@@ -91,7 +91,7 @@ const WorkIndex = () => {
 
             <div className="grid-12">
                 {/* Sticky index (desktop) */}
-                <aside className="hidden md:block md:col-span-3">
+                <aside className="hidden lg:block lg:col-span-3">
                     <div className="sticky top-28">
                         <ol className="border-t border-line">
                             {caseStudies.map((p, i) => (
@@ -127,7 +127,7 @@ const WorkIndex = () => {
                     </div>
                 </aside>
 
-                <div className="col-span-4 md:col-span-9 md:col-start-4 lg:col-span-8 lg:col-start-5 flex flex-col gap-24 md:gap-40">
+                <div className="col-span-4 md:col-span-12 lg:col-span-8 lg:col-start-5 flex flex-col gap-24 md:gap-40">
                     {caseStudies.map((p, i) => (
                         <ProjectEntry key={p.id} project={p} index={i} onActive={setActive} />
                     ))}

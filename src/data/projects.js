@@ -44,9 +44,9 @@ export const caseStudies = [
         sector: 'LegalTech · Blockchain',
         year: '2019',
         role: 'Product & UX design',
-        summary: 'Legal contracts for everyone. Guided templates and digital signing let people create binding agreements in about five minutes, and each one is recorded on-chain.',
+        summary: 'Legal contracts for everyone. Guided templates and digital signing let people create binding agreements in minutes, and each one is recorded on-chain.',
         image: everproveImage,
-        stat: { value: '5 min', label: 'average contract creation' },
+        stat: { value: '50K+', label: 'contracts created' },
     },
     {
         id: 'loccocity',
