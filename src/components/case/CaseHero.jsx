@@ -6,7 +6,7 @@
 //                same label, or is appended. Aim for four items in total.
 //   image, imageAlt   cover override (defaults to project.image)
 //   aspect       cover aspect classes (default "aspect-[4/3] md:aspect-[16/9]")
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { caseStudies } from '../../data/projects';
 import { easeInOutQuart, easeOutExpo } from '../../lib/motion';
@@ -25,6 +25,14 @@ const CaseHero = ({ project, title, intro, meta = [], image, imageAlt, aspect = 
     const coverRef = useRef(null);
     const { scrollYProgress } = useScroll({ target: coverRef, offset: ['start end', 'end start'] });
     const y = useTransform(scrollYProgress, [0, 1], ['-7%', '7%']);
+
+    useEffect(() => {
+        const previous = document.title;
+        document.title = `${project.title} case study · Márton Mocsonoky`;
+        return () => {
+            document.title = previous;
+        };
+    }, [project.title]);
 
     const index = String(caseStudies.findIndex((p) => p.id === project.id) + 1).padStart(2, '0');
     const defaults = [

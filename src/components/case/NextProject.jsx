@@ -10,7 +10,7 @@ const NextProject = ({ currentId }) => {
     const index = String(caseStudies.findIndex((p) => p.id === next.id) + 1).padStart(2, '0');
 
     return (
-        <section className="shell pt-section pb-20 md:pb-28">
+        <section data-case-end className="shell pt-section pb-20 md:pb-28">
             <Link to={next.path} className="group block border-t border-line pt-5 md:pt-6" data-cursor="Next case study" aria-label={`Next case study: ${next.title}`}>
                 <div className="label text-mute flex items-center justify-between gap-4">
                     <span className="flex items-center gap-3">

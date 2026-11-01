@@ -40,11 +40,11 @@ const CaseSection = ({ index, label, title, wide = false, dark = false, id, chil
     return (
         <DarkContext.Provider value={dark}>
             {dark ? (
-                <section id={id} className="mt-section bg-ink text-paper">
+                <section id={id} data-case-index={index} data-case-label={label} className="mt-section bg-ink text-paper">
                     <div className="shell py-section">{body}</div>
                 </section>
             ) : (
-                <section id={id} className="shell pt-section">
+                <section id={id} data-case-index={index} data-case-label={label} className="shell pt-section">
                     <div className="border-t border-line pt-5 md:pt-6">{body}</div>
                 </section>
             )}

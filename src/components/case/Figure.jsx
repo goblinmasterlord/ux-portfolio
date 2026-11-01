@@ -4,13 +4,14 @@
 //   fig             caption number, e.g. "03" → "Fig. 03"
 //   caption         caption text
 //   aspect          Tailwind aspect class(es), e.g. "aspect-[4/3]"; omit to use the image's own ratio
-//   contain         show the whole image on a paper plate (for UI screenshots) instead of cropping
+//   contain         show the whole image on a paper plate instead of cropping
+//   screen          a UI screenshot: shown whole on a plate as a framed screen with a soft shadow
 //   className       extra classes on the <figure>
 import { motion, useReducedMotion } from 'framer-motion';
 import { easeInOutQuart, easeOutExpo } from '../../lib/motion';
 import { useDark } from './context';
 
-const Figure = ({ src, alt = '', fig, caption, aspect = '', contain = false, className = '' }) => {
+const Figure = ({ src, alt = '', fig, caption, aspect = '', contain = false, screen = false, className = '' }) => {
     const reduce = useReducedMotion();
     const dark = useDark();
     const sized = Boolean(aspect);
@@ -19,7 +20,7 @@ const Figure = ({ src, alt = '', fig, caption, aspect = '', contain = false, cla
         // The unclipped <figure> watches the viewport (a clipped element can read as invisible).
         <motion.figure className={className} initial={reduce ? false : 'hidden'} whileInView="show" viewport={{ once: true, amount: 0.15 }}>
             <motion.div
-                className={`relative overflow-hidden rounded-[3px] ${dark ? 'bg-paper/5' : 'bg-paper-2'} ${aspect}`}
+                className={`relative overflow-hidden rounded-[3px] ${dark ? 'bg-paper/5' : 'bg-paper-2'} ${screen ? 'p-[4%]' : aspect}`}
                 variants={{
                     hidden: { clipPath: 'inset(100% 0% 0% 0%)' },
                     show: { clipPath: 'inset(0% 0% 0% 0%)', transition: { duration: 1.2, ease: easeInOutQuart } },
@@ -30,7 +31,11 @@ const Figure = ({ src, alt = '', fig, caption, aspect = '', contain = false, cla
                     alt={alt}
                     loading="lazy"
                     decoding="async"
-                    className={`block w-full ${sized ? 'h-full' : 'h-auto'} ${contain ? `object-contain ${sized ? 'p-[5%]' : ''}` : 'object-cover'}`}
+                    className={
+                        screen
+                            ? 'block w-full h-auto rounded-[4px] ring-1 ring-ink/10 shadow-[0_24px_60px_-28px_rgb(14_14_12/0.45)]'
+                            : `block w-full ${sized ? 'h-full' : 'h-auto'} ${contain ? `object-contain ${sized ? 'p-[5%]' : ''}` : 'object-cover'}`
+                    }
                     variants={{
                         hidden: { scale: 1.15 },
                         show: { scale: 1, transition: { duration: 1.6, ease: easeOutExpo } },

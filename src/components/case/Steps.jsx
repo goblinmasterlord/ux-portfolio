@@ -2,7 +2,7 @@
 // the left; the frame on the right holds still and wipes to the matching screenshot as each
 // step crosses the middle of the viewport. Below lg the steps stack, each with its own figure.
 // Place it in <CaseSection wide>.
-//   steps    [{ title: "Upload", description: "…", image, alt }]
+//   steps    [{ title: "Upload", description: "…", image, alt, caption? }]
 import { useEffect, useRef, useState } from 'react';
 import Figure from './Figure';
 import { useDark } from './context';
@@ -46,7 +46,7 @@ const Steps = ({ steps }) => {
                         <p className={`mt-5 md:mt-7 max-w-[44ch] text-[1.0625rem] md:text-lg leading-[1.6] text-pretty ${dark ? 'text-paper/70' : 'text-ink-2'}`}>
                             {s.description}
                         </p>
-                        <Figure src={s.image} alt={s.alt || s.title} contain aspect="aspect-[16/10]" fig={pad(i + 1)} caption={s.title} className="mt-10 lg:hidden" />
+                        <Figure src={s.image} alt={s.alt || s.title} screen fig={pad(i + 1)} caption={s.caption || s.title} className="mt-10 lg:hidden" />
                     </li>
                 ))}
             </ol>
@@ -58,7 +58,7 @@ const Steps = ({ steps }) => {
                         <div
                             key={s.title}
                             aria-hidden={i !== active}
-                            className={`absolute inset-0 ${dark ? 'bg-ink' : 'bg-paper-2'} transition-[clip-path] duration-[1100ms] ease-quart`}
+                            className={`absolute inset-0 flex items-center justify-center p-[3.5%] ${dark ? 'bg-ink' : 'bg-paper-2'} transition-[clip-path] duration-[1100ms] ease-quart`}
                             style={{ clipPath: i <= active ? 'inset(0% 0% 0% 0%)' : 'inset(100% 0% 0% 0%)' }}
                         >
                             <img
@@ -66,7 +66,7 @@ const Steps = ({ steps }) => {
                                 alt={s.alt || s.title}
                                 loading="lazy"
                                 decoding="async"
-                                className={`w-full h-full object-contain p-[5%] transition-transform duration-[1400ms] ease-expo ${i === active ? 'scale-100' : 'scale-[1.04]'}`}
+                                className={`max-w-full max-h-full w-auto h-auto rounded-[4px] ring-1 ring-ink/10 shadow-[0_24px_60px_-28px_rgb(14_14_12/0.45)] transition-transform duration-[1400ms] ease-expo ${i === active ? 'scale-100' : 'scale-[1.04]'}`}
                             />
                         </div>
                     ))}
@@ -74,7 +74,7 @@ const Steps = ({ steps }) => {
                 <div className={`mt-4 flex items-center justify-between gap-6 label ${dark ? 'text-paper/50' : 'text-mute'}`}>
                     <span>
                         <span className={dark ? 'text-paper' : 'text-ink'}>Fig. {pad(active + 1)}</span>
-                        <span className="ml-3">{steps[active].title}</span>
+                        <span className="ml-3">{steps[active].caption || steps[active].title}</span>
                     </span>
                     <span className="flex gap-1.5" aria-hidden="true">
                         {steps.map((s, i) => (

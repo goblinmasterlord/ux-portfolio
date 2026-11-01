@@ -4,59 +4,88 @@ import { caseStudies } from '../../data/projects';
 import { easeOutExpo } from '../../lib/motion';
 import { Reveal } from '../../components/site/Reveal';
 import ArrowLink from '../../components/site/ArrowLink';
-import { CaseHero, CaseSection, Lead, Prose, Figure, NextProject } from '../../components/case';
+import { CaseHero, CaseNav, Summary, CaseSection, Lead, Prose, NumberedList, FeatureColumns, Figure, NextProject } from '../../components/case';
+import onePagers from '../../assets/projects/kovetkezotoken-onepagers.jpg';
 
 const demoImage = '/images/AIDocProcessor.jpg';
 const project = caseStudies.find((p) => p.id === 'kovetkezotoken');
 
 const personas = [
     {
-        id: 'fundamentals',
-        title: 'AI Fundamentals',
-        audience: 'For all employees',
-        description: 'A shared baseline for everyone: how AI works, where it fails and how to use it safely in daily work.',
+        id: 'intro',
+        title: 'Introductory workshop',
+        audience: 'All staff, any experience',
+        duration: '60 minutes',
+        description: 'A shared starting point for a whole company: what changed, how the models work and where they fail, and how to start using them safely the same week.',
         modules: [
-            { title: 'Understanding AI logic and limitations' },
-            { title: 'Effective prompt engineering' },
-            { title: 'Tool selection strategy', desc: 'Choosing the right model for the task' },
-            { title: 'Daily workflow integration' },
+            { title: 'Why now', desc: 'How quickly capabilities have improved, with examples companies already use' },
+            { title: 'How AI works, plainly', desc: 'Language models, prompts, context windows, and why they sometimes make things up' },
+            { title: 'Talking to AI', desc: 'A five-part recipe for a good prompt, then iterating on the answer' },
+            { title: 'Where to start', desc: 'Six core capabilities, and a “kill list” of two or three repetitive tasks to hand over first' },
+            { title: 'Data protection', desc: 'What can be shared with which tools, and how company and public tools differ' },
         ],
     },
     {
         id: 'executive',
-        title: 'Executive Workshop',
-        audience: 'For top management',
-        description: 'For leadership: where AI creates value, how to govern it and how ready the organisation is.',
+        title: 'Executive workshop',
+        audience: 'Leaders and decision makers',
+        duration: '1.5 to 3 hours',
+        description: 'For leaders who need to decide where AI creates value, what it needs from the organisation and how to measure it. No technical background needed.',
         modules: [
-            { title: 'Strategic vision and ROI analysis', desc: 'Tying AI initiatives to business goals' },
-            { title: 'Risk, governance and data privacy' },
-            { title: 'Organisational readiness assessment', desc: 'Finding the gaps before scaling' },
-            { title: 'Change management strategy', desc: 'Leading the cultural shift' },
+            { title: 'A leader’s mental model', desc: 'AI as a tool rather than magic, model tiers, and a portfolio view of capabilities' },
+            { title: 'Use cases and focus', desc: 'Finding three to five focus areas, quick wins, and the build-or-buy decision' },
+            { title: 'Readiness', desc: 'Data quality, security and GDPR, and who owns AI decisions' },
+            { title: 'Change and measurement', desc: 'New ways of working, bringing the team along, and the KPIs that show impact' },
         ],
     },
     {
-        id: 'management',
-        title: 'AI in Practice',
-        audience: 'For middle management',
-        description: 'For managers who turn strategy into practice: reworking workflows, leading AI-augmented teams and measuring the result.',
+        id: 'functional',
+        title: 'Skills programme for functional leaders',
+        audience: 'Functional leaders and specialists',
+        duration: '3 to 5 hours',
+        description: 'A step-by-step programme where each module builds on the last, ending in templates and workflows a team can use the next day.',
         modules: [
-            { title: 'Advanced iterative prompting', desc: 'From single queries to multi-step problem solving' },
-            { title: 'Workflow re-engineering' },
-            { title: 'AI-augmented leadership', desc: 'Leading teams where AI handles execution' },
-            { title: 'Defining AI KPIs', desc: 'Measuring what adoption actually changes' },
+            { title: 'Foundations', desc: 'How models work, how to talk to them, and what to expect of them' },
+            { title: 'Effective use', desc: 'Building prompts, checking output for typical errors, iterating' },
+            { title: 'Choosing the work', desc: 'Matching tasks to AI with an impact and effort matrix' },
+            { title: 'Into the workflow', desc: 'Custom solutions, templates and responsible use across the team' },
+            { title: 'Domain deep-dives', desc: 'HR, marketing, finance, sales and technical teams' },
         ],
     },
     {
-        id: 'professional',
-        title: 'Professional Applications',
-        audience: 'For functional teams',
-        description: 'Deep-dives for functions such as HR, Marketing or Finance, built around their own daily tasks and tools.',
+        id: 'individual',
+        title: 'From basics to confident use',
+        audience: 'Specialists, creatives and analysts',
+        duration: '2 to 3 hours',
+        description: 'For individuals who want more than better prompts: a way of thinking that makes AI a real partner in their own work.',
         modules: [
-            { title: 'Domain-specific tool stacks' },
-            { title: 'Automating routine tasks' },
-            { title: 'Building custom prompt libraries', desc: 'Turning workflows that work into shared assets' },
-            { title: 'Real-world project workshops', desc: 'Working on your own current challenges' },
+            { title: 'How models think', desc: 'Tokens, context windows and temperature, and what they mean in practice' },
+            { title: 'Advanced conversation', desc: 'Multi-step tasks, chain-of-thought and iterative refinement' },
+            { title: 'Building your own tools', desc: 'AI-driven workflows, small personal apps and assistants' },
+            { title: 'Agents and next skills', desc: 'What agents can do, and building a personal prompt library' },
         ],
+    },
+];
+
+const challenges = [
+    'Too many tools, and no clear view of which ones are worth using.',
+    'Uneven skills across the team, so everyone uses AI differently.',
+    'Concerns about company data and the reliability of the output.',
+    'Pilots that never make it into daily work, and no way to measure the value.',
+];
+
+const method = [
+    {
+        title: 'Practical before theoretical',
+        points: ['Real examples from the client’s own industry', 'Exercises on current work, not toy tasks', 'Templates people take back to their desk'],
+    },
+    {
+        title: 'Tools that outlast the session',
+        points: ['The five-part prompt: role, context, task, format, constraints', 'A kill list of two or three repetitive tasks to hand over first', 'An impact and effort matrix for choosing what to automate'],
+    },
+    {
+        title: 'Safety built in',
+        points: ['Clear rules for what data goes where', 'A checklist for catching made-up answers', 'Human oversight where the stakes are high'],
     },
 ];
 
@@ -163,7 +192,11 @@ const Personas = () => {
                         exit={{ opacity: 0, y: -8, transition: { duration: 0.2 } }}
                         className="md:min-h-[34rem]"
                     >
-                        <p className="label text-mute">{persona.audience}</p>
+                        <p className="label text-mute flex flex-wrap gap-x-3 gap-y-1">
+                            <span>{persona.audience}</span>
+                            <span aria-hidden="true">·</span>
+                            <span className="text-ink">{persona.duration}</span>
+                        </p>
                         <h3 className="mt-5 text-display-s font-medium text-balance">{persona.title}</h3>
                         <p className="mt-6 max-w-[58ch] text-[1.0625rem] leading-[1.65] text-ink-2 text-pretty">{persona.description}</p>
                         <p className="label text-mute mt-12 mb-5">Modules</p>
@@ -175,13 +208,31 @@ const Personas = () => {
     );
 };
 
+const summary = [
+    {
+        label: 'Challenge',
+        text: 'Companies feel pressure to use AI, but their teams have uneven skills, too many tools and real worries about data, and pilots rarely reach daily work.',
+    },
+    {
+        label: 'What I do',
+        text: 'I train people at every level, from all-staff introductions to executive workshops, and build the automations that put AI to work in their operations.',
+    },
+    {
+        label: 'Result',
+        text: 'Four workshop formats, from a 60-minute introduction to a five-hour programme, and production automations such as contract drafting for a legal firm.',
+    },
+];
+
 const KovetkezoToken = () => (
     <main>
         <CaseHero
             project={project}
             title="Training and *automation* for companies"
             intro="My AI consultancy. I teach teams to use AI well and build the automations that put it to work in their daily operations."
+            meta={[{ label: 'Formats', value: 'Workshops from 60 minutes to 5 hours, and custom builds' }]}
         />
+
+        <Summary items={summary} />
 
         <CaseSection index="01" label="Overview">
             <Lead>Következő Token is my AI consultancy, which I have run since 2023.</Lead>
@@ -194,17 +245,32 @@ const KovetkezoToken = () => (
             </Prose>
         </CaseSection>
 
-        <CaseSection index="02" label="Training" title="A programme for each *audience*" wide>
-            <Personas />
+        <CaseSection index="02" label="Challenge" title="Pressure to adopt, no clear *path*">
+            <NumberedList items={challenges} />
         </CaseSection>
 
-        <CaseSection index="03" label="Applied work" title="Legal document *automation*">
+        <CaseSection index="03" label="Training" title="A programme for each *audience*" wide>
+            <Personas />
+            <Figure
+                src={onePagers}
+                alt="The four programme one-pagers, in Hungarian: introductory workshop, executive workshop, functional leaders programme and individual workshop"
+                fig="01"
+                caption="Each programme has a one-pager that lists its audience, length, the problems it addresses and every module (in Hungarian)."
+                className="mt-20 md:mt-28"
+            />
+        </CaseSection>
+
+        <CaseSection index="04" label="Method" title="Built to outlast the *session*" wide>
+            <FeatureColumns groups={method} />
+        </CaseSection>
+
+        <CaseSection index="05" label="Applied work" title="Legal document *automation*">
             <Lead>For a legal firm, I built a system that turns raw identity documents into a finished contract.</Lead>
             <Rows items={legalSteps} />
             <Figure
                 src={demoImage}
                 alt="Screens of the live document processing demo: a contract analysis step, the start page with three workflows and a party details form"
-                fig="01"
+                fig="02"
                 caption="The live demo"
             />
             <ArrowLink href="https://ai-document-processing-rho.vercel.app/" target="_blank" rel="noreferrer" className="self-start text-[1.0625rem] font-medium">
@@ -213,6 +279,7 @@ const KovetkezoToken = () => (
         </CaseSection>
 
         <NextProject currentId={project.id} />
+        <CaseNav />
     </main>
 );
 
