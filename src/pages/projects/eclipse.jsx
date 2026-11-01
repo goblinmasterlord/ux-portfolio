@@ -31,6 +31,7 @@ import practiceImage from '../../assets/projects/eclipse/practice.jpg';
 import batchImage from '../../assets/projects/eclipse/batch.jpg';
 import analysingImage from '../../assets/projects/eclipse/analysing.jpg';
 import historyImage from '../../assets/projects/eclipse/history.jpg';
+import auditImage from '../../assets/projects/eclipse/audit-log.jpg';
 
 const project = caseStudies.find((p) => p.id === 'eclipse');
 
@@ -68,7 +69,7 @@ const steps = [
         title: 'Analyse',
         description: 'Analysis ends on a results-first overview: who was found, what kind of data, and what happens next. There is nothing to approve here; every decision happens once, in Review.',
         image: overviewImage,
-        alt: 'Analysis Complete screen listing the people found and proportional bars for each category of personal data',
+        alt: 'Analysis Complete screen listing the people found and the number of sensitive items in each category',
         caption: 'Analysis complete: people and categories at a glance',
     },
     {
@@ -125,7 +126,7 @@ const decisions = [
         caption: 'Draw, snap to words, attach to a person',
         extra: {
             image: searchImage,
-            alt: 'Search & Redact drawer listing every occurrence of a search term, with the hits ringed in the document',
+            alt: 'Search & Redact drawer listing every occurrence of a search term, with the hits highlighted in the document',
             caption: 'Search & Redact: every occurrence, ticked one by one',
         },
     },
@@ -353,6 +354,8 @@ const Eclipse = () => (
                             analysed, the screen shows a sourced fact about information law instead of a spinner. History
                             puts the documents that need you at the top and warns before files expire. When something
                             breaks, the error names the stage, says you weren&apos;t charged, and offers the next step.
+                            And the audit log is built to be filed: what was found, what was redacted or kept, for whom
+                            and on which page.
                         </p>
                     </Prose>
                 </div>
@@ -362,6 +365,7 @@ const Eclipse = () => (
                         figures={[
                             { src: analysingImage, alt: 'Analysing screen with the eclipse loader and a sourced fact about information law', caption: 'Analysing: a sourced legal fact, not a spinner' },
                             { src: historyImage, alt: 'History page with documents waiting for review at the top', caption: 'History: what needs you comes first' },
+                            { src: auditImage, alt: 'First page of a redaction audit log for a fictional academy: coverage, document information and findings by category', caption: 'Audit log: a record a DPO can file' },
                         ]}
                     />
                 </div>
