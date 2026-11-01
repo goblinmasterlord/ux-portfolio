@@ -11,9 +11,8 @@ export const caseStudies = [
         sector: 'EdTech · AI SaaS',
         year: '2025—',
         role: 'Product design, frontend, prompt engineering',
-        summary: 'AI redaction for UK schools and trusts. It finds every person in a file and everything about them, so staff can answer subject access requests with confidence.',
+        summary: 'AI redaction for UK schools and trusts. It finds the people in a file and the personal data about them, so staff can answer subject access requests with confidence.',
         image: '/images/Eclipse.jpg',
-        stat: { value: '60+', label: 'updates shipped' },
     },
     {
         id: 'paynance',
@@ -43,7 +42,7 @@ export const caseStudies = [
         sector: 'LegalTech · Blockchain',
         year: '2019',
         role: 'Product & UX design',
-        summary: 'Legal contracts for everyone. Guided templates and digital signing let people create binding agreements in minutes, and each one is recorded on-chain.',
+        summary: 'Legal contracts for everyone. Guided templates and digital signing let people create and sign contracts, and each one is recorded on-chain.',
         image: everproveImage,
         stat: { value: '50K+', label: 'contracts created' },
     },
@@ -54,9 +53,9 @@ export const caseStudies = [
         sector: 'Gamification · Mobile',
         year: '2023',
         role: 'Product & UX design',
-        summary: 'A location-based treasure hunt that sends players to local businesses, rewarding exploration and bringing foot traffic to their doors.',
+        summary: 'A location-based treasure hunt that sends players to local businesses, rewarding exploration and turning online attention into visits.',
         image: loccocityImage,
-        stat: { value: '10,000+', label: 'players' },
+        stat: { value: '10,000+', label: 'active players' },
     },
 ];
 

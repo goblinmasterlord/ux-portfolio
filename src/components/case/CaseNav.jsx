@@ -77,17 +77,47 @@ const CaseNav = () => {
         if (active < 0 || ended) setOpen(false);
     }, [active, ended]);
 
+    // Lazy images above the target can grow while the page scrolls, moving the target. Once the
+    // scroll settles, check where the section landed and correct (at most twice).
     const jump = (el) => {
         setOpen(false);
         scrollToTarget(el, { offset: -24 });
+        let last = -1;
+        let still = 0;
+        let fixes = 0;
+        const timer = setInterval(() => {
+            const y = window.scrollY;
+            still = Math.abs(y - last) < 1 ? still + 1 : 0;
+            last = y;
+            if (still < 2) return;
+            if (Math.abs(el.getBoundingClientRect().top - 24) > 8 && fixes < 2) {
+                fixes += 1;
+                still = 0;
+                scrollToTarget(el, { offset: -24 });
+            } else {
+                clearInterval(timer);
+            }
+        }, 150);
     };
 
     const current = sections[active];
 
     return (
         <AnimatePresence>
+            {shown && open && (
+                <motion.div
+                    key="scrim"
+                    aria-hidden="true"
+                    className="fixed inset-0 z-40 bg-paper/70 backdrop-blur-[2px] md:hidden"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                />
+            )}
             {shown && current && (
                 <motion.nav
+                    key="nav"
                     ref={root}
                     aria-label="Case study sections"
                     className="fixed z-40 bottom-4 md:bottom-6 inset-x-0 mx-auto w-[min(22rem,calc(100vw-2.5rem))]"

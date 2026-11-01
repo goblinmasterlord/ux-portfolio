@@ -11,11 +11,11 @@ const summary = [
     },
     {
         label: 'What I did',
-        text: 'With one other designer and six developers, I designed both sides of the platform: the player app on iOS and Android, and the dashboard merchants use to run their rewards.',
+        text: 'As one of two designers, working with six developers, I worked on both sides of the platform: the player app on iOS and Android, and the dashboard merchants use to run their rewards.',
     },
     {
         label: 'Outcome',
-        text: 'More than 10,000 players and over 100 partnered local businesses.',
+        text: 'More than 10,000 active players and over 100 partnered local businesses.',
     },
 ];
 
@@ -29,7 +29,7 @@ const challenges = [
 const aspects = [
     {
         title: 'Exploration & discovery',
-        description: 'A dynamic map reveals nearby rewards and points of interest. It mixes fixed locations with rewards that spawn at random, which keeps exploration unpredictable and nudges players towards parts of the city they haven’t visited. Players pick their interests first, and coupons activate when they get close.',
+        description: 'A dynamic map reveals nearby rewards and points of interest. It mixes fixed locations with rewards that spawn at random, which keeps exploration unpredictable and encourages players to explore new areas of their city. Players pick their interests first, and coupons activate when they get close.',
         image: aspect1,
         imageAlt: 'The player app: map, interests, coupon and redemption screens',
         tags: ['Location services', 'Random spawns', 'Interest filters', 'Proximity coupons'],

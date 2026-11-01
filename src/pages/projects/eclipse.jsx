@@ -13,13 +13,11 @@ import {
     Ledger,
     Flow,
     FigureGrid,
-    StatRow,
     FactList,
     NextProject,
 } from '../../components/case';
 import coverImage from '../../assets/projects/eclipse/cover.jpg';
 import uploadImage from '../../assets/projects/eclipse/upload.jpg';
-import overviewImage from '../../assets/projects/eclipse/overview.jpg';
 import reviewImage from '../../assets/projects/eclipse/review.jpg';
 import exportImage from '../../assets/projects/eclipse/export.jpg';
 import reviewPeopleImage from '../../assets/projects/eclipse/review-people.jpg';
@@ -38,7 +36,7 @@ const project = caseStudies.find((p) => p.id === 'eclipse');
 const summary = [
     {
         label: 'Challenge',
-        text: 'When someone asks a school for their records, staff have a month to send them with every other pupil, parent and teacher removed. By hand that takes hours, and one missed name can expose a child.',
+        text: 'When someone asks a school for their records, staff have a month to answer, with everyone else taken out. By hand it is slow, and one slip either exposes someone or withholds what the requester is owed.',
     },
     {
         label: 'What I did',
@@ -46,7 +44,7 @@ const summary = [
     },
     {
         label: 'Outcome',
-        text: 'Eclipse is sold to UK schools and multi-academy trusts on annual plans, and has shipped more than 60 updates since November 2025.',
+        text: 'Eclipse is live, with paid plans for UK schools and trusts, and has shipped more than 60 updates since November 2025. Usage figures aren’t published yet.',
     },
 ];
 
@@ -60,24 +58,24 @@ const stakes = [
 const steps = [
     {
         title: 'Upload',
-        description: 'Drop in a PDF, an Office file or an email export, or paste text. Pick the request type, then a mode: Standard for fast pattern detection, or Enhanced, where AI reads context and links every finding to a person.',
+        description: 'Drop in a PDF, an Office file or an email export, or paste text. Choose Standard for fast pattern detection, or Enhanced, where AI reads the context.',
         image: uploadImage,
         alt: 'Eclipse upload screen with a file drop area, the request type and the Standard or Enhanced mode selector',
         caption: 'Upload: request type and processing mode',
     },
     {
         title: 'Analyse',
-        description: 'Analysis ends on a results-first overview: who was found, what kind of data, and what happens next. There is nothing to approve here; every decision happens once, in Review.',
-        image: overviewImage,
-        alt: 'Analysis Complete screen listing the people found and the number of sensitive items in each category',
-        caption: 'Analysis complete: people and categories at a glance',
+        description: 'While a document is analysed, the screen shows a sourced fact about information law instead of a spinner. It ends on an overview of who was found and what kind of data.',
+        image: analysingImage,
+        alt: 'Analysing screen with the eclipse loader, elapsed time, an estimate and a fact about subject access request deadlines',
+        caption: 'Analysing: a sourced legal fact, not a spinner',
     },
     {
         title: 'Review',
-        description: 'The document on one side, the people in it on the other. Everything about a person sits under their name with one Keep | Redact control. Anything the AI missed can be searched for or drawn by hand.',
+        description: 'The document on one side, the people in it on the other, with everything about each person gathered under their name. Every finding is a decision to keep or redact.',
         image: reviewImage,
         alt: 'Review workspace: a fictional exclusion report with outlined findings, and a sidebar grouping findings under each person with Keep and Redact buttons',
-        caption: 'Review: grouped by person, one control per row',
+        caption: 'Review: the document and the people in it',
     },
     {
         title: 'Export',
@@ -110,11 +108,11 @@ const decisions = [
     {
         title: 'Decide once, next to the document',
         problem: 'A separate Verify step asked people to approve findings, and then Review asked again. On long documents, people went through the same findings twice.',
-        decision: 'Verify became a results-first overview with nothing to approve: who was found, what kind of data, and what happens next. Every decision now happens once, in Review, beside the page it affects.',
+        decision: 'Verify became an overview with nothing to approve: who was found and what kind of data. Every decision now happens once, in Review, beside the page it affects.',
         image: overviewDetailImage,
         contain: false,
         alt: 'Analysis Complete overview with the people found, sensitive data by category and the next steps',
-        caption: 'Analysis complete, with nothing to approve',
+        caption: 'The overview that replaced Verify',
     },
     {
         title: 'Fix what the AI missed in one gesture',
@@ -133,7 +131,7 @@ const decisions = [
     {
         title: 'Teach inside the real product',
         problem: 'Trial users get five documents and need to reach a first real redaction before they run out. A standalone tutorial looked nothing like Eclipse and didn’t follow the real workflow.',
-        decision: 'A practice run on a fictional document, through the real screens, that uses no trial documents. A ring marks the next real control and a quiet note explains why; the guide never clicks for you. It took ten rounds to get there.',
+        decision: 'A practice run on a fictional document, through the real screens, using no trial documents. A ring marks the next real control and a quiet note explains why; the guide never clicks for you. Getting there took ten rounds, listed below.',
         image: practiceImage,
         contain: false,
         alt: 'The practice run: a ring around a real control and a short note explaining what to do next',
@@ -160,7 +158,7 @@ const rounds = [
     ['Dimmed page with a popup', 'People read the popup and stopped looking at the screen', 'Rings first, a quiet note second'],
     ['Search lesson', 'Hard to follow', 'Show the problem first: ring the missed reference'],
     ['Animated step changes', 'Flicker on automatic transitions', 'Plain CSS transitions'],
-    ['A text link as the way in', 'Easy to miss, and no way to replay', 'One designed banner; replay from the profile menu'],
+    ['A text link as the way in', 'Needed a better-designed entry point, and a permanent way to replay', 'One designed banner; replay from the profile menu'],
 ];
 
 const pipeline = [
@@ -174,7 +172,7 @@ const pipeline = [
     {
         step: 'Detect',
         nodes: [
-            { title: 'Gemini', text: 'People, their aliases and five categories of sensitive data, each linked to a person.' },
+            { title: 'Gemini', text: 'People, their aliases and five categories of sensitive data.' },
             { title: 'NLP safety net', text: 'Deterministic UK patterns: UPN, NHS and NI numbers, phones, postcodes.' },
         ],
     },
@@ -196,18 +194,6 @@ const pipeline = [
     },
 ];
 
-const craft = [
-    { value: '114', label: 'edge states mapped across 6 journeys' },
-    { value: '480+', label: 'unit tests, run before every deploy' },
-    { value: '47%', label: 'faster page changes in a 50-page review' },
-];
-
-const outcome = [
-    { value: '60+', label: 'updates shipped since November 2025' },
-    { value: '50', label: 'files per batch' },
-    { value: '20,000', label: 'pages per batch in Standard mode' },
-];
-
 const team = [
     { label: 'Me', value: 'Product design, frontend, extraction prompt' },
     { label: 'Product owner', value: 'Priorities and roadmap' },
@@ -222,8 +208,8 @@ const Eclipse = () => (
         <CaseHero
             project={project}
             title="Making redaction a decision about *people*"
-            intro="Eclipse helps staff in UK schools and multi-academy trusts redact subject access requests, Freedom of Information responses and exclusion paperwork. AI finds every person in the file and everything about them; a person decides what leaves the building."
-            meta={[{ label: 'Team', value: 'Product owner, two engineers, a DPO and me' }]}
+            intro="Eclipse helps staff in UK schools and multi-academy trusts redact subject access requests, Freedom of Information responses and exclusion paperwork. AI finds the people in a file and the personal data about them; a person decides what leaves the building."
+            meta={[{ label: 'Team', value: 'Six, from product to data protection' }]}
             image={coverImage}
             imageAlt="Eclipse review workspace with a fictional school report and its findings grouped by person"
         />
@@ -240,25 +226,25 @@ const Eclipse = () => (
                     Requests arrive as subject access requests from parents, Freedom of Information requests from the
                     public, and exclusion or HR casework. The records behind them are long and messy: safeguarding
                     logs, letters, email threads, exports from school systems. The person doing the work is usually a
-                    data protection officer or a school business manager, accountable for every line, and there are
-                    two ways to get it wrong.
+                    data protection officer or a data lead, accountable for every line, and there are two ways to get
+                    it wrong.
                 </p>
             </Prose>
             <NumberedList items={stakes} />
         </CaseSection>
 
-        <CaseSection index="02" label="Insight" title="Redaction is a decision about *people*">
+        <CaseSection index="02" label="Insight" title="People, not *patterns*">
             <Callout>A pattern can find a phone number. It can&apos;t tell you *whose* it is.</Callout>
             <Prose>
                 <p>
-                    The first version of Eclipse followed its original spec: type the name of the pupil the request is
-                    about, then check findings marked red, amber or green by confidence. Over the following year the
-                    product moved away from both.
+                    The original spec, written before the product was called Eclipse, asked for the name of the pupil
+                    the request was about and marked findings red, amber or green by confidence. The product has since
+                    dropped both.
                 </p>
                 <p>
-                    Today Eclipse finds every person in the document first, attaches each piece of personal data to its
-                    owner, and turns review into <strong>one question per person: keep or redact?</strong> Every screen
-                    below follows from that.
+                    Today Eclipse finds the people in the document first and, in Enhanced mode on Lunar plans and
+                    trials, attaches each piece of personal data to its owner. Review becomes{' '}
+                    <strong>one question per person: keep or redact?</strong> The rest of the product follows from that.
                 </p>
             </Prose>
         </CaseSection>
@@ -276,8 +262,8 @@ const Eclipse = () => (
                 <div className="col-span-4 md:col-span-8 md:col-start-5">
                     <Prose>
                         <p>
-                            The practice run is the clearest record of how I work. Each round shipped to a preview,
-                            got used, and was kept or thrown out. The rule that came out of it:{' '}
+                            The practice run is the clearest record of how I work. I directed each round, reviewed it in
+                            the running app, and kept it or threw it out. The rule that came out of it:{' '}
                             <strong>the interface has to be louder than the guide.</strong>
                         </p>
                     </Prose>
@@ -293,10 +279,9 @@ const Eclipse = () => (
                 <div className="col-span-4 md:col-span-8 md:col-start-5">
                     <Prose>
                         <p>
-                            Eclipse has two modes, and the interface is open about the difference. <strong>Standard</strong>{' '}
-                            runs language-processing models tuned for UK identifiers: fast, half the cost, and grouped by
-                            type. <strong>Enhanced</strong> adds OCR and Gemini, which reads context and links every item
-                            to a person.
+                            <strong>Standard</strong> runs language-processing models tuned for UK identifiers: fast,
+                            half the page quota, and grouped by type. <strong>Enhanced</strong> adds OCR and Gemini,
+                            which read the context and, on Lunar plans, link findings to people.
                         </p>
                     </Prose>
                 </div>
@@ -310,9 +295,9 @@ const Eclipse = () => (
                     <Prose>
                         <p>
                             The first draft of the prompt told the model: “DO NOT miss any potentially sensitive
-                            information.” The production version says the opposite, because the model is no longer the
-                            only safety net. Deterministic patterns catch identifiers, Search &amp; Redact and drawing
-                            catch the rest, and a person reviews everything.
+                            information.” The production prompt says the opposite. Around the model now sit deterministic
+                            patterns for identifiers, Search &amp; Redact and drawing for what it misses, and a person who
+                            reviews everything.
                         </p>
                         <p>
                             The prompt defines who counts as a person, including people named only by relationship
@@ -326,36 +311,28 @@ const Eclipse = () => (
             </div>
         </CaseSection>
 
-        <CaseSection index="07" label="Process" title="Mapping every path before *changing* one">
-            <Prose>
-                <p>
-                    Regressions in Eclipse hide in the gaps between screens: a refresh during analysis, Back after an
-                    export, a batch file reopened from History. So I mapped the flow as six journeys, 32 steps and 114
-                    edge states, each with a permanent ID that names its test. A unit test fails if a route exists that
-                    the map doesn&apos;t cover.
-                </p>
-                <p>
-                    I build with AI coding agents every day, so the guardrails are explicit: written journey and
-                    navigation rules, unit tests that run offline against recorded backend responses, Playwright
-                    journeys against staging, and deploy scripts that refuse to build when lint or tests fail. Changes
-                    are measured, not assumed: profiling the review step on a real 50-page document cut page changes
-                    from 167 to 88 milliseconds, and showed that a risky rewrite of the overlay layer wasn&apos;t needed.
-                </p>
-            </Prose>
-            <StatRow stats={craft} />
-        </CaseSection>
-
-        <CaseSection index="08" label="Around the core" title="The states nobody *screenshots*" wide>
+        <CaseSection index="07" label="Reliability" title="Mapping every path before *changing* one" wide>
             <div className="grid-12 gap-y-12">
                 <div className="col-span-4 md:col-span-8 md:col-start-5">
                     <Prose>
                         <p>
-                            Waiting, resuming and failing get the same care as the happy path. While a document is
-                            analysed, the screen shows a sourced fact about information law instead of a spinner. History
-                            puts the documents that need you at the top and warns before files expire. When something
-                            breaks, the error names the stage, says you weren&apos;t charged, and offers the next step.
-                            And the audit log is built to be filed: what was found, what was redacted or kept, for whom
-                            and on which page.
+                            Regressions in Eclipse hide in the gaps between screens: a refresh during analysis, Back
+                            after an export, a batch file reopened from History. So the flow is mapped as six journeys,
+                            32 steps and 114 edge states, each with a permanent ID that names its test, and a unit test
+                            fails if a route exists that the map doesn&apos;t cover.
+                        </p>
+                        <p>
+                            I build with AI coding agents, so the guardrails are written down: journey and navigation
+                            rules, offline unit tests against recorded backend responses, Playwright journeys against
+                            staging, and deploy scripts that refuse to build when tests fail. Changes are measured rather
+                            than assumed: profiling the review step on a real 50-page document showed that a risky
+                            rewrite of the overlay layer wasn&apos;t needed.
+                        </p>
+                        <p>
+                            The quieter states get the same care. History puts the documents that need you first and
+                            warns before files expire. An analysis error names the stage and confirms no pages were
+                            charged. The audit log is built to be filed: what was found, what was redacted or kept, for
+                            whom and on which page.
                         </p>
                     </Prose>
                 </div>
@@ -363,7 +340,6 @@ const Eclipse = () => (
                     <FigureGrid
                         figStart={12}
                         figures={[
-                            { src: analysingImage, alt: 'Analysing screen with the eclipse loader and a sourced fact about information law', caption: 'Analysing: a sourced legal fact, not a spinner' },
                             { src: historyImage, alt: 'History page with documents waiting for review at the top', caption: 'History: what needs you comes first' },
                             { src: auditImage, alt: 'First page of a redaction audit log for a fictional academy: coverage, document information and findings by category', caption: 'Audit log: a record a DPO can file' },
                         ]}
@@ -372,17 +348,21 @@ const Eclipse = () => (
             </div>
         </CaseSection>
 
-        <CaseSection index="09" label="Outcome" title="Where it is *now*" dark>
+        <CaseSection index="08" label="Outcome" title="Where it is *now*" dark>
             <Lead>
-                Eclipse is live and sold to UK schools and trusts on annual plans, with team accounts that share a page
-                pool, Google and Microsoft sign-in, and batch processing.
+                Eclipse is live, with Solar and Lunar plans on sale to UK schools and trusts, team accounts that share a
+                page pool, Google and Microsoft sign-in, and batches of up to 50 files.
             </Lead>
-            <StatRow stats={outcome} />
             <Prose>
                 <p>
-                    Next is measurement. The practice run has a defined success metric, the share of new users who
-                    complete a first real export, and product analytics now track it without recording any document
-                    content, names or file names.
+                    Usage figures aren&apos;t published yet, so I won&apos;t claim any. The practice run has a defined
+                    success metric, the share of new users who complete a first real export, and product analytics now
+                    track it without recording document content, names or file names.
+                </p>
+                <p>
+                    The open trade-off is the one in decision two. Defaulting contextual items to Keep protects what the
+                    requester is owed, but only works if someone reads them. That is why they are pinned and outlined,
+                    and it is the obvious first question for the analytics.
                 </p>
             </Prose>
             <FactList items={team} />

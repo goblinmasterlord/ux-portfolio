@@ -64,10 +64,7 @@ const shipped = [
     },
 ];
 
-const results = [
-    { value: '50K+', label: 'Contracts created' },
-    { value: '85%', label: 'Faster completion' },
-];
+const results = [{ value: '50K+', label: 'Contracts created' }];
 
 const facts = [
     { label: 'My role', value: 'UX/UI designer, the only designer on the team' },
@@ -104,7 +101,7 @@ const Everprove = () => (
 
         <CaseSection index="02" label="Research" title="Why people avoid *contracts*">
             <Prose>
-                <p>Research with small business owners and individuals surfaced four recurring problems:</p>
+                <p>Research with small business owners and individuals surfaced these problems:</p>
             </Prose>
             <NumberedList items={challenges} />
             <Callout>Make it feel like a *conversation,* not a legal form.</Callout>

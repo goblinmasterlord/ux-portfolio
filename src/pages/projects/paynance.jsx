@@ -14,7 +14,7 @@ const summary = [
     },
     {
         label: 'What I did',
-        text: 'As one of four product designers, I designed the merchant journey across four products: the landing page, KYC onboarding, the merchant dashboard and the mobile and POS app.',
+        text: 'As one of four product designers, I designed the merchant journey across the landing page, KYC onboarding, the merchant dashboard and the mobile and POS app.',
     },
     {
         label: 'Outcome',
@@ -41,36 +41,36 @@ const research = [
 const aspects = [
     {
         title: 'Landing page',
-        description: 'Competitor analysis and user research set the direction; A/B tests of value propositions, layouts and calls to action chose between the options. The final version pairs clear messaging with interactive demonstrations of the key features.',
+        description: 'Clear messaging for the merchants Paynance was built for, paired with interactive demonstrations of the key features. The version that shipped was chosen through A/B tests.',
         image: aspect1,
-        imageAlt: 'Paynance landing page',
+        imageAlt: 'Paynance landing page (Hungarian UI)',
         tags: ['Competitor analysis', 'A/B testing', 'Visual design', 'Conversion'],
     },
     {
         title: 'Merchant platform',
-        description: 'Interviews with more than 30 merchants showed what they looked for first. The dashboard brings that data forward and keeps everything else out of the way, refined over several rounds of usability testing so merchants of any technical level can run their operations.',
+        description: 'A dashboard that puts the numbers merchants check first up front and keeps everything else out of the way, so merchants of any technical level can run their operations.',
         image: aspect2,
-        imageAlt: 'Merchant platform dashboard',
+        imageAlt: 'Merchant platform dashboard (Hungarian UI)',
         tags: ['User interviews', 'Dashboard design', 'Usability testing'],
     },
     {
         title: 'Streamlined onboarding',
-        description: 'Starting from the regulatory requirements and how merchants actually behave, I designed a verification flow that balances security with usability. Progressive disclosure and contextual guidance make the KYC steps approachable while the flow stays compliant.',
+        description: 'A verification flow that balances security with usability. Progressive disclosure and contextual guidance make the KYC steps approachable while the flow stays compliant.',
         image: aspect3,
-        imageAlt: 'KYC onboarding flow',
+        imageAlt: 'KYC onboarding flow (Hungarian UI)',
         tags: ['KYC', 'Progressive disclosure', 'Error handling'],
     },
     {
         title: 'Mobile & POS app',
-        description: 'Field research with merchants shaped one payment interface for both mobile devices and POS terminals. It handles split payments and refunds while staying simple enough for new staff to learn quickly.',
+        description: 'One payment interface for mobile devices and POS terminals. It handles split payments and refunds and stays simple enough for new staff to learn quickly.',
         image: aspect4,
-        imageAlt: 'Mobile and POS application screens',
+        imageAlt: 'Mobile and POS app screens (Hungarian UI)',
         tags: ['Field research', 'POS interface', 'Payment flows'],
     },
 ];
 
 const results = [
-    { value: '2.5M+', label: 'Transactions processed monthly' },
+    { value: '2.5M+', label: 'Transactions processed monthly, platform-wide' },
     { value: '1,000+', label: 'Merchants onboarded' },
 ];
 
@@ -116,7 +116,7 @@ const Paynance = () => (
             <Ledger columns={['Method', 'What it shaped']} rows={research} />
         </CaseSection>
 
-        <CaseSection index="04" label="The work" title="Four products, one *merchant* journey" wide>
+        <CaseSection index="04" label="The work" title="Four surfaces, one *merchant* journey" wide>
             <AspectList items={aspects} />
         </CaseSection>
 

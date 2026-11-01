@@ -218,8 +218,8 @@ const summary = [
         text: 'I train people at every level, from all-staff introductions to executive workshops, and build the automations that put AI to work in their operations.',
     },
     {
-        label: 'Result',
-        text: 'Four workshop formats, from a 60-minute introduction to a five-hour programme, and production automations such as contract drafting for a legal firm.',
+        label: 'Scope',
+        text: 'Four workshop formats, from a 60-minute introduction to a five-hour programme, and custom automations such as contract drafting for a legal firm.',
     },
 ];
 
