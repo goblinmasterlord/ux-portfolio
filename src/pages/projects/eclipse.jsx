@@ -12,7 +12,9 @@ import {
     Decisions,
     Ledger,
     Flow,
+    Figure,
     FigureGrid,
+    StatRow,
     FactList,
     NextProject,
 } from '../../components/case';
@@ -28,7 +30,9 @@ import searchImage from '../../assets/projects/eclipse/search.jpg';
 import practiceImage from '../../assets/projects/eclipse/practice.jpg';
 import batchImage from '../../assets/projects/eclipse/batch.jpg';
 import analysingImage from '../../assets/projects/eclipse/analysing.jpg';
-import historyImage from '../../assets/projects/eclipse/history.jpg';
+import batchErrorsImage from '../../assets/projects/eclipse/batch-errors.jpg';
+import flagImage from '../../assets/projects/eclipse/flag.jpg';
+import ScoreChart from './eclipse/ScoreChart';
 import auditImage from '../../assets/projects/eclipse/audit-log.jpg';
 
 const project = caseStudies.find((p) => p.id === 'eclipse');
@@ -40,7 +44,7 @@ const summary = [
     },
     {
         label: 'What I did',
-        text: 'I designed the workflow and its screens and built the React frontend, from upload to audit log. I also wrote the extraction prompt behind Enhanced mode.',
+        text: 'I designed the workflow and its screens and built the React frontend, from upload to audit log. Then I tuned the extraction prompt with an autoresearch loop: 22 experiments in a day, held-out score up from 89.5 to 97.0.',
     },
     {
         label: 'Outcome',
@@ -65,9 +69,9 @@ const steps = [
     },
     {
         title: 'Analyse',
-        description: 'While a document is analysed, the screen shows a sourced fact about information law instead of a spinner. It ends on an overview of who was found and what kind of data.',
+        description: 'While a document is analysed, the screen shows a sourced fact about information law instead of a spinner. The six-page bundle on these screens took just over two minutes: 25 people and 54 sensitive items.',
         image: analysingImage,
-        alt: 'Analysing screen with the eclipse loader, elapsed time, an estimate and a fact about subject access request deadlines',
+        alt: 'Analysing screen with the eclipse loader, elapsed time, an estimate and a fact about the offence of altering records after a request arrives',
         caption: 'Analysing: a sourced legal fact, not a spinner',
     },
     {
@@ -89,20 +93,20 @@ const steps = [
 const decisions = [
     {
         title: 'Group findings by person, not by type',
-        problem: 'A flat list of findings is slow to work through and hides the hard cases: a surname that is also a common word, or two different people both called “Mum”.',
+        problem: 'A flat list of findings hides the hard cases. In the bundle shown here, the pupil appears as Freya Isobel Carwardine, Freya Carwardine, Freya Hartley (before a name change) and “Fifi”, and an unrelated teacher shares her father’s surname.',
         decision: 'In Enhanced mode everything about one person sits under their name, with their other forms of address on one line. A single Keep | Redact control works on the whole person, one item or one occurrence, and each row shows a short category tag instead of repeating the text.',
         image: reviewPeopleImage,
         contain: false,
-        alt: 'Review sidebar: Emma Thompson’s group with her aliases on one line and a Keep or Redact choice on each of her 13 items',
+        alt: 'Review sidebar: Freya Isobel Carwardine’s group, “Also appears as Fifi, Freya Carwardine, Freya Hartley”, with a Keep or Redact choice on each of her 14 items',
         caption: 'One person, every mention and detail, one decision per row',
     },
     {
         title: 'Make judgement calls look like judgement calls',
         problem: 'Health and family details, such as a diagnosis or who a child lives with, are not always meant to go. Redacting them by default quietly withholds information; keeping them by default could expose it.',
-        decision: 'They get their own pinned “Contextually sensitive” group, start as Keep so a person decides, and are outlined with a dashed border in the document. People and hard identifiers start as Redact.',
+        decision: 'They get their own pinned “Contextually sensitive” group, start as Keep so a person decides, and are outlined with a dashed border in the document. Here that is ASD, ADHD, a CAMHS referral, self-harm and the parents’ separation. People and hard identifiers start as Redact.',
         image: contextualImage,
         contain: false,
-        alt: 'The Contextually Sensitive group expanded in the review sidebar, with its items set to Keep',
+        alt: 'Document lines with dashed outlines next to the expanded Contextually Sensitive group: ASD, ADHD, CAMHS referral, self-harm and family items, all set to Keep',
         caption: 'Contextually sensitive items wait for a person',
     },
     {
@@ -116,16 +120,16 @@ const decisions = [
     },
     {
         title: 'Fix what the AI missed in one gesture',
-        problem: 'No model finds everything. Adding a missed redaction took several steps, and a missed name usually appears more than once.',
-        decision: 'Press S and drag: the box snaps to whole words and asks who it belongs to, with the nearest person suggested. Deleting has an Undo instead of a confirmation. Search & Redact finds every other occurrence as you type, so you tick the ones to remove.',
+        problem: 'No model finds everything: in this run it missed the father’s postcode. Adding a missed redaction used to take several steps, and a missed name usually appears more than once.',
+        decision: 'Press S and drag: the box snaps to whole words and asks who it belongs to, with the nearest person suggested. Deleting has an Undo instead of a confirmation. Search & Redact finds every occurrence as you type; hits that are already redacted start unticked, so you only decide what is left.',
         image: drawImage,
         contain: false,
-        alt: 'A box drawn over a word in the document with a popover asking which person it belongs to',
-        caption: 'Draw, snap to words, attach to a person',
+        alt: 'A box drawn over the postcode WF13 2NS with a popover suggesting Mr Gavin Hartley, mentioned on the same line',
+        caption: 'The missed postcode, drawn and attached to the father',
         extra: {
             image: searchImage,
-            alt: 'Search & Redact drawer listing every occurrence of a search term, with the hits highlighted in the document',
-            caption: 'Search & Redact: every occurrence, ticked one by one',
+            alt: 'Search & Redact for “Hartley”: 14 matches on 5 pages, already redacted, including Mrs Diane Hartley, an unrelated teacher',
+            caption: 'Search & Redact for “Hartley”: the father and an unrelated teacher',
         },
     },
     {
@@ -134,7 +138,7 @@ const decisions = [
         decision: 'A practice run on a fictional document, through the real screens, using no trial documents. A ring marks the next real control and a quiet note explains why; the guide never clicks for you. Getting there took ten rounds, listed below.',
         image: practiceImage,
         contain: false,
-        alt: 'The practice run: a ring around a real control and a short note explaining what to do next',
+        alt: 'The practice run, step 1 of 8: a ring around the real Standard or Enhanced control and a short note explaining the choice',
         caption: 'The practice run guides through the real interface',
     },
     {
@@ -143,7 +147,7 @@ const decisions = [
         decision: 'One column: files, pages, quota cost and time estimate directly above a single “Start processing” button. Once the batch runs, the same slot becomes the progress bar and the promise of an email. Cancelling asks first and says the uploads will be deleted.',
         image: batchImage,
         contain: false,
-        alt: 'Batch summary page with files, pages, quota cost and estimated time above the Start processing button',
+        alt: 'Batch page for three files: 60 pages, a quota cost of 60 and 4 to 5 minutes, directly above Start processing',
         caption: 'The batch page, rebuilt around its one decision',
     },
 ];
@@ -172,7 +176,7 @@ const pipeline = [
     {
         step: 'Detect',
         nodes: [
-            { title: 'Gemini', text: 'People, their aliases and five categories of sensitive data.' },
+            { title: 'Language model', text: 'People, their aliases and five categories of sensitive data. Gemini in production, Claude Haiku on staging.' },
             { title: 'NLP safety net', text: 'Deterministic UK patterns: UPN, NHS and NI numbers, phones, postcodes.' },
         ],
     },
@@ -194,8 +198,32 @@ const pipeline = [
     },
 ];
 
+const experiments = [
+    { id: 'e001', n: 1, score: 90.41, change: 'Baseline: the production prompt, with its examples swapped for invented ones', label: 'baseline', labelBelow: true },
+    { id: 'e002', n: 2, score: 94.19, change: 'A checklist of every form a name can take', label: 'name-form checklist', labelBelow: true },
+    { id: 'e003', n: 3, score: 95.23, change: 'Every wording of a fact listed as its own item', label: 'every wording its own item' },
+    { id: 'e014', n: 14, score: 96.89, change: 'Bare surnames, safeguarding-lead items, relationship phrases split out, no court orders', label: 'four rule fixes', labelLeft: true },
+    { id: 'e016', n: 16, score: 96.88, change: 'Worked examples removed: same score, less prompt' },
+    { id: 'e017', n: 17, score: 96.91, change: 'Format section compressed to one paragraph' },
+];
+
+const keeps = [
+    ['e001', 'Baseline: the production prompt, with its examples swapped for invented ones', '90.41'],
+    ['e002', 'A checklist of every form a name can take', '94.19'],
+    ['e003', 'Every wording of a fact listed as its own item', '95.23'],
+    ['e014', 'Bare surnames, safeguarding-lead items, relationship phrases split out', '96.89'],
+    ['e016', 'Worked examples removed (kept: within half a point, less text)', '96.88'],
+    ['e017', 'Format section compressed to one paragraph', '96.91'],
+];
+
+const research = [
+    { value: '97.0', label: 'held-out score, up from 89.5, on a document the loop never saw' },
+    { value: '22', label: 'experiments in one day, 7 of them kept' },
+    { value: '9', label: 'real people Haiku found that Gemini missed, in six new documents; none the other way' },
+];
+
 const team = [
-    { label: 'Me', value: 'Product design, frontend, extraction prompt' },
+    { label: 'Me', value: 'Product design, frontend, prompt tuning and evaluation' },
     { label: 'Product owner', value: 'Priorities and roadmap' },
     { label: 'Lead engineer', value: 'Backend, document pipeline, billing' },
     { label: 'Machine learning specialist', value: 'Detection models and the feedback loop' },
@@ -274,39 +302,81 @@ const Eclipse = () => (
             </div>
         </CaseSection>
 
-        <CaseSection index="06" label="The AI" title="Two engines and a *strict* prompt" wide>
+        <CaseSection index="06" label="The AI" title="A prompt tuned like an *experiment*" wide>
             <div className="grid-12 gap-y-16">
                 <div className="col-span-4 md:col-span-8 md:col-start-5">
                     <Prose>
                         <p>
                             <strong>Standard</strong> runs language-processing models tuned for UK identifiers: fast,
-                            half the page quota, and grouped by type. <strong>Enhanced</strong> adds OCR and Gemini,
-                            which read the context and, on Lunar plans, link findings to people.
+                            half the page quota, and grouped by type. <strong>Enhanced</strong> adds OCR and a language
+                            model that reads the context and, on Lunar plans, links findings to people.
                         </p>
                     </Prose>
                 </div>
                 <div className="col-span-4 md:col-span-12">
-                    <Flow stages={pipeline} caption="Enhanced mode. Standard skips OCR and Gemini and groups findings by type." />
+                    <Flow stages={pipeline} caption="Enhanced mode. Standard skips OCR and the language model and groups findings by type." />
                 </div>
                 <div className="col-span-4 md:col-span-8 md:col-start-5 flex flex-col gap-12">
-                    <Callout note="From the production prompt">
-                        Extract only what clearly fits a category. When uncertain, *leave* it out.
+                    <Callout note="From the rules of the tuning loop">
+                        The user can untick a false positive, but nobody *notices* a miss.
                     </Callout>
                     <Prose>
                         <p>
-                            The first draft of the prompt told the model: “DO NOT miss any potentially sensitive
-                            information.” The production prompt says the opposite. Around the model now sit deterministic
-                            patterns for identifiers, Search &amp; Redact and drawing for what it misses, and a person who
-                            reviews everything.
+                            Tuning the extraction prompt by hand meant guessing. So I adapted Andrej Karpathy&apos;s
+                            autoresearch loop to it. An agent may edit only the prompt. A script scores every version
+                            against three long, fictional school documents with labelled answers: 132 people, 284
+                            sensitive items and 188 decoys that must not be flagged.
                         </p>
                         <p>
-                            The prompt defines who counts as a person, including people named only by relationship
-                            (“Grandma”, “Akira&apos;s uncle”) and staff initials, and five categories of sensitive data,
-                            with worked examples of what not to flag: “feeling anxious” is an emotion, not a diagnosis.
-                            When reviewers mark a finding as not sensitive, they pick a reason and it goes to a queue the
-                            team reviews, rather than straight into a blocklist.
+                            The score weights recall four times over precision, penalises merging two people into one,
+                            and drops to zero if the person the request is about is missed. The same prompt scores
+                            differently each run, so every version runs three times per document. A change is kept only if
+                            it beats the best by a point over six runs, or removes text without losing more than half a
+                            point. The agent never sees the answers, a guard rejects any prompt that quotes a test
+                            document, and a held-out file it never sees checks for overfitting.
                         </p>
                     </Prose>
+                </div>
+                <div className="col-span-4 md:col-span-12">
+                    <ScoreChart points={experiments} />
+                    <p className="mt-12 text-[0.8rem] leading-snug text-mute">
+                        Training score after each kept change, 12 October 2026. Hover a point for the change.
+                    </p>
+                </div>
+                <div className="col-span-4 md:col-span-12">
+                    <Ledger columns={['Experiment', 'Change', 'Score']} rows={keeps} accent={1} />
+                </div>
+                <div className="col-span-4 md:col-span-8 md:col-start-5 flex flex-col gap-12">
+                    <Prose>
+                        <p>
+                            The biggest gains were rules about names, not data. Each form of a name is searched and
+                            redacted separately, so the prompt now spells it out: “a form you leave out stays visible in
+                            the disclosure.” Later keeps made the prompt simpler: the worked examples went, and the
+                            score held.
+                        </p>
+                        <p>
+                            The tuned prompt runs on Claude Haiku. On six different fictional documents (121 pages),
+                            Haiku on staging found nine real people that Gemini in production missed, and none the other
+                            way round. It listed 708 name variants to Gemini&apos;s 461, and never used role words like
+                            “DSL” or “Headteacher” as names, which would black out every mention of a role. Gemini was
+                            still better at splitting couples like “D. &amp; S. Thornton-Wells” into two people.
+                            Production still runs Gemini; Haiku is on staging.
+                        </p>
+                    </Prose>
+                    <StatRow stats={research} />
+                    <Prose>
+                        <p>
+                            What the loop can&apos;t catch, reviewers can. Clicking a finding in the document offers Keep,
+                            Redact or a flag. A flagged item stays readable, and its reason goes to a queue the team
+                            reviews, rather than straight into a blocklist.
+                        </p>
+                    </Prose>
+                    <Figure
+                        src={flagImage}
+                        alt="The town Elmsworth, read as a person, flagged in the document with the reason Location/room name selected"
+                        fig="12"
+                        caption="A town the model read as a person, flagged in one click"
+                    />
                 </div>
             </div>
         </CaseSection>
@@ -329,19 +399,19 @@ const Eclipse = () => (
                             rewrite of the overlay layer wasn&apos;t needed.
                         </p>
                         <p>
-                            The quieter states get the same care. History puts the documents that need you first and
-                            warns before files expire. An analysis error names the stage and confirms no pages were
-                            charged. The audit log is built to be filed: what was found, what was redacted or kept, for
-                            whom and on which page.
+                            The quieter states get the same care. When one file in a batch fails, the batch says so,
+                            keeps the others moving and offers a retry in place. History puts the documents that need you
+                            first and warns before files expire. The audit log is built to be filed: what was found, what
+                            was redacted or kept, for whom and on which page.
                         </p>
                     </Prose>
                 </div>
                 <div className="col-span-4 md:col-span-12">
                     <FigureGrid
-                        figStart={12}
+                        figStart={13}
                         figures={[
-                            { src: historyImage, alt: 'History page with documents waiting for review at the top', caption: 'History: what needs you comes first' },
-                            { src: auditImage, alt: 'First page of a redaction audit log for a fictional academy: coverage, document information and findings by category', caption: 'Audit log: a record a DPO can file' },
+                            { src: batchErrorsImage, alt: 'Batch finished with errors: two of three files done, one failed with a Retry analysis button', caption: 'A real failure on staging: one file failed, the rest carried on' },
+                            { src: auditImage, alt: 'Audit log tables: what was redacted by category and which items were kept, including the flagged town', caption: 'The audit log: what was found, redacted and kept' },
                         ]}
                     />
                 </div>
